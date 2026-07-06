@@ -1,0 +1,37 @@
+{
+  "fingerprint": "251a9482d46fd37d784190683c2d15f7",
+  "phase1_selection_file": "C:\\Users\\C4S\\Music\\Mapping with Real Data\\forecast_outputs\\global_model_selection.csv",
+  "selected_model": "BiGRU",
+  "window": 14,
+  "epochs": 150,
+  "seed": 42,
+  "train_end_year": 2023,
+  "deployment_test_metrics": {
+    "Kalyanpur": {
+      "train_r2": 0.8644,
+      "train_rmse": 6.877,
+      "train_mae": 4.8718,
+      "val_r2": 0.8276,
+      "val_rmse": 8.7057,
+      "val_mae": 6.1196,
+      "test_r2": 0.8533,
+      "test_rmse": 6.9293,
+      "test_mae": 5.2268,
+      "epochs_run": 122.0,
+      "train_seconds": 336.6
+    },
+    "Dhanmondi": {
+      "train_r2": 0.8323,
+      "train_rmse": 15.1733,
+      "train_mae": 11.2302,
+      "val_r2": 0.5889,
+      "val_rmse": 17.6276,
+      "val_mae": 12.9596,
+      "test_r2": 0.7857,
+      "test_rmse": 13.3677,
+      "test_mae": 10.1667,
+      "epochs_run": 118.0,
+      "train_seconds": 246.8
+    }
+  }
+}

@@ -1,0 +1,8 @@
+nodeId,slab_id,from_kwh,to_kwh,rate_bdt_kwh,label,tou_peak_rate,tou_offpeak_rate
+SLAB_1,1,0,50,4.63,TariffSlab,6.25,3.7
+SLAB_2,2,0,75,5.26,TariffSlab,7.1,4.21
+SLAB_3,3,76,200,7.2,TariffSlab,9.72,5.76
+SLAB_4,4,201,300,7.59,TariffSlab,10.25,6.07
+SLAB_5,5,301,400,8.02,TariffSlab,10.83,6.42
+SLAB_6,6,401,600,12.67,TariffSlab,17.1,10.14
+SLAB_7,7,601,100000,14.61,TariffSlab,19.72,11.69

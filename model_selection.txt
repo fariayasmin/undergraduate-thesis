@@ -1,0 +1,276 @@
+######################################################################
+# PHASE 1 — MODEL SELECTION EXPERIMENT
+# 6 architectures x 18 substations = 108 model trainings
+# Split: train 2019-2023 | validation 2024 | test 2025-2026
+# Selection: highest mean VALIDATION R2 (test reported only)
+# This takes a while — progress and ETA are printed per substation.
+######################################################################
+Loading and cleaning data...
+
+PHASE 1 — model-selection experiment: 18 substations × 6 architectures = 108 models
+Split: train ≤2023 | val 2024 | test ≥2025  (window=14, seed=42, max epochs=150, early-stop patience=15)
+
+[1/18] ══ Agargaon ═══════════════════════════════════════
+
+======================================================================
+Substation: Agargaon
+======================================================================
+  Train sequences: (1521, 14, 19)  |  Val: (366, 14, 19)  |  Test: (544, 14, 19)
+  [1/6] BiLSTM             training…  92 epochs (early-stopped),  127.6s | Train R²=0.805  Val R²=0.783  Test R²=0.817
+  [2/6] BiGRU              training…  88 epochs (early-stopped),  178.0s | Train R²=0.803  Val R²=0.786  Test R²=0.835
+  [3/6] BiLSTM+BiGRU       training…  75 epochs (early-stopped),  174.1s | Train R²=0.810  Val R²=0.781  Test R²=0.808
+  [4/6] BiGRU+BiLSTM       training…  89 epochs (early-stopped),  236.0s | Train R²=0.808  Val R²=0.784  Test R²=0.822
+  [5/6] CNN+BiLSTM+BiGRU   training…  57 epochs (early-stopped),  113.6s | Train R²=0.726  Val R²=0.755  Test R²=0.718
+  [6/6] CNN+BiGRU+BiLSTM   training…  66 epochs (early-stopped),  132.1s | Train R²=0.727  Val R²=0.740  Test R²=0.722
+  ── Agargaon done in 16.7 min | elapsed 16.7 min | ETA remaining ≈ 283 min (1/18 substations)
+
+[2/18] ══ Bangabhaban ═══════════════════════════════════════
+
+======================================================================
+Substation: Bangabhaban
+======================================================================
+  Train sequences: (1521, 14, 19)  |  Val: (366, 14, 19)  |  Test: (544, 14, 19)
+  [1/6] BiLSTM             training… 132 epochs (early-stopped),  315.8s | Train R²=0.763  Val R²=0.361  Test R²=0.697
+  [2/6] BiGRU              training… 146 epochs (early-stopped),  419.8s | Train R²=0.778  Val R²=0.396  Test R²=0.717
+  [3/6] BiLSTM+BiGRU       training… 129 epochs (early-stopped),  375.8s | Train R²=0.766  Val R²=0.380  Test R²=0.713
+  [4/6] BiGRU+BiLSTM       training… 132 epochs (early-stopped),  248.5s | Train R²=0.768  Val R²=0.355  Test R²=0.702
+  [5/6] CNN+BiLSTM+BiGRU   training…  92 epochs (early-stopped),  125.1s | Train R²=0.763  Val R²=0.295  Test R²=0.690
+  [6/6] CNN+BiGRU+BiLSTM   training… 114 epochs (early-stopped),  152.9s | Train R²=0.760  Val R²=0.377  Test R²=0.721
+  ── Bangabhaban done in 27.8 min | elapsed 44.5 min | ETA remaining ≈ 356 min (2/18 substations)
+
+[3/18] ══ Bashundhara ═══════════════════════════════════════
+
+======================================================================
+Substation: Bashundhara
+======================================================================
+  Train sequences: (1521, 14, 19)  |  Val: (366, 14, 19)  |  Test: (544, 14, 19)
+  [1/6] BiLSTM             training… 107 epochs (early-stopped),  186.0s | Train R²=0.760  Val R²=0.703  Test R²=0.747
+  [2/6] BiGRU              training…  77 epochs (early-stopped),  155.2s | Train R²=0.762  Val R²=0.700  Test R²=0.720
+  [3/6] BiLSTM+BiGRU       training…  73 epochs (early-stopped),  134.4s | Train R²=0.760  Val R²=0.702  Test R²=0.738
+  [4/6] BiGRU+BiLSTM       training… 129 epochs (early-stopped),  248.4s | Train R²=0.763  Val R²=0.704  Test R²=0.743
+  [5/6] CNN+BiLSTM+BiGRU   training… 129 epochs (early-stopped),  165.7s | Train R²=0.779  Val R²=0.714  Test R²=0.715
+  [6/6] CNN+BiGRU+BiLSTM   training… 140 epochs (early-stopped),  188.5s | Train R²=0.778  Val R²=0.704  Test R²=0.676
+  ── Bashundhara done in 18.4 min | elapsed 62.9 min | ETA remaining ≈ 314 min (3/18 substations)
+
+[4/18] ══ Dhanmondi ═══════════════════════════════════════
+
+======================================================================
+Substation: Dhanmondi
+======================================================================
+  Train sequences: (1521, 14, 19)  |  Val: (366, 14, 19)  |  Test: (544, 14, 19)
+  [1/6] BiLSTM             training… 128 epochs (early-stopped),  220.6s | Train R²=0.833  Val R²=0.587  Test R²=0.777
+  [2/6] BiGRU              training… 123 epochs (early-stopped),  250.8s | Train R²=0.830  Val R²=0.589  Test R²=0.790
+  [3/6] BiLSTM+BiGRU       training… 113 epochs (early-stopped),  204.6s | Train R²=0.820  Val R²=0.595  Test R²=0.783
+  [4/6] BiGRU+BiLSTM       training… 104 epochs (early-stopped),  204.7s | Train R²=0.821  Val R²=0.586  Test R²=0.771
+  [5/6] CNN+BiLSTM+BiGRU   training… 103 epochs (early-stopped),  139.2s | Train R²=0.864  Val R²=0.553  Test R²=0.795
+  [6/6] CNN+BiGRU+BiLSTM   training… 123 epochs (early-stopped),  168.3s | Train R²=0.873  Val R²=0.572  Test R²=0.799
+  ── Dhanmondi done in 20.2 min | elapsed 83.1 min | ETA remaining ≈ 291 min (4/18 substations)
+
+[5/18] ══ Gulshan ═══════════════════════════════════════
+
+======================================================================
+Substation: Gulshan
+======================================================================
+  Train sequences: (1521, 14, 19)  |  Val: (366, 14, 19)  |  Test: (544, 14, 19)
+  [1/6] BiLSTM             training… 125 epochs (early-stopped),  214.4s | Train R²=0.819  Val R²=0.793  Test R²=0.780
+  [2/6] BiGRU              training… 150 epochs (full run),  302.8s | Train R²=0.827  Val R²=0.807  Test R²=0.800
+  [3/6] BiLSTM+BiGRU       training… 150 epochs (full run),  275.1s | Train R²=0.822  Val R²=0.803  Test R²=0.787
+  [4/6] BiGRU+BiLSTM       training… 132 epochs (early-stopped),  287.1s | Train R²=0.823  Val R²=0.803  Test R²=0.791
+  [5/6] CNN+BiLSTM+BiGRU   training… 150 epochs (full run),  180.2s | Train R²=0.864  Val R²=0.825  Test R²=0.822
+  [6/6] CNN+BiGRU+BiLSTM   training… 120 epochs (early-stopped),  233.1s | Train R²=0.862  Val R²=0.828  Test R²=0.812
+  ── Gulshan done in 25.4 min | elapsed 108.5 min | ETA remaining ≈ 282 min (5/18 substations)
+
+[6/18] ══ Hasnabad ═══════════════════════════════════════
+
+======================================================================
+Substation: Hasnabad
+======================================================================
+  Train sequences: (1521, 14, 19)  |  Val: (366, 14, 19)  |  Test: (544, 14, 19)
+  [1/6] BiLSTM             training… 127 epochs (early-stopped),  297.5s | Train R²=0.925  Val R²=0.652  Test R²=0.492
+  [2/6] BiGRU              training… 149 epochs (early-stopped),  421.4s | Train R²=0.924  Val R²=0.659  Test R²=0.531
+  [3/6] BiLSTM+BiGRU       training… 148 epochs (early-stopped),  369.1s | Train R²=0.924  Val R²=0.652  Test R²=0.510
+  [4/6] BiGRU+BiLSTM       training… 129 epochs (early-stopped),  202.6s | Train R²=0.922  Val R²=0.641  Test R²=0.502
+  [5/6] CNN+BiLSTM+BiGRU   training… 109 epochs (early-stopped),  117.2s | Train R²=0.924  Val R²=0.663  Test R²=0.464
+  [6/6] CNN+BiGRU+BiLSTM   training… 117 epochs (early-stopped),  131.9s | Train R²=0.923  Val R²=0.622  Test R²=0.420
+  ── Hasnabad done in 26.1 min | elapsed 134.7 min | ETA remaining ≈ 269 min (6/18 substations)
+
+[7/18] ══ Kalyanpur ═══════════════════════════════════════
+
+======================================================================
+Substation: Kalyanpur
+======================================================================
+  Train sequences: (1521, 14, 19)  |  Val: (366, 14, 19)  |  Test: (544, 14, 19)
+  [1/6] BiLSTM             training… 135 epochs (early-stopped),  192.9s | Train R²=0.859  Val R²=0.821  Test R²=0.848
+  [2/6] BiGRU              training… 119 epochs (early-stopped),  199.6s | Train R²=0.868  Val R²=0.829  Test R²=0.855
+  [3/6] BiLSTM+BiGRU       training… 112 epochs (early-stopped),  173.3s | Train R²=0.860  Val R²=0.829  Test R²=0.852
+  [4/6] BiGRU+BiLSTM       training… 119 epochs (early-stopped),  192.7s | Train R²=0.859  Val R²=0.813  Test R²=0.841
+  [5/6] CNN+BiLSTM+BiGRU   training… 100 epochs (early-stopped),  112.7s | Train R²=0.869  Val R²=0.809  Test R²=0.845
+  [6/6] CNN+BiGRU+BiLSTM   training…  90 epochs (early-stopped),  104.3s | Train R²=0.867  Val R²=0.809  Test R²=0.841
+  ── Kalyanpur done in 16.6 min | elapsed 151.3 min | ETA remaining ≈ 238 min (7/18 substations)
+
+[8/18] ══ Lalbag ═══════════════════════════════════════
+
+======================================================================
+Substation: Lalbag
+======================================================================
+  Train sequences: (1521, 14, 19)  |  Val: (366, 14, 19)  |  Test: (544, 14, 19)
+  [1/6] BiLSTM             training… 135 epochs (early-stopped),  197.5s | Train R²=0.772  Val R²=0.691  Test R²=0.727
+  [2/6] BiGRU              training… 112 epochs (early-stopped),  192.6s | Train R²=0.772  Val R²=0.723  Test R²=0.729
+  [3/6] BiLSTM+BiGRU       training… 150 epochs (full run),  229.2s | Train R²=0.779  Val R²=0.728  Test R²=0.772
+  [4/6] BiGRU+BiLSTM       training… 150 epochs (full run),  243.8s | Train R²=0.772  Val R²=0.717  Test R²=0.760
+  [5/6] CNN+BiLSTM+BiGRU   training… 104 epochs (early-stopped),  117.8s | Train R²=0.810  Val R²=0.719  Test R²=0.751
+  [6/6] CNN+BiGRU+BiLSTM   training…  92 epochs (early-stopped),  109.1s | Train R²=0.785  Val R²=0.708  Test R²=0.652
+  ── Lalbag done in 18.5 min | elapsed 169.8 min | ETA remaining ≈ 212 min (8/18 substations)
+
+[9/18] ══ Madartek ═══════════════════════════════════════
+
+======================================================================
+Substation: Madartek
+======================================================================
+  Train sequences: (1521, 14, 19)  |  Val: (366, 14, 19)  |  Test: (544, 14, 19)
+  [1/6] BiLSTM             training… 100 epochs (early-stopped),  151.2s | Train R²=0.864  Val R²=0.756  Test R²=0.843
+  [2/6] BiGRU              training… 145 epochs (early-stopped),  244.4s | Train R²=0.872  Val R²=0.806  Test R²=0.878
+  [3/6] BiLSTM+BiGRU       training…  97 epochs (early-stopped),  154.9s | Train R²=0.875  Val R²=0.793  Test R²=0.878
+  [4/6] BiGRU+BiLSTM       training… 118 epochs (early-stopped),  193.0s | Train R²=0.875  Val R²=0.800  Test R²=0.884
+  [5/6] CNN+BiLSTM+BiGRU   training… 121 epochs (early-stopped),  135.3s | Train R²=0.872  Val R²=0.779  Test R²=0.863
+  [6/6] CNN+BiGRU+BiLSTM   training… 115 epochs (early-stopped),  134.9s | Train R²=0.871  Val R²=0.778  Test R²=0.865
+  ── Madartek done in 17.3 min | elapsed 187.1 min | ETA remaining ≈ 187 min (9/18 substations)
+
+[10/18] ══ Maniknagar ═══════════════════════════════════════
+
+======================================================================
+Substation: Maniknagar
+======================================================================
+  Train sequences: (1521, 14, 19)  |  Val: (366, 14, 19)  |  Test: (544, 14, 19)
+  [1/6] BiLSTM             training… 150 epochs (full run),  222.3s | Train R²=0.818  Val R²=0.634  Test R²=0.783
+  [2/6] BiGRU              training… 140 epochs (early-stopped),  244.1s | Train R²=0.822  Val R²=0.639  Test R²=0.798
+  [3/6] BiLSTM+BiGRU       training… 111 epochs (early-stopped),  173.3s | Train R²=0.813  Val R²=0.629  Test R²=0.779
+  [4/6] BiGRU+BiLSTM       training… 138 epochs (early-stopped),  226.0s | Train R²=0.817  Val R²=0.638  Test R²=0.789
+  [5/6] CNN+BiLSTM+BiGRU   training… 114 epochs (early-stopped),  128.8s | Train R²=0.839  Val R²=0.641  Test R²=0.793
+  [6/6] CNN+BiGRU+BiLSTM   training… 123 epochs (early-stopped),  141.7s | Train R²=0.847  Val R²=0.642  Test R²=0.788
+  ── Maniknagar done in 19.3 min | elapsed 206.4 min | ETA remaining ≈ 165 min (10/18 substations)
+
+[11/18] ══ Matual ═══════════════════════════════════════
+
+======================================================================
+Substation: Matual
+======================================================================
+  Train sequences: (1521, 14, 19)  |  Val: (366, 14, 19)  |  Test: (544, 14, 19)
+  [1/6] BiLSTM             training… 101 epochs (early-stopped),  152.5s | Train R²=0.790  Val R²=0.583  Test R²=0.801
+  [2/6] BiGRU              training… 142 epochs (early-stopped),  250.5s | Train R²=0.801  Val R²=0.605  Test R²=0.815
+  [3/6] BiLSTM+BiGRU       training… 122 epochs (early-stopped),  189.8s | Train R²=0.805  Val R²=0.611  Test R²=0.811
+  [4/6] BiGRU+BiLSTM       training… 123 epochs (early-stopped),  203.2s | Train R²=0.792  Val R²=0.597  Test R²=0.809
+  [5/6] CNN+BiLSTM+BiGRU   training… 150 epochs (full run),  166.6s | Train R²=0.849  Val R²=0.584  Test R²=0.800
+  [6/6] CNN+BiGRU+BiLSTM   training… 143 epochs (early-stopped),  164.9s | Train R²=0.841  Val R²=0.569  Test R²=0.788
+  ── Matual done in 19.2 min | elapsed 225.5 min | ETA remaining ≈ 144 min (11/18 substations)
+
+[12/18] ══ Mirpur ═══════════════════════════════════════
+
+======================================================================
+Substation: Mirpur
+======================================================================
+  Train sequences: (1521, 14, 19)  |  Val: (366, 14, 19)  |  Test: (544, 14, 19)
+  [1/6] BiLSTM             training…  93 epochs (early-stopped),  142.0s | Train R²=0.831  Val R²=0.767  Test R²=0.709
+  [2/6] BiGRU              training… 112 epochs (early-stopped),  192.3s | Train R²=0.880  Val R²=0.795  Test R²=0.773
+  [3/6] BiLSTM+BiGRU       training…  87 epochs (early-stopped),  137.7s | Train R²=0.864  Val R²=0.779  Test R²=0.739
+  [4/6] BiGRU+BiLSTM       training… 106 epochs (early-stopped),  176.4s | Train R²=0.824  Val R²=0.785  Test R²=0.755
+  [5/6] CNN+BiLSTM+BiGRU   training…  92 epochs (early-stopped),  106.0s | Train R²=0.895  Val R²=0.764  Test R²=0.718
+  [6/6] CNN+BiGRU+BiLSTM   training…  72 epochs (early-stopped),   87.1s | Train R²=0.795  Val R²=0.777  Test R²=0.738
+  ── Mirpur done in 14.4 min | elapsed 239.9 min | ETA remaining ≈ 120 min (12/18 substations)
+
+[13/18] ══ Narinda ═══════════════════════════════════════
+
+======================================================================
+Substation: Narinda
+======================================================================
+  Train sequences: (1521, 14, 19)  |  Val: (366, 14, 19)  |  Test: (544, 14, 19)
+  [1/6] BiLSTM             training… 105 epochs (early-stopped),  156.6s | Train R²=0.801  Val R²=0.542  Test R²=0.702
+  [2/6] BiGRU              training… 122 epochs (early-stopped),  211.8s | Train R²=0.819  Val R²=0.585  Test R²=0.755
+  [3/6] BiLSTM+BiGRU       training… 131 epochs (early-stopped),  204.0s | Train R²=0.822  Val R²=0.582  Test R²=0.754
+  [4/6] BiGRU+BiLSTM       training… 112 epochs (early-stopped),  187.0s | Train R²=0.800  Val R²=0.582  Test R²=0.737
+  [5/6] CNN+BiLSTM+BiGRU   training… 119 epochs (early-stopped),  133.2s | Train R²=0.853  Val R²=0.583  Test R²=0.761
+  [6/6] CNN+BiGRU+BiLSTM   training… 138 epochs (early-stopped),  157.8s | Train R²=0.852  Val R²=0.592  Test R²=0.769
+  ── Narinda done in 18.0 min | elapsed 257.9 min | ETA remaining ≈ 99 min (13/18 substations)
+
+[14/18] ══ Savar ═══════════════════════════════════════
+
+======================================================================
+Substation: Savar
+======================================================================
+  Train sequences: (1521, 14, 19)  |  Val: (366, 14, 19)  |  Test: (544, 14, 19)
+  [1/6] BiLSTM             training…  76 epochs (early-stopped),  114.9s | Train R²=0.679  Val R²=0.606  Test R²=0.607
+  [2/6] BiGRU              training…  76 epochs (early-stopped),  134.2s | Train R²=0.749  Val R²=0.623  Test R²=0.641
+  [3/6] BiLSTM+BiGRU       training…  83 epochs (early-stopped),  131.8s | Train R²=0.701  Val R²=0.611  Test R²=0.635
+  [4/6] BiGRU+BiLSTM       training… 109 epochs (early-stopped),  180.7s | Train R²=0.693  Val R²=0.619  Test R²=0.651
+  [5/6] CNN+BiLSTM+BiGRU   training…  89 epochs (early-stopped),  105.7s | Train R²=0.794  Val R²=0.595  Test R²=0.676
+  [6/6] CNN+BiGRU+BiLSTM   training…  83 epochs (early-stopped),  102.5s | Train R²=0.696  Val R²=0.602  Test R²=0.660
+  ── Savar done in 13.2 min | elapsed 271.1 min | ETA remaining ≈ 77 min (14/18 substations)
+
+[15/18] ══ Shyampur ═══════════════════════════════════════
+
+======================================================================
+Substation: Shyampur
+======================================================================
+  Train sequences: (1521, 14, 19)  |  Val: (366, 14, 19)  |  Test: (544, 14, 19)
+  [1/6] BiLSTM             training… 107 epochs (early-stopped),  161.6s | Train R²=0.750  Val R²=0.604  Test R²=0.744
+  [2/6] BiGRU              training… 135 epochs (early-stopped),  238.5s | Train R²=0.789  Val R²=0.672  Test R²=0.755
+  [3/6] BiLSTM+BiGRU       training… 116 epochs (early-stopped),  181.9s | Train R²=0.784  Val R²=0.667  Test R²=0.764
+  [4/6] BiGRU+BiLSTM       training… 140 epochs (early-stopped),  228.5s | Train R²=0.787  Val R²=0.653  Test R²=0.748
+  [5/6] CNN+BiLSTM+BiGRU   training… 101 epochs (early-stopped),  114.4s | Train R²=0.751  Val R²=0.650  Test R²=0.722
+  [6/6] CNN+BiGRU+BiLSTM   training… 123 epochs (early-stopped),  143.1s | Train R²=0.797  Val R²=0.606  Test R²=0.707
+  ── Shyampur done in 18.2 min | elapsed 289.3 min | ETA remaining ≈ 58 min (15/18 substations)
+
+[16/18] ══ Ullon ═══════════════════════════════════════
+
+======================================================================
+Substation: Ullon
+======================================================================
+  Train sequences: (1521, 14, 19)  |  Val: (366, 14, 19)  |  Test: (544, 14, 19)
+  [1/6] BiLSTM             training…  98 epochs (early-stopped),  147.0s | Train R²=0.569  Val R²=0.712  Test R²=0.609
+  [2/6] BiGRU              training… 120 epochs (early-stopped),  205.4s | Train R²=0.582  Val R²=0.727  Test R²=0.645
+  [3/6] BiLSTM+BiGRU       training… 118 epochs (early-stopped),  189.6s | Train R²=0.573  Val R²=0.708  Test R²=0.619
+  [4/6] BiGRU+BiLSTM       training… 139 epochs (early-stopped),  232.8s | Train R²=0.573  Val R²=0.706  Test R²=0.611
+  [5/6] CNN+BiLSTM+BiGRU   training…  87 epochs (early-stopped),  101.7s | Train R²=0.599  Val R²=0.679  Test R²=0.591
+  [6/6] CNN+BiGRU+BiLSTM   training… 150 epochs (full run),  174.6s | Train R²=0.579  Val R²=0.701  Test R²=0.565
+  ── Ullon done in 17.9 min | elapsed 307.2 min | ETA remaining ≈ 38 min (16/18 substations)
+
+[17/18] ══ Uttara ═══════════════════════════════════════
+
+======================================================================
+Substation: Uttara
+======================================================================
+  Train sequences: (1521, 14, 19)  |  Val: (366, 14, 19)  |  Test: (544, 14, 19)
+  [1/6] BiLSTM             training… 150 epochs (full run),  221.3s | Train R²=0.863  Val R²=0.750  Test R²=0.767
+  [2/6] BiGRU              training… 150 epochs (full run),  262.2s | Train R²=0.876  Val R²=0.779  Test R²=0.795
+  [3/6] BiLSTM+BiGRU       training… 150 epochs (full run),  235.9s | Train R²=0.870  Val R²=0.779  Test R²=0.791
+  [4/6] BiGRU+BiLSTM       training… 146 epochs (early-stopped),  236.7s | Train R²=0.869  Val R²=0.773  Test R²=0.789
+  [5/6] CNN+BiLSTM+BiGRU   training… 150 epochs (full run),  165.4s | Train R²=0.876  Val R²=0.756  Test R²=0.763
+  [6/6] CNN+BiGRU+BiLSTM   training… 137 epochs (early-stopped),  162.7s | Train R²=0.872  Val R²=0.769  Test R²=0.775
+  ── Uttara done in 21.8 min | elapsed 329.1 min | ETA remaining ≈ 19 min (17/18 substations)
+
+[18/18] ══ Uttara New ═══════════════════════════════════════
+
+======================================================================
+Substation: Uttara New
+======================================================================
+  Train sequences: (1521, 14, 19)  |  Val: (366, 14, 19)  |  Test: (544, 14, 19)
+  [1/6] BiLSTM             training…  80 epochs (early-stopped),  121.2s | Train R²=0.803  Val R²=0.636  Test R²=0.832
+  [2/6] BiGRU              training… 126 epochs (early-stopped),  220.9s | Train R²=0.815  Val R²=0.667  Test R²=0.837
+  [3/6] BiLSTM+BiGRU       training… 101 epochs (early-stopped),  159.9s | Train R²=0.808  Val R²=0.639  Test R²=0.830
+  [4/6] BiGRU+BiLSTM       training… 102 epochs (early-stopped),  166.3s | Train R²=0.798  Val R²=0.655  Test R²=0.832
+  [5/6] CNN+BiLSTM+BiGRU   training… 127 epochs (early-stopped),  142.7s | Train R²=0.828  Val R²=0.687  Test R²=0.841
+  [6/6] CNN+BiGRU+BiLSTM   training… 130 epochs (early-stopped),  166.0s | Train R²=0.831  Val R²=0.649  Test R²=0.812
+  ── Uttara New done in 16.8 min | elapsed 345.8 min | ETA remaining ≈ 0 min (18/18 substations)
+Saved global_summary_test_r2.png
+
+==========================================================================================
+SUMMARY — Mean metrics across all substations, ranked by VALIDATION R² (selection metric)
+==========================================================================================
+                  train_r2  val_r2  test_r2  test_rmse  test_mae
+model                                                           
+BiGRU               0.8093  0.6882   0.7594     8.9519    6.7079
+BiLSTM+BiGRU        0.8032  0.6815   0.7534     9.0423    6.7659
+BiGRU+BiLSTM        0.7980  0.6784   0.7520     9.0551    6.7690
+CNN+BiLSTM+BiGRU    0.8197  0.6696   0.7405     9.2036    6.8489
+CNN+BiGRU+BiLSTM    0.8087  0.6693   0.7283     9.4153    7.0229
+BiLSTM              0.7947  0.6656   0.7379     9.3038    7.0528

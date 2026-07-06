@@ -1,0 +1,13 @@
+SINGLE MODEL SELECTED FOR THE PAPER: BiGRU
+------------------------------------------------------------
+Selection criterion : highest MEAN VALIDATION R^2 (year 2024) across all 18 substations
+Mean Val R^2        : 0.6882
+Worst-case Val R^2  : 0.3961
+Mean rank (val)     : 1.83  (1 = best)
+Wins (rank-1, val)  : 9 / 18 substations
+Reported ONCE on the untouched test set (2025-26):
+  Mean Test R^2     : 0.7594
+  Mean Test RMSE    : 8.95 MW   Mean Test MAE: 6.71 MW
+------------------------------------------------------------
+This model is applied uniformly to every substation in the paper.
+Per-substation metrics: best_model_per_substation.csv

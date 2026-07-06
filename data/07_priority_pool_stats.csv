@@ -1,0 +1,2 @@
+molp_events_total,high_impact_events,context_reduction_pct,gcs_threshold,llm_payload_events,mean_gcs_all,mean_gcs_pool,pct_pool_on_stress_days
+152695,15280,89.99,0.5,500,0.5523,0.6991,100.0

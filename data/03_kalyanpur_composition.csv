@@ -1,0 +1,12 @@
+substation,category,subcategory,units,per_unit_peak_kw,design_peak_kw,share_of_design_peak_pct
+Kalyanpur,residential,lower_middle,22610,0.35,7913.5,8.2
+Kalyanpur,residential,middle,32300,0.95,30685.0,31.79
+Kalyanpur,residential,upper_middle,9690,2.6,25194.0,26.1
+Kalyanpur,commercial,commercial_shop,4110,3.0,12330.0,12.78
+Kalyanpur,commercial,office_smb,510,8.0,4080.0,4.23
+Kalyanpur,educational,school,215,18.0,3870.0,4.01
+Kalyanpur,health,clinic_small,24,80.0,1920.0,1.99
+Kalyanpur,industrial,workshop,480,12.0,5760.0,5.97
+Kalyanpur,infrastructure,wasa_pump,14,150.0,2100.0,2.18
+Kalyanpur,infrastructure,streetlight_block,141,12.0,1692.0,1.75
+Kalyanpur,infrastructure,mosque,97,10.0,970.0,1.01
