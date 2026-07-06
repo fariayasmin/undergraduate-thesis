@@ -246,19 +246,29 @@ def main():
             days = pd.date_range(C.START_DATE, C.END_DATE, freq="D")
             pred = (fc["pred_mw"].reindex(days)
                       .interpolate(limit_direction="both"))
+            actual = (fc["actual_mw"].reindex(days)
+                        .interpolate(limit_direction="both"))
             thr = float(np.quantile(pred, C.DR_STRESS_QUANTILE))
+            fc_ctx = {}      # date -> structured grid evidence for DrEvents
             for d, p in pred.items():
                 ds = d.strftime("%Y-%m-%d")
+                act = float(actual.loc[d])
+                fc_ctx[ds] = {"actual": round(act, 2),
+                              "error": round(float(p) - act, 2),
+                              "threshold": round(thr, 2)}
                 fid = f"FC_{sub[:3].upper()}_{ds.replace('-', '_')}"
                 fdays.append({
                     "nodeId": fid, "date": ds, "substation": sub,
                     "pred_peak_mw": round(float(p), 2),
+                    "actual_peak_mw": round(act, 2),
+                    "forecast_error_mw": round(float(p) - act, 2),
                     "stress_threshold_mw": round(thr, 2),
                     "is_stress_day": bool(p >= thr),
                     "temp_max_c": wx_day.get(ds),
                     "label": "ForecastDay"})
                 r_fcast.append((fid, sub_id, "FORECAST_FOR"))
         else:
+            fc_ctx = {}
             print(f"  WARNING: {fpath.name} not found — ForecastDay nodes "
                   f"skipped for {sub} (run 05b first).")
 
@@ -308,7 +318,11 @@ def main():
         for i, (_, e) in enumerate(sample.iterrows()):
             ev_id = f"DR_{sub[:3].upper()}_{i:05d}"
             fc_mw = e.get("substation_pred_peak_mw")
-            day_tmax = wx_day.get(str(e["date"])[:10])
+            day_key = str(e["date"])[:10]
+            day_tmax = wx_day.get(day_key)
+            grid = fc_ctx.get(day_key, {})
+            rebate_bdt = round(float(e["energy_curtailed_kwh"])
+                               * C.DR_REBATE_BDT_KWH, 2)
             fc_txt = (f" The day-ahead BiGRU+BiLSTM forecast projected a "
                       f"substation peak of {fc_mw:.1f} MW, which triggered "
                       f"the demand-response window."
@@ -334,6 +348,14 @@ def main():
                               "power_deviation_ratio": e["power_deviation_ratio"],
                               "substation_pred_peak_mw":
                                   e.get("substation_pred_peak_mw"),
+                              # structured evidence — the LLM composes its
+                              # explanation from these numbers; the stored
+                              # explanation string is a debugging/template
+                              # fallback, NOT the primary evidence
+                              "actual_substation_peak_mw": grid.get("actual"),
+                              "forecast_error_mw": grid.get("error"),
+                              "stress_threshold_mw": grid.get("threshold"),
+                              "rebate_bdt": rebate_bdt,
                               "temp_max_c": day_tmax,
                               # GCS decomposition (0.4*PDR + 0.3*PMN + 0.3*AA)
                               "price_multiplier_norm":
@@ -449,10 +471,16 @@ LOAD CSV WITH HEADERS FROM 'file:///nodes_DrEvent.csv' AS r
     price_multiplier_norm:toFloat(r.price_multiplier_norm),
     appliance_alpha:toFloat(r.appliance_alpha),
     gcs_score:toFloat(r.gcs_score),
+    actual_substation_peak_mw:toFloat(r.actual_substation_peak_mw),
+    forecast_error_mw:toFloat(r.forecast_error_mw),
+    stress_threshold_mw:toFloat(r.stress_threshold_mw),
+    rebate_bdt:toFloat(r.rebate_bdt),
     explanation:r.explanation});
 LOAD CSV WITH HEADERS FROM 'file:///nodes_ForecastDay.csv' AS r
   CREATE (:ForecastDay:Node {nodeId:r.nodeId, date:r.date,
     substation:r.substation, pred_peak_mw:toFloat(r.pred_peak_mw),
+    actual_peak_mw:toFloat(r.actual_peak_mw),
+    forecast_error_mw:toFloat(r.forecast_error_mw),
     stress_threshold_mw:toFloat(r.stress_threshold_mw),
     is_stress_day:toBoolean(r.is_stress_day),
     temp_max_c:toFloat(r.temp_max_c)});

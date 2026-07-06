@@ -107,12 +107,16 @@ def stress_days(substation: str):
         fc = pd.read_csv(fpath, parse_dates=["date"]).set_index("date")
         pred = (fc["pred_mw"].reindex(days)
                   .interpolate(limit_direction="both").values)
+        actual = (fc["actual_mw"].reindex(days)
+                    .interpolate(limit_direction="both").values)
         thr = np.quantile(pred, C.DR_STRESS_QUANTILE)
         # export the SGO's daily DR decision calendar: lets the KG/LLM
         # explain NON-events ("no DR yesterday: forecast 88 MW was below
         # the 105 MW stress threshold") as well as events
         pd.DataFrame({"date": days.dt.strftime("%Y-%m-%d"),
                       "pred_peak_mw": np.round(pred, 2),
+                      "actual_peak_mw": np.round(actual, 2),
+                      "forecast_error_mw": np.round(pred - actual, 2),
                       "stress_threshold_mw": round(float(thr), 2),
                       "is_stress_day": (pred >= thr).astype(int)}
                      ).to_csv(C.DATA_DIR /
