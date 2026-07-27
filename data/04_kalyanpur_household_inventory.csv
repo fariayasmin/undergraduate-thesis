@@ -360,7 +360,7 @@ KHH0045,Kalyanpur,middle,3,56350,computer_laptop,1,Curtailable,80,147.3,1.0,2,KS
 KHH0045,Kalyanpur,middle,3,56350,router_charger_standby,1,Critical,18,12.8,1.0,1,KSM0045,KSM0045_router_charger_standby_1
 KHH0046,Kalyanpur,middle,5,63107,ceiling_fan,1,Curtailable,75,73.8,0.85,3,KSM0046,KSM0046_ceiling_fan_1
 KHH0046,Kalyanpur,middle,5,63107,table_fan,1,Curtailable,45,42.4,0.8,1,KSM0046,KSM0046_table_fan_1
-KHH0046,Kalyanpur,middle,5,63107,split_ac_1ton,1,Schedulable,1100,1250.1,0.65,1,KSM0046,KSM0046_split_ac_1ton_1
+KHH0046,Kalyanpur,middle,5,63107,split_ac_1ton,1,Curtailable,1100,1250.1,0.65,1,KSM0046,KSM0046_split_ac_1ton_1
 KHH0046,Kalyanpur,middle,5,63107,refrigerator,1,Critical,150,149.6,0.42,1,KSM0046,KSM0046_refrigerator_1
 KHH0046,Kalyanpur,middle,5,63107,led_light,1,Critical,10,6.6,1.0,5,KSM0046,KSM0046_led_light_1
 KHH0046,Kalyanpur,middle,5,63107,tv_led,1,Curtailable,60,10.0,1.0,1,KSM0046,KSM0046_tv_led_1
@@ -397,7 +397,7 @@ KHH0048,Kalyanpur,middle,4,45620,ips_backup,1,Schedulable,300,310.0,0.6,1,KSM004
 KHH0048,Kalyanpur,middle,4,45620,router_charger_standby,1,Critical,18,19.2,1.0,2,KSM0048,KSM0048_router_charger_standby_1
 KHH0049,Kalyanpur,middle,4,61429,ceiling_fan,1,Curtailable,75,64.4,0.85,3,KSM0049,KSM0049_ceiling_fan_1
 KHH0049,Kalyanpur,middle,4,61429,table_fan,1,Curtailable,45,46.2,0.8,1,KSM0049,KSM0049_table_fan_1
-KHH0049,Kalyanpur,middle,4,61429,split_ac_1ton,1,Schedulable,1100,886.8,0.65,1,KSM0049,KSM0049_split_ac_1ton_1
+KHH0049,Kalyanpur,middle,4,61429,split_ac_1ton,1,Curtailable,1100,886.8,0.65,1,KSM0049,KSM0049_split_ac_1ton_1
 KHH0049,Kalyanpur,middle,4,61429,refrigerator,1,Critical,150,119.1,0.42,1,KSM0049,KSM0049_refrigerator_1
 KHH0049,Kalyanpur,middle,4,61429,deep_freezer,1,Critical,180,201.5,0.5,1,KSM0049,KSM0049_deep_freezer_1
 KHH0049,Kalyanpur,middle,4,61429,led_light,1,Critical,10,12.9,1.0,6,KSM0049,KSM0049_led_light_1
@@ -412,7 +412,7 @@ KHH0049,Kalyanpur,middle,4,61429,water_pump_0_5hp,1,Schedulable,373,377.2,0.95,1
 KHH0049,Kalyanpur,middle,4,61429,router_charger_standby,1,Critical,18,12.6,1.0,3,KSM0049,KSM0049_router_charger_standby_1
 KHH0050,Kalyanpur,middle,3,39329,ceiling_fan,1,Curtailable,75,73.5,0.85,2,KSM0050,KSM0050_ceiling_fan_1
 KHH0050,Kalyanpur,middle,3,39329,table_fan,1,Curtailable,45,49.1,0.8,1,KSM0050,KSM0050_table_fan_1
-KHH0050,Kalyanpur,middle,3,39329,split_ac_1ton,1,Schedulable,1100,1114.1,0.65,1,KSM0050,KSM0050_split_ac_1ton_1
+KHH0050,Kalyanpur,middle,3,39329,split_ac_1ton,1,Curtailable,1100,1114.1,0.65,1,KSM0050,KSM0050_split_ac_1ton_1
 KHH0050,Kalyanpur,middle,3,39329,refrigerator,1,Critical,150,155.7,0.42,1,KSM0050,KSM0050_refrigerator_1
 KHH0050,Kalyanpur,middle,3,39329,led_light,1,Critical,10,9.6,1.0,8,KSM0050,KSM0050_led_light_1
 KHH0050,Kalyanpur,middle,3,39329,tube_light,1,Critical,36,33.9,1.0,2,KSM0050,KSM0050_tube_light_1
@@ -439,7 +439,7 @@ KHH0051,Kalyanpur,middle,5,42188,ips_backup,1,Schedulable,300,300.2,0.6,1,KSM005
 KHH0051,Kalyanpur,middle,5,42188,router_charger_standby,1,Critical,18,22.9,1.0,2,KSM0051,KSM0051_router_charger_standby_1
 KHH0052,Kalyanpur,middle,3,56647,ceiling_fan,1,Curtailable,75,73.5,0.85,3,KSM0052,KSM0052_ceiling_fan_1
 KHH0052,Kalyanpur,middle,3,56647,table_fan,1,Curtailable,45,25.1,0.8,1,KSM0052,KSM0052_table_fan_1
-KHH0052,Kalyanpur,middle,3,56647,split_ac_1ton,1,Schedulable,1100,1100.3,0.65,1,KSM0052,KSM0052_split_ac_1ton_1
+KHH0052,Kalyanpur,middle,3,56647,split_ac_1ton,1,Curtailable,1100,1100.3,0.65,1,KSM0052,KSM0052_split_ac_1ton_1
 KHH0052,Kalyanpur,middle,3,56647,led_light,1,Critical,10,8.0,1.0,5,KSM0052,KSM0052_led_light_1
 KHH0052,Kalyanpur,middle,3,56647,tube_light,1,Critical,36,35.6,1.0,1,KSM0052,KSM0052_tube_light_1
 KHH0052,Kalyanpur,middle,3,56647,tv_led,1,Curtailable,60,51.1,1.0,1,KSM0052,KSM0052_tv_led_1
@@ -451,7 +451,7 @@ KHH0052,Kalyanpur,middle,3,56647,ips_backup,1,Schedulable,300,365.3,0.6,1,KSM005
 KHH0052,Kalyanpur,middle,3,56647,computer_laptop,1,Curtailable,80,69.5,1.0,1,KSM0052,KSM0052_computer_laptop_1
 KHH0052,Kalyanpur,middle,3,56647,router_charger_standby,1,Critical,18,17.2,1.0,2,KSM0052,KSM0052_router_charger_standby_1
 KHH0053,Kalyanpur,middle,3,50493,ceiling_fan,1,Curtailable,75,91.6,0.85,3,KSM0053,KSM0053_ceiling_fan_1
-KHH0053,Kalyanpur,middle,3,50493,split_ac_1ton,1,Schedulable,1100,1359.6,0.65,1,KSM0053,KSM0053_split_ac_1ton_1
+KHH0053,Kalyanpur,middle,3,50493,split_ac_1ton,1,Curtailable,1100,1359.6,0.65,1,KSM0053,KSM0053_split_ac_1ton_1
 KHH0053,Kalyanpur,middle,3,50493,refrigerator,1,Critical,150,137.7,0.42,1,KSM0053,KSM0053_refrigerator_1
 KHH0053,Kalyanpur,middle,3,50493,led_light,1,Critical,10,11.1,1.0,7,KSM0053,KSM0053_led_light_1
 KHH0053,Kalyanpur,middle,3,50493,tube_light,1,Critical,36,36.5,1.0,1,KSM0053,KSM0053_tube_light_1
@@ -472,8 +472,8 @@ KHH0054,Kalyanpur,middle,5,59197,washing_machine,1,Schedulable,450,400.1,0.7,1,K
 KHH0054,Kalyanpur,middle,5,59197,water_pump_0_5hp,1,Schedulable,373,387.7,0.95,1,KSM0054,KSM0054_water_pump_0_5hp_1
 KHH0054,Kalyanpur,middle,5,59197,router_charger_standby,1,Critical,18,20.5,1.0,1,KSM0054,KSM0054_router_charger_standby_1
 KHH0055,Kalyanpur,middle,5,49078,ceiling_fan,1,Curtailable,75,79.5,0.85,3,KSM0055,KSM0055_ceiling_fan_1
-KHH0055,Kalyanpur,middle,5,49078,split_ac_1ton,1,Schedulable,1100,1185.0,0.65,1,KSM0055,KSM0055_split_ac_1ton_1
-KHH0055,Kalyanpur,middle,5,49078,split_ac_1_5ton,1,Schedulable,1650,1548.9,0.65,1,KSM0055,KSM0055_split_ac_1_5ton_1
+KHH0055,Kalyanpur,middle,5,49078,split_ac_1ton,1,Curtailable,1100,1185.0,0.65,1,KSM0055,KSM0055_split_ac_1ton_1
+KHH0055,Kalyanpur,middle,5,49078,split_ac_1_5ton,1,Curtailable,1650,1548.9,0.65,1,KSM0055,KSM0055_split_ac_1_5ton_1
 KHH0055,Kalyanpur,middle,5,49078,refrigerator,1,Critical,150,172.3,0.42,1,KSM0055,KSM0055_refrigerator_1
 KHH0055,Kalyanpur,middle,5,49078,deep_freezer,1,Critical,180,148.1,0.5,1,KSM0055,KSM0055_deep_freezer_1
 KHH0055,Kalyanpur,middle,5,49078,led_light,1,Critical,10,10.4,1.0,6,KSM0055,KSM0055_led_light_1
@@ -488,7 +488,7 @@ KHH0055,Kalyanpur,middle,5,49078,router_charger_standby,1,Critical,18,19.2,1.0,1
 KHH0055,Kalyanpur,middle,5,49078,exhaust_fan,1,Curtailable,35,28.9,0.9,1,KSM0055,KSM0055_exhaust_fan_1
 KHH0056,Kalyanpur,middle,4,37064,ceiling_fan,1,Curtailable,75,89.4,0.85,3,KSM0056,KSM0056_ceiling_fan_1
 KHH0056,Kalyanpur,middle,4,37064,table_fan,1,Curtailable,45,46.1,0.8,1,KSM0056,KSM0056_table_fan_1
-KHH0056,Kalyanpur,middle,4,37064,split_ac_1_5ton,1,Schedulable,1650,1715.3,0.65,1,KSM0056,KSM0056_split_ac_1_5ton_1
+KHH0056,Kalyanpur,middle,4,37064,split_ac_1_5ton,1,Curtailable,1650,1715.3,0.65,1,KSM0056,KSM0056_split_ac_1_5ton_1
 KHH0056,Kalyanpur,middle,4,37064,refrigerator,1,Critical,150,126.0,0.42,1,KSM0056,KSM0056_refrigerator_1
 KHH0056,Kalyanpur,middle,4,37064,led_light,1,Critical,10,13.1,1.0,8,KSM0056,KSM0056_led_light_1
 KHH0056,Kalyanpur,middle,4,37064,tube_light,1,Critical,36,30.5,1.0,1,KSM0056,KSM0056_tube_light_1
@@ -513,8 +513,8 @@ KHH0057,Kalyanpur,middle,3,53917,water_pump_0_5hp,1,Schedulable,373,370.8,0.95,1
 KHH0057,Kalyanpur,middle,3,53917,computer_laptop,1,Curtailable,80,61.6,1.0,1,KSM0057,KSM0057_computer_laptop_1
 KHH0057,Kalyanpur,middle,3,53917,router_charger_standby,1,Critical,18,23.1,1.0,1,KSM0057,KSM0057_router_charger_standby_1
 KHH0058,Kalyanpur,middle,5,62611,ceiling_fan,1,Curtailable,75,72.0,0.85,4,KSM0058,KSM0058_ceiling_fan_1
-KHH0058,Kalyanpur,middle,5,62611,split_ac_1ton,1,Schedulable,1100,657.1,0.65,1,KSM0058,KSM0058_split_ac_1ton_1
-KHH0058,Kalyanpur,middle,5,62611,split_ac_1_5ton,1,Schedulable,1650,1782.9,0.65,1,KSM0058,KSM0058_split_ac_1_5ton_1
+KHH0058,Kalyanpur,middle,5,62611,split_ac_1ton,1,Curtailable,1100,657.1,0.65,1,KSM0058,KSM0058_split_ac_1ton_1
+KHH0058,Kalyanpur,middle,5,62611,split_ac_1_5ton,1,Curtailable,1650,1782.9,0.65,1,KSM0058,KSM0058_split_ac_1_5ton_1
 KHH0058,Kalyanpur,middle,5,62611,led_light,1,Critical,10,14.2,1.0,6,KSM0058,KSM0058_led_light_1
 KHH0058,Kalyanpur,middle,5,62611,tube_light,1,Critical,36,34.1,1.0,2,KSM0058,KSM0058_tube_light_1
 KHH0058,Kalyanpur,middle,5,62611,tv_led,1,Curtailable,60,43.5,1.0,1,KSM0058,KSM0058_tv_led_1
@@ -536,7 +536,7 @@ KHH0059,Kalyanpur,middle,2,37346,washing_machine,1,Schedulable,450,383.4,0.7,1,K
 KHH0059,Kalyanpur,middle,2,37346,computer_laptop,1,Curtailable,80,124.3,1.0,1,KSM0059,KSM0059_computer_laptop_1
 KHH0060,Kalyanpur,middle,4,57299,ceiling_fan,1,Curtailable,75,90.8,0.85,3,KSM0060,KSM0060_ceiling_fan_1
 KHH0060,Kalyanpur,middle,4,57299,table_fan,1,Curtailable,45,48.6,0.8,1,KSM0060,KSM0060_table_fan_1
-KHH0060,Kalyanpur,middle,4,57299,split_ac_1ton,1,Schedulable,1100,879.5,0.65,1,KSM0060,KSM0060_split_ac_1ton_1
+KHH0060,Kalyanpur,middle,4,57299,split_ac_1ton,1,Curtailable,1100,879.5,0.65,1,KSM0060,KSM0060_split_ac_1ton_1
 KHH0060,Kalyanpur,middle,4,57299,refrigerator,1,Critical,150,146.4,0.42,1,KSM0060,KSM0060_refrigerator_1
 KHH0060,Kalyanpur,middle,4,57299,led_light,1,Critical,10,10.6,1.0,8,KSM0060,KSM0060_led_light_1
 KHH0060,Kalyanpur,middle,4,57299,tv_led,1,Curtailable,60,62.8,1.0,1,KSM0060,KSM0060_tv_led_1
@@ -548,7 +548,7 @@ KHH0060,Kalyanpur,middle,4,57299,ips_backup,1,Schedulable,300,323.9,0.6,1,KSM006
 KHH0060,Kalyanpur,middle,4,57299,exhaust_fan,1,Curtailable,35,27.8,0.9,1,KSM0060,KSM0060_exhaust_fan_1
 KHH0061,Kalyanpur,middle,4,46637,ceiling_fan,1,Curtailable,75,77.0,0.85,3,KSM0061,KSM0061_ceiling_fan_1
 KHH0061,Kalyanpur,middle,4,46637,table_fan,1,Curtailable,45,47.0,0.8,1,KSM0061,KSM0061_table_fan_1
-KHH0061,Kalyanpur,middle,4,46637,split_ac_1ton,1,Schedulable,1100,1042.8,0.65,2,KSM0061,KSM0061_split_ac_1ton_1
+KHH0061,Kalyanpur,middle,4,46637,split_ac_1ton,1,Curtailable,1100,1042.8,0.65,2,KSM0061,KSM0061_split_ac_1ton_1
 KHH0061,Kalyanpur,middle,4,46637,refrigerator,1,Critical,150,182.5,0.42,1,KSM0061,KSM0061_refrigerator_1
 KHH0061,Kalyanpur,middle,4,46637,led_light,1,Critical,10,12.8,1.0,5,KSM0061,KSM0061_led_light_1
 KHH0061,Kalyanpur,middle,4,46637,tube_light,1,Critical,36,33.4,1.0,3,KSM0061,KSM0061_tube_light_1
@@ -623,7 +623,7 @@ KHH0067,Kalyanpur,middle,3,45490,router_charger_standby,1,Critical,18,20.9,1.0,1
 KHH0067,Kalyanpur,middle,3,45490,exhaust_fan,1,Curtailable,35,36.1,0.9,1,KSM0067,KSM0067_exhaust_fan_1
 KHH0068,Kalyanpur,middle,4,45047,ceiling_fan,1,Curtailable,75,64.2,0.85,2,KSM0068,KSM0068_ceiling_fan_1
 KHH0068,Kalyanpur,middle,4,45047,table_fan,1,Curtailable,45,30.6,0.8,1,KSM0068,KSM0068_table_fan_1
-KHH0068,Kalyanpur,middle,4,45047,split_ac_1ton,1,Schedulable,1100,940.0,0.65,1,KSM0068,KSM0068_split_ac_1ton_1
+KHH0068,Kalyanpur,middle,4,45047,split_ac_1ton,1,Curtailable,1100,940.0,0.65,1,KSM0068,KSM0068_split_ac_1ton_1
 KHH0068,Kalyanpur,middle,4,45047,refrigerator,1,Critical,150,172.6,0.42,1,KSM0068,KSM0068_refrigerator_1
 KHH0068,Kalyanpur,middle,4,45047,led_light,1,Critical,10,9.2,1.0,9,KSM0068,KSM0068_led_light_1
 KHH0068,Kalyanpur,middle,4,45047,tube_light,1,Critical,36,39.9,1.0,3,KSM0068,KSM0068_tube_light_1
@@ -673,7 +673,7 @@ KHH0071,Kalyanpur,middle,6,43922,washing_machine,1,Schedulable,450,480.7,0.7,1,K
 KHH0071,Kalyanpur,middle,6,43922,router_charger_standby,1,Critical,18,11.3,1.0,2,KSM0071,KSM0071_router_charger_standby_1
 KHH0071,Kalyanpur,middle,6,43922,exhaust_fan,1,Curtailable,35,30.1,0.9,1,KSM0071,KSM0071_exhaust_fan_1
 KHH0072,Kalyanpur,middle,6,58878,ceiling_fan,1,Curtailable,75,63.3,0.85,3,KSM0072,KSM0072_ceiling_fan_1
-KHH0072,Kalyanpur,middle,6,58878,split_ac_1ton,1,Schedulable,1100,1085.2,0.65,1,KSM0072,KSM0072_split_ac_1ton_1
+KHH0072,Kalyanpur,middle,6,58878,split_ac_1ton,1,Curtailable,1100,1085.2,0.65,1,KSM0072,KSM0072_split_ac_1ton_1
 KHH0072,Kalyanpur,middle,6,58878,refrigerator,1,Critical,150,134.1,0.42,1,KSM0072,KSM0072_refrigerator_1
 KHH0072,Kalyanpur,middle,6,58878,led_light,1,Critical,10,9.6,1.0,8,KSM0072,KSM0072_led_light_1
 KHH0072,Kalyanpur,middle,6,58878,tube_light,1,Critical,36,40.4,1.0,1,KSM0072,KSM0072_tube_light_1
@@ -760,7 +760,7 @@ KHH0078,Kalyanpur,middle,2,48498,computer_laptop,1,Curtailable,80,78.6,1.0,1,KSM
 KHH0078,Kalyanpur,middle,2,48498,router_charger_standby,1,Critical,18,10.6,1.0,1,KSM0078,KSM0078_router_charger_standby_1
 KHH0079,Kalyanpur,middle,3,59577,ceiling_fan,1,Curtailable,75,81.0,0.85,4,KSM0079,KSM0079_ceiling_fan_1
 KHH0079,Kalyanpur,middle,3,59577,table_fan,1,Curtailable,45,41.8,0.8,1,KSM0079,KSM0079_table_fan_1
-KHH0079,Kalyanpur,middle,3,59577,split_ac_1ton,1,Schedulable,1100,871.9,0.65,1,KSM0079,KSM0079_split_ac_1ton_1
+KHH0079,Kalyanpur,middle,3,59577,split_ac_1ton,1,Curtailable,1100,871.9,0.65,1,KSM0079,KSM0079_split_ac_1ton_1
 KHH0079,Kalyanpur,middle,3,59577,refrigerator,1,Critical,150,165.4,0.42,1,KSM0079,KSM0079_refrigerator_1
 KHH0079,Kalyanpur,middle,3,59577,led_light,1,Critical,10,10.1,1.0,4,KSM0079,KSM0079_led_light_1
 KHH0079,Kalyanpur,middle,3,59577,tube_light,1,Critical,36,31.4,1.0,2,KSM0079,KSM0079_tube_light_1
@@ -773,7 +773,7 @@ KHH0079,Kalyanpur,middle,3,59577,router_charger_standby,1,Critical,18,20.7,1.0,1
 KHH0079,Kalyanpur,middle,3,59577,exhaust_fan,1,Curtailable,35,28.3,0.9,1,KSM0079,KSM0079_exhaust_fan_1
 KHH0080,Kalyanpur,middle,2,57849,ceiling_fan,1,Curtailable,75,88.7,0.85,4,KSM0080,KSM0080_ceiling_fan_1
 KHH0080,Kalyanpur,middle,2,57849,table_fan,1,Curtailable,45,44.5,0.8,1,KSM0080,KSM0080_table_fan_1
-KHH0080,Kalyanpur,middle,2,57849,split_ac_1ton,1,Schedulable,1100,1192.8,0.65,1,KSM0080,KSM0080_split_ac_1ton_1
+KHH0080,Kalyanpur,middle,2,57849,split_ac_1ton,1,Curtailable,1100,1192.8,0.65,1,KSM0080,KSM0080_split_ac_1ton_1
 KHH0080,Kalyanpur,middle,2,57849,refrigerator,1,Critical,150,156.3,0.42,1,KSM0080,KSM0080_refrigerator_1
 KHH0080,Kalyanpur,middle,2,57849,deep_freezer,1,Critical,180,136.8,0.5,1,KSM0080,KSM0080_deep_freezer_1
 KHH0080,Kalyanpur,middle,2,57849,led_light,1,Critical,10,11.2,1.0,8,KSM0080,KSM0080_led_light_1
@@ -800,7 +800,7 @@ KHH0081,Kalyanpur,middle,6,40821,router_charger_standby,1,Critical,18,25.7,1.0,2
 KHH0081,Kalyanpur,middle,6,40821,exhaust_fan,1,Curtailable,35,39.9,0.9,1,KSM0081,KSM0081_exhaust_fan_1
 KHH0082,Kalyanpur,middle,5,63341,ceiling_fan,1,Curtailable,75,72.7,0.85,2,KSM0082,KSM0082_ceiling_fan_1
 KHH0082,Kalyanpur,middle,5,63341,table_fan,1,Curtailable,45,44.8,0.8,1,KSM0082,KSM0082_table_fan_1
-KHH0082,Kalyanpur,middle,5,63341,split_ac_1ton,1,Schedulable,1100,1003.9,0.65,1,KSM0082,KSM0082_split_ac_1ton_1
+KHH0082,Kalyanpur,middle,5,63341,split_ac_1ton,1,Curtailable,1100,1003.9,0.65,1,KSM0082,KSM0082_split_ac_1ton_1
 KHH0082,Kalyanpur,middle,5,63341,refrigerator,1,Critical,150,213.7,0.42,1,KSM0082,KSM0082_refrigerator_1
 KHH0082,Kalyanpur,middle,5,63341,led_light,1,Critical,10,9.1,1.0,7,KSM0082,KSM0082_led_light_1
 KHH0082,Kalyanpur,middle,5,63341,tube_light,1,Critical,36,40.9,1.0,3,KSM0082,KSM0082_tube_light_1
@@ -827,7 +827,7 @@ KHH0083,Kalyanpur,middle,4,45313,computer_laptop,1,Curtailable,80,72.7,1.0,1,KSM
 KHH0083,Kalyanpur,middle,4,45313,router_charger_standby,1,Critical,18,19.3,1.0,1,KSM0083,KSM0083_router_charger_standby_1
 KHH0084,Kalyanpur,middle,1,60990,ceiling_fan,1,Curtailable,75,71.2,0.85,3,KSM0084,KSM0084_ceiling_fan_1
 KHH0084,Kalyanpur,middle,1,60990,table_fan,1,Curtailable,45,56.0,0.8,2,KSM0084,KSM0084_table_fan_1
-KHH0084,Kalyanpur,middle,1,60990,split_ac_1_5ton,1,Schedulable,1650,2170.9,0.65,1,KSM0084,KSM0084_split_ac_1_5ton_1
+KHH0084,Kalyanpur,middle,1,60990,split_ac_1_5ton,1,Curtailable,1650,2170.9,0.65,1,KSM0084,KSM0084_split_ac_1_5ton_1
 KHH0084,Kalyanpur,middle,1,60990,refrigerator,1,Critical,150,132.6,0.42,1,KSM0084,KSM0084_refrigerator_1
 KHH0084,Kalyanpur,middle,1,60990,led_light,1,Critical,10,5.9,1.0,7,KSM0084,KSM0084_led_light_1
 KHH0084,Kalyanpur,middle,1,60990,tube_light,1,Critical,36,32.4,1.0,3,KSM0084,KSM0084_tube_light_1
@@ -860,7 +860,7 @@ KHH0086,Kalyanpur,middle,6,43035,electric_iron,1,Schedulable,1000,867.0,0.8,1,KS
 KHH0086,Kalyanpur,middle,6,43035,ips_backup,1,Schedulable,300,294.5,0.6,1,KSM0086,KSM0086_ips_backup_1
 KHH0086,Kalyanpur,middle,6,43035,router_charger_standby,1,Critical,18,25.6,1.0,2,KSM0086,KSM0086_router_charger_standby_1
 KHH0087,Kalyanpur,middle,1,47990,ceiling_fan,1,Curtailable,75,82.9,0.85,4,KSM0087,KSM0087_ceiling_fan_1
-KHH0087,Kalyanpur,middle,1,47990,split_ac_1ton,1,Schedulable,1100,1050.9,0.65,1,KSM0087,KSM0087_split_ac_1ton_1
+KHH0087,Kalyanpur,middle,1,47990,split_ac_1ton,1,Curtailable,1100,1050.9,0.65,1,KSM0087,KSM0087_split_ac_1ton_1
 KHH0087,Kalyanpur,middle,1,47990,refrigerator,1,Critical,150,114.7,0.42,1,KSM0087,KSM0087_refrigerator_1
 KHH0087,Kalyanpur,middle,1,47990,led_light,1,Critical,10,9.6,1.0,6,KSM0087,KSM0087_led_light_1
 KHH0087,Kalyanpur,middle,1,47990,tube_light,1,Critical,36,34.4,1.0,2,KSM0087,KSM0087_tube_light_1
@@ -886,7 +886,7 @@ KHH0088,Kalyanpur,middle,3,52383,router_charger_standby,1,Critical,18,19.4,1.0,1
 KHH0088,Kalyanpur,middle,3,52383,exhaust_fan,1,Curtailable,35,33.6,0.9,1,KSM0088,KSM0088_exhaust_fan_1
 KHH0089,Kalyanpur,middle,5,49432,ceiling_fan,1,Curtailable,75,67.3,0.85,3,KSM0089,KSM0089_ceiling_fan_1
 KHH0089,Kalyanpur,middle,5,49432,table_fan,1,Curtailable,45,37.6,0.8,1,KSM0089,KSM0089_table_fan_1
-KHH0089,Kalyanpur,middle,5,49432,split_ac_1ton,1,Schedulable,1100,931.6,0.65,1,KSM0089,KSM0089_split_ac_1ton_1
+KHH0089,Kalyanpur,middle,5,49432,split_ac_1ton,1,Curtailable,1100,931.6,0.65,1,KSM0089,KSM0089_split_ac_1ton_1
 KHH0089,Kalyanpur,middle,5,49432,refrigerator,1,Critical,150,116.9,0.42,1,KSM0089,KSM0089_refrigerator_1
 KHH0089,Kalyanpur,middle,5,49432,led_light,1,Critical,10,6.4,1.0,6,KSM0089,KSM0089_led_light_1
 KHH0089,Kalyanpur,middle,5,49432,tube_light,1,Critical,36,39.1,1.0,3,KSM0089,KSM0089_tube_light_1
@@ -898,8 +898,8 @@ KHH0089,Kalyanpur,middle,5,49432,router_charger_standby,1,Critical,18,19.5,1.0,1
 KHH0089,Kalyanpur,middle,5,49432,exhaust_fan,1,Curtailable,35,42.0,0.9,1,KSM0089,KSM0089_exhaust_fan_1
 KHH0090,Kalyanpur,middle,3,56246,ceiling_fan,1,Curtailable,75,80.2,0.85,3,KSM0090,KSM0090_ceiling_fan_1
 KHH0090,Kalyanpur,middle,3,56246,table_fan,1,Curtailable,45,51.2,0.8,1,KSM0090,KSM0090_table_fan_1
-KHH0090,Kalyanpur,middle,3,56246,split_ac_1ton,1,Schedulable,1100,977.7,0.65,1,KSM0090,KSM0090_split_ac_1ton_1
-KHH0090,Kalyanpur,middle,3,56246,split_ac_1_5ton,1,Schedulable,1650,1771.8,0.65,1,KSM0090,KSM0090_split_ac_1_5ton_1
+KHH0090,Kalyanpur,middle,3,56246,split_ac_1ton,1,Curtailable,1100,977.7,0.65,1,KSM0090,KSM0090_split_ac_1ton_1
+KHH0090,Kalyanpur,middle,3,56246,split_ac_1_5ton,1,Curtailable,1650,1771.8,0.65,1,KSM0090,KSM0090_split_ac_1_5ton_1
 KHH0090,Kalyanpur,middle,3,56246,refrigerator,1,Critical,150,157.7,0.42,1,KSM0090,KSM0090_refrigerator_1
 KHH0090,Kalyanpur,middle,3,56246,deep_freezer,1,Critical,180,210.0,0.5,1,KSM0090,KSM0090_deep_freezer_1
 KHH0090,Kalyanpur,middle,3,56246,led_light,1,Critical,10,11.0,1.0,7,KSM0090,KSM0090_led_light_1
@@ -914,7 +914,7 @@ KHH0090,Kalyanpur,middle,3,56246,water_pump_0_5hp,1,Schedulable,373,390.0,0.95,1
 KHH0090,Kalyanpur,middle,3,56246,computer_laptop,1,Curtailable,80,64.6,1.0,1,KSM0090,KSM0090_computer_laptop_1
 KHH0090,Kalyanpur,middle,3,56246,router_charger_standby,1,Critical,18,15.2,1.0,2,KSM0090,KSM0090_router_charger_standby_1
 KHH0091,Kalyanpur,middle,4,45111,ceiling_fan,1,Curtailable,75,80.1,0.85,4,KSM0091,KSM0091_ceiling_fan_1
-KHH0091,Kalyanpur,middle,4,45111,split_ac_1ton,1,Schedulable,1100,1095.7,0.65,1,KSM0091,KSM0091_split_ac_1ton_1
+KHH0091,Kalyanpur,middle,4,45111,split_ac_1ton,1,Curtailable,1100,1095.7,0.65,1,KSM0091,KSM0091_split_ac_1ton_1
 KHH0091,Kalyanpur,middle,4,45111,refrigerator,1,Critical,150,139.6,0.42,1,KSM0091,KSM0091_refrigerator_1
 KHH0091,Kalyanpur,middle,4,45111,led_light,1,Critical,10,6.8,1.0,8,KSM0091,KSM0091_led_light_1
 KHH0091,Kalyanpur,middle,4,45111,rice_cooker,1,Schedulable,650,702.7,0.6,1,KSM0091,KSM0091_rice_cooker_1
@@ -939,7 +939,7 @@ KHH0092,Kalyanpur,middle,5,47095,ips_backup,1,Schedulable,300,234.9,0.6,1,KSM009
 KHH0092,Kalyanpur,middle,5,47095,computer_laptop,1,Curtailable,80,97.9,1.0,2,KSM0092,KSM0092_computer_laptop_1
 KHH0093,Kalyanpur,middle,4,50456,ceiling_fan,1,Curtailable,75,75.3,0.85,3,KSM0093,KSM0093_ceiling_fan_1
 KHH0093,Kalyanpur,middle,4,50456,table_fan,1,Curtailable,45,52.3,0.8,1,KSM0093,KSM0093_table_fan_1
-KHH0093,Kalyanpur,middle,4,50456,split_ac_1_5ton,1,Schedulable,1650,1456.6,0.65,1,KSM0093,KSM0093_split_ac_1_5ton_1
+KHH0093,Kalyanpur,middle,4,50456,split_ac_1_5ton,1,Curtailable,1650,1456.6,0.65,1,KSM0093,KSM0093_split_ac_1_5ton_1
 KHH0093,Kalyanpur,middle,4,50456,refrigerator,1,Critical,150,162.3,0.42,1,KSM0093,KSM0093_refrigerator_1
 KHH0093,Kalyanpur,middle,4,50456,led_light,1,Critical,10,5.0,1.0,6,KSM0093,KSM0093_led_light_1
 KHH0093,Kalyanpur,middle,4,50456,tv_led,1,Curtailable,60,57.0,1.0,1,KSM0093,KSM0093_tv_led_1
@@ -951,7 +951,7 @@ KHH0093,Kalyanpur,middle,4,50456,router_charger_standby,1,Critical,18,17.6,1.0,2
 KHH0093,Kalyanpur,middle,4,50456,exhaust_fan,1,Curtailable,35,44.5,0.9,1,KSM0093,KSM0093_exhaust_fan_1
 KHH0094,Kalyanpur,middle,4,46361,ceiling_fan,1,Curtailable,75,62.4,0.85,2,KSM0094,KSM0094_ceiling_fan_1
 KHH0094,Kalyanpur,middle,4,46361,table_fan,1,Curtailable,45,44.0,0.8,1,KSM0094,KSM0094_table_fan_1
-KHH0094,Kalyanpur,middle,4,46361,split_ac_1ton,1,Schedulable,1100,1200.6,0.65,1,KSM0094,KSM0094_split_ac_1ton_1
+KHH0094,Kalyanpur,middle,4,46361,split_ac_1ton,1,Curtailable,1100,1200.6,0.65,1,KSM0094,KSM0094_split_ac_1ton_1
 KHH0094,Kalyanpur,middle,4,46361,refrigerator,1,Critical,150,190.9,0.42,1,KSM0094,KSM0094_refrigerator_1
 KHH0094,Kalyanpur,middle,4,46361,deep_freezer,1,Critical,180,144.2,0.5,1,KSM0094,KSM0094_deep_freezer_1
 KHH0094,Kalyanpur,middle,4,46361,led_light,1,Critical,10,9.4,1.0,7,KSM0094,KSM0094_led_light_1
@@ -996,7 +996,7 @@ KHH0097,Kalyanpur,middle,4,61779,water_pump_0_5hp,1,Schedulable,373,333.7,0.95,1
 KHH0097,Kalyanpur,middle,4,61779,computer_laptop,1,Curtailable,80,70.5,1.0,1,KSM0097,KSM0097_computer_laptop_1
 KHH0097,Kalyanpur,middle,4,61779,router_charger_standby,1,Critical,18,9.1,1.0,2,KSM0097,KSM0097_router_charger_standby_1
 KHH0098,Kalyanpur,middle,1,59301,ceiling_fan,1,Curtailable,75,80.9,0.85,3,KSM0098,KSM0098_ceiling_fan_1
-KHH0098,Kalyanpur,middle,1,59301,split_ac_1ton,1,Schedulable,1100,991.9,0.65,1,KSM0098,KSM0098_split_ac_1ton_1
+KHH0098,Kalyanpur,middle,1,59301,split_ac_1ton,1,Curtailable,1100,991.9,0.65,1,KSM0098,KSM0098_split_ac_1ton_1
 KHH0098,Kalyanpur,middle,1,59301,refrigerator,1,Critical,150,118.8,0.42,1,KSM0098,KSM0098_refrigerator_1
 KHH0098,Kalyanpur,middle,1,59301,led_light,1,Critical,10,8.9,1.0,8,KSM0098,KSM0098_led_light_1
 KHH0098,Kalyanpur,middle,1,59301,tv_led,1,Curtailable,60,47.8,1.0,1,KSM0098,KSM0098_tv_led_1
@@ -1010,7 +1010,7 @@ KHH0098,Kalyanpur,middle,1,59301,computer_laptop,1,Curtailable,80,47.8,1.0,1,KSM
 KHH0098,Kalyanpur,middle,1,59301,router_charger_standby,1,Critical,18,10.4,1.0,1,KSM0098,KSM0098_router_charger_standby_1
 KHH0099,Kalyanpur,middle,4,52243,ceiling_fan,1,Curtailable,75,76.2,0.85,4,KSM0099,KSM0099_ceiling_fan_1
 KHH0099,Kalyanpur,middle,4,52243,table_fan,1,Curtailable,45,32.4,0.8,2,KSM0099,KSM0099_table_fan_1
-KHH0099,Kalyanpur,middle,4,52243,split_ac_1ton,1,Schedulable,1100,1450.0,0.65,1,KSM0099,KSM0099_split_ac_1ton_1
+KHH0099,Kalyanpur,middle,4,52243,split_ac_1ton,1,Curtailable,1100,1450.0,0.65,1,KSM0099,KSM0099_split_ac_1ton_1
 KHH0099,Kalyanpur,middle,4,52243,refrigerator,1,Critical,150,215.0,0.42,1,KSM0099,KSM0099_refrigerator_1
 KHH0099,Kalyanpur,middle,4,52243,led_light,1,Critical,10,10.1,1.0,8,KSM0099,KSM0099_led_light_1
 KHH0099,Kalyanpur,middle,4,52243,tv_led,1,Curtailable,60,44.4,1.0,2,KSM0099,KSM0099_tv_led_1
@@ -1031,7 +1031,7 @@ KHH0100,Kalyanpur,middle,3,39412,computer_laptop,1,Curtailable,80,95.0,1.0,1,KSM
 KHH0100,Kalyanpur,middle,3,39412,router_charger_standby,1,Critical,18,14.3,1.0,1,KSM0100,KSM0100_router_charger_standby_1
 KHH0101,Kalyanpur,middle,5,40673,ceiling_fan,1,Curtailable,75,71.3,0.85,3,KSM0101,KSM0101_ceiling_fan_1
 KHH0101,Kalyanpur,middle,5,40673,table_fan,1,Curtailable,45,38.2,0.8,1,KSM0101,KSM0101_table_fan_1
-KHH0101,Kalyanpur,middle,5,40673,split_ac_1_5ton,1,Schedulable,1650,1238.8,0.65,1,KSM0101,KSM0101_split_ac_1_5ton_1
+KHH0101,Kalyanpur,middle,5,40673,split_ac_1_5ton,1,Curtailable,1650,1238.8,0.65,1,KSM0101,KSM0101_split_ac_1_5ton_1
 KHH0101,Kalyanpur,middle,5,40673,refrigerator,1,Critical,150,160.4,0.42,1,KSM0101,KSM0101_refrigerator_1
 KHH0101,Kalyanpur,middle,5,40673,led_light,1,Critical,10,11.3,1.0,6,KSM0101,KSM0101_led_light_1
 KHH0101,Kalyanpur,middle,5,40673,tube_light,1,Critical,36,32.2,1.0,2,KSM0101,KSM0101_tube_light_1
@@ -1058,8 +1058,8 @@ KHH0102,Kalyanpur,middle,3,47264,computer_laptop,1,Curtailable,80,88.7,1.0,2,KSM
 KHH0102,Kalyanpur,middle,3,47264,router_charger_standby,1,Critical,18,25.6,1.0,1,KSM0102,KSM0102_router_charger_standby_1
 KHH0102,Kalyanpur,middle,3,47264,exhaust_fan,1,Curtailable,35,37.3,0.9,1,KSM0102,KSM0102_exhaust_fan_1
 KHH0103,Kalyanpur,upper_middle,4,110451,ceiling_fan,1,Curtailable,75,68.0,0.85,5,KSM0103,KSM0103_ceiling_fan_1
-KHH0103,Kalyanpur,upper_middle,4,110451,split_ac_1ton,1,Schedulable,1100,1290.6,0.65,1,KSM0103,KSM0103_split_ac_1ton_1
-KHH0103,Kalyanpur,upper_middle,4,110451,split_ac_1_5ton,1,Schedulable,1650,1680.9,0.65,2,KSM0103,KSM0103_split_ac_1_5ton_1
+KHH0103,Kalyanpur,upper_middle,4,110451,split_ac_1ton,1,Curtailable,1100,1290.6,0.65,1,KSM0103,KSM0103_split_ac_1ton_1
+KHH0103,Kalyanpur,upper_middle,4,110451,split_ac_1_5ton,1,Curtailable,1650,1680.9,0.65,2,KSM0103,KSM0103_split_ac_1_5ton_1
 KHH0103,Kalyanpur,upper_middle,4,110451,refrigerator,1,Critical,150,177.3,0.42,1,KSM0103,KSM0103_refrigerator_1
 KHH0103,Kalyanpur,upper_middle,4,110451,deep_freezer,1,Critical,180,151.4,0.5,1,KSM0103,KSM0103_deep_freezer_1
 KHH0103,Kalyanpur,upper_middle,4,110451,led_light,1,Critical,10,10.8,1.0,14,KSM0103,KSM0103_led_light_1
@@ -1076,8 +1076,8 @@ KHH0103,Kalyanpur,upper_middle,4,110451,computer_laptop,1,Curtailable,80,32.0,1.
 KHH0103,Kalyanpur,upper_middle,4,110451,router_charger_standby,1,Critical,18,23.1,1.0,2,KSM0103,KSM0103_router_charger_standby_1
 KHH0104,Kalyanpur,upper_middle,6,73959,ceiling_fan,1,Curtailable,75,71.8,0.85,3,KSM0104,KSM0104_ceiling_fan_1
 KHH0104,Kalyanpur,upper_middle,6,73959,table_fan,1,Curtailable,45,50.4,0.8,1,KSM0104,KSM0104_table_fan_1
-KHH0104,Kalyanpur,upper_middle,6,73959,split_ac_1ton,1,Schedulable,1100,1169.1,0.65,1,KSM0104,KSM0104_split_ac_1ton_1
-KHH0104,Kalyanpur,upper_middle,6,73959,split_ac_1_5ton,1,Schedulable,1650,1791.6,0.65,2,KSM0104,KSM0104_split_ac_1_5ton_1
+KHH0104,Kalyanpur,upper_middle,6,73959,split_ac_1ton,1,Curtailable,1100,1169.1,0.65,1,KSM0104,KSM0104_split_ac_1ton_1
+KHH0104,Kalyanpur,upper_middle,6,73959,split_ac_1_5ton,1,Curtailable,1650,1791.6,0.65,2,KSM0104,KSM0104_split_ac_1_5ton_1
 KHH0104,Kalyanpur,upper_middle,6,73959,refrigerator,1,Critical,150,167.3,0.42,1,KSM0104,KSM0104_refrigerator_1
 KHH0104,Kalyanpur,upper_middle,6,73959,deep_freezer,1,Critical,180,166.5,0.5,1,KSM0104,KSM0104_deep_freezer_1
 KHH0104,Kalyanpur,upper_middle,6,73959,led_light,1,Critical,10,7.2,1.0,13,KSM0104,KSM0104_led_light_1
@@ -1094,8 +1094,8 @@ KHH0104,Kalyanpur,upper_middle,6,73959,computer_laptop,1,Curtailable,80,47.1,1.0
 KHH0104,Kalyanpur,upper_middle,6,73959,router_charger_standby,1,Critical,18,22.2,1.0,3,KSM0104,KSM0104_router_charger_standby_1
 KHH0104,Kalyanpur,upper_middle,6,73959,exhaust_fan,1,Curtailable,35,35.2,0.9,2,KSM0104,KSM0104_exhaust_fan_1
 KHH0105,Kalyanpur,upper_middle,5,72672,ceiling_fan,1,Curtailable,75,83.8,0.85,3,KSM0105,KSM0105_ceiling_fan_1
-KHH0105,Kalyanpur,upper_middle,5,72672,split_ac_1ton,1,Schedulable,1100,1023.2,0.65,1,KSM0105,KSM0105_split_ac_1ton_1
-KHH0105,Kalyanpur,upper_middle,5,72672,split_ac_1_5ton,1,Schedulable,1650,1554.6,0.65,1,KSM0105,KSM0105_split_ac_1_5ton_1
+KHH0105,Kalyanpur,upper_middle,5,72672,split_ac_1ton,1,Curtailable,1100,1023.2,0.65,1,KSM0105,KSM0105_split_ac_1ton_1
+KHH0105,Kalyanpur,upper_middle,5,72672,split_ac_1_5ton,1,Curtailable,1650,1554.6,0.65,1,KSM0105,KSM0105_split_ac_1_5ton_1
 KHH0105,Kalyanpur,upper_middle,5,72672,refrigerator,1,Critical,150,150.9,0.42,1,KSM0105,KSM0105_refrigerator_1
 KHH0105,Kalyanpur,upper_middle,5,72672,deep_freezer,1,Critical,180,160.3,0.5,1,KSM0105,KSM0105_deep_freezer_1
 KHH0105,Kalyanpur,upper_middle,5,72672,led_light,1,Critical,10,9.0,1.0,15,KSM0105,KSM0105_led_light_1
@@ -1112,8 +1112,8 @@ KHH0105,Kalyanpur,upper_middle,5,72672,computer_laptop,1,Curtailable,80,112.1,1.
 KHH0105,Kalyanpur,upper_middle,5,72672,router_charger_standby,1,Critical,18,13.5,1.0,2,KSM0105,KSM0105_router_charger_standby_1
 KHH0105,Kalyanpur,upper_middle,5,72672,exhaust_fan,1,Curtailable,35,35.6,0.9,1,KSM0105,KSM0105_exhaust_fan_1
 KHH0106,Kalyanpur,upper_middle,1,70552,ceiling_fan,1,Curtailable,75,87.8,0.85,4,KSM0106,KSM0106_ceiling_fan_1
-KHH0106,Kalyanpur,upper_middle,1,70552,split_ac_1ton,1,Schedulable,1100,647.7,0.65,1,KSM0106,KSM0106_split_ac_1ton_1
-KHH0106,Kalyanpur,upper_middle,1,70552,split_ac_1_5ton,1,Schedulable,1650,1836.7,0.65,1,KSM0106,KSM0106_split_ac_1_5ton_1
+KHH0106,Kalyanpur,upper_middle,1,70552,split_ac_1ton,1,Curtailable,1100,647.7,0.65,1,KSM0106,KSM0106_split_ac_1ton_1
+KHH0106,Kalyanpur,upper_middle,1,70552,split_ac_1_5ton,1,Curtailable,1650,1836.7,0.65,1,KSM0106,KSM0106_split_ac_1_5ton_1
 KHH0106,Kalyanpur,upper_middle,1,70552,refrigerator,1,Critical,150,192.9,0.42,1,KSM0106,KSM0106_refrigerator_1
 KHH0106,Kalyanpur,upper_middle,1,70552,led_light,1,Critical,10,13.5,1.0,10,KSM0106,KSM0106_led_light_1
 KHH0106,Kalyanpur,upper_middle,1,70552,tv_led,1,Curtailable,60,43.4,1.0,2,KSM0106,KSM0106_tv_led_1
@@ -1127,7 +1127,7 @@ KHH0106,Kalyanpur,upper_middle,1,70552,computer_laptop,1,Curtailable,80,92.0,1.0
 KHH0106,Kalyanpur,upper_middle,1,70552,router_charger_standby,1,Critical,18,19.1,1.0,3,KSM0106,KSM0106_router_charger_standby_1
 KHH0106,Kalyanpur,upper_middle,1,70552,exhaust_fan,1,Curtailable,35,35.6,0.9,2,KSM0106,KSM0106_exhaust_fan_1
 KHH0107,Kalyanpur,upper_middle,5,90321,ceiling_fan,1,Curtailable,75,102.9,0.85,5,KSM0107,KSM0107_ceiling_fan_1
-KHH0107,Kalyanpur,upper_middle,5,90321,split_ac_1ton,1,Schedulable,1100,1207.3,0.65,1,KSM0107,KSM0107_split_ac_1ton_1
+KHH0107,Kalyanpur,upper_middle,5,90321,split_ac_1ton,1,Curtailable,1100,1207.3,0.65,1,KSM0107,KSM0107_split_ac_1ton_1
 KHH0107,Kalyanpur,upper_middle,5,90321,refrigerator,1,Critical,150,101.2,0.42,1,KSM0107,KSM0107_refrigerator_1
 KHH0107,Kalyanpur,upper_middle,5,90321,led_light,1,Critical,10,8.2,1.0,8,KSM0107,KSM0107_led_light_1
 KHH0107,Kalyanpur,upper_middle,5,90321,tv_led,1,Curtailable,60,56.9,1.0,1,KSM0107,KSM0107_tv_led_1
@@ -1141,7 +1141,7 @@ KHH0107,Kalyanpur,upper_middle,5,90321,computer_laptop,1,Curtailable,80,109.8,1.
 KHH0107,Kalyanpur,upper_middle,5,90321,router_charger_standby,1,Critical,18,22.2,1.0,3,KSM0107,KSM0107_router_charger_standby_1
 KHH0107,Kalyanpur,upper_middle,5,90321,exhaust_fan,1,Curtailable,35,37.4,0.9,2,KSM0107,KSM0107_exhaust_fan_1
 KHH0108,Kalyanpur,upper_middle,6,101744,ceiling_fan,1,Curtailable,75,54.1,0.85,5,KSM0108,KSM0108_ceiling_fan_1
-KHH0108,Kalyanpur,upper_middle,6,101744,split_ac_1ton,1,Schedulable,1100,783.7,0.65,1,KSM0108,KSM0108_split_ac_1ton_1
+KHH0108,Kalyanpur,upper_middle,6,101744,split_ac_1ton,1,Curtailable,1100,783.7,0.65,1,KSM0108,KSM0108_split_ac_1ton_1
 KHH0108,Kalyanpur,upper_middle,6,101744,refrigerator,1,Critical,150,195.3,0.42,1,KSM0108,KSM0108_refrigerator_1
 KHH0108,Kalyanpur,upper_middle,6,101744,led_light,1,Critical,10,10.1,1.0,10,KSM0108,KSM0108_led_light_1
 KHH0108,Kalyanpur,upper_middle,6,101744,tube_light,1,Critical,36,40.3,1.0,2,KSM0108,KSM0108_tube_light_1
@@ -1157,7 +1157,7 @@ KHH0108,Kalyanpur,upper_middle,6,101744,computer_laptop,1,Curtailable,80,75.8,1.
 KHH0108,Kalyanpur,upper_middle,6,101744,router_charger_standby,1,Critical,18,12.8,1.0,3,KSM0108,KSM0108_router_charger_standby_1
 KHH0108,Kalyanpur,upper_middle,6,101744,exhaust_fan,1,Curtailable,35,42.2,0.9,1,KSM0108,KSM0108_exhaust_fan_1
 KHH0109,Kalyanpur,upper_middle,5,91532,ceiling_fan,1,Curtailable,75,71.4,0.85,3,KSM0109,KSM0109_ceiling_fan_1
-KHH0109,Kalyanpur,upper_middle,5,91532,split_ac_1ton,1,Schedulable,1100,906.8,0.65,1,KSM0109,KSM0109_split_ac_1ton_1
+KHH0109,Kalyanpur,upper_middle,5,91532,split_ac_1ton,1,Curtailable,1100,906.8,0.65,1,KSM0109,KSM0109_split_ac_1ton_1
 KHH0109,Kalyanpur,upper_middle,5,91532,refrigerator,1,Critical,150,141.8,0.42,1,KSM0109,KSM0109_refrigerator_1
 KHH0109,Kalyanpur,upper_middle,5,91532,led_light,1,Critical,10,9.1,1.0,8,KSM0109,KSM0109_led_light_1
 KHH0109,Kalyanpur,upper_middle,5,91532,tube_light,1,Critical,36,29.7,1.0,3,KSM0109,KSM0109_tube_light_1
@@ -1170,8 +1170,8 @@ KHH0109,Kalyanpur,upper_middle,5,91532,ips_backup,1,Schedulable,300,341.0,0.6,1,
 KHH0109,Kalyanpur,upper_middle,5,91532,computer_laptop,1,Curtailable,80,79.9,1.0,2,KSM0109,KSM0109_computer_laptop_1
 KHH0109,Kalyanpur,upper_middle,5,91532,router_charger_standby,1,Critical,18,26.8,1.0,2,KSM0109,KSM0109_router_charger_standby_1
 KHH0110,Kalyanpur,upper_middle,4,112772,ceiling_fan,1,Curtailable,75,55.3,0.85,4,KSM0110,KSM0110_ceiling_fan_1
-KHH0110,Kalyanpur,upper_middle,4,112772,split_ac_1ton,1,Schedulable,1100,1206.2,0.65,1,KSM0110,KSM0110_split_ac_1ton_1
-KHH0110,Kalyanpur,upper_middle,4,112772,split_ac_1_5ton,1,Schedulable,1650,1846.4,0.65,1,KSM0110,KSM0110_split_ac_1_5ton_1
+KHH0110,Kalyanpur,upper_middle,4,112772,split_ac_1ton,1,Curtailable,1100,1206.2,0.65,1,KSM0110,KSM0110_split_ac_1ton_1
+KHH0110,Kalyanpur,upper_middle,4,112772,split_ac_1_5ton,1,Curtailable,1650,1846.4,0.65,1,KSM0110,KSM0110_split_ac_1_5ton_1
 KHH0110,Kalyanpur,upper_middle,4,112772,refrigerator,1,Critical,150,137.7,0.42,1,KSM0110,KSM0110_refrigerator_1
 KHH0110,Kalyanpur,upper_middle,4,112772,led_light,1,Critical,10,10.3,1.0,8,KSM0110,KSM0110_led_light_1
 KHH0110,Kalyanpur,upper_middle,4,112772,tube_light,1,Critical,36,41.4,1.0,3,KSM0110,KSM0110_tube_light_1
@@ -1189,7 +1189,7 @@ KHH0110,Kalyanpur,upper_middle,4,112772,router_charger_standby,1,Critical,18,19.
 KHH0110,Kalyanpur,upper_middle,4,112772,exhaust_fan,1,Curtailable,35,32.3,0.9,1,KSM0110,KSM0110_exhaust_fan_1
 KHH0111,Kalyanpur,upper_middle,4,90129,ceiling_fan,1,Curtailable,75,91.2,0.85,5,KSM0111,KSM0111_ceiling_fan_1
 KHH0111,Kalyanpur,upper_middle,4,90129,table_fan,1,Curtailable,45,45.2,0.8,1,KSM0111,KSM0111_table_fan_1
-KHH0111,Kalyanpur,upper_middle,4,90129,split_ac_1_5ton,1,Schedulable,1650,1270.7,0.65,2,KSM0111,KSM0111_split_ac_1_5ton_1
+KHH0111,Kalyanpur,upper_middle,4,90129,split_ac_1_5ton,1,Curtailable,1650,1270.7,0.65,2,KSM0111,KSM0111_split_ac_1_5ton_1
 KHH0111,Kalyanpur,upper_middle,4,90129,refrigerator,1,Critical,150,172.0,0.42,1,KSM0111,KSM0111_refrigerator_1
 KHH0111,Kalyanpur,upper_middle,4,90129,deep_freezer,1,Critical,180,187.5,0.5,1,KSM0111,KSM0111_deep_freezer_1
 KHH0111,Kalyanpur,upper_middle,4,90129,led_light,1,Critical,10,10.2,1.0,14,KSM0111,KSM0111_led_light_1
@@ -1236,7 +1236,7 @@ KHH0113,Kalyanpur,upper_middle,2,103543,computer_laptop,1,Curtailable,80,43.6,1.
 KHH0113,Kalyanpur,upper_middle,2,103543,router_charger_standby,1,Critical,18,12.3,1.0,2,KSM0113,KSM0113_router_charger_standby_1
 KHH0113,Kalyanpur,upper_middle,2,103543,exhaust_fan,1,Curtailable,35,35.3,0.9,2,KSM0113,KSM0113_exhaust_fan_1
 KHH0114,Kalyanpur,upper_middle,5,107414,ceiling_fan,1,Curtailable,75,75.9,0.85,5,KSM0114,KSM0114_ceiling_fan_1
-KHH0114,Kalyanpur,upper_middle,5,107414,split_ac_1ton,1,Schedulable,1100,941.0,0.65,1,KSM0114,KSM0114_split_ac_1ton_1
+KHH0114,Kalyanpur,upper_middle,5,107414,split_ac_1ton,1,Curtailable,1100,941.0,0.65,1,KSM0114,KSM0114_split_ac_1ton_1
 KHH0114,Kalyanpur,upper_middle,5,107414,refrigerator,1,Critical,150,111.8,0.42,1,KSM0114,KSM0114_refrigerator_1
 KHH0114,Kalyanpur,upper_middle,5,107414,led_light,1,Critical,10,9.5,1.0,11,KSM0114,KSM0114_led_light_1
 KHH0114,Kalyanpur,upper_middle,5,107414,tv_led,1,Curtailable,60,71.2,1.0,2,KSM0114,KSM0114_tv_led_1
@@ -1251,8 +1251,8 @@ KHH0114,Kalyanpur,upper_middle,5,107414,geyser_water_heater,1,Schedulable,1800,1
 KHH0114,Kalyanpur,upper_middle,5,107414,computer_laptop,1,Curtailable,80,99.1,1.0,2,KSM0114,KSM0114_computer_laptop_1
 KHH0114,Kalyanpur,upper_middle,5,107414,router_charger_standby,1,Critical,18,16.3,1.0,1,KSM0114,KSM0114_router_charger_standby_1
 KHH0115,Kalyanpur,upper_middle,2,79778,ceiling_fan,1,Curtailable,75,67.3,0.85,4,KSM0115,KSM0115_ceiling_fan_1
-KHH0115,Kalyanpur,upper_middle,2,79778,split_ac_1ton,1,Schedulable,1100,889.1,0.65,2,KSM0115,KSM0115_split_ac_1ton_1
-KHH0115,Kalyanpur,upper_middle,2,79778,split_ac_1_5ton,1,Schedulable,1650,1782.8,0.65,1,KSM0115,KSM0115_split_ac_1_5ton_1
+KHH0115,Kalyanpur,upper_middle,2,79778,split_ac_1ton,1,Curtailable,1100,889.1,0.65,2,KSM0115,KSM0115_split_ac_1ton_1
+KHH0115,Kalyanpur,upper_middle,2,79778,split_ac_1_5ton,1,Curtailable,1650,1782.8,0.65,1,KSM0115,KSM0115_split_ac_1_5ton_1
 KHH0115,Kalyanpur,upper_middle,2,79778,refrigerator,1,Critical,150,146.0,0.42,2,KSM0115,KSM0115_refrigerator_1
 KHH0115,Kalyanpur,upper_middle,2,79778,deep_freezer,1,Critical,180,145.2,0.5,1,KSM0115,KSM0115_deep_freezer_1
 KHH0115,Kalyanpur,upper_middle,2,79778,led_light,1,Critical,10,7.3,1.0,17,KSM0115,KSM0115_led_light_1
@@ -1268,8 +1268,8 @@ KHH0115,Kalyanpur,upper_middle,2,79778,computer_laptop,1,Curtailable,80,80.9,1.0
 KHH0115,Kalyanpur,upper_middle,2,79778,router_charger_standby,1,Critical,18,17.0,1.0,3,KSM0115,KSM0115_router_charger_standby_1
 KHH0115,Kalyanpur,upper_middle,2,79778,exhaust_fan,1,Curtailable,35,44.1,0.9,1,KSM0115,KSM0115_exhaust_fan_1
 KHH0116,Kalyanpur,upper_middle,4,65732,ceiling_fan,1,Curtailable,75,80.4,0.85,4,KSM0116,KSM0116_ceiling_fan_1
-KHH0116,Kalyanpur,upper_middle,4,65732,split_ac_1ton,1,Schedulable,1100,1252.7,0.65,1,KSM0116,KSM0116_split_ac_1ton_1
-KHH0116,Kalyanpur,upper_middle,4,65732,split_ac_1_5ton,1,Schedulable,1650,1889.9,0.65,1,KSM0116,KSM0116_split_ac_1_5ton_1
+KHH0116,Kalyanpur,upper_middle,4,65732,split_ac_1ton,1,Curtailable,1100,1252.7,0.65,1,KSM0116,KSM0116_split_ac_1ton_1
+KHH0116,Kalyanpur,upper_middle,4,65732,split_ac_1_5ton,1,Curtailable,1650,1889.9,0.65,1,KSM0116,KSM0116_split_ac_1_5ton_1
 KHH0116,Kalyanpur,upper_middle,4,65732,refrigerator,1,Critical,150,145.7,0.42,2,KSM0116,KSM0116_refrigerator_1
 KHH0116,Kalyanpur,upper_middle,4,65732,led_light,1,Critical,10,10.5,1.0,8,KSM0116,KSM0116_led_light_1
 KHH0116,Kalyanpur,upper_middle,4,65732,tv_led,1,Curtailable,60,86.1,1.0,2,KSM0116,KSM0116_tv_led_1
@@ -1284,7 +1284,7 @@ KHH0116,Kalyanpur,upper_middle,4,65732,computer_laptop,1,Curtailable,80,62.2,1.0
 KHH0116,Kalyanpur,upper_middle,4,65732,router_charger_standby,1,Critical,18,19.9,1.0,1,KSM0116,KSM0116_router_charger_standby_1
 KHH0116,Kalyanpur,upper_middle,4,65732,exhaust_fan,1,Curtailable,35,32.0,0.9,2,KSM0116,KSM0116_exhaust_fan_1
 KHH0117,Kalyanpur,upper_middle,4,116455,ceiling_fan,1,Curtailable,75,65.3,0.85,3,KSM0117,KSM0117_ceiling_fan_1
-KHH0117,Kalyanpur,upper_middle,4,116455,split_ac_1_5ton,1,Schedulable,1650,1490.5,0.65,2,KSM0117,KSM0117_split_ac_1_5ton_1
+KHH0117,Kalyanpur,upper_middle,4,116455,split_ac_1_5ton,1,Curtailable,1650,1490.5,0.65,2,KSM0117,KSM0117_split_ac_1_5ton_1
 KHH0117,Kalyanpur,upper_middle,4,116455,refrigerator,1,Critical,150,123.1,0.42,1,KSM0117,KSM0117_refrigerator_1
 KHH0117,Kalyanpur,upper_middle,4,116455,led_light,1,Critical,10,11.9,1.0,11,KSM0117,KSM0117_led_light_1
 KHH0117,Kalyanpur,upper_middle,4,116455,tv_led,1,Curtailable,60,77.4,1.0,1,KSM0117,KSM0117_tv_led_1
@@ -1298,8 +1298,8 @@ KHH0117,Kalyanpur,upper_middle,4,116455,computer_laptop,1,Curtailable,80,105.1,1
 KHH0117,Kalyanpur,upper_middle,4,116455,router_charger_standby,1,Critical,18,32.0,1.0,2,KSM0117,KSM0117_router_charger_standby_1
 KHH0117,Kalyanpur,upper_middle,4,116455,exhaust_fan,1,Curtailable,35,42.6,0.9,2,KSM0117,KSM0117_exhaust_fan_1
 KHH0118,Kalyanpur,upper_middle,5,106864,ceiling_fan,1,Curtailable,75,66.0,0.85,6,KSM0118,KSM0118_ceiling_fan_1
-KHH0118,Kalyanpur,upper_middle,5,106864,split_ac_1ton,1,Schedulable,1100,1188.9,0.65,2,KSM0118,KSM0118_split_ac_1ton_1
-KHH0118,Kalyanpur,upper_middle,5,106864,split_ac_1_5ton,1,Schedulable,1650,1776.6,0.65,1,KSM0118,KSM0118_split_ac_1_5ton_1
+KHH0118,Kalyanpur,upper_middle,5,106864,split_ac_1ton,1,Curtailable,1100,1188.9,0.65,2,KSM0118,KSM0118_split_ac_1ton_1
+KHH0118,Kalyanpur,upper_middle,5,106864,split_ac_1_5ton,1,Curtailable,1650,1776.6,0.65,1,KSM0118,KSM0118_split_ac_1_5ton_1
 KHH0118,Kalyanpur,upper_middle,5,106864,refrigerator,1,Critical,150,142.5,0.42,2,KSM0118,KSM0118_refrigerator_1
 KHH0118,Kalyanpur,upper_middle,5,106864,led_light,1,Critical,10,10.6,1.0,12,KSM0118,KSM0118_led_light_1
 KHH0118,Kalyanpur,upper_middle,5,106864,tv_led,1,Curtailable,60,67.6,1.0,2,KSM0118,KSM0118_tv_led_1
@@ -1316,8 +1316,8 @@ KHH0118,Kalyanpur,upper_middle,5,106864,computer_laptop,1,Curtailable,80,46.8,1.
 KHH0118,Kalyanpur,upper_middle,5,106864,router_charger_standby,1,Critical,18,19.7,1.0,2,KSM0118,KSM0118_router_charger_standby_1
 KHH0118,Kalyanpur,upper_middle,5,106864,exhaust_fan,1,Curtailable,35,36.7,0.9,2,KSM0118,KSM0118_exhaust_fan_1
 KHH0119,Kalyanpur,upper_middle,4,98791,ceiling_fan,1,Curtailable,75,82.2,0.85,6,KSM0119,KSM0119_ceiling_fan_1
-KHH0119,Kalyanpur,upper_middle,4,98791,split_ac_1ton,1,Schedulable,1100,1114.2,0.65,2,KSM0119,KSM0119_split_ac_1ton_1
-KHH0119,Kalyanpur,upper_middle,4,98791,split_ac_1_5ton,1,Schedulable,1650,1476.5,0.65,1,KSM0119,KSM0119_split_ac_1_5ton_1
+KHH0119,Kalyanpur,upper_middle,4,98791,split_ac_1ton,1,Curtailable,1100,1114.2,0.65,2,KSM0119,KSM0119_split_ac_1ton_1
+KHH0119,Kalyanpur,upper_middle,4,98791,split_ac_1_5ton,1,Curtailable,1650,1476.5,0.65,1,KSM0119,KSM0119_split_ac_1_5ton_1
 KHH0119,Kalyanpur,upper_middle,4,98791,refrigerator,1,Critical,150,150.4,0.42,1,KSM0119,KSM0119_refrigerator_1
 KHH0119,Kalyanpur,upper_middle,4,98791,deep_freezer,1,Critical,180,174.6,0.5,1,KSM0119,KSM0119_deep_freezer_1
 KHH0119,Kalyanpur,upper_middle,4,98791,led_light,1,Critical,10,11.2,1.0,8,KSM0119,KSM0119_led_light_1
@@ -1329,8 +1329,8 @@ KHH0119,Kalyanpur,upper_middle,4,98791,electric_iron,1,Schedulable,1000,1028.2,0
 KHH0119,Kalyanpur,upper_middle,4,98791,router_charger_standby,1,Critical,18,23.5,1.0,2,KSM0119,KSM0119_router_charger_standby_1
 KHH0119,Kalyanpur,upper_middle,4,98791,exhaust_fan,1,Curtailable,35,32.7,0.9,1,KSM0119,KSM0119_exhaust_fan_1
 KHH0120,Kalyanpur,upper_middle,3,96096,ceiling_fan,1,Curtailable,75,61.8,0.85,5,KSM0120,KSM0120_ceiling_fan_1
-KHH0120,Kalyanpur,upper_middle,3,96096,split_ac_1ton,1,Schedulable,1100,1230.4,0.65,1,KSM0120,KSM0120_split_ac_1ton_1
-KHH0120,Kalyanpur,upper_middle,3,96096,split_ac_1_5ton,1,Schedulable,1650,1259.5,0.65,2,KSM0120,KSM0120_split_ac_1_5ton_1
+KHH0120,Kalyanpur,upper_middle,3,96096,split_ac_1ton,1,Curtailable,1100,1230.4,0.65,1,KSM0120,KSM0120_split_ac_1ton_1
+KHH0120,Kalyanpur,upper_middle,3,96096,split_ac_1_5ton,1,Curtailable,1650,1259.5,0.65,2,KSM0120,KSM0120_split_ac_1_5ton_1
 KHH0120,Kalyanpur,upper_middle,3,96096,refrigerator,1,Critical,150,149.3,0.42,1,KSM0120,KSM0120_refrigerator_1
 KHH0120,Kalyanpur,upper_middle,3,96096,deep_freezer,1,Critical,180,198.2,0.5,1,KSM0120,KSM0120_deep_freezer_1
 KHH0120,Kalyanpur,upper_middle,3,96096,led_light,1,Critical,10,8.3,1.0,12,KSM0120,KSM0120_led_light_1

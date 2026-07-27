@@ -90,7 +90,8 @@ def make_sequences_multi(values: np.ndarray, window: int, horizon: int):
 
 
 def build_model_multi(model_name: str, window: int, n_features: int,
-                      horizon: int = HORIZON) -> Model:
+                      horizon: int = HORIZON,
+                      weight_mode: str = "uniform") -> Model:
     """Identical recurrent trunk to load_prediction.build_model; only the head
     differs (Dense(horizon) instead of Dense(1))."""
     l2 = regularizers.l2(1e-4)
@@ -150,7 +151,7 @@ def build_model_multi(model_name: str, window: int, n_features: int,
     out = Dense(horizon, activation="linear")(x)      # Eq. 13
 
     m = Model(inp, out)
-    w = horizon_weights(horizon)
+    w = horizon_weights(horizon, weight_mode)
 
     def weighted_mse(y_true, y_pred):                 # Eq. 14
         import tensorflow as tf
@@ -208,6 +209,20 @@ def inverse_multi(scaler, scaled: np.ndarray, n_features: int) -> np.ndarray:
     return scaler.inverse_transform(dummy)[:, 0].reshape(scaled.shape)
 
 
+def selection_score(per_lead_r2, weight_mode: str = "uniform") -> float:
+    """Aggregate a per-lead R2 curve into ONE number for model selection.
+
+    The aggregation MUST match the training objective of Eq. 14: if the loss
+    weights leads uniformly, the selection metric is the plain mean over leads;
+    if the loss decays as 1/k, the selection metric decays identically.
+    Selecting on lead-1 skill alone while training on a 15-lead objective would
+    relocate the selection/evaluation mismatch rather than remove it.
+    """
+    r2 = np.asarray(per_lead_r2, dtype=float)
+    w = horizon_weights(len(r2), weight_mode)
+    return float(np.sum(r2 * w) / np.sum(w))
+
+
 def horizon_metrics(y_true_mw: np.ndarray, y_pred_mw: np.ndarray) -> list:
     """Per-lead R², RMSE, MAE — the §2.5 skill curve, reported not asserted."""
     out = []
@@ -243,14 +258,15 @@ def robust_peak(pred_mw: np.ndarray, sigma_k: np.ndarray,
 
 
 def train_multi(model_name, X_tr, y_tr, X_va, y_va, scaler, n_features,
-                horizon: int = HORIZON):
+                horizon: int = HORIZON, weight_mode: str = "uniform"):
     """Train one multi-horizon model. Early stopping on validation loss, same
     patience and schedule as the day-ahead protocol."""
     import tensorflow as tf
     tf.random.set_seed(LP.SEED)
     np.random.seed(LP.SEED)
 
-    model = build_model_multi(model_name, X_tr.shape[1], n_features, horizon)
+    model = build_model_multi(model_name, X_tr.shape[1], n_features, horizon,
+                              weight_mode)
     callbacks = [
         EarlyStopping(monitor="val_loss", patience=LP.PATIENCE,
                       restore_best_weights=True),

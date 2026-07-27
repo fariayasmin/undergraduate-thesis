@@ -360,7 +360,7 @@ APP_KSM0045_computer_laptop_1,KSM0045_computer_laptop_1,computer_laptop,Curtaila
 APP_KSM0045_router_charger_standby_1,KSM0045_router_charger_standby_1,router_charger_standby,Critical,18,12.8,1.0,1,KHH0045,Appliance
 APP_KSM0046_ceiling_fan_1,KSM0046_ceiling_fan_1,ceiling_fan,Curtailable,75,73.8,0.85,3,KHH0046,Appliance
 APP_KSM0046_table_fan_1,KSM0046_table_fan_1,table_fan,Curtailable,45,42.4,0.8,1,KHH0046,Appliance
-APP_KSM0046_split_ac_1ton_1,KSM0046_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1250.1,0.65,1,KHH0046,Appliance
+APP_KSM0046_split_ac_1ton_1,KSM0046_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1250.1,0.65,1,KHH0046,Appliance
 APP_KSM0046_refrigerator_1,KSM0046_refrigerator_1,refrigerator,Critical,150,149.6,0.42,1,KHH0046,Appliance
 APP_KSM0046_led_light_1,KSM0046_led_light_1,led_light,Critical,10,6.6,1.0,5,KHH0046,Appliance
 APP_KSM0046_tv_led_1,KSM0046_tv_led_1,tv_led,Curtailable,60,10.0,1.0,1,KHH0046,Appliance
@@ -397,7 +397,7 @@ APP_KSM0048_ips_backup_1,KSM0048_ips_backup_1,ips_backup,Schedulable,300,310.0,0
 APP_KSM0048_router_charger_standby_1,KSM0048_router_charger_standby_1,router_charger_standby,Critical,18,19.2,1.0,2,KHH0048,Appliance
 APP_KSM0049_ceiling_fan_1,KSM0049_ceiling_fan_1,ceiling_fan,Curtailable,75,64.4,0.85,3,KHH0049,Appliance
 APP_KSM0049_table_fan_1,KSM0049_table_fan_1,table_fan,Curtailable,45,46.2,0.8,1,KHH0049,Appliance
-APP_KSM0049_split_ac_1ton_1,KSM0049_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,886.8,0.65,1,KHH0049,Appliance
+APP_KSM0049_split_ac_1ton_1,KSM0049_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,886.8,0.65,1,KHH0049,Appliance
 APP_KSM0049_refrigerator_1,KSM0049_refrigerator_1,refrigerator,Critical,150,119.1,0.42,1,KHH0049,Appliance
 APP_KSM0049_deep_freezer_1,KSM0049_deep_freezer_1,deep_freezer,Critical,180,201.5,0.5,1,KHH0049,Appliance
 APP_KSM0049_led_light_1,KSM0049_led_light_1,led_light,Critical,10,12.9,1.0,6,KHH0049,Appliance
@@ -412,7 +412,7 @@ APP_KSM0049_water_pump_0_5hp_1,KSM0049_water_pump_0_5hp_1,water_pump_0_5hp,Sched
 APP_KSM0049_router_charger_standby_1,KSM0049_router_charger_standby_1,router_charger_standby,Critical,18,12.6,1.0,3,KHH0049,Appliance
 APP_KSM0050_ceiling_fan_1,KSM0050_ceiling_fan_1,ceiling_fan,Curtailable,75,73.5,0.85,2,KHH0050,Appliance
 APP_KSM0050_table_fan_1,KSM0050_table_fan_1,table_fan,Curtailable,45,49.1,0.8,1,KHH0050,Appliance
-APP_KSM0050_split_ac_1ton_1,KSM0050_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1114.1,0.65,1,KHH0050,Appliance
+APP_KSM0050_split_ac_1ton_1,KSM0050_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1114.1,0.65,1,KHH0050,Appliance
 APP_KSM0050_refrigerator_1,KSM0050_refrigerator_1,refrigerator,Critical,150,155.7,0.42,1,KHH0050,Appliance
 APP_KSM0050_led_light_1,KSM0050_led_light_1,led_light,Critical,10,9.6,1.0,8,KHH0050,Appliance
 APP_KSM0050_tube_light_1,KSM0050_tube_light_1,tube_light,Critical,36,33.9,1.0,2,KHH0050,Appliance
@@ -439,7 +439,7 @@ APP_KSM0051_ips_backup_1,KSM0051_ips_backup_1,ips_backup,Schedulable,300,300.2,0
 APP_KSM0051_router_charger_standby_1,KSM0051_router_charger_standby_1,router_charger_standby,Critical,18,22.9,1.0,2,KHH0051,Appliance
 APP_KSM0052_ceiling_fan_1,KSM0052_ceiling_fan_1,ceiling_fan,Curtailable,75,73.5,0.85,3,KHH0052,Appliance
 APP_KSM0052_table_fan_1,KSM0052_table_fan_1,table_fan,Curtailable,45,25.1,0.8,1,KHH0052,Appliance
-APP_KSM0052_split_ac_1ton_1,KSM0052_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1100.3,0.65,1,KHH0052,Appliance
+APP_KSM0052_split_ac_1ton_1,KSM0052_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1100.3,0.65,1,KHH0052,Appliance
 APP_KSM0052_led_light_1,KSM0052_led_light_1,led_light,Critical,10,8.0,1.0,5,KHH0052,Appliance
 APP_KSM0052_tube_light_1,KSM0052_tube_light_1,tube_light,Critical,36,35.6,1.0,1,KHH0052,Appliance
 APP_KSM0052_tv_led_1,KSM0052_tv_led_1,tv_led,Curtailable,60,51.1,1.0,1,KHH0052,Appliance
@@ -451,7 +451,7 @@ APP_KSM0052_ips_backup_1,KSM0052_ips_backup_1,ips_backup,Schedulable,300,365.3,0
 APP_KSM0052_computer_laptop_1,KSM0052_computer_laptop_1,computer_laptop,Curtailable,80,69.5,1.0,1,KHH0052,Appliance
 APP_KSM0052_router_charger_standby_1,KSM0052_router_charger_standby_1,router_charger_standby,Critical,18,17.2,1.0,2,KHH0052,Appliance
 APP_KSM0053_ceiling_fan_1,KSM0053_ceiling_fan_1,ceiling_fan,Curtailable,75,91.6,0.85,3,KHH0053,Appliance
-APP_KSM0053_split_ac_1ton_1,KSM0053_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1359.6,0.65,1,KHH0053,Appliance
+APP_KSM0053_split_ac_1ton_1,KSM0053_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1359.6,0.65,1,KHH0053,Appliance
 APP_KSM0053_refrigerator_1,KSM0053_refrigerator_1,refrigerator,Critical,150,137.7,0.42,1,KHH0053,Appliance
 APP_KSM0053_led_light_1,KSM0053_led_light_1,led_light,Critical,10,11.1,1.0,7,KHH0053,Appliance
 APP_KSM0053_tube_light_1,KSM0053_tube_light_1,tube_light,Critical,36,36.5,1.0,1,KHH0053,Appliance
@@ -472,8 +472,8 @@ APP_KSM0054_washing_machine_1,KSM0054_washing_machine_1,washing_machine,Schedula
 APP_KSM0054_water_pump_0_5hp_1,KSM0054_water_pump_0_5hp_1,water_pump_0_5hp,Schedulable,373,387.7,0.95,1,KHH0054,Appliance
 APP_KSM0054_router_charger_standby_1,KSM0054_router_charger_standby_1,router_charger_standby,Critical,18,20.5,1.0,1,KHH0054,Appliance
 APP_KSM0055_ceiling_fan_1,KSM0055_ceiling_fan_1,ceiling_fan,Curtailable,75,79.5,0.85,3,KHH0055,Appliance
-APP_KSM0055_split_ac_1ton_1,KSM0055_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1185.0,0.65,1,KHH0055,Appliance
-APP_KSM0055_split_ac_1_5ton_1,KSM0055_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1548.9,0.65,1,KHH0055,Appliance
+APP_KSM0055_split_ac_1ton_1,KSM0055_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1185.0,0.65,1,KHH0055,Appliance
+APP_KSM0055_split_ac_1_5ton_1,KSM0055_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1548.9,0.65,1,KHH0055,Appliance
 APP_KSM0055_refrigerator_1,KSM0055_refrigerator_1,refrigerator,Critical,150,172.3,0.42,1,KHH0055,Appliance
 APP_KSM0055_deep_freezer_1,KSM0055_deep_freezer_1,deep_freezer,Critical,180,148.1,0.5,1,KHH0055,Appliance
 APP_KSM0055_led_light_1,KSM0055_led_light_1,led_light,Critical,10,10.4,1.0,6,KHH0055,Appliance
@@ -488,7 +488,7 @@ APP_KSM0055_router_charger_standby_1,KSM0055_router_charger_standby_1,router_cha
 APP_KSM0055_exhaust_fan_1,KSM0055_exhaust_fan_1,exhaust_fan,Curtailable,35,28.9,0.9,1,KHH0055,Appliance
 APP_KSM0056_ceiling_fan_1,KSM0056_ceiling_fan_1,ceiling_fan,Curtailable,75,89.4,0.85,3,KHH0056,Appliance
 APP_KSM0056_table_fan_1,KSM0056_table_fan_1,table_fan,Curtailable,45,46.1,0.8,1,KHH0056,Appliance
-APP_KSM0056_split_ac_1_5ton_1,KSM0056_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1715.3,0.65,1,KHH0056,Appliance
+APP_KSM0056_split_ac_1_5ton_1,KSM0056_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1715.3,0.65,1,KHH0056,Appliance
 APP_KSM0056_refrigerator_1,KSM0056_refrigerator_1,refrigerator,Critical,150,126.0,0.42,1,KHH0056,Appliance
 APP_KSM0056_led_light_1,KSM0056_led_light_1,led_light,Critical,10,13.1,1.0,8,KHH0056,Appliance
 APP_KSM0056_tube_light_1,KSM0056_tube_light_1,tube_light,Critical,36,30.5,1.0,1,KHH0056,Appliance
@@ -513,8 +513,8 @@ APP_KSM0057_water_pump_0_5hp_1,KSM0057_water_pump_0_5hp_1,water_pump_0_5hp,Sched
 APP_KSM0057_computer_laptop_1,KSM0057_computer_laptop_1,computer_laptop,Curtailable,80,61.6,1.0,1,KHH0057,Appliance
 APP_KSM0057_router_charger_standby_1,KSM0057_router_charger_standby_1,router_charger_standby,Critical,18,23.1,1.0,1,KHH0057,Appliance
 APP_KSM0058_ceiling_fan_1,KSM0058_ceiling_fan_1,ceiling_fan,Curtailable,75,72.0,0.85,4,KHH0058,Appliance
-APP_KSM0058_split_ac_1ton_1,KSM0058_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,657.1,0.65,1,KHH0058,Appliance
-APP_KSM0058_split_ac_1_5ton_1,KSM0058_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1782.9,0.65,1,KHH0058,Appliance
+APP_KSM0058_split_ac_1ton_1,KSM0058_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,657.1,0.65,1,KHH0058,Appliance
+APP_KSM0058_split_ac_1_5ton_1,KSM0058_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1782.9,0.65,1,KHH0058,Appliance
 APP_KSM0058_led_light_1,KSM0058_led_light_1,led_light,Critical,10,14.2,1.0,6,KHH0058,Appliance
 APP_KSM0058_tube_light_1,KSM0058_tube_light_1,tube_light,Critical,36,34.1,1.0,2,KHH0058,Appliance
 APP_KSM0058_tv_led_1,KSM0058_tv_led_1,tv_led,Curtailable,60,43.5,1.0,1,KHH0058,Appliance
@@ -536,7 +536,7 @@ APP_KSM0059_washing_machine_1,KSM0059_washing_machine_1,washing_machine,Schedula
 APP_KSM0059_computer_laptop_1,KSM0059_computer_laptop_1,computer_laptop,Curtailable,80,124.3,1.0,1,KHH0059,Appliance
 APP_KSM0060_ceiling_fan_1,KSM0060_ceiling_fan_1,ceiling_fan,Curtailable,75,90.8,0.85,3,KHH0060,Appliance
 APP_KSM0060_table_fan_1,KSM0060_table_fan_1,table_fan,Curtailable,45,48.6,0.8,1,KHH0060,Appliance
-APP_KSM0060_split_ac_1ton_1,KSM0060_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,879.5,0.65,1,KHH0060,Appliance
+APP_KSM0060_split_ac_1ton_1,KSM0060_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,879.5,0.65,1,KHH0060,Appliance
 APP_KSM0060_refrigerator_1,KSM0060_refrigerator_1,refrigerator,Critical,150,146.4,0.42,1,KHH0060,Appliance
 APP_KSM0060_led_light_1,KSM0060_led_light_1,led_light,Critical,10,10.6,1.0,8,KHH0060,Appliance
 APP_KSM0060_tv_led_1,KSM0060_tv_led_1,tv_led,Curtailable,60,62.8,1.0,1,KHH0060,Appliance
@@ -548,7 +548,7 @@ APP_KSM0060_ips_backup_1,KSM0060_ips_backup_1,ips_backup,Schedulable,300,323.9,0
 APP_KSM0060_exhaust_fan_1,KSM0060_exhaust_fan_1,exhaust_fan,Curtailable,35,27.8,0.9,1,KHH0060,Appliance
 APP_KSM0061_ceiling_fan_1,KSM0061_ceiling_fan_1,ceiling_fan,Curtailable,75,77.0,0.85,3,KHH0061,Appliance
 APP_KSM0061_table_fan_1,KSM0061_table_fan_1,table_fan,Curtailable,45,47.0,0.8,1,KHH0061,Appliance
-APP_KSM0061_split_ac_1ton_1,KSM0061_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1042.8,0.65,2,KHH0061,Appliance
+APP_KSM0061_split_ac_1ton_1,KSM0061_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1042.8,0.65,2,KHH0061,Appliance
 APP_KSM0061_refrigerator_1,KSM0061_refrigerator_1,refrigerator,Critical,150,182.5,0.42,1,KHH0061,Appliance
 APP_KSM0061_led_light_1,KSM0061_led_light_1,led_light,Critical,10,12.8,1.0,5,KHH0061,Appliance
 APP_KSM0061_tube_light_1,KSM0061_tube_light_1,tube_light,Critical,36,33.4,1.0,3,KHH0061,Appliance
@@ -623,7 +623,7 @@ APP_KSM0067_router_charger_standby_1,KSM0067_router_charger_standby_1,router_cha
 APP_KSM0067_exhaust_fan_1,KSM0067_exhaust_fan_1,exhaust_fan,Curtailable,35,36.1,0.9,1,KHH0067,Appliance
 APP_KSM0068_ceiling_fan_1,KSM0068_ceiling_fan_1,ceiling_fan,Curtailable,75,64.2,0.85,2,KHH0068,Appliance
 APP_KSM0068_table_fan_1,KSM0068_table_fan_1,table_fan,Curtailable,45,30.6,0.8,1,KHH0068,Appliance
-APP_KSM0068_split_ac_1ton_1,KSM0068_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,940.0,0.65,1,KHH0068,Appliance
+APP_KSM0068_split_ac_1ton_1,KSM0068_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,940.0,0.65,1,KHH0068,Appliance
 APP_KSM0068_refrigerator_1,KSM0068_refrigerator_1,refrigerator,Critical,150,172.6,0.42,1,KHH0068,Appliance
 APP_KSM0068_led_light_1,KSM0068_led_light_1,led_light,Critical,10,9.2,1.0,9,KHH0068,Appliance
 APP_KSM0068_tube_light_1,KSM0068_tube_light_1,tube_light,Critical,36,39.9,1.0,3,KHH0068,Appliance
@@ -673,7 +673,7 @@ APP_KSM0071_washing_machine_1,KSM0071_washing_machine_1,washing_machine,Schedula
 APP_KSM0071_router_charger_standby_1,KSM0071_router_charger_standby_1,router_charger_standby,Critical,18,11.3,1.0,2,KHH0071,Appliance
 APP_KSM0071_exhaust_fan_1,KSM0071_exhaust_fan_1,exhaust_fan,Curtailable,35,30.1,0.9,1,KHH0071,Appliance
 APP_KSM0072_ceiling_fan_1,KSM0072_ceiling_fan_1,ceiling_fan,Curtailable,75,63.3,0.85,3,KHH0072,Appliance
-APP_KSM0072_split_ac_1ton_1,KSM0072_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1085.2,0.65,1,KHH0072,Appliance
+APP_KSM0072_split_ac_1ton_1,KSM0072_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1085.2,0.65,1,KHH0072,Appliance
 APP_KSM0072_refrigerator_1,KSM0072_refrigerator_1,refrigerator,Critical,150,134.1,0.42,1,KHH0072,Appliance
 APP_KSM0072_led_light_1,KSM0072_led_light_1,led_light,Critical,10,9.6,1.0,8,KHH0072,Appliance
 APP_KSM0072_tube_light_1,KSM0072_tube_light_1,tube_light,Critical,36,40.4,1.0,1,KHH0072,Appliance
@@ -760,7 +760,7 @@ APP_KSM0078_computer_laptop_1,KSM0078_computer_laptop_1,computer_laptop,Curtaila
 APP_KSM0078_router_charger_standby_1,KSM0078_router_charger_standby_1,router_charger_standby,Critical,18,10.6,1.0,1,KHH0078,Appliance
 APP_KSM0079_ceiling_fan_1,KSM0079_ceiling_fan_1,ceiling_fan,Curtailable,75,81.0,0.85,4,KHH0079,Appliance
 APP_KSM0079_table_fan_1,KSM0079_table_fan_1,table_fan,Curtailable,45,41.8,0.8,1,KHH0079,Appliance
-APP_KSM0079_split_ac_1ton_1,KSM0079_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,871.9,0.65,1,KHH0079,Appliance
+APP_KSM0079_split_ac_1ton_1,KSM0079_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,871.9,0.65,1,KHH0079,Appliance
 APP_KSM0079_refrigerator_1,KSM0079_refrigerator_1,refrigerator,Critical,150,165.4,0.42,1,KHH0079,Appliance
 APP_KSM0079_led_light_1,KSM0079_led_light_1,led_light,Critical,10,10.1,1.0,4,KHH0079,Appliance
 APP_KSM0079_tube_light_1,KSM0079_tube_light_1,tube_light,Critical,36,31.4,1.0,2,KHH0079,Appliance
@@ -773,7 +773,7 @@ APP_KSM0079_router_charger_standby_1,KSM0079_router_charger_standby_1,router_cha
 APP_KSM0079_exhaust_fan_1,KSM0079_exhaust_fan_1,exhaust_fan,Curtailable,35,28.3,0.9,1,KHH0079,Appliance
 APP_KSM0080_ceiling_fan_1,KSM0080_ceiling_fan_1,ceiling_fan,Curtailable,75,88.7,0.85,4,KHH0080,Appliance
 APP_KSM0080_table_fan_1,KSM0080_table_fan_1,table_fan,Curtailable,45,44.5,0.8,1,KHH0080,Appliance
-APP_KSM0080_split_ac_1ton_1,KSM0080_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1192.8,0.65,1,KHH0080,Appliance
+APP_KSM0080_split_ac_1ton_1,KSM0080_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1192.8,0.65,1,KHH0080,Appliance
 APP_KSM0080_refrigerator_1,KSM0080_refrigerator_1,refrigerator,Critical,150,156.3,0.42,1,KHH0080,Appliance
 APP_KSM0080_deep_freezer_1,KSM0080_deep_freezer_1,deep_freezer,Critical,180,136.8,0.5,1,KHH0080,Appliance
 APP_KSM0080_led_light_1,KSM0080_led_light_1,led_light,Critical,10,11.2,1.0,8,KHH0080,Appliance
@@ -800,7 +800,7 @@ APP_KSM0081_router_charger_standby_1,KSM0081_router_charger_standby_1,router_cha
 APP_KSM0081_exhaust_fan_1,KSM0081_exhaust_fan_1,exhaust_fan,Curtailable,35,39.9,0.9,1,KHH0081,Appliance
 APP_KSM0082_ceiling_fan_1,KSM0082_ceiling_fan_1,ceiling_fan,Curtailable,75,72.7,0.85,2,KHH0082,Appliance
 APP_KSM0082_table_fan_1,KSM0082_table_fan_1,table_fan,Curtailable,45,44.8,0.8,1,KHH0082,Appliance
-APP_KSM0082_split_ac_1ton_1,KSM0082_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1003.9,0.65,1,KHH0082,Appliance
+APP_KSM0082_split_ac_1ton_1,KSM0082_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1003.9,0.65,1,KHH0082,Appliance
 APP_KSM0082_refrigerator_1,KSM0082_refrigerator_1,refrigerator,Critical,150,213.7,0.42,1,KHH0082,Appliance
 APP_KSM0082_led_light_1,KSM0082_led_light_1,led_light,Critical,10,9.1,1.0,7,KHH0082,Appliance
 APP_KSM0082_tube_light_1,KSM0082_tube_light_1,tube_light,Critical,36,40.9,1.0,3,KHH0082,Appliance
@@ -827,7 +827,7 @@ APP_KSM0083_computer_laptop_1,KSM0083_computer_laptop_1,computer_laptop,Curtaila
 APP_KSM0083_router_charger_standby_1,KSM0083_router_charger_standby_1,router_charger_standby,Critical,18,19.3,1.0,1,KHH0083,Appliance
 APP_KSM0084_ceiling_fan_1,KSM0084_ceiling_fan_1,ceiling_fan,Curtailable,75,71.2,0.85,3,KHH0084,Appliance
 APP_KSM0084_table_fan_1,KSM0084_table_fan_1,table_fan,Curtailable,45,56.0,0.8,2,KHH0084,Appliance
-APP_KSM0084_split_ac_1_5ton_1,KSM0084_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,2170.9,0.65,1,KHH0084,Appliance
+APP_KSM0084_split_ac_1_5ton_1,KSM0084_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,2170.9,0.65,1,KHH0084,Appliance
 APP_KSM0084_refrigerator_1,KSM0084_refrigerator_1,refrigerator,Critical,150,132.6,0.42,1,KHH0084,Appliance
 APP_KSM0084_led_light_1,KSM0084_led_light_1,led_light,Critical,10,5.9,1.0,7,KHH0084,Appliance
 APP_KSM0084_tube_light_1,KSM0084_tube_light_1,tube_light,Critical,36,32.4,1.0,3,KHH0084,Appliance
@@ -860,7 +860,7 @@ APP_KSM0086_electric_iron_1,KSM0086_electric_iron_1,electric_iron,Schedulable,10
 APP_KSM0086_ips_backup_1,KSM0086_ips_backup_1,ips_backup,Schedulable,300,294.5,0.6,1,KHH0086,Appliance
 APP_KSM0086_router_charger_standby_1,KSM0086_router_charger_standby_1,router_charger_standby,Critical,18,25.6,1.0,2,KHH0086,Appliance
 APP_KSM0087_ceiling_fan_1,KSM0087_ceiling_fan_1,ceiling_fan,Curtailable,75,82.9,0.85,4,KHH0087,Appliance
-APP_KSM0087_split_ac_1ton_1,KSM0087_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1050.9,0.65,1,KHH0087,Appliance
+APP_KSM0087_split_ac_1ton_1,KSM0087_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1050.9,0.65,1,KHH0087,Appliance
 APP_KSM0087_refrigerator_1,KSM0087_refrigerator_1,refrigerator,Critical,150,114.7,0.42,1,KHH0087,Appliance
 APP_KSM0087_led_light_1,KSM0087_led_light_1,led_light,Critical,10,9.6,1.0,6,KHH0087,Appliance
 APP_KSM0087_tube_light_1,KSM0087_tube_light_1,tube_light,Critical,36,34.4,1.0,2,KHH0087,Appliance
@@ -886,7 +886,7 @@ APP_KSM0088_router_charger_standby_1,KSM0088_router_charger_standby_1,router_cha
 APP_KSM0088_exhaust_fan_1,KSM0088_exhaust_fan_1,exhaust_fan,Curtailable,35,33.6,0.9,1,KHH0088,Appliance
 APP_KSM0089_ceiling_fan_1,KSM0089_ceiling_fan_1,ceiling_fan,Curtailable,75,67.3,0.85,3,KHH0089,Appliance
 APP_KSM0089_table_fan_1,KSM0089_table_fan_1,table_fan,Curtailable,45,37.6,0.8,1,KHH0089,Appliance
-APP_KSM0089_split_ac_1ton_1,KSM0089_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,931.6,0.65,1,KHH0089,Appliance
+APP_KSM0089_split_ac_1ton_1,KSM0089_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,931.6,0.65,1,KHH0089,Appliance
 APP_KSM0089_refrigerator_1,KSM0089_refrigerator_1,refrigerator,Critical,150,116.9,0.42,1,KHH0089,Appliance
 APP_KSM0089_led_light_1,KSM0089_led_light_1,led_light,Critical,10,6.4,1.0,6,KHH0089,Appliance
 APP_KSM0089_tube_light_1,KSM0089_tube_light_1,tube_light,Critical,36,39.1,1.0,3,KHH0089,Appliance
@@ -898,8 +898,8 @@ APP_KSM0089_router_charger_standby_1,KSM0089_router_charger_standby_1,router_cha
 APP_KSM0089_exhaust_fan_1,KSM0089_exhaust_fan_1,exhaust_fan,Curtailable,35,42.0,0.9,1,KHH0089,Appliance
 APP_KSM0090_ceiling_fan_1,KSM0090_ceiling_fan_1,ceiling_fan,Curtailable,75,80.2,0.85,3,KHH0090,Appliance
 APP_KSM0090_table_fan_1,KSM0090_table_fan_1,table_fan,Curtailable,45,51.2,0.8,1,KHH0090,Appliance
-APP_KSM0090_split_ac_1ton_1,KSM0090_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,977.7,0.65,1,KHH0090,Appliance
-APP_KSM0090_split_ac_1_5ton_1,KSM0090_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1771.8,0.65,1,KHH0090,Appliance
+APP_KSM0090_split_ac_1ton_1,KSM0090_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,977.7,0.65,1,KHH0090,Appliance
+APP_KSM0090_split_ac_1_5ton_1,KSM0090_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1771.8,0.65,1,KHH0090,Appliance
 APP_KSM0090_refrigerator_1,KSM0090_refrigerator_1,refrigerator,Critical,150,157.7,0.42,1,KHH0090,Appliance
 APP_KSM0090_deep_freezer_1,KSM0090_deep_freezer_1,deep_freezer,Critical,180,210.0,0.5,1,KHH0090,Appliance
 APP_KSM0090_led_light_1,KSM0090_led_light_1,led_light,Critical,10,11.0,1.0,7,KHH0090,Appliance
@@ -914,7 +914,7 @@ APP_KSM0090_water_pump_0_5hp_1,KSM0090_water_pump_0_5hp_1,water_pump_0_5hp,Sched
 APP_KSM0090_computer_laptop_1,KSM0090_computer_laptop_1,computer_laptop,Curtailable,80,64.6,1.0,1,KHH0090,Appliance
 APP_KSM0090_router_charger_standby_1,KSM0090_router_charger_standby_1,router_charger_standby,Critical,18,15.2,1.0,2,KHH0090,Appliance
 APP_KSM0091_ceiling_fan_1,KSM0091_ceiling_fan_1,ceiling_fan,Curtailable,75,80.1,0.85,4,KHH0091,Appliance
-APP_KSM0091_split_ac_1ton_1,KSM0091_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1095.7,0.65,1,KHH0091,Appliance
+APP_KSM0091_split_ac_1ton_1,KSM0091_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1095.7,0.65,1,KHH0091,Appliance
 APP_KSM0091_refrigerator_1,KSM0091_refrigerator_1,refrigerator,Critical,150,139.6,0.42,1,KHH0091,Appliance
 APP_KSM0091_led_light_1,KSM0091_led_light_1,led_light,Critical,10,6.8,1.0,8,KHH0091,Appliance
 APP_KSM0091_rice_cooker_1,KSM0091_rice_cooker_1,rice_cooker,Schedulable,650,702.7,0.6,1,KHH0091,Appliance
@@ -939,7 +939,7 @@ APP_KSM0092_ips_backup_1,KSM0092_ips_backup_1,ips_backup,Schedulable,300,234.9,0
 APP_KSM0092_computer_laptop_1,KSM0092_computer_laptop_1,computer_laptop,Curtailable,80,97.9,1.0,2,KHH0092,Appliance
 APP_KSM0093_ceiling_fan_1,KSM0093_ceiling_fan_1,ceiling_fan,Curtailable,75,75.3,0.85,3,KHH0093,Appliance
 APP_KSM0093_table_fan_1,KSM0093_table_fan_1,table_fan,Curtailable,45,52.3,0.8,1,KHH0093,Appliance
-APP_KSM0093_split_ac_1_5ton_1,KSM0093_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1456.6,0.65,1,KHH0093,Appliance
+APP_KSM0093_split_ac_1_5ton_1,KSM0093_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1456.6,0.65,1,KHH0093,Appliance
 APP_KSM0093_refrigerator_1,KSM0093_refrigerator_1,refrigerator,Critical,150,162.3,0.42,1,KHH0093,Appliance
 APP_KSM0093_led_light_1,KSM0093_led_light_1,led_light,Critical,10,5.0,1.0,6,KHH0093,Appliance
 APP_KSM0093_tv_led_1,KSM0093_tv_led_1,tv_led,Curtailable,60,57.0,1.0,1,KHH0093,Appliance
@@ -951,7 +951,7 @@ APP_KSM0093_router_charger_standby_1,KSM0093_router_charger_standby_1,router_cha
 APP_KSM0093_exhaust_fan_1,KSM0093_exhaust_fan_1,exhaust_fan,Curtailable,35,44.5,0.9,1,KHH0093,Appliance
 APP_KSM0094_ceiling_fan_1,KSM0094_ceiling_fan_1,ceiling_fan,Curtailable,75,62.4,0.85,2,KHH0094,Appliance
 APP_KSM0094_table_fan_1,KSM0094_table_fan_1,table_fan,Curtailable,45,44.0,0.8,1,KHH0094,Appliance
-APP_KSM0094_split_ac_1ton_1,KSM0094_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1200.6,0.65,1,KHH0094,Appliance
+APP_KSM0094_split_ac_1ton_1,KSM0094_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1200.6,0.65,1,KHH0094,Appliance
 APP_KSM0094_refrigerator_1,KSM0094_refrigerator_1,refrigerator,Critical,150,190.9,0.42,1,KHH0094,Appliance
 APP_KSM0094_deep_freezer_1,KSM0094_deep_freezer_1,deep_freezer,Critical,180,144.2,0.5,1,KHH0094,Appliance
 APP_KSM0094_led_light_1,KSM0094_led_light_1,led_light,Critical,10,9.4,1.0,7,KHH0094,Appliance
@@ -996,7 +996,7 @@ APP_KSM0097_water_pump_0_5hp_1,KSM0097_water_pump_0_5hp_1,water_pump_0_5hp,Sched
 APP_KSM0097_computer_laptop_1,KSM0097_computer_laptop_1,computer_laptop,Curtailable,80,70.5,1.0,1,KHH0097,Appliance
 APP_KSM0097_router_charger_standby_1,KSM0097_router_charger_standby_1,router_charger_standby,Critical,18,9.1,1.0,2,KHH0097,Appliance
 APP_KSM0098_ceiling_fan_1,KSM0098_ceiling_fan_1,ceiling_fan,Curtailable,75,80.9,0.85,3,KHH0098,Appliance
-APP_KSM0098_split_ac_1ton_1,KSM0098_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,991.9,0.65,1,KHH0098,Appliance
+APP_KSM0098_split_ac_1ton_1,KSM0098_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,991.9,0.65,1,KHH0098,Appliance
 APP_KSM0098_refrigerator_1,KSM0098_refrigerator_1,refrigerator,Critical,150,118.8,0.42,1,KHH0098,Appliance
 APP_KSM0098_led_light_1,KSM0098_led_light_1,led_light,Critical,10,8.9,1.0,8,KHH0098,Appliance
 APP_KSM0098_tv_led_1,KSM0098_tv_led_1,tv_led,Curtailable,60,47.8,1.0,1,KHH0098,Appliance
@@ -1010,7 +1010,7 @@ APP_KSM0098_computer_laptop_1,KSM0098_computer_laptop_1,computer_laptop,Curtaila
 APP_KSM0098_router_charger_standby_1,KSM0098_router_charger_standby_1,router_charger_standby,Critical,18,10.4,1.0,1,KHH0098,Appliance
 APP_KSM0099_ceiling_fan_1,KSM0099_ceiling_fan_1,ceiling_fan,Curtailable,75,76.2,0.85,4,KHH0099,Appliance
 APP_KSM0099_table_fan_1,KSM0099_table_fan_1,table_fan,Curtailable,45,32.4,0.8,2,KHH0099,Appliance
-APP_KSM0099_split_ac_1ton_1,KSM0099_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1450.0,0.65,1,KHH0099,Appliance
+APP_KSM0099_split_ac_1ton_1,KSM0099_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1450.0,0.65,1,KHH0099,Appliance
 APP_KSM0099_refrigerator_1,KSM0099_refrigerator_1,refrigerator,Critical,150,215.0,0.42,1,KHH0099,Appliance
 APP_KSM0099_led_light_1,KSM0099_led_light_1,led_light,Critical,10,10.1,1.0,8,KHH0099,Appliance
 APP_KSM0099_tv_led_1,KSM0099_tv_led_1,tv_led,Curtailable,60,44.4,1.0,2,KHH0099,Appliance
@@ -1031,7 +1031,7 @@ APP_KSM0100_computer_laptop_1,KSM0100_computer_laptop_1,computer_laptop,Curtaila
 APP_KSM0100_router_charger_standby_1,KSM0100_router_charger_standby_1,router_charger_standby,Critical,18,14.3,1.0,1,KHH0100,Appliance
 APP_KSM0101_ceiling_fan_1,KSM0101_ceiling_fan_1,ceiling_fan,Curtailable,75,71.3,0.85,3,KHH0101,Appliance
 APP_KSM0101_table_fan_1,KSM0101_table_fan_1,table_fan,Curtailable,45,38.2,0.8,1,KHH0101,Appliance
-APP_KSM0101_split_ac_1_5ton_1,KSM0101_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1238.8,0.65,1,KHH0101,Appliance
+APP_KSM0101_split_ac_1_5ton_1,KSM0101_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1238.8,0.65,1,KHH0101,Appliance
 APP_KSM0101_refrigerator_1,KSM0101_refrigerator_1,refrigerator,Critical,150,160.4,0.42,1,KHH0101,Appliance
 APP_KSM0101_led_light_1,KSM0101_led_light_1,led_light,Critical,10,11.3,1.0,6,KHH0101,Appliance
 APP_KSM0101_tube_light_1,KSM0101_tube_light_1,tube_light,Critical,36,32.2,1.0,2,KHH0101,Appliance
@@ -1058,8 +1058,8 @@ APP_KSM0102_computer_laptop_1,KSM0102_computer_laptop_1,computer_laptop,Curtaila
 APP_KSM0102_router_charger_standby_1,KSM0102_router_charger_standby_1,router_charger_standby,Critical,18,25.6,1.0,1,KHH0102,Appliance
 APP_KSM0102_exhaust_fan_1,KSM0102_exhaust_fan_1,exhaust_fan,Curtailable,35,37.3,0.9,1,KHH0102,Appliance
 APP_KSM0103_ceiling_fan_1,KSM0103_ceiling_fan_1,ceiling_fan,Curtailable,75,68.0,0.85,5,KHH0103,Appliance
-APP_KSM0103_split_ac_1ton_1,KSM0103_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1290.6,0.65,1,KHH0103,Appliance
-APP_KSM0103_split_ac_1_5ton_1,KSM0103_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1680.9,0.65,2,KHH0103,Appliance
+APP_KSM0103_split_ac_1ton_1,KSM0103_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1290.6,0.65,1,KHH0103,Appliance
+APP_KSM0103_split_ac_1_5ton_1,KSM0103_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1680.9,0.65,2,KHH0103,Appliance
 APP_KSM0103_refrigerator_1,KSM0103_refrigerator_1,refrigerator,Critical,150,177.3,0.42,1,KHH0103,Appliance
 APP_KSM0103_deep_freezer_1,KSM0103_deep_freezer_1,deep_freezer,Critical,180,151.4,0.5,1,KHH0103,Appliance
 APP_KSM0103_led_light_1,KSM0103_led_light_1,led_light,Critical,10,10.8,1.0,14,KHH0103,Appliance
@@ -1076,8 +1076,8 @@ APP_KSM0103_computer_laptop_1,KSM0103_computer_laptop_1,computer_laptop,Curtaila
 APP_KSM0103_router_charger_standby_1,KSM0103_router_charger_standby_1,router_charger_standby,Critical,18,23.1,1.0,2,KHH0103,Appliance
 APP_KSM0104_ceiling_fan_1,KSM0104_ceiling_fan_1,ceiling_fan,Curtailable,75,71.8,0.85,3,KHH0104,Appliance
 APP_KSM0104_table_fan_1,KSM0104_table_fan_1,table_fan,Curtailable,45,50.4,0.8,1,KHH0104,Appliance
-APP_KSM0104_split_ac_1ton_1,KSM0104_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1169.1,0.65,1,KHH0104,Appliance
-APP_KSM0104_split_ac_1_5ton_1,KSM0104_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1791.6,0.65,2,KHH0104,Appliance
+APP_KSM0104_split_ac_1ton_1,KSM0104_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1169.1,0.65,1,KHH0104,Appliance
+APP_KSM0104_split_ac_1_5ton_1,KSM0104_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1791.6,0.65,2,KHH0104,Appliance
 APP_KSM0104_refrigerator_1,KSM0104_refrigerator_1,refrigerator,Critical,150,167.3,0.42,1,KHH0104,Appliance
 APP_KSM0104_deep_freezer_1,KSM0104_deep_freezer_1,deep_freezer,Critical,180,166.5,0.5,1,KHH0104,Appliance
 APP_KSM0104_led_light_1,KSM0104_led_light_1,led_light,Critical,10,7.2,1.0,13,KHH0104,Appliance
@@ -1094,8 +1094,8 @@ APP_KSM0104_computer_laptop_1,KSM0104_computer_laptop_1,computer_laptop,Curtaila
 APP_KSM0104_router_charger_standby_1,KSM0104_router_charger_standby_1,router_charger_standby,Critical,18,22.2,1.0,3,KHH0104,Appliance
 APP_KSM0104_exhaust_fan_1,KSM0104_exhaust_fan_1,exhaust_fan,Curtailable,35,35.2,0.9,2,KHH0104,Appliance
 APP_KSM0105_ceiling_fan_1,KSM0105_ceiling_fan_1,ceiling_fan,Curtailable,75,83.8,0.85,3,KHH0105,Appliance
-APP_KSM0105_split_ac_1ton_1,KSM0105_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1023.2,0.65,1,KHH0105,Appliance
-APP_KSM0105_split_ac_1_5ton_1,KSM0105_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1554.6,0.65,1,KHH0105,Appliance
+APP_KSM0105_split_ac_1ton_1,KSM0105_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1023.2,0.65,1,KHH0105,Appliance
+APP_KSM0105_split_ac_1_5ton_1,KSM0105_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1554.6,0.65,1,KHH0105,Appliance
 APP_KSM0105_refrigerator_1,KSM0105_refrigerator_1,refrigerator,Critical,150,150.9,0.42,1,KHH0105,Appliance
 APP_KSM0105_deep_freezer_1,KSM0105_deep_freezer_1,deep_freezer,Critical,180,160.3,0.5,1,KHH0105,Appliance
 APP_KSM0105_led_light_1,KSM0105_led_light_1,led_light,Critical,10,9.0,1.0,15,KHH0105,Appliance
@@ -1112,8 +1112,8 @@ APP_KSM0105_computer_laptop_1,KSM0105_computer_laptop_1,computer_laptop,Curtaila
 APP_KSM0105_router_charger_standby_1,KSM0105_router_charger_standby_1,router_charger_standby,Critical,18,13.5,1.0,2,KHH0105,Appliance
 APP_KSM0105_exhaust_fan_1,KSM0105_exhaust_fan_1,exhaust_fan,Curtailable,35,35.6,0.9,1,KHH0105,Appliance
 APP_KSM0106_ceiling_fan_1,KSM0106_ceiling_fan_1,ceiling_fan,Curtailable,75,87.8,0.85,4,KHH0106,Appliance
-APP_KSM0106_split_ac_1ton_1,KSM0106_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,647.7,0.65,1,KHH0106,Appliance
-APP_KSM0106_split_ac_1_5ton_1,KSM0106_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1836.7,0.65,1,KHH0106,Appliance
+APP_KSM0106_split_ac_1ton_1,KSM0106_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,647.7,0.65,1,KHH0106,Appliance
+APP_KSM0106_split_ac_1_5ton_1,KSM0106_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1836.7,0.65,1,KHH0106,Appliance
 APP_KSM0106_refrigerator_1,KSM0106_refrigerator_1,refrigerator,Critical,150,192.9,0.42,1,KHH0106,Appliance
 APP_KSM0106_led_light_1,KSM0106_led_light_1,led_light,Critical,10,13.5,1.0,10,KHH0106,Appliance
 APP_KSM0106_tv_led_1,KSM0106_tv_led_1,tv_led,Curtailable,60,43.4,1.0,2,KHH0106,Appliance
@@ -1127,7 +1127,7 @@ APP_KSM0106_computer_laptop_1,KSM0106_computer_laptop_1,computer_laptop,Curtaila
 APP_KSM0106_router_charger_standby_1,KSM0106_router_charger_standby_1,router_charger_standby,Critical,18,19.1,1.0,3,KHH0106,Appliance
 APP_KSM0106_exhaust_fan_1,KSM0106_exhaust_fan_1,exhaust_fan,Curtailable,35,35.6,0.9,2,KHH0106,Appliance
 APP_KSM0107_ceiling_fan_1,KSM0107_ceiling_fan_1,ceiling_fan,Curtailable,75,102.9,0.85,5,KHH0107,Appliance
-APP_KSM0107_split_ac_1ton_1,KSM0107_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1207.3,0.65,1,KHH0107,Appliance
+APP_KSM0107_split_ac_1ton_1,KSM0107_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1207.3,0.65,1,KHH0107,Appliance
 APP_KSM0107_refrigerator_1,KSM0107_refrigerator_1,refrigerator,Critical,150,101.2,0.42,1,KHH0107,Appliance
 APP_KSM0107_led_light_1,KSM0107_led_light_1,led_light,Critical,10,8.2,1.0,8,KHH0107,Appliance
 APP_KSM0107_tv_led_1,KSM0107_tv_led_1,tv_led,Curtailable,60,56.9,1.0,1,KHH0107,Appliance
@@ -1141,7 +1141,7 @@ APP_KSM0107_computer_laptop_1,KSM0107_computer_laptop_1,computer_laptop,Curtaila
 APP_KSM0107_router_charger_standby_1,KSM0107_router_charger_standby_1,router_charger_standby,Critical,18,22.2,1.0,3,KHH0107,Appliance
 APP_KSM0107_exhaust_fan_1,KSM0107_exhaust_fan_1,exhaust_fan,Curtailable,35,37.4,0.9,2,KHH0107,Appliance
 APP_KSM0108_ceiling_fan_1,KSM0108_ceiling_fan_1,ceiling_fan,Curtailable,75,54.1,0.85,5,KHH0108,Appliance
-APP_KSM0108_split_ac_1ton_1,KSM0108_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,783.7,0.65,1,KHH0108,Appliance
+APP_KSM0108_split_ac_1ton_1,KSM0108_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,783.7,0.65,1,KHH0108,Appliance
 APP_KSM0108_refrigerator_1,KSM0108_refrigerator_1,refrigerator,Critical,150,195.3,0.42,1,KHH0108,Appliance
 APP_KSM0108_led_light_1,KSM0108_led_light_1,led_light,Critical,10,10.1,1.0,10,KHH0108,Appliance
 APP_KSM0108_tube_light_1,KSM0108_tube_light_1,tube_light,Critical,36,40.3,1.0,2,KHH0108,Appliance
@@ -1157,7 +1157,7 @@ APP_KSM0108_computer_laptop_1,KSM0108_computer_laptop_1,computer_laptop,Curtaila
 APP_KSM0108_router_charger_standby_1,KSM0108_router_charger_standby_1,router_charger_standby,Critical,18,12.8,1.0,3,KHH0108,Appliance
 APP_KSM0108_exhaust_fan_1,KSM0108_exhaust_fan_1,exhaust_fan,Curtailable,35,42.2,0.9,1,KHH0108,Appliance
 APP_KSM0109_ceiling_fan_1,KSM0109_ceiling_fan_1,ceiling_fan,Curtailable,75,71.4,0.85,3,KHH0109,Appliance
-APP_KSM0109_split_ac_1ton_1,KSM0109_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,906.8,0.65,1,KHH0109,Appliance
+APP_KSM0109_split_ac_1ton_1,KSM0109_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,906.8,0.65,1,KHH0109,Appliance
 APP_KSM0109_refrigerator_1,KSM0109_refrigerator_1,refrigerator,Critical,150,141.8,0.42,1,KHH0109,Appliance
 APP_KSM0109_led_light_1,KSM0109_led_light_1,led_light,Critical,10,9.1,1.0,8,KHH0109,Appliance
 APP_KSM0109_tube_light_1,KSM0109_tube_light_1,tube_light,Critical,36,29.7,1.0,3,KHH0109,Appliance
@@ -1170,8 +1170,8 @@ APP_KSM0109_ips_backup_1,KSM0109_ips_backup_1,ips_backup,Schedulable,300,341.0,0
 APP_KSM0109_computer_laptop_1,KSM0109_computer_laptop_1,computer_laptop,Curtailable,80,79.9,1.0,2,KHH0109,Appliance
 APP_KSM0109_router_charger_standby_1,KSM0109_router_charger_standby_1,router_charger_standby,Critical,18,26.8,1.0,2,KHH0109,Appliance
 APP_KSM0110_ceiling_fan_1,KSM0110_ceiling_fan_1,ceiling_fan,Curtailable,75,55.3,0.85,4,KHH0110,Appliance
-APP_KSM0110_split_ac_1ton_1,KSM0110_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1206.2,0.65,1,KHH0110,Appliance
-APP_KSM0110_split_ac_1_5ton_1,KSM0110_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1846.4,0.65,1,KHH0110,Appliance
+APP_KSM0110_split_ac_1ton_1,KSM0110_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1206.2,0.65,1,KHH0110,Appliance
+APP_KSM0110_split_ac_1_5ton_1,KSM0110_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1846.4,0.65,1,KHH0110,Appliance
 APP_KSM0110_refrigerator_1,KSM0110_refrigerator_1,refrigerator,Critical,150,137.7,0.42,1,KHH0110,Appliance
 APP_KSM0110_led_light_1,KSM0110_led_light_1,led_light,Critical,10,10.3,1.0,8,KHH0110,Appliance
 APP_KSM0110_tube_light_1,KSM0110_tube_light_1,tube_light,Critical,36,41.4,1.0,3,KHH0110,Appliance
@@ -1189,7 +1189,7 @@ APP_KSM0110_router_charger_standby_1,KSM0110_router_charger_standby_1,router_cha
 APP_KSM0110_exhaust_fan_1,KSM0110_exhaust_fan_1,exhaust_fan,Curtailable,35,32.3,0.9,1,KHH0110,Appliance
 APP_KSM0111_ceiling_fan_1,KSM0111_ceiling_fan_1,ceiling_fan,Curtailable,75,91.2,0.85,5,KHH0111,Appliance
 APP_KSM0111_table_fan_1,KSM0111_table_fan_1,table_fan,Curtailable,45,45.2,0.8,1,KHH0111,Appliance
-APP_KSM0111_split_ac_1_5ton_1,KSM0111_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1270.7,0.65,2,KHH0111,Appliance
+APP_KSM0111_split_ac_1_5ton_1,KSM0111_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1270.7,0.65,2,KHH0111,Appliance
 APP_KSM0111_refrigerator_1,KSM0111_refrigerator_1,refrigerator,Critical,150,172.0,0.42,1,KHH0111,Appliance
 APP_KSM0111_deep_freezer_1,KSM0111_deep_freezer_1,deep_freezer,Critical,180,187.5,0.5,1,KHH0111,Appliance
 APP_KSM0111_led_light_1,KSM0111_led_light_1,led_light,Critical,10,10.2,1.0,14,KHH0111,Appliance
@@ -1236,7 +1236,7 @@ APP_KSM0113_computer_laptop_1,KSM0113_computer_laptop_1,computer_laptop,Curtaila
 APP_KSM0113_router_charger_standby_1,KSM0113_router_charger_standby_1,router_charger_standby,Critical,18,12.3,1.0,2,KHH0113,Appliance
 APP_KSM0113_exhaust_fan_1,KSM0113_exhaust_fan_1,exhaust_fan,Curtailable,35,35.3,0.9,2,KHH0113,Appliance
 APP_KSM0114_ceiling_fan_1,KSM0114_ceiling_fan_1,ceiling_fan,Curtailable,75,75.9,0.85,5,KHH0114,Appliance
-APP_KSM0114_split_ac_1ton_1,KSM0114_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,941.0,0.65,1,KHH0114,Appliance
+APP_KSM0114_split_ac_1ton_1,KSM0114_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,941.0,0.65,1,KHH0114,Appliance
 APP_KSM0114_refrigerator_1,KSM0114_refrigerator_1,refrigerator,Critical,150,111.8,0.42,1,KHH0114,Appliance
 APP_KSM0114_led_light_1,KSM0114_led_light_1,led_light,Critical,10,9.5,1.0,11,KHH0114,Appliance
 APP_KSM0114_tv_led_1,KSM0114_tv_led_1,tv_led,Curtailable,60,71.2,1.0,2,KHH0114,Appliance
@@ -1251,8 +1251,8 @@ APP_KSM0114_geyser_water_heater_1,KSM0114_geyser_water_heater_1,geyser_water_hea
 APP_KSM0114_computer_laptop_1,KSM0114_computer_laptop_1,computer_laptop,Curtailable,80,99.1,1.0,2,KHH0114,Appliance
 APP_KSM0114_router_charger_standby_1,KSM0114_router_charger_standby_1,router_charger_standby,Critical,18,16.3,1.0,1,KHH0114,Appliance
 APP_KSM0115_ceiling_fan_1,KSM0115_ceiling_fan_1,ceiling_fan,Curtailable,75,67.3,0.85,4,KHH0115,Appliance
-APP_KSM0115_split_ac_1ton_1,KSM0115_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,889.1,0.65,2,KHH0115,Appliance
-APP_KSM0115_split_ac_1_5ton_1,KSM0115_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1782.8,0.65,1,KHH0115,Appliance
+APP_KSM0115_split_ac_1ton_1,KSM0115_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,889.1,0.65,2,KHH0115,Appliance
+APP_KSM0115_split_ac_1_5ton_1,KSM0115_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1782.8,0.65,1,KHH0115,Appliance
 APP_KSM0115_refrigerator_1,KSM0115_refrigerator_1,refrigerator,Critical,150,146.0,0.42,2,KHH0115,Appliance
 APP_KSM0115_deep_freezer_1,KSM0115_deep_freezer_1,deep_freezer,Critical,180,145.2,0.5,1,KHH0115,Appliance
 APP_KSM0115_led_light_1,KSM0115_led_light_1,led_light,Critical,10,7.3,1.0,17,KHH0115,Appliance
@@ -1268,8 +1268,8 @@ APP_KSM0115_computer_laptop_1,KSM0115_computer_laptop_1,computer_laptop,Curtaila
 APP_KSM0115_router_charger_standby_1,KSM0115_router_charger_standby_1,router_charger_standby,Critical,18,17.0,1.0,3,KHH0115,Appliance
 APP_KSM0115_exhaust_fan_1,KSM0115_exhaust_fan_1,exhaust_fan,Curtailable,35,44.1,0.9,1,KHH0115,Appliance
 APP_KSM0116_ceiling_fan_1,KSM0116_ceiling_fan_1,ceiling_fan,Curtailable,75,80.4,0.85,4,KHH0116,Appliance
-APP_KSM0116_split_ac_1ton_1,KSM0116_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1252.7,0.65,1,KHH0116,Appliance
-APP_KSM0116_split_ac_1_5ton_1,KSM0116_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1889.9,0.65,1,KHH0116,Appliance
+APP_KSM0116_split_ac_1ton_1,KSM0116_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1252.7,0.65,1,KHH0116,Appliance
+APP_KSM0116_split_ac_1_5ton_1,KSM0116_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1889.9,0.65,1,KHH0116,Appliance
 APP_KSM0116_refrigerator_1,KSM0116_refrigerator_1,refrigerator,Critical,150,145.7,0.42,2,KHH0116,Appliance
 APP_KSM0116_led_light_1,KSM0116_led_light_1,led_light,Critical,10,10.5,1.0,8,KHH0116,Appliance
 APP_KSM0116_tv_led_1,KSM0116_tv_led_1,tv_led,Curtailable,60,86.1,1.0,2,KHH0116,Appliance
@@ -1284,7 +1284,7 @@ APP_KSM0116_computer_laptop_1,KSM0116_computer_laptop_1,computer_laptop,Curtaila
 APP_KSM0116_router_charger_standby_1,KSM0116_router_charger_standby_1,router_charger_standby,Critical,18,19.9,1.0,1,KHH0116,Appliance
 APP_KSM0116_exhaust_fan_1,KSM0116_exhaust_fan_1,exhaust_fan,Curtailable,35,32.0,0.9,2,KHH0116,Appliance
 APP_KSM0117_ceiling_fan_1,KSM0117_ceiling_fan_1,ceiling_fan,Curtailable,75,65.3,0.85,3,KHH0117,Appliance
-APP_KSM0117_split_ac_1_5ton_1,KSM0117_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1490.5,0.65,2,KHH0117,Appliance
+APP_KSM0117_split_ac_1_5ton_1,KSM0117_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1490.5,0.65,2,KHH0117,Appliance
 APP_KSM0117_refrigerator_1,KSM0117_refrigerator_1,refrigerator,Critical,150,123.1,0.42,1,KHH0117,Appliance
 APP_KSM0117_led_light_1,KSM0117_led_light_1,led_light,Critical,10,11.9,1.0,11,KHH0117,Appliance
 APP_KSM0117_tv_led_1,KSM0117_tv_led_1,tv_led,Curtailable,60,77.4,1.0,1,KHH0117,Appliance
@@ -1298,8 +1298,8 @@ APP_KSM0117_computer_laptop_1,KSM0117_computer_laptop_1,computer_laptop,Curtaila
 APP_KSM0117_router_charger_standby_1,KSM0117_router_charger_standby_1,router_charger_standby,Critical,18,32.0,1.0,2,KHH0117,Appliance
 APP_KSM0117_exhaust_fan_1,KSM0117_exhaust_fan_1,exhaust_fan,Curtailable,35,42.6,0.9,2,KHH0117,Appliance
 APP_KSM0118_ceiling_fan_1,KSM0118_ceiling_fan_1,ceiling_fan,Curtailable,75,66.0,0.85,6,KHH0118,Appliance
-APP_KSM0118_split_ac_1ton_1,KSM0118_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1188.9,0.65,2,KHH0118,Appliance
-APP_KSM0118_split_ac_1_5ton_1,KSM0118_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1776.6,0.65,1,KHH0118,Appliance
+APP_KSM0118_split_ac_1ton_1,KSM0118_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1188.9,0.65,2,KHH0118,Appliance
+APP_KSM0118_split_ac_1_5ton_1,KSM0118_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1776.6,0.65,1,KHH0118,Appliance
 APP_KSM0118_refrigerator_1,KSM0118_refrigerator_1,refrigerator,Critical,150,142.5,0.42,2,KHH0118,Appliance
 APP_KSM0118_led_light_1,KSM0118_led_light_1,led_light,Critical,10,10.6,1.0,12,KHH0118,Appliance
 APP_KSM0118_tv_led_1,KSM0118_tv_led_1,tv_led,Curtailable,60,67.6,1.0,2,KHH0118,Appliance
@@ -1316,8 +1316,8 @@ APP_KSM0118_computer_laptop_1,KSM0118_computer_laptop_1,computer_laptop,Curtaila
 APP_KSM0118_router_charger_standby_1,KSM0118_router_charger_standby_1,router_charger_standby,Critical,18,19.7,1.0,2,KHH0118,Appliance
 APP_KSM0118_exhaust_fan_1,KSM0118_exhaust_fan_1,exhaust_fan,Curtailable,35,36.7,0.9,2,KHH0118,Appliance
 APP_KSM0119_ceiling_fan_1,KSM0119_ceiling_fan_1,ceiling_fan,Curtailable,75,82.2,0.85,6,KHH0119,Appliance
-APP_KSM0119_split_ac_1ton_1,KSM0119_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1114.2,0.65,2,KHH0119,Appliance
-APP_KSM0119_split_ac_1_5ton_1,KSM0119_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1476.5,0.65,1,KHH0119,Appliance
+APP_KSM0119_split_ac_1ton_1,KSM0119_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1114.2,0.65,2,KHH0119,Appliance
+APP_KSM0119_split_ac_1_5ton_1,KSM0119_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1476.5,0.65,1,KHH0119,Appliance
 APP_KSM0119_refrigerator_1,KSM0119_refrigerator_1,refrigerator,Critical,150,150.4,0.42,1,KHH0119,Appliance
 APP_KSM0119_deep_freezer_1,KSM0119_deep_freezer_1,deep_freezer,Critical,180,174.6,0.5,1,KHH0119,Appliance
 APP_KSM0119_led_light_1,KSM0119_led_light_1,led_light,Critical,10,11.2,1.0,8,KHH0119,Appliance
@@ -1329,8 +1329,8 @@ APP_KSM0119_electric_iron_1,KSM0119_electric_iron_1,electric_iron,Schedulable,10
 APP_KSM0119_router_charger_standby_1,KSM0119_router_charger_standby_1,router_charger_standby,Critical,18,23.5,1.0,2,KHH0119,Appliance
 APP_KSM0119_exhaust_fan_1,KSM0119_exhaust_fan_1,exhaust_fan,Curtailable,35,32.7,0.9,1,KHH0119,Appliance
 APP_KSM0120_ceiling_fan_1,KSM0120_ceiling_fan_1,ceiling_fan,Curtailable,75,61.8,0.85,5,KHH0120,Appliance
-APP_KSM0120_split_ac_1ton_1,KSM0120_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1230.4,0.65,1,KHH0120,Appliance
-APP_KSM0120_split_ac_1_5ton_1,KSM0120_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1259.5,0.65,2,KHH0120,Appliance
+APP_KSM0120_split_ac_1ton_1,KSM0120_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1230.4,0.65,1,KHH0120,Appliance
+APP_KSM0120_split_ac_1_5ton_1,KSM0120_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1259.5,0.65,2,KHH0120,Appliance
 APP_KSM0120_refrigerator_1,KSM0120_refrigerator_1,refrigerator,Critical,150,149.3,0.42,1,KHH0120,Appliance
 APP_KSM0120_deep_freezer_1,KSM0120_deep_freezer_1,deep_freezer,Critical,180,198.2,0.5,1,KHH0120,Appliance
 APP_KSM0120_led_light_1,KSM0120_led_light_1,led_light,Critical,10,8.3,1.0,12,KHH0120,Appliance
@@ -1468,7 +1468,7 @@ APP_DSM0015_water_pump_0_5hp_1,DSM0015_water_pump_0_5hp_1,water_pump_0_5hp,Sched
 APP_DSM0015_router_charger_standby_1,DSM0015_router_charger_standby_1,router_charger_standby,Critical,18,25.6,1.0,1,DHH0015,Appliance
 APP_DSM0016_ceiling_fan_1,DSM0016_ceiling_fan_1,ceiling_fan,Curtailable,75,77.0,0.85,4,DHH0016,Appliance
 APP_DSM0016_table_fan_1,DSM0016_table_fan_1,table_fan,Curtailable,45,29.2,0.8,1,DHH0016,Appliance
-APP_DSM0016_split_ac_1_5ton_1,DSM0016_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1650.5,0.65,1,DHH0016,Appliance
+APP_DSM0016_split_ac_1_5ton_1,DSM0016_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1650.5,0.65,1,DHH0016,Appliance
 APP_DSM0016_refrigerator_1,DSM0016_refrigerator_1,refrigerator,Critical,150,143.7,0.42,1,DHH0016,Appliance
 APP_DSM0016_led_light_1,DSM0016_led_light_1,led_light,Critical,10,8.9,1.0,8,DHH0016,Appliance
 APP_DSM0016_tube_light_1,DSM0016_tube_light_1,tube_light,Critical,36,39.5,1.0,1,DHH0016,Appliance
@@ -1548,7 +1548,7 @@ APP_DSM0022_router_charger_standby_1,DSM0022_router_charger_standby_1,router_cha
 APP_DSM0022_exhaust_fan_1,DSM0022_exhaust_fan_1,exhaust_fan,Curtailable,35,38.8,0.9,1,DHH0022,Appliance
 APP_DSM0023_ceiling_fan_1,DSM0023_ceiling_fan_1,ceiling_fan,Curtailable,75,82.9,0.85,2,DHH0023,Appliance
 APP_DSM0023_table_fan_1,DSM0023_table_fan_1,table_fan,Curtailable,45,50.4,0.8,1,DHH0023,Appliance
-APP_DSM0023_split_ac_1ton_1,DSM0023_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1367.5,0.65,1,DHH0023,Appliance
+APP_DSM0023_split_ac_1ton_1,DSM0023_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1367.5,0.65,1,DHH0023,Appliance
 APP_DSM0023_refrigerator_1,DSM0023_refrigerator_1,refrigerator,Critical,150,136.6,0.42,1,DHH0023,Appliance
 APP_DSM0023_led_light_1,DSM0023_led_light_1,led_light,Critical,10,8.6,1.0,8,DHH0023,Appliance
 APP_DSM0023_tube_light_1,DSM0023_tube_light_1,tube_light,Critical,36,29.4,1.0,3,DHH0023,Appliance
@@ -1560,8 +1560,8 @@ APP_DSM0023_water_pump_0_5hp_1,DSM0023_water_pump_0_5hp_1,water_pump_0_5hp,Sched
 APP_DSM0023_router_charger_standby_1,DSM0023_router_charger_standby_1,router_charger_standby,Critical,18,17.4,1.0,2,DHH0023,Appliance
 APP_DSM0024_ceiling_fan_1,DSM0024_ceiling_fan_1,ceiling_fan,Curtailable,75,86.3,0.85,2,DHH0024,Appliance
 APP_DSM0024_table_fan_1,DSM0024_table_fan_1,table_fan,Curtailable,45,61.8,0.8,1,DHH0024,Appliance
-APP_DSM0024_split_ac_1ton_1,DSM0024_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1212.4,0.65,1,DHH0024,Appliance
-APP_DSM0024_split_ac_1_5ton_1,DSM0024_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1866.4,0.65,1,DHH0024,Appliance
+APP_DSM0024_split_ac_1ton_1,DSM0024_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1212.4,0.65,1,DHH0024,Appliance
+APP_DSM0024_split_ac_1_5ton_1,DSM0024_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1866.4,0.65,1,DHH0024,Appliance
 APP_DSM0024_refrigerator_1,DSM0024_refrigerator_1,refrigerator,Critical,150,170.7,0.42,1,DHH0024,Appliance
 APP_DSM0024_led_light_1,DSM0024_led_light_1,led_light,Critical,10,9.2,1.0,7,DHH0024,Appliance
 APP_DSM0024_tube_light_1,DSM0024_tube_light_1,tube_light,Critical,36,33.7,1.0,2,DHH0024,Appliance
@@ -1573,7 +1573,7 @@ APP_DSM0024_water_pump_0_5hp_1,DSM0024_water_pump_0_5hp_1,water_pump_0_5hp,Sched
 APP_DSM0024_ips_backup_1,DSM0024_ips_backup_1,ips_backup,Schedulable,300,300.7,0.6,1,DHH0024,Appliance
 APP_DSM0025_ceiling_fan_1,DSM0025_ceiling_fan_1,ceiling_fan,Curtailable,75,66.1,0.85,2,DHH0025,Appliance
 APP_DSM0025_table_fan_1,DSM0025_table_fan_1,table_fan,Curtailable,45,60.4,0.8,1,DHH0025,Appliance
-APP_DSM0025_split_ac_1ton_1,DSM0025_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,985.1,0.65,1,DHH0025,Appliance
+APP_DSM0025_split_ac_1ton_1,DSM0025_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,985.1,0.65,1,DHH0025,Appliance
 APP_DSM0025_refrigerator_1,DSM0025_refrigerator_1,refrigerator,Critical,150,147.3,0.42,1,DHH0025,Appliance
 APP_DSM0025_led_light_1,DSM0025_led_light_1,led_light,Critical,10,9.0,1.0,7,DHH0025,Appliance
 APP_DSM0025_tube_light_1,DSM0025_tube_light_1,tube_light,Critical,36,40.4,1.0,1,DHH0025,Appliance
@@ -1598,7 +1598,7 @@ APP_DSM0026_electric_iron_1,DSM0026_electric_iron_1,electric_iron,Schedulable,10
 APP_DSM0026_washing_machine_1,DSM0026_washing_machine_1,washing_machine,Schedulable,450,461.8,0.7,1,DHH0026,Appliance
 APP_DSM0027_ceiling_fan_1,DSM0027_ceiling_fan_1,ceiling_fan,Curtailable,75,77.1,0.85,3,DHH0027,Appliance
 APP_DSM0027_table_fan_1,DSM0027_table_fan_1,table_fan,Curtailable,45,30.4,0.8,1,DHH0027,Appliance
-APP_DSM0027_split_ac_1ton_1,DSM0027_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1250.2,0.65,1,DHH0027,Appliance
+APP_DSM0027_split_ac_1ton_1,DSM0027_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1250.2,0.65,1,DHH0027,Appliance
 APP_DSM0027_refrigerator_1,DSM0027_refrigerator_1,refrigerator,Critical,150,146.3,0.42,1,DHH0027,Appliance
 APP_DSM0027_deep_freezer_1,DSM0027_deep_freezer_1,deep_freezer,Critical,180,145.7,0.5,1,DHH0027,Appliance
 APP_DSM0027_led_light_1,DSM0027_led_light_1,led_light,Critical,10,11.0,1.0,5,DHH0027,Appliance
@@ -1621,7 +1621,7 @@ APP_DSM0028_electric_iron_1,DSM0028_electric_iron_1,electric_iron,Schedulable,10
 APP_DSM0028_ips_backup_1,DSM0028_ips_backup_1,ips_backup,Schedulable,300,263.9,0.6,1,DHH0028,Appliance
 APP_DSM0028_router_charger_standby_1,DSM0028_router_charger_standby_1,router_charger_standby,Critical,18,13.8,1.0,2,DHH0028,Appliance
 APP_DSM0029_ceiling_fan_1,DSM0029_ceiling_fan_1,ceiling_fan,Curtailable,75,76.3,0.85,3,DHH0029,Appliance
-APP_DSM0029_split_ac_1_5ton_1,DSM0029_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1433.3,0.65,1,DHH0029,Appliance
+APP_DSM0029_split_ac_1_5ton_1,DSM0029_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1433.3,0.65,1,DHH0029,Appliance
 APP_DSM0029_refrigerator_1,DSM0029_refrigerator_1,refrigerator,Critical,150,149.2,0.42,1,DHH0029,Appliance
 APP_DSM0029_deep_freezer_1,DSM0029_deep_freezer_1,deep_freezer,Critical,180,142.4,0.5,1,DHH0029,Appliance
 APP_DSM0029_led_light_1,DSM0029_led_light_1,led_light,Critical,10,10.1,1.0,6,DHH0029,Appliance
@@ -1670,7 +1670,7 @@ APP_DSM0032_computer_laptop_1,DSM0032_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0032_router_charger_standby_1,DSM0032_router_charger_standby_1,router_charger_standby,Critical,18,10.3,1.0,2,DHH0032,Appliance
 APP_DSM0033_ceiling_fan_1,DSM0033_ceiling_fan_1,ceiling_fan,Curtailable,75,69.8,0.85,2,DHH0033,Appliance
 APP_DSM0033_table_fan_1,DSM0033_table_fan_1,table_fan,Curtailable,45,50.9,0.8,1,DHH0033,Appliance
-APP_DSM0033_split_ac_1ton_1,DSM0033_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1296.8,0.65,1,DHH0033,Appliance
+APP_DSM0033_split_ac_1ton_1,DSM0033_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1296.8,0.65,1,DHH0033,Appliance
 APP_DSM0033_refrigerator_1,DSM0033_refrigerator_1,refrigerator,Critical,150,153.8,0.42,1,DHH0033,Appliance
 APP_DSM0033_deep_freezer_1,DSM0033_deep_freezer_1,deep_freezer,Critical,180,144.9,0.5,1,DHH0033,Appliance
 APP_DSM0033_led_light_1,DSM0033_led_light_1,led_light,Critical,10,8.6,1.0,7,DHH0033,Appliance
@@ -1700,7 +1700,7 @@ APP_DSM0034_electric_iron_1,DSM0034_electric_iron_1,electric_iron,Schedulable,10
 APP_DSM0034_router_charger_standby_1,DSM0034_router_charger_standby_1,router_charger_standby,Critical,18,21.8,1.0,2,DHH0034,Appliance
 APP_DSM0035_ceiling_fan_1,DSM0035_ceiling_fan_1,ceiling_fan,Curtailable,75,74.0,0.85,3,DHH0035,Appliance
 APP_DSM0035_table_fan_1,DSM0035_table_fan_1,table_fan,Curtailable,45,41.4,0.8,1,DHH0035,Appliance
-APP_DSM0035_split_ac_1ton_1,DSM0035_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1134.2,0.65,1,DHH0035,Appliance
+APP_DSM0035_split_ac_1ton_1,DSM0035_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1134.2,0.65,1,DHH0035,Appliance
 APP_DSM0035_refrigerator_1,DSM0035_refrigerator_1,refrigerator,Critical,150,154.1,0.42,1,DHH0035,Appliance
 APP_DSM0035_led_light_1,DSM0035_led_light_1,led_light,Critical,10,10.7,1.0,8,DHH0035,Appliance
 APP_DSM0035_tube_light_1,DSM0035_tube_light_1,tube_light,Critical,36,30.2,1.0,3,DHH0035,Appliance
@@ -1738,7 +1738,7 @@ APP_DSM0037_electric_iron_1,DSM0037_electric_iron_1,electric_iron,Schedulable,10
 APP_DSM0037_computer_laptop_1,DSM0037_computer_laptop_1,computer_laptop,Curtailable,80,125.1,1.0,1,DHH0037,Appliance
 APP_DSM0037_router_charger_standby_1,DSM0037_router_charger_standby_1,router_charger_standby,Critical,18,23.7,1.0,2,DHH0037,Appliance
 APP_DSM0038_ceiling_fan_1,DSM0038_ceiling_fan_1,ceiling_fan,Curtailable,75,97.7,0.85,4,DHH0038,Appliance
-APP_DSM0038_split_ac_1ton_1,DSM0038_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1059.7,0.65,1,DHH0038,Appliance
+APP_DSM0038_split_ac_1ton_1,DSM0038_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1059.7,0.65,1,DHH0038,Appliance
 APP_DSM0038_refrigerator_1,DSM0038_refrigerator_1,refrigerator,Critical,150,121.8,0.42,1,DHH0038,Appliance
 APP_DSM0038_deep_freezer_1,DSM0038_deep_freezer_1,deep_freezer,Critical,180,195.6,0.5,1,DHH0038,Appliance
 APP_DSM0038_led_light_1,DSM0038_led_light_1,led_light,Critical,10,11.4,1.0,8,DHH0038,Appliance
@@ -1750,7 +1750,7 @@ APP_DSM0038_water_pump_0_5hp_1,DSM0038_water_pump_0_5hp_1,water_pump_0_5hp,Sched
 APP_DSM0038_computer_laptop_1,DSM0038_computer_laptop_1,computer_laptop,Curtailable,80,81.1,1.0,1,DHH0038,Appliance
 APP_DSM0039_ceiling_fan_1,DSM0039_ceiling_fan_1,ceiling_fan,Curtailable,75,80.5,0.85,5,DHH0039,Appliance
 APP_DSM0039_table_fan_1,DSM0039_table_fan_1,table_fan,Curtailable,45,43.1,0.8,1,DHH0039,Appliance
-APP_DSM0039_split_ac_1ton_1,DSM0039_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,861.1,0.65,1,DHH0039,Appliance
+APP_DSM0039_split_ac_1ton_1,DSM0039_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,861.1,0.65,1,DHH0039,Appliance
 APP_DSM0039_refrigerator_1,DSM0039_refrigerator_1,refrigerator,Critical,150,135.3,0.42,1,DHH0039,Appliance
 APP_DSM0039_led_light_1,DSM0039_led_light_1,led_light,Critical,10,9.2,1.0,6,DHH0039,Appliance
 APP_DSM0039_tube_light_1,DSM0039_tube_light_1,tube_light,Critical,36,30.1,1.0,2,DHH0039,Appliance
@@ -1763,7 +1763,7 @@ APP_DSM0039_ips_backup_1,DSM0039_ips_backup_1,ips_backup,Schedulable,300,328.9,0
 APP_DSM0039_router_charger_standby_1,DSM0039_router_charger_standby_1,router_charger_standby,Critical,18,15.9,1.0,2,DHH0039,Appliance
 APP_DSM0039_exhaust_fan_1,DSM0039_exhaust_fan_1,exhaust_fan,Curtailable,35,31.7,0.9,1,DHH0039,Appliance
 APP_DSM0040_ceiling_fan_1,DSM0040_ceiling_fan_1,ceiling_fan,Curtailable,75,68.2,0.85,4,DHH0040,Appliance
-APP_DSM0040_split_ac_1ton_1,DSM0040_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1246.6,0.65,1,DHH0040,Appliance
+APP_DSM0040_split_ac_1ton_1,DSM0040_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1246.6,0.65,1,DHH0040,Appliance
 APP_DSM0040_refrigerator_1,DSM0040_refrigerator_1,refrigerator,Critical,150,147.6,0.42,1,DHH0040,Appliance
 APP_DSM0040_led_light_1,DSM0040_led_light_1,led_light,Critical,10,10.3,1.0,7,DHH0040,Appliance
 APP_DSM0040_tube_light_1,DSM0040_tube_light_1,tube_light,Critical,36,34.5,1.0,3,DHH0040,Appliance
@@ -1774,7 +1774,7 @@ APP_DSM0040_electric_iron_1,DSM0040_electric_iron_1,electric_iron,Schedulable,10
 APP_DSM0040_ips_backup_1,DSM0040_ips_backup_1,ips_backup,Schedulable,300,435.4,0.6,1,DHH0040,Appliance
 APP_DSM0040_router_charger_standby_1,DSM0040_router_charger_standby_1,router_charger_standby,Critical,18,9.8,1.0,1,DHH0040,Appliance
 APP_DSM0041_ceiling_fan_1,DSM0041_ceiling_fan_1,ceiling_fan,Curtailable,75,72.6,0.85,2,DHH0041,Appliance
-APP_DSM0041_split_ac_1_5ton_1,DSM0041_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1517.5,0.65,1,DHH0041,Appliance
+APP_DSM0041_split_ac_1_5ton_1,DSM0041_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1517.5,0.65,1,DHH0041,Appliance
 APP_DSM0041_refrigerator_1,DSM0041_refrigerator_1,refrigerator,Critical,150,124.8,0.42,1,DHH0041,Appliance
 APP_DSM0041_led_light_1,DSM0041_led_light_1,led_light,Critical,10,10.4,1.0,6,DHH0041,Appliance
 APP_DSM0041_tube_light_1,DSM0041_tube_light_1,tube_light,Critical,36,34.1,1.0,2,DHH0041,Appliance
@@ -1839,7 +1839,7 @@ APP_DSM0045_electric_iron_1,DSM0045_electric_iron_1,electric_iron,Schedulable,10
 APP_DSM0045_ips_backup_1,DSM0045_ips_backup_1,ips_backup,Schedulable,300,325.0,0.6,1,DHH0045,Appliance
 APP_DSM0045_router_charger_standby_1,DSM0045_router_charger_standby_1,router_charger_standby,Critical,18,17.2,1.0,1,DHH0045,Appliance
 APP_DSM0046_ceiling_fan_1,DSM0046_ceiling_fan_1,ceiling_fan,Curtailable,75,73.0,0.85,3,DHH0046,Appliance
-APP_DSM0046_split_ac_1ton_1,DSM0046_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1037.0,0.65,1,DHH0046,Appliance
+APP_DSM0046_split_ac_1ton_1,DSM0046_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1037.0,0.65,1,DHH0046,Appliance
 APP_DSM0046_refrigerator_1,DSM0046_refrigerator_1,refrigerator,Critical,150,114.9,0.42,1,DHH0046,Appliance
 APP_DSM0046_led_light_1,DSM0046_led_light_1,led_light,Critical,10,10.0,1.0,9,DHH0046,Appliance
 APP_DSM0046_tv_led_1,DSM0046_tv_led_1,tv_led,Curtailable,60,63.8,1.0,2,DHH0046,Appliance
@@ -1853,7 +1853,7 @@ APP_DSM0046_router_charger_standby_1,DSM0046_router_charger_standby_1,router_cha
 APP_DSM0046_exhaust_fan_1,DSM0046_exhaust_fan_1,exhaust_fan,Curtailable,35,38.2,0.9,1,DHH0046,Appliance
 APP_DSM0047_ceiling_fan_1,DSM0047_ceiling_fan_1,ceiling_fan,Curtailable,75,75.0,0.85,3,DHH0047,Appliance
 APP_DSM0047_table_fan_1,DSM0047_table_fan_1,table_fan,Curtailable,45,43.1,0.8,1,DHH0047,Appliance
-APP_DSM0047_split_ac_1ton_1,DSM0047_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1173.0,0.65,1,DHH0047,Appliance
+APP_DSM0047_split_ac_1ton_1,DSM0047_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1173.0,0.65,1,DHH0047,Appliance
 APP_DSM0047_refrigerator_1,DSM0047_refrigerator_1,refrigerator,Critical,150,126.8,0.42,1,DHH0047,Appliance
 APP_DSM0047_led_light_1,DSM0047_led_light_1,led_light,Critical,10,11.3,1.0,6,DHH0047,Appliance
 APP_DSM0047_tube_light_1,DSM0047_tube_light_1,tube_light,Critical,36,34.7,1.0,2,DHH0047,Appliance
@@ -1867,7 +1867,7 @@ APP_DSM0047_water_pump_0_5hp_1,DSM0047_water_pump_0_5hp_1,water_pump_0_5hp,Sched
 APP_DSM0047_computer_laptop_1,DSM0047_computer_laptop_1,computer_laptop,Curtailable,80,96.5,1.0,1,DHH0047,Appliance
 APP_DSM0047_router_charger_standby_1,DSM0047_router_charger_standby_1,router_charger_standby,Critical,18,11.1,1.0,1,DHH0047,Appliance
 APP_DSM0048_ceiling_fan_1,DSM0048_ceiling_fan_1,ceiling_fan,Curtailable,75,73.1,0.85,3,DHH0048,Appliance
-APP_DSM0048_split_ac_1ton_1,DSM0048_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1223.3,0.65,1,DHH0048,Appliance
+APP_DSM0048_split_ac_1ton_1,DSM0048_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1223.3,0.65,1,DHH0048,Appliance
 APP_DSM0048_refrigerator_1,DSM0048_refrigerator_1,refrigerator,Critical,150,147.0,0.42,1,DHH0048,Appliance
 APP_DSM0048_deep_freezer_1,DSM0048_deep_freezer_1,deep_freezer,Critical,180,192.1,0.5,1,DHH0048,Appliance
 APP_DSM0048_led_light_1,DSM0048_led_light_1,led_light,Critical,10,14.7,1.0,7,DHH0048,Appliance
@@ -1886,7 +1886,7 @@ APP_DSM0049_ips_backup_1,DSM0049_ips_backup_1,ips_backup,Schedulable,300,333.3,0
 APP_DSM0049_computer_laptop_1,DSM0049_computer_laptop_1,computer_laptop,Curtailable,80,138.6,1.0,1,DHH0049,Appliance
 APP_DSM0049_router_charger_standby_1,DSM0049_router_charger_standby_1,router_charger_standby,Critical,18,31.6,1.0,2,DHH0049,Appliance
 APP_DSM0050_ceiling_fan_1,DSM0050_ceiling_fan_1,ceiling_fan,Curtailable,75,78.1,0.85,3,DHH0050,Appliance
-APP_DSM0050_split_ac_1ton_1,DSM0050_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1103.2,0.65,1,DHH0050,Appliance
+APP_DSM0050_split_ac_1ton_1,DSM0050_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1103.2,0.65,1,DHH0050,Appliance
 APP_DSM0050_refrigerator_1,DSM0050_refrigerator_1,refrigerator,Critical,150,163.5,0.42,1,DHH0050,Appliance
 APP_DSM0050_led_light_1,DSM0050_led_light_1,led_light,Critical,10,5.0,1.0,8,DHH0050,Appliance
 APP_DSM0050_tube_light_1,DSM0050_tube_light_1,tube_light,Critical,36,36.8,1.0,4,DHH0050,Appliance
@@ -1897,7 +1897,7 @@ APP_DSM0050_microwave_oven_1,DSM0050_microwave_oven_1,microwave_oven,Schedulable
 APP_DSM0050_washing_machine_1,DSM0050_washing_machine_1,washing_machine,Schedulable,450,420.4,0.7,1,DHH0050,Appliance
 APP_DSM0050_router_charger_standby_1,DSM0050_router_charger_standby_1,router_charger_standby,Critical,18,17.6,1.0,1,DHH0050,Appliance
 APP_DSM0051_ceiling_fan_1,DSM0051_ceiling_fan_1,ceiling_fan,Curtailable,75,71.1,0.85,3,DHH0051,Appliance
-APP_DSM0051_split_ac_1ton_1,DSM0051_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1270.0,0.65,1,DHH0051,Appliance
+APP_DSM0051_split_ac_1ton_1,DSM0051_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1270.0,0.65,1,DHH0051,Appliance
 APP_DSM0051_refrigerator_1,DSM0051_refrigerator_1,refrigerator,Critical,150,170.6,0.42,1,DHH0051,Appliance
 APP_DSM0051_led_light_1,DSM0051_led_light_1,led_light,Critical,10,12.6,1.0,5,DHH0051,Appliance
 APP_DSM0051_tube_light_1,DSM0051_tube_light_1,tube_light,Critical,36,37.2,1.0,3,DHH0051,Appliance
@@ -1920,7 +1920,7 @@ APP_DSM0052_router_charger_standby_1,DSM0052_router_charger_standby_1,router_cha
 APP_DSM0052_exhaust_fan_1,DSM0052_exhaust_fan_1,exhaust_fan,Curtailable,35,34.5,0.9,1,DHH0052,Appliance
 APP_DSM0053_ceiling_fan_1,DSM0053_ceiling_fan_1,ceiling_fan,Curtailable,75,68.7,0.85,4,DHH0053,Appliance
 APP_DSM0053_table_fan_1,DSM0053_table_fan_1,table_fan,Curtailable,45,41.1,0.8,1,DHH0053,Appliance
-APP_DSM0053_split_ac_1ton_1,DSM0053_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1080.4,0.65,1,DHH0053,Appliance
+APP_DSM0053_split_ac_1ton_1,DSM0053_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1080.4,0.65,1,DHH0053,Appliance
 APP_DSM0053_refrigerator_1,DSM0053_refrigerator_1,refrigerator,Critical,150,152.4,0.42,1,DHH0053,Appliance
 APP_DSM0053_deep_freezer_1,DSM0053_deep_freezer_1,deep_freezer,Critical,180,196.9,0.5,1,DHH0053,Appliance
 APP_DSM0053_led_light_1,DSM0053_led_light_1,led_light,Critical,10,14.5,1.0,7,DHH0053,Appliance
@@ -1998,7 +1998,7 @@ APP_DSM0059_water_pump_0_5hp_1,DSM0059_water_pump_0_5hp_1,water_pump_0_5hp,Sched
 APP_DSM0059_router_charger_standby_1,DSM0059_router_charger_standby_1,router_charger_standby,Critical,18,20.5,1.0,2,DHH0059,Appliance
 APP_DSM0059_exhaust_fan_1,DSM0059_exhaust_fan_1,exhaust_fan,Curtailable,35,37.1,0.9,1,DHH0059,Appliance
 APP_DSM0060_ceiling_fan_1,DSM0060_ceiling_fan_1,ceiling_fan,Curtailable,75,55.5,0.85,4,DHH0060,Appliance
-APP_DSM0060_split_ac_1ton_1,DSM0060_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,984.4,0.65,1,DHH0060,Appliance
+APP_DSM0060_split_ac_1ton_1,DSM0060_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,984.4,0.65,1,DHH0060,Appliance
 APP_DSM0060_refrigerator_1,DSM0060_refrigerator_1,refrigerator,Critical,150,155.0,0.42,1,DHH0060,Appliance
 APP_DSM0060_deep_freezer_1,DSM0060_deep_freezer_1,deep_freezer,Critical,180,178.9,0.5,1,DHH0060,Appliance
 APP_DSM0060_led_light_1,DSM0060_led_light_1,led_light,Critical,10,7.3,1.0,6,DHH0060,Appliance
@@ -2049,7 +2049,7 @@ APP_DSM0063_washing_machine_1,DSM0063_washing_machine_1,washing_machine,Schedula
 APP_DSM0063_water_pump_0_5hp_1,DSM0063_water_pump_0_5hp_1,water_pump_0_5hp,Schedulable,373,344.5,0.95,1,DHH0063,Appliance
 APP_DSM0063_router_charger_standby_1,DSM0063_router_charger_standby_1,router_charger_standby,Critical,18,14.5,1.0,2,DHH0063,Appliance
 APP_DSM0064_ceiling_fan_1,DSM0064_ceiling_fan_1,ceiling_fan,Curtailable,75,90.0,0.85,3,DHH0064,Appliance
-APP_DSM0064_split_ac_1ton_1,DSM0064_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1252.8,0.65,1,DHH0064,Appliance
+APP_DSM0064_split_ac_1ton_1,DSM0064_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1252.8,0.65,1,DHH0064,Appliance
 APP_DSM0064_refrigerator_1,DSM0064_refrigerator_1,refrigerator,Critical,150,112.4,0.42,1,DHH0064,Appliance
 APP_DSM0064_led_light_1,DSM0064_led_light_1,led_light,Critical,10,9.9,1.0,9,DHH0064,Appliance
 APP_DSM0064_tube_light_1,DSM0064_tube_light_1,tube_light,Critical,36,46.0,1.0,2,DHH0064,Appliance
@@ -2102,7 +2102,7 @@ APP_DSM0067_geyser_water_heater_1,DSM0067_geyser_water_heater_1,geyser_water_hea
 APP_DSM0067_computer_laptop_1,DSM0067_computer_laptop_1,computer_laptop,Curtailable,80,62.9,1.0,2,DHH0067,Appliance
 APP_DSM0067_router_charger_standby_1,DSM0067_router_charger_standby_1,router_charger_standby,Critical,18,16.7,1.0,2,DHH0067,Appliance
 APP_DSM0067_exhaust_fan_1,DSM0067_exhaust_fan_1,exhaust_fan,Curtailable,35,42.8,0.9,2,DHH0067,Appliance
-APP_DSM0068_split_ac_1_5ton_1,DSM0068_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1494.0,0.65,1,DHH0068,Appliance
+APP_DSM0068_split_ac_1_5ton_1,DSM0068_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1494.0,0.65,1,DHH0068,Appliance
 APP_DSM0068_refrigerator_1,DSM0068_refrigerator_1,refrigerator,Critical,150,171.1,0.42,2,DHH0068,Appliance
 APP_DSM0068_led_light_1,DSM0068_led_light_1,led_light,Critical,10,8.7,1.0,11,DHH0068,Appliance
 APP_DSM0068_tv_led_1,DSM0068_tv_led_1,tv_led,Curtailable,60,60.4,1.0,1,DHH0068,Appliance
@@ -2117,8 +2117,8 @@ APP_DSM0068_computer_laptop_1,DSM0068_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0068_router_charger_standby_1,DSM0068_router_charger_standby_1,router_charger_standby,Critical,18,20.5,1.0,2,DHH0068,Appliance
 APP_DSM0068_exhaust_fan_1,DSM0068_exhaust_fan_1,exhaust_fan,Curtailable,35,40.1,0.9,1,DHH0068,Appliance
 APP_DSM0069_ceiling_fan_1,DSM0069_ceiling_fan_1,ceiling_fan,Curtailable,75,65.7,0.85,3,DHH0069,Appliance
-APP_DSM0069_split_ac_1ton_1,DSM0069_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1162.6,0.65,3,DHH0069,Appliance
-APP_DSM0069_split_ac_1_5ton_1,DSM0069_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1680.8,0.65,1,DHH0069,Appliance
+APP_DSM0069_split_ac_1ton_1,DSM0069_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1162.6,0.65,3,DHH0069,Appliance
+APP_DSM0069_split_ac_1_5ton_1,DSM0069_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1680.8,0.65,1,DHH0069,Appliance
 APP_DSM0069_refrigerator_1,DSM0069_refrigerator_1,refrigerator,Critical,150,172.7,0.42,1,DHH0069,Appliance
 APP_DSM0069_led_light_1,DSM0069_led_light_1,led_light,Critical,10,8.6,1.0,14,DHH0069,Appliance
 APP_DSM0069_tv_led_1,DSM0069_tv_led_1,tv_led,Curtailable,60,57.2,1.0,2,DHH0069,Appliance
@@ -2135,8 +2135,8 @@ APP_DSM0069_computer_laptop_1,DSM0069_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0069_router_charger_standby_1,DSM0069_router_charger_standby_1,router_charger_standby,Critical,18,16.2,1.0,1,DHH0069,Appliance
 APP_DSM0069_exhaust_fan_1,DSM0069_exhaust_fan_1,exhaust_fan,Curtailable,35,36.6,0.9,2,DHH0069,Appliance
 APP_DSM0070_ceiling_fan_1,DSM0070_ceiling_fan_1,ceiling_fan,Curtailable,75,78.9,0.85,5,DHH0070,Appliance
-APP_DSM0070_split_ac_1ton_1,DSM0070_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1262.0,0.65,1,DHH0070,Appliance
-APP_DSM0070_split_ac_1_5ton_1,DSM0070_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1598.0,0.65,1,DHH0070,Appliance
+APP_DSM0070_split_ac_1ton_1,DSM0070_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1262.0,0.65,1,DHH0070,Appliance
+APP_DSM0070_split_ac_1_5ton_1,DSM0070_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1598.0,0.65,1,DHH0070,Appliance
 APP_DSM0070_refrigerator_1,DSM0070_refrigerator_1,refrigerator,Critical,150,127.7,0.42,1,DHH0070,Appliance
 APP_DSM0070_deep_freezer_1,DSM0070_deep_freezer_1,deep_freezer,Critical,180,207.2,0.5,1,DHH0070,Appliance
 APP_DSM0070_led_light_1,DSM0070_led_light_1,led_light,Critical,10,10.1,1.0,11,DHH0070,Appliance
@@ -2150,8 +2150,8 @@ APP_DSM0070_geyser_water_heater_1,DSM0070_geyser_water_heater_1,geyser_water_hea
 APP_DSM0070_router_charger_standby_1,DSM0070_router_charger_standby_1,router_charger_standby,Critical,18,21.7,1.0,2,DHH0070,Appliance
 APP_DSM0070_exhaust_fan_1,DSM0070_exhaust_fan_1,exhaust_fan,Curtailable,35,33.7,0.9,1,DHH0070,Appliance
 APP_DSM0071_ceiling_fan_1,DSM0071_ceiling_fan_1,ceiling_fan,Curtailable,75,67.5,0.85,5,DHH0071,Appliance
-APP_DSM0071_split_ac_1ton_1,DSM0071_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,923.6,0.65,2,DHH0071,Appliance
-APP_DSM0071_split_ac_1_5ton_1,DSM0071_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1653.2,0.65,1,DHH0071,Appliance
+APP_DSM0071_split_ac_1ton_1,DSM0071_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,923.6,0.65,2,DHH0071,Appliance
+APP_DSM0071_split_ac_1_5ton_1,DSM0071_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1653.2,0.65,1,DHH0071,Appliance
 APP_DSM0071_refrigerator_1,DSM0071_refrigerator_1,refrigerator,Critical,150,154.6,0.42,1,DHH0071,Appliance
 APP_DSM0071_deep_freezer_1,DSM0071_deep_freezer_1,deep_freezer,Critical,180,159.8,0.5,1,DHH0071,Appliance
 APP_DSM0071_led_light_1,DSM0071_led_light_1,led_light,Critical,10,9.0,1.0,15,DHH0071,Appliance
@@ -2169,8 +2169,8 @@ APP_DSM0071_computer_laptop_1,DSM0071_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0071_router_charger_standby_1,DSM0071_router_charger_standby_1,router_charger_standby,Critical,18,18.9,1.0,1,DHH0071,Appliance
 APP_DSM0071_exhaust_fan_1,DSM0071_exhaust_fan_1,exhaust_fan,Curtailable,35,27.1,0.9,2,DHH0071,Appliance
 APP_DSM0072_ceiling_fan_1,DSM0072_ceiling_fan_1,ceiling_fan,Curtailable,75,78.9,0.85,6,DHH0072,Appliance
-APP_DSM0072_split_ac_1ton_1,DSM0072_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1056.6,0.65,1,DHH0072,Appliance
-APP_DSM0072_split_ac_1_5ton_1,DSM0072_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,2060.7,0.65,1,DHH0072,Appliance
+APP_DSM0072_split_ac_1ton_1,DSM0072_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1056.6,0.65,1,DHH0072,Appliance
+APP_DSM0072_split_ac_1_5ton_1,DSM0072_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,2060.7,0.65,1,DHH0072,Appliance
 APP_DSM0072_refrigerator_1,DSM0072_refrigerator_1,refrigerator,Critical,150,119.2,0.42,1,DHH0072,Appliance
 APP_DSM0072_deep_freezer_1,DSM0072_deep_freezer_1,deep_freezer,Critical,180,186.2,0.5,1,DHH0072,Appliance
 APP_DSM0072_led_light_1,DSM0072_led_light_1,led_light,Critical,10,10.1,1.0,9,DHH0072,Appliance
@@ -2187,7 +2187,7 @@ APP_DSM0072_geyser_water_heater_1,DSM0072_geyser_water_heater_1,geyser_water_hea
 APP_DSM0072_computer_laptop_1,DSM0072_computer_laptop_1,computer_laptop,Curtailable,80,67.1,1.0,1,DHH0072,Appliance
 APP_DSM0072_router_charger_standby_1,DSM0072_router_charger_standby_1,router_charger_standby,Critical,18,17.8,1.0,2,DHH0072,Appliance
 APP_DSM0072_exhaust_fan_1,DSM0072_exhaust_fan_1,exhaust_fan,Curtailable,35,25.8,0.9,1,DHH0072,Appliance
-APP_DSM0073_split_ac_1ton_1,DSM0073_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,965.9,0.65,2,DHH0073,Appliance
+APP_DSM0073_split_ac_1ton_1,DSM0073_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,965.9,0.65,2,DHH0073,Appliance
 APP_DSM0073_refrigerator_1,DSM0073_refrigerator_1,refrigerator,Critical,150,156.4,0.42,2,DHH0073,Appliance
 APP_DSM0073_deep_freezer_1,DSM0073_deep_freezer_1,deep_freezer,Critical,180,149.6,0.5,1,DHH0073,Appliance
 APP_DSM0073_led_light_1,DSM0073_led_light_1,led_light,Critical,10,10.5,1.0,13,DHH0073,Appliance
@@ -2204,7 +2204,7 @@ APP_DSM0073_router_charger_standby_1,DSM0073_router_charger_standby_1,router_cha
 APP_DSM0073_exhaust_fan_1,DSM0073_exhaust_fan_1,exhaust_fan,Curtailable,35,36.2,0.9,1,DHH0073,Appliance
 APP_DSM0074_ceiling_fan_1,DSM0074_ceiling_fan_1,ceiling_fan,Curtailable,75,78.3,0.85,4,DHH0074,Appliance
 APP_DSM0074_table_fan_1,DSM0074_table_fan_1,table_fan,Curtailable,45,43.8,0.8,1,DHH0074,Appliance
-APP_DSM0074_split_ac_1ton_1,DSM0074_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,998.0,0.65,1,DHH0074,Appliance
+APP_DSM0074_split_ac_1ton_1,DSM0074_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,998.0,0.65,1,DHH0074,Appliance
 APP_DSM0074_refrigerator_1,DSM0074_refrigerator_1,refrigerator,Critical,150,95.8,0.42,2,DHH0074,Appliance
 APP_DSM0074_led_light_1,DSM0074_led_light_1,led_light,Critical,10,10.7,1.0,12,DHH0074,Appliance
 APP_DSM0074_tube_light_1,DSM0074_tube_light_1,tube_light,Critical,36,37.8,1.0,2,DHH0074,Appliance
@@ -2221,8 +2221,8 @@ APP_DSM0074_computer_laptop_1,DSM0074_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0074_router_charger_standby_1,DSM0074_router_charger_standby_1,router_charger_standby,Critical,18,18.3,1.0,2,DHH0074,Appliance
 APP_DSM0074_exhaust_fan_1,DSM0074_exhaust_fan_1,exhaust_fan,Curtailable,35,34.8,0.9,2,DHH0074,Appliance
 APP_DSM0075_ceiling_fan_1,DSM0075_ceiling_fan_1,ceiling_fan,Curtailable,75,84.2,0.85,6,DHH0075,Appliance
-APP_DSM0075_split_ac_1ton_1,DSM0075_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1035.7,0.65,1,DHH0075,Appliance
-APP_DSM0075_split_ac_1_5ton_1,DSM0075_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1545.5,0.65,1,DHH0075,Appliance
+APP_DSM0075_split_ac_1ton_1,DSM0075_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1035.7,0.65,1,DHH0075,Appliance
+APP_DSM0075_split_ac_1_5ton_1,DSM0075_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1545.5,0.65,1,DHH0075,Appliance
 APP_DSM0075_refrigerator_1,DSM0075_refrigerator_1,refrigerator,Critical,150,140.9,0.42,2,DHH0075,Appliance
 APP_DSM0075_deep_freezer_1,DSM0075_deep_freezer_1,deep_freezer,Critical,180,168.8,0.5,1,DHH0075,Appliance
 APP_DSM0075_led_light_1,DSM0075_led_light_1,led_light,Critical,10,11.3,1.0,9,DHH0075,Appliance
@@ -2242,7 +2242,7 @@ APP_DSM0075_router_charger_standby_1,DSM0075_router_charger_standby_1,router_cha
 APP_DSM0075_exhaust_fan_1,DSM0075_exhaust_fan_1,exhaust_fan,Curtailable,35,40.7,0.9,1,DHH0075,Appliance
 APP_DSM0076_ceiling_fan_1,DSM0076_ceiling_fan_1,ceiling_fan,Curtailable,75,68.4,0.85,5,DHH0076,Appliance
 APP_DSM0076_table_fan_1,DSM0076_table_fan_1,table_fan,Curtailable,45,34.3,0.8,1,DHH0076,Appliance
-APP_DSM0076_split_ac_1_5ton_1,DSM0076_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1470.7,0.65,1,DHH0076,Appliance
+APP_DSM0076_split_ac_1_5ton_1,DSM0076_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1470.7,0.65,1,DHH0076,Appliance
 APP_DSM0076_refrigerator_1,DSM0076_refrigerator_1,refrigerator,Critical,150,170.8,0.42,1,DHH0076,Appliance
 APP_DSM0076_deep_freezer_1,DSM0076_deep_freezer_1,deep_freezer,Critical,180,172.2,0.5,1,DHH0076,Appliance
 APP_DSM0076_led_light_1,DSM0076_led_light_1,led_light,Critical,10,13.2,1.0,10,DHH0076,Appliance
@@ -2258,8 +2258,8 @@ APP_DSM0076_router_charger_standby_1,DSM0076_router_charger_standby_1,router_cha
 APP_DSM0076_exhaust_fan_1,DSM0076_exhaust_fan_1,exhaust_fan,Curtailable,35,40.8,0.9,1,DHH0076,Appliance
 APP_DSM0077_ceiling_fan_1,DSM0077_ceiling_fan_1,ceiling_fan,Curtailable,75,58.0,0.85,2,DHH0077,Appliance
 APP_DSM0077_table_fan_1,DSM0077_table_fan_1,table_fan,Curtailable,45,39.0,0.8,1,DHH0077,Appliance
-APP_DSM0077_split_ac_1ton_1,DSM0077_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,746.4,0.65,1,DHH0077,Appliance
-APP_DSM0077_split_ac_1_5ton_1,DSM0077_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1714.3,0.65,2,DHH0077,Appliance
+APP_DSM0077_split_ac_1ton_1,DSM0077_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,746.4,0.65,1,DHH0077,Appliance
+APP_DSM0077_split_ac_1_5ton_1,DSM0077_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1714.3,0.65,2,DHH0077,Appliance
 APP_DSM0077_refrigerator_1,DSM0077_refrigerator_1,refrigerator,Critical,150,117.0,0.42,1,DHH0077,Appliance
 APP_DSM0077_led_light_1,DSM0077_led_light_1,led_light,Critical,10,10.6,1.0,13,DHH0077,Appliance
 APP_DSM0077_tv_led_1,DSM0077_tv_led_1,tv_led,Curtailable,60,69.3,1.0,1,DHH0077,Appliance
@@ -2274,8 +2274,8 @@ APP_DSM0077_geyser_water_heater_1,DSM0077_geyser_water_heater_1,geyser_water_hea
 APP_DSM0077_computer_laptop_1,DSM0077_computer_laptop_1,computer_laptop,Curtailable,80,117.1,1.0,1,DHH0077,Appliance
 APP_DSM0077_router_charger_standby_1,DSM0077_router_charger_standby_1,router_charger_standby,Critical,18,12.4,1.0,2,DHH0077,Appliance
 APP_DSM0078_ceiling_fan_1,DSM0078_ceiling_fan_1,ceiling_fan,Curtailable,75,60.4,0.85,5,DHH0078,Appliance
-APP_DSM0078_split_ac_1ton_1,DSM0078_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1109.4,0.65,2,DHH0078,Appliance
-APP_DSM0078_split_ac_1_5ton_1,DSM0078_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1845.9,0.65,2,DHH0078,Appliance
+APP_DSM0078_split_ac_1ton_1,DSM0078_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1109.4,0.65,2,DHH0078,Appliance
+APP_DSM0078_split_ac_1_5ton_1,DSM0078_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1845.9,0.65,2,DHH0078,Appliance
 APP_DSM0078_refrigerator_1,DSM0078_refrigerator_1,refrigerator,Critical,150,172.9,0.42,2,DHH0078,Appliance
 APP_DSM0078_led_light_1,DSM0078_led_light_1,led_light,Critical,10,9.9,1.0,15,DHH0078,Appliance
 APP_DSM0078_tv_led_1,DSM0078_tv_led_1,tv_led,Curtailable,60,58.0,1.0,2,DHH0078,Appliance
@@ -2290,7 +2290,7 @@ APP_DSM0078_router_charger_standby_1,DSM0078_router_charger_standby_1,router_cha
 APP_DSM0078_exhaust_fan_1,DSM0078_exhaust_fan_1,exhaust_fan,Curtailable,35,31.1,0.9,1,DHH0078,Appliance
 APP_DSM0079_ceiling_fan_1,DSM0079_ceiling_fan_1,ceiling_fan,Curtailable,75,71.8,0.85,5,DHH0079,Appliance
 APP_DSM0079_table_fan_1,DSM0079_table_fan_1,table_fan,Curtailable,45,41.7,0.8,1,DHH0079,Appliance
-APP_DSM0079_split_ac_1_5ton_1,DSM0079_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1755.1,0.65,1,DHH0079,Appliance
+APP_DSM0079_split_ac_1_5ton_1,DSM0079_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1755.1,0.65,1,DHH0079,Appliance
 APP_DSM0079_refrigerator_1,DSM0079_refrigerator_1,refrigerator,Critical,150,145.9,0.42,1,DHH0079,Appliance
 APP_DSM0079_led_light_1,DSM0079_led_light_1,led_light,Critical,10,11.3,1.0,13,DHH0079,Appliance
 APP_DSM0079_tv_led_1,DSM0079_tv_led_1,tv_led,Curtailable,60,52.3,1.0,3,DHH0079,Appliance
@@ -2306,8 +2306,8 @@ APP_DSM0079_computer_laptop_1,DSM0079_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0079_router_charger_standby_1,DSM0079_router_charger_standby_1,router_charger_standby,Critical,18,27.6,1.0,2,DHH0079,Appliance
 APP_DSM0079_exhaust_fan_1,DSM0079_exhaust_fan_1,exhaust_fan,Curtailable,35,42.0,0.9,1,DHH0079,Appliance
 APP_DSM0080_ceiling_fan_1,DSM0080_ceiling_fan_1,ceiling_fan,Curtailable,75,74.1,0.85,4,DHH0080,Appliance
-APP_DSM0080_split_ac_1ton_1,DSM0080_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1092.7,0.65,2,DHH0080,Appliance
-APP_DSM0080_split_ac_1_5ton_1,DSM0080_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1405.1,0.65,2,DHH0080,Appliance
+APP_DSM0080_split_ac_1ton_1,DSM0080_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1092.7,0.65,2,DHH0080,Appliance
+APP_DSM0080_split_ac_1_5ton_1,DSM0080_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1405.1,0.65,2,DHH0080,Appliance
 APP_DSM0080_refrigerator_1,DSM0080_refrigerator_1,refrigerator,Critical,150,172.8,0.42,1,DHH0080,Appliance
 APP_DSM0080_led_light_1,DSM0080_led_light_1,led_light,Critical,10,11.6,1.0,13,DHH0080,Appliance
 APP_DSM0080_tv_led_1,DSM0080_tv_led_1,tv_led,Curtailable,60,35.1,1.0,1,DHH0080,Appliance
@@ -2321,7 +2321,7 @@ APP_DSM0080_computer_laptop_1,DSM0080_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0080_router_charger_standby_1,DSM0080_router_charger_standby_1,router_charger_standby,Critical,18,17.4,1.0,1,DHH0080,Appliance
 APP_DSM0080_exhaust_fan_1,DSM0080_exhaust_fan_1,exhaust_fan,Curtailable,35,33.5,0.9,2,DHH0080,Appliance
 APP_DSM0081_ceiling_fan_1,DSM0081_ceiling_fan_1,ceiling_fan,Curtailable,75,92.8,0.85,4,DHH0081,Appliance
-APP_DSM0081_split_ac_1ton_1,DSM0081_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1711.6,0.65,1,DHH0081,Appliance
+APP_DSM0081_split_ac_1ton_1,DSM0081_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1711.6,0.65,1,DHH0081,Appliance
 APP_DSM0081_refrigerator_1,DSM0081_refrigerator_1,refrigerator,Critical,150,137.3,0.42,1,DHH0081,Appliance
 APP_DSM0081_led_light_1,DSM0081_led_light_1,led_light,Critical,10,9.3,1.0,7,DHH0081,Appliance
 APP_DSM0081_tv_led_1,DSM0081_tv_led_1,tv_led,Curtailable,60,59.4,1.0,2,DHH0081,Appliance
@@ -2335,8 +2335,8 @@ APP_DSM0081_computer_laptop_1,DSM0081_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0081_router_charger_standby_1,DSM0081_router_charger_standby_1,router_charger_standby,Critical,18,17.8,1.0,3,DHH0081,Appliance
 APP_DSM0081_exhaust_fan_1,DSM0081_exhaust_fan_1,exhaust_fan,Curtailable,35,39.2,0.9,2,DHH0081,Appliance
 APP_DSM0082_ceiling_fan_1,DSM0082_ceiling_fan_1,ceiling_fan,Curtailable,75,71.6,0.85,3,DHH0082,Appliance
-APP_DSM0082_split_ac_1ton_1,DSM0082_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1192.6,0.65,2,DHH0082,Appliance
-APP_DSM0082_split_ac_1_5ton_1,DSM0082_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,2041.4,0.65,3,DHH0082,Appliance
+APP_DSM0082_split_ac_1ton_1,DSM0082_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1192.6,0.65,2,DHH0082,Appliance
+APP_DSM0082_split_ac_1_5ton_1,DSM0082_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,2041.4,0.65,3,DHH0082,Appliance
 APP_DSM0082_refrigerator_1,DSM0082_refrigerator_1,refrigerator,Critical,150,142.7,0.42,1,DHH0082,Appliance
 APP_DSM0082_deep_freezer_1,DSM0082_deep_freezer_1,deep_freezer,Critical,180,215.6,0.5,1,DHH0082,Appliance
 APP_DSM0082_led_light_1,DSM0082_led_light_1,led_light,Critical,10,12.4,1.0,14,DHH0082,Appliance
@@ -2352,7 +2352,7 @@ APP_DSM0082_computer_laptop_1,DSM0082_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0082_router_charger_standby_1,DSM0082_router_charger_standby_1,router_charger_standby,Critical,18,20.6,1.0,2,DHH0082,Appliance
 APP_DSM0082_exhaust_fan_1,DSM0082_exhaust_fan_1,exhaust_fan,Curtailable,35,36.5,0.9,2,DHH0082,Appliance
 APP_DSM0083_ceiling_fan_1,DSM0083_ceiling_fan_1,ceiling_fan,Curtailable,75,58.6,0.85,5,DHH0083,Appliance
-APP_DSM0083_split_ac_1ton_1,DSM0083_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1086.5,0.65,1,DHH0083,Appliance
+APP_DSM0083_split_ac_1ton_1,DSM0083_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1086.5,0.65,1,DHH0083,Appliance
 APP_DSM0083_refrigerator_1,DSM0083_refrigerator_1,refrigerator,Critical,150,157.1,0.42,1,DHH0083,Appliance
 APP_DSM0083_led_light_1,DSM0083_led_light_1,led_light,Critical,10,8.2,1.0,9,DHH0083,Appliance
 APP_DSM0083_tube_light_1,DSM0083_tube_light_1,tube_light,Critical,36,30.6,1.0,1,DHH0083,Appliance
@@ -2371,8 +2371,8 @@ APP_DSM0083_router_charger_standby_1,DSM0083_router_charger_standby_1,router_cha
 APP_DSM0083_exhaust_fan_1,DSM0083_exhaust_fan_1,exhaust_fan,Curtailable,35,32.3,0.9,2,DHH0083,Appliance
 APP_DSM0084_ceiling_fan_1,DSM0084_ceiling_fan_1,ceiling_fan,Curtailable,75,90.1,0.85,4,DHH0084,Appliance
 APP_DSM0084_table_fan_1,DSM0084_table_fan_1,table_fan,Curtailable,45,36.4,0.8,1,DHH0084,Appliance
-APP_DSM0084_split_ac_1ton_1,DSM0084_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1134.7,0.65,2,DHH0084,Appliance
-APP_DSM0084_split_ac_1_5ton_1,DSM0084_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1508.4,0.65,2,DHH0084,Appliance
+APP_DSM0084_split_ac_1ton_1,DSM0084_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1134.7,0.65,2,DHH0084,Appliance
+APP_DSM0084_split_ac_1_5ton_1,DSM0084_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1508.4,0.65,2,DHH0084,Appliance
 APP_DSM0084_refrigerator_1,DSM0084_refrigerator_1,refrigerator,Critical,150,171.4,0.42,1,DHH0084,Appliance
 APP_DSM0084_led_light_1,DSM0084_led_light_1,led_light,Critical,10,10.2,1.0,13,DHH0084,Appliance
 APP_DSM0084_tv_led_1,DSM0084_tv_led_1,tv_led,Curtailable,60,59.6,1.0,2,DHH0084,Appliance
@@ -2387,8 +2387,8 @@ APP_DSM0084_computer_laptop_1,DSM0084_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0084_router_charger_standby_1,DSM0084_router_charger_standby_1,router_charger_standby,Critical,18,13.8,1.0,2,DHH0084,Appliance
 APP_DSM0084_exhaust_fan_1,DSM0084_exhaust_fan_1,exhaust_fan,Curtailable,35,34.5,0.9,2,DHH0084,Appliance
 APP_DSM0085_ceiling_fan_1,DSM0085_ceiling_fan_1,ceiling_fan,Curtailable,75,89.9,0.85,5,DHH0085,Appliance
-APP_DSM0085_split_ac_1ton_1,DSM0085_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1221.5,0.65,2,DHH0085,Appliance
-APP_DSM0085_split_ac_1_5ton_1,DSM0085_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1583.5,0.65,1,DHH0085,Appliance
+APP_DSM0085_split_ac_1ton_1,DSM0085_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1221.5,0.65,2,DHH0085,Appliance
+APP_DSM0085_split_ac_1_5ton_1,DSM0085_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1583.5,0.65,1,DHH0085,Appliance
 APP_DSM0085_refrigerator_1,DSM0085_refrigerator_1,refrigerator,Critical,150,156.6,0.42,2,DHH0085,Appliance
 APP_DSM0085_deep_freezer_1,DSM0085_deep_freezer_1,deep_freezer,Critical,180,146.1,0.5,1,DHH0085,Appliance
 APP_DSM0085_led_light_1,DSM0085_led_light_1,led_light,Critical,10,9.1,1.0,11,DHH0085,Appliance
@@ -2404,7 +2404,7 @@ APP_DSM0085_router_charger_standby_1,DSM0085_router_charger_standby_1,router_cha
 APP_DSM0085_exhaust_fan_1,DSM0085_exhaust_fan_1,exhaust_fan,Curtailable,35,34.2,0.9,1,DHH0085,Appliance
 APP_DSM0086_ceiling_fan_1,DSM0086_ceiling_fan_1,ceiling_fan,Curtailable,75,90.7,0.85,6,DHH0086,Appliance
 APP_DSM0086_table_fan_1,DSM0086_table_fan_1,table_fan,Curtailable,45,43.6,0.8,1,DHH0086,Appliance
-APP_DSM0086_split_ac_1ton_1,DSM0086_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1217.5,0.65,2,DHH0086,Appliance
+APP_DSM0086_split_ac_1ton_1,DSM0086_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1217.5,0.65,2,DHH0086,Appliance
 APP_DSM0086_refrigerator_1,DSM0086_refrigerator_1,refrigerator,Critical,150,180.3,0.42,1,DHH0086,Appliance
 APP_DSM0086_led_light_1,DSM0086_led_light_1,led_light,Critical,10,11.0,1.0,11,DHH0086,Appliance
 APP_DSM0086_tube_light_1,DSM0086_tube_light_1,tube_light,Critical,36,37.5,1.0,2,DHH0086,Appliance
@@ -2422,7 +2422,7 @@ APP_DSM0086_router_charger_standby_1,DSM0086_router_charger_standby_1,router_cha
 APP_DSM0086_exhaust_fan_1,DSM0086_exhaust_fan_1,exhaust_fan,Curtailable,35,34.6,0.9,1,DHH0086,Appliance
 APP_DSM0087_ceiling_fan_1,DSM0087_ceiling_fan_1,ceiling_fan,Curtailable,75,79.6,0.85,5,DHH0087,Appliance
 APP_DSM0087_table_fan_1,DSM0087_table_fan_1,table_fan,Curtailable,45,43.3,0.8,1,DHH0087,Appliance
-APP_DSM0087_split_ac_1ton_1,DSM0087_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,966.6,0.65,1,DHH0087,Appliance
+APP_DSM0087_split_ac_1ton_1,DSM0087_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,966.6,0.65,1,DHH0087,Appliance
 APP_DSM0087_refrigerator_1,DSM0087_refrigerator_1,refrigerator,Critical,150,147.4,0.42,1,DHH0087,Appliance
 APP_DSM0087_deep_freezer_1,DSM0087_deep_freezer_1,deep_freezer,Critical,180,196.3,0.5,1,DHH0087,Appliance
 APP_DSM0087_led_light_1,DSM0087_led_light_1,led_light,Critical,10,9.7,1.0,13,DHH0087,Appliance
@@ -2437,7 +2437,7 @@ APP_DSM0087_router_charger_standby_1,DSM0087_router_charger_standby_1,router_cha
 APP_DSM0087_exhaust_fan_1,DSM0087_exhaust_fan_1,exhaust_fan,Curtailable,35,46.9,0.9,1,DHH0087,Appliance
 APP_DSM0088_ceiling_fan_1,DSM0088_ceiling_fan_1,ceiling_fan,Curtailable,75,57.9,0.85,3,DHH0088,Appliance
 APP_DSM0088_table_fan_1,DSM0088_table_fan_1,table_fan,Curtailable,45,42.8,0.8,1,DHH0088,Appliance
-APP_DSM0088_split_ac_1_5ton_1,DSM0088_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1640.5,0.65,2,DHH0088,Appliance
+APP_DSM0088_split_ac_1_5ton_1,DSM0088_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1640.5,0.65,2,DHH0088,Appliance
 APP_DSM0088_refrigerator_1,DSM0088_refrigerator_1,refrigerator,Critical,150,148.7,0.42,1,DHH0088,Appliance
 APP_DSM0088_deep_freezer_1,DSM0088_deep_freezer_1,deep_freezer,Critical,180,176.1,0.5,1,DHH0088,Appliance
 APP_DSM0088_led_light_1,DSM0088_led_light_1,led_light,Critical,10,9.4,1.0,16,DHH0088,Appliance
@@ -2454,8 +2454,8 @@ APP_DSM0088_router_charger_standby_1,DSM0088_router_charger_standby_1,router_cha
 APP_DSM0088_exhaust_fan_1,DSM0088_exhaust_fan_1,exhaust_fan,Curtailable,35,39.3,0.9,2,DHH0088,Appliance
 APP_DSM0089_ceiling_fan_1,DSM0089_ceiling_fan_1,ceiling_fan,Curtailable,75,97.8,0.85,3,DHH0089,Appliance
 APP_DSM0089_table_fan_1,DSM0089_table_fan_1,table_fan,Curtailable,45,47.0,0.8,1,DHH0089,Appliance
-APP_DSM0089_split_ac_1ton_1,DSM0089_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,943.7,0.65,1,DHH0089,Appliance
-APP_DSM0089_split_ac_1_5ton_1,DSM0089_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1822.5,0.65,1,DHH0089,Appliance
+APP_DSM0089_split_ac_1ton_1,DSM0089_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,943.7,0.65,1,DHH0089,Appliance
+APP_DSM0089_split_ac_1_5ton_1,DSM0089_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1822.5,0.65,1,DHH0089,Appliance
 APP_DSM0089_refrigerator_1,DSM0089_refrigerator_1,refrigerator,Critical,150,166.4,0.42,1,DHH0089,Appliance
 APP_DSM0089_led_light_1,DSM0089_led_light_1,led_light,Critical,10,7.3,1.0,15,DHH0089,Appliance
 APP_DSM0089_tv_led_1,DSM0089_tv_led_1,tv_led,Curtailable,60,67.5,1.0,2,DHH0089,Appliance
@@ -2468,8 +2468,8 @@ APP_DSM0089_washing_machine_1,DSM0089_washing_machine_1,washing_machine,Schedula
 APP_DSM0089_geyser_water_heater_1,DSM0089_geyser_water_heater_1,geyser_water_heater,Schedulable,1800,1762.5,0.8,1,DHH0089,Appliance
 APP_DSM0089_router_charger_standby_1,DSM0089_router_charger_standby_1,router_charger_standby,Critical,18,16.1,1.0,1,DHH0089,Appliance
 APP_DSM0090_ceiling_fan_1,DSM0090_ceiling_fan_1,ceiling_fan,Curtailable,75,72.0,0.85,4,DHH0090,Appliance
-APP_DSM0090_split_ac_1ton_1,DSM0090_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,966.2,0.65,1,DHH0090,Appliance
-APP_DSM0090_split_ac_1_5ton_1,DSM0090_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1765.4,0.65,2,DHH0090,Appliance
+APP_DSM0090_split_ac_1ton_1,DSM0090_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,966.2,0.65,1,DHH0090,Appliance
+APP_DSM0090_split_ac_1_5ton_1,DSM0090_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1765.4,0.65,2,DHH0090,Appliance
 APP_DSM0090_refrigerator_1,DSM0090_refrigerator_1,refrigerator,Critical,150,111.2,0.42,3,DHH0090,Appliance
 APP_DSM0090_deep_freezer_1,DSM0090_deep_freezer_1,deep_freezer,Critical,180,187.0,0.5,1,DHH0090,Appliance
 APP_DSM0090_led_light_1,DSM0090_led_light_1,led_light,Critical,10,7.1,1.0,19,DHH0090,Appliance
@@ -2484,8 +2484,8 @@ APP_DSM0090_washing_machine_1,DSM0090_washing_machine_1,washing_machine,Schedula
 APP_DSM0090_router_charger_standby_1,DSM0090_router_charger_standby_1,router_charger_standby,Critical,18,17.7,1.0,2,DHH0090,Appliance
 APP_DSM0091_ceiling_fan_1,DSM0091_ceiling_fan_1,ceiling_fan,Curtailable,75,90.6,0.85,5,DHH0091,Appliance
 APP_DSM0091_table_fan_1,DSM0091_table_fan_1,table_fan,Curtailable,45,33.4,0.8,1,DHH0091,Appliance
-APP_DSM0091_split_ac_1ton_1,DSM0091_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1041.2,0.65,2,DHH0091,Appliance
-APP_DSM0091_split_ac_1_5ton_1,DSM0091_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1801.3,0.65,1,DHH0091,Appliance
+APP_DSM0091_split_ac_1ton_1,DSM0091_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1041.2,0.65,2,DHH0091,Appliance
+APP_DSM0091_split_ac_1_5ton_1,DSM0091_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1801.3,0.65,1,DHH0091,Appliance
 APP_DSM0091_refrigerator_1,DSM0091_refrigerator_1,refrigerator,Critical,150,191.6,0.42,1,DHH0091,Appliance
 APP_DSM0091_deep_freezer_1,DSM0091_deep_freezer_1,deep_freezer,Critical,180,176.0,0.5,1,DHH0091,Appliance
 APP_DSM0091_led_light_1,DSM0091_led_light_1,led_light,Critical,10,9.9,1.0,14,DHH0091,Appliance
@@ -2502,8 +2502,8 @@ APP_DSM0091_computer_laptop_1,DSM0091_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0091_router_charger_standby_1,DSM0091_router_charger_standby_1,router_charger_standby,Critical,18,15.2,1.0,1,DHH0091,Appliance
 APP_DSM0091_exhaust_fan_1,DSM0091_exhaust_fan_1,exhaust_fan,Curtailable,35,33.4,0.9,1,DHH0091,Appliance
 APP_DSM0092_ceiling_fan_1,DSM0092_ceiling_fan_1,ceiling_fan,Curtailable,75,80.9,0.85,6,DHH0092,Appliance
-APP_DSM0092_split_ac_1ton_1,DSM0092_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1114.6,0.65,2,DHH0092,Appliance
-APP_DSM0092_split_ac_1_5ton_1,DSM0092_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1769.7,0.65,2,DHH0092,Appliance
+APP_DSM0092_split_ac_1ton_1,DSM0092_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1114.6,0.65,2,DHH0092,Appliance
+APP_DSM0092_split_ac_1_5ton_1,DSM0092_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1769.7,0.65,2,DHH0092,Appliance
 APP_DSM0092_refrigerator_1,DSM0092_refrigerator_1,refrigerator,Critical,150,156.7,0.42,2,DHH0092,Appliance
 APP_DSM0092_led_light_1,DSM0092_led_light_1,led_light,Critical,10,9.1,1.0,11,DHH0092,Appliance
 APP_DSM0092_tv_led_1,DSM0092_tv_led_1,tv_led,Curtailable,60,63.5,1.0,2,DHH0092,Appliance
@@ -2517,8 +2517,8 @@ APP_DSM0092_computer_laptop_1,DSM0092_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0092_router_charger_standby_1,DSM0092_router_charger_standby_1,router_charger_standby,Critical,18,23.9,1.0,3,DHH0092,Appliance
 APP_DSM0093_ceiling_fan_1,DSM0093_ceiling_fan_1,ceiling_fan,Curtailable,75,69.8,0.85,3,DHH0093,Appliance
 APP_DSM0093_table_fan_1,DSM0093_table_fan_1,table_fan,Curtailable,45,44.7,0.8,1,DHH0093,Appliance
-APP_DSM0093_split_ac_1ton_1,DSM0093_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1215.6,0.65,2,DHH0093,Appliance
-APP_DSM0093_split_ac_1_5ton_1,DSM0093_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1670.7,0.65,1,DHH0093,Appliance
+APP_DSM0093_split_ac_1ton_1,DSM0093_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1215.6,0.65,2,DHH0093,Appliance
+APP_DSM0093_split_ac_1_5ton_1,DSM0093_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1670.7,0.65,1,DHH0093,Appliance
 APP_DSM0093_refrigerator_1,DSM0093_refrigerator_1,refrigerator,Critical,150,119.2,0.42,2,DHH0093,Appliance
 APP_DSM0093_led_light_1,DSM0093_led_light_1,led_light,Critical,10,9.8,1.0,9,DHH0093,Appliance
 APP_DSM0093_tv_led_1,DSM0093_tv_led_1,tv_led,Curtailable,60,64.0,1.0,4,DHH0093,Appliance
@@ -2534,7 +2534,7 @@ APP_DSM0093_router_charger_standby_1,DSM0093_router_charger_standby_1,router_cha
 APP_DSM0093_exhaust_fan_1,DSM0093_exhaust_fan_1,exhaust_fan,Curtailable,35,29.6,0.9,2,DHH0093,Appliance
 APP_DSM0094_ceiling_fan_1,DSM0094_ceiling_fan_1,ceiling_fan,Curtailable,75,76.1,0.85,5,DHH0094,Appliance
 APP_DSM0094_table_fan_1,DSM0094_table_fan_1,table_fan,Curtailable,45,61.7,0.8,1,DHH0094,Appliance
-APP_DSM0094_split_ac_1ton_1,DSM0094_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1163.8,0.65,2,DHH0094,Appliance
+APP_DSM0094_split_ac_1ton_1,DSM0094_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1163.8,0.65,2,DHH0094,Appliance
 APP_DSM0094_refrigerator_1,DSM0094_refrigerator_1,refrigerator,Critical,150,152.0,0.42,1,DHH0094,Appliance
 APP_DSM0094_deep_freezer_1,DSM0094_deep_freezer_1,deep_freezer,Critical,180,162.2,0.5,1,DHH0094,Appliance
 APP_DSM0094_led_light_1,DSM0094_led_light_1,led_light,Critical,10,7.3,1.0,10,DHH0094,Appliance
@@ -2582,8 +2582,8 @@ APP_DSM0096_computer_laptop_1,DSM0096_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0096_router_charger_standby_1,DSM0096_router_charger_standby_1,router_charger_standby,Critical,18,22.8,1.0,3,DHH0096,Appliance
 APP_DSM0096_exhaust_fan_1,DSM0096_exhaust_fan_1,exhaust_fan,Curtailable,35,39.4,0.9,2,DHH0096,Appliance
 APP_DSM0097_ceiling_fan_1,DSM0097_ceiling_fan_1,ceiling_fan,Curtailable,75,85.7,0.85,5,DHH0097,Appliance
-APP_DSM0097_split_ac_1ton_1,DSM0097_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1139.5,0.65,1,DHH0097,Appliance
-APP_DSM0097_split_ac_1_5ton_1,DSM0097_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1522.2,0.65,1,DHH0097,Appliance
+APP_DSM0097_split_ac_1ton_1,DSM0097_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1139.5,0.65,1,DHH0097,Appliance
+APP_DSM0097_split_ac_1_5ton_1,DSM0097_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1522.2,0.65,1,DHH0097,Appliance
 APP_DSM0097_refrigerator_1,DSM0097_refrigerator_1,refrigerator,Critical,150,153.7,0.42,2,DHH0097,Appliance
 APP_DSM0097_deep_freezer_1,DSM0097_deep_freezer_1,deep_freezer,Critical,180,195.0,0.5,1,DHH0097,Appliance
 APP_DSM0097_led_light_1,DSM0097_led_light_1,led_light,Critical,10,12.0,1.0,11,DHH0097,Appliance
@@ -2602,7 +2602,7 @@ APP_DSM0097_computer_laptop_1,DSM0097_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0097_router_charger_standby_1,DSM0097_router_charger_standby_1,router_charger_standby,Critical,18,19.0,1.0,2,DHH0097,Appliance
 APP_DSM0097_exhaust_fan_1,DSM0097_exhaust_fan_1,exhaust_fan,Curtailable,35,41.6,0.9,1,DHH0097,Appliance
 APP_DSM0098_ceiling_fan_1,DSM0098_ceiling_fan_1,ceiling_fan,Curtailable,75,67.8,0.85,4,DHH0098,Appliance
-APP_DSM0098_split_ac_1ton_1,DSM0098_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,999.6,0.65,2,DHH0098,Appliance
+APP_DSM0098_split_ac_1ton_1,DSM0098_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,999.6,0.65,2,DHH0098,Appliance
 APP_DSM0098_refrigerator_1,DSM0098_refrigerator_1,refrigerator,Critical,150,130.0,0.42,1,DHH0098,Appliance
 APP_DSM0098_led_light_1,DSM0098_led_light_1,led_light,Critical,10,7.4,1.0,14,DHH0098,Appliance
 APP_DSM0098_tv_led_1,DSM0098_tv_led_1,tv_led,Curtailable,60,43.9,1.0,2,DHH0098,Appliance
@@ -2616,7 +2616,7 @@ APP_DSM0098_computer_laptop_1,DSM0098_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0098_router_charger_standby_1,DSM0098_router_charger_standby_1,router_charger_standby,Critical,18,18.9,1.0,2,DHH0098,Appliance
 APP_DSM0098_exhaust_fan_1,DSM0098_exhaust_fan_1,exhaust_fan,Curtailable,35,25.7,0.9,3,DHH0098,Appliance
 APP_DSM0099_ceiling_fan_1,DSM0099_ceiling_fan_1,ceiling_fan,Curtailable,75,89.3,0.85,3,DHH0099,Appliance
-APP_DSM0099_split_ac_1_5ton_1,DSM0099_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1815.4,0.65,1,DHH0099,Appliance
+APP_DSM0099_split_ac_1_5ton_1,DSM0099_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1815.4,0.65,1,DHH0099,Appliance
 APP_DSM0099_refrigerator_1,DSM0099_refrigerator_1,refrigerator,Critical,150,90.5,0.42,2,DHH0099,Appliance
 APP_DSM0099_led_light_1,DSM0099_led_light_1,led_light,Critical,10,12.1,1.0,13,DHH0099,Appliance
 APP_DSM0099_tube_light_1,DSM0099_tube_light_1,tube_light,Critical,36,34.9,1.0,2,DHH0099,Appliance
@@ -2632,7 +2632,7 @@ APP_DSM0099_computer_laptop_1,DSM0099_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0099_router_charger_standby_1,DSM0099_router_charger_standby_1,router_charger_standby,Critical,18,13.1,1.0,3,DHH0099,Appliance
 APP_DSM0099_exhaust_fan_1,DSM0099_exhaust_fan_1,exhaust_fan,Curtailable,35,30.2,0.9,2,DHH0099,Appliance
 APP_DSM0100_ceiling_fan_1,DSM0100_ceiling_fan_1,ceiling_fan,Curtailable,75,59.3,0.85,5,DHH0100,Appliance
-APP_DSM0100_split_ac_1_5ton_1,DSM0100_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1523.6,0.65,1,DHH0100,Appliance
+APP_DSM0100_split_ac_1_5ton_1,DSM0100_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1523.6,0.65,1,DHH0100,Appliance
 APP_DSM0100_refrigerator_1,DSM0100_refrigerator_1,refrigerator,Critical,150,172.5,0.42,2,DHH0100,Appliance
 APP_DSM0100_deep_freezer_1,DSM0100_deep_freezer_1,deep_freezer,Critical,180,168.1,0.5,1,DHH0100,Appliance
 APP_DSM0100_led_light_1,DSM0100_led_light_1,led_light,Critical,10,8.3,1.0,10,DHH0100,Appliance
@@ -2646,8 +2646,8 @@ APP_DSM0100_computer_laptop_1,DSM0100_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0100_router_charger_standby_1,DSM0100_router_charger_standby_1,router_charger_standby,Critical,18,27.8,1.0,3,DHH0100,Appliance
 APP_DSM0100_exhaust_fan_1,DSM0100_exhaust_fan_1,exhaust_fan,Curtailable,35,34.8,0.9,1,DHH0100,Appliance
 APP_DSM0101_ceiling_fan_1,DSM0101_ceiling_fan_1,ceiling_fan,Curtailable,75,84.1,0.85,4,DHH0101,Appliance
-APP_DSM0101_split_ac_1ton_1,DSM0101_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1015.3,0.65,1,DHH0101,Appliance
-APP_DSM0101_split_ac_1_5ton_1,DSM0101_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1431.2,0.65,2,DHH0101,Appliance
+APP_DSM0101_split_ac_1ton_1,DSM0101_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1015.3,0.65,1,DHH0101,Appliance
+APP_DSM0101_split_ac_1_5ton_1,DSM0101_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1431.2,0.65,2,DHH0101,Appliance
 APP_DSM0101_refrigerator_1,DSM0101_refrigerator_1,refrigerator,Critical,150,160.1,0.42,1,DHH0101,Appliance
 APP_DSM0101_led_light_1,DSM0101_led_light_1,led_light,Critical,10,5.4,1.0,13,DHH0101,Appliance
 APP_DSM0101_tv_led_1,DSM0101_tv_led_1,tv_led,Curtailable,60,75.1,1.0,2,DHH0101,Appliance
@@ -2663,8 +2663,8 @@ APP_DSM0101_router_charger_standby_1,DSM0101_router_charger_standby_1,router_cha
 APP_DSM0101_exhaust_fan_1,DSM0101_exhaust_fan_1,exhaust_fan,Curtailable,35,28.9,0.9,2,DHH0101,Appliance
 APP_DSM0102_ceiling_fan_1,DSM0102_ceiling_fan_1,ceiling_fan,Curtailable,75,51.4,0.85,5,DHH0102,Appliance
 APP_DSM0102_table_fan_1,DSM0102_table_fan_1,table_fan,Curtailable,45,49.3,0.8,1,DHH0102,Appliance
-APP_DSM0102_split_ac_1ton_1,DSM0102_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1022.6,0.65,2,DHH0102,Appliance
-APP_DSM0102_split_ac_1_5ton_1,DSM0102_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1662.8,0.65,2,DHH0102,Appliance
+APP_DSM0102_split_ac_1ton_1,DSM0102_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1022.6,0.65,2,DHH0102,Appliance
+APP_DSM0102_split_ac_1_5ton_1,DSM0102_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1662.8,0.65,2,DHH0102,Appliance
 APP_DSM0102_refrigerator_1,DSM0102_refrigerator_1,refrigerator,Critical,150,116.5,0.42,1,DHH0102,Appliance
 APP_DSM0102_led_light_1,DSM0102_led_light_1,led_light,Critical,10,7.9,1.0,8,DHH0102,Appliance
 APP_DSM0102_tv_led_1,DSM0102_tv_led_1,tv_led,Curtailable,60,64.0,1.0,1,DHH0102,Appliance
@@ -2678,7 +2678,7 @@ APP_DSM0102_ips_backup_1,DSM0102_ips_backup_1,ips_backup,Schedulable,300,336.1,0
 APP_DSM0102_computer_laptop_1,DSM0102_computer_laptop_1,computer_laptop,Curtailable,80,59.5,1.0,2,DHH0102,Appliance
 APP_DSM0102_router_charger_standby_1,DSM0102_router_charger_standby_1,router_charger_standby,Critical,18,20.1,1.0,2,DHH0102,Appliance
 APP_DSM0103_table_fan_1,DSM0103_table_fan_1,table_fan,Curtailable,45,52.4,0.8,1,DHH0103,Appliance
-APP_DSM0103_split_ac_1_5ton_1,DSM0103_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1547.1,0.65,1,DHH0103,Appliance
+APP_DSM0103_split_ac_1_5ton_1,DSM0103_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1547.1,0.65,1,DHH0103,Appliance
 APP_DSM0103_refrigerator_1,DSM0103_refrigerator_1,refrigerator,Critical,150,148.9,0.42,1,DHH0103,Appliance
 APP_DSM0103_deep_freezer_1,DSM0103_deep_freezer_1,deep_freezer,Critical,180,193.1,0.5,1,DHH0103,Appliance
 APP_DSM0103_led_light_1,DSM0103_led_light_1,led_light,Critical,10,12.4,1.0,17,DHH0103,Appliance
@@ -2695,8 +2695,8 @@ APP_DSM0103_computer_laptop_1,DSM0103_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0103_router_charger_standby_1,DSM0103_router_charger_standby_1,router_charger_standby,Critical,18,13.3,1.0,2,DHH0103,Appliance
 APP_DSM0103_exhaust_fan_1,DSM0103_exhaust_fan_1,exhaust_fan,Curtailable,35,39.5,0.9,1,DHH0103,Appliance
 APP_DSM0104_ceiling_fan_1,DSM0104_ceiling_fan_1,ceiling_fan,Curtailable,75,52.6,0.85,4,DHH0104,Appliance
-APP_DSM0104_split_ac_1ton_1,DSM0104_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1022.7,0.65,1,DHH0104,Appliance
-APP_DSM0104_split_ac_1_5ton_1,DSM0104_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,2169.8,0.65,1,DHH0104,Appliance
+APP_DSM0104_split_ac_1ton_1,DSM0104_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1022.7,0.65,1,DHH0104,Appliance
+APP_DSM0104_split_ac_1_5ton_1,DSM0104_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,2169.8,0.65,1,DHH0104,Appliance
 APP_DSM0104_refrigerator_1,DSM0104_refrigerator_1,refrigerator,Critical,150,153.1,0.42,1,DHH0104,Appliance
 APP_DSM0104_led_light_1,DSM0104_led_light_1,led_light,Critical,10,11.0,1.0,9,DHH0104,Appliance
 APP_DSM0104_tv_led_1,DSM0104_tv_led_1,tv_led,Curtailable,60,71.4,1.0,2,DHH0104,Appliance
@@ -2712,7 +2712,7 @@ APP_DSM0104_computer_laptop_1,DSM0104_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0104_router_charger_standby_1,DSM0104_router_charger_standby_1,router_charger_standby,Critical,18,15.8,1.0,2,DHH0104,Appliance
 APP_DSM0104_exhaust_fan_1,DSM0104_exhaust_fan_1,exhaust_fan,Curtailable,35,46.2,0.9,1,DHH0104,Appliance
 APP_DSM0105_ceiling_fan_1,DSM0105_ceiling_fan_1,ceiling_fan,Curtailable,75,90.2,0.85,5,DHH0105,Appliance
-APP_DSM0105_split_ac_1_5ton_1,DSM0105_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1205.8,0.65,1,DHH0105,Appliance
+APP_DSM0105_split_ac_1_5ton_1,DSM0105_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1205.8,0.65,1,DHH0105,Appliance
 APP_DSM0105_refrigerator_1,DSM0105_refrigerator_1,refrigerator,Critical,150,138.8,0.42,1,DHH0105,Appliance
 APP_DSM0105_led_light_1,DSM0105_led_light_1,led_light,Critical,10,11.5,1.0,12,DHH0105,Appliance
 APP_DSM0105_tv_led_1,DSM0105_tv_led_1,tv_led,Curtailable,60,45.8,1.0,1,DHH0105,Appliance
@@ -2726,8 +2726,8 @@ APP_DSM0105_computer_laptop_1,DSM0105_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0105_router_charger_standby_1,DSM0105_router_charger_standby_1,router_charger_standby,Critical,18,21.4,1.0,3,DHH0105,Appliance
 APP_DSM0105_exhaust_fan_1,DSM0105_exhaust_fan_1,exhaust_fan,Curtailable,35,39.6,0.9,1,DHH0105,Appliance
 APP_DSM0106_ceiling_fan_1,DSM0106_ceiling_fan_1,ceiling_fan,Curtailable,75,77.2,0.85,4,DHH0106,Appliance
-APP_DSM0106_split_ac_1ton_1,DSM0106_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1138.4,0.65,1,DHH0106,Appliance
-APP_DSM0106_split_ac_1_5ton_1,DSM0106_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1738.8,0.65,1,DHH0106,Appliance
+APP_DSM0106_split_ac_1ton_1,DSM0106_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1138.4,0.65,1,DHH0106,Appliance
+APP_DSM0106_split_ac_1_5ton_1,DSM0106_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1738.8,0.65,1,DHH0106,Appliance
 APP_DSM0106_refrigerator_1,DSM0106_refrigerator_1,refrigerator,Critical,150,161.4,0.42,2,DHH0106,Appliance
 APP_DSM0106_led_light_1,DSM0106_led_light_1,led_light,Critical,10,10.7,1.0,13,DHH0106,Appliance
 APP_DSM0106_tv_led_1,DSM0106_tv_led_1,tv_led,Curtailable,60,81.0,1.0,2,DHH0106,Appliance
@@ -2743,7 +2743,7 @@ APP_DSM0106_computer_laptop_1,DSM0106_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0106_router_charger_standby_1,DSM0106_router_charger_standby_1,router_charger_standby,Critical,18,12.1,1.0,2,DHH0106,Appliance
 APP_DSM0106_exhaust_fan_1,DSM0106_exhaust_fan_1,exhaust_fan,Curtailable,35,33.9,0.9,2,DHH0106,Appliance
 APP_DSM0107_ceiling_fan_1,DSM0107_ceiling_fan_1,ceiling_fan,Curtailable,75,73.7,0.85,4,DHH0107,Appliance
-APP_DSM0107_split_ac_1_5ton_1,DSM0107_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1739.0,0.65,1,DHH0107,Appliance
+APP_DSM0107_split_ac_1_5ton_1,DSM0107_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1739.0,0.65,1,DHH0107,Appliance
 APP_DSM0107_refrigerator_1,DSM0107_refrigerator_1,refrigerator,Critical,150,140.8,0.42,1,DHH0107,Appliance
 APP_DSM0107_deep_freezer_1,DSM0107_deep_freezer_1,deep_freezer,Critical,180,203.8,0.5,1,DHH0107,Appliance
 APP_DSM0107_led_light_1,DSM0107_led_light_1,led_light,Critical,10,8.3,1.0,12,DHH0107,Appliance
@@ -2759,7 +2759,7 @@ APP_DSM0107_computer_laptop_1,DSM0107_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0107_router_charger_standby_1,DSM0107_router_charger_standby_1,router_charger_standby,Critical,18,16.7,1.0,3,DHH0107,Appliance
 APP_DSM0107_exhaust_fan_1,DSM0107_exhaust_fan_1,exhaust_fan,Curtailable,35,44.2,0.9,1,DHH0107,Appliance
 APP_DSM0108_ceiling_fan_1,DSM0108_ceiling_fan_1,ceiling_fan,Curtailable,75,79.8,0.85,4,DHH0108,Appliance
-APP_DSM0108_split_ac_1ton_1,DSM0108_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1407.1,0.65,2,DHH0108,Appliance
+APP_DSM0108_split_ac_1ton_1,DSM0108_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1407.1,0.65,2,DHH0108,Appliance
 APP_DSM0108_refrigerator_1,DSM0108_refrigerator_1,refrigerator,Critical,150,155.5,0.42,2,DHH0108,Appliance
 APP_DSM0108_led_light_1,DSM0108_led_light_1,led_light,Critical,10,5.6,1.0,14,DHH0108,Appliance
 APP_DSM0108_tv_led_1,DSM0108_tv_led_1,tv_led,Curtailable,60,61.6,1.0,3,DHH0108,Appliance
@@ -2773,8 +2773,8 @@ APP_DSM0108_geyser_water_heater_1,DSM0108_geyser_water_heater_1,geyser_water_hea
 APP_DSM0108_computer_laptop_1,DSM0108_computer_laptop_1,computer_laptop,Curtailable,80,36.2,1.0,3,DHH0108,Appliance
 APP_DSM0108_router_charger_standby_1,DSM0108_router_charger_standby_1,router_charger_standby,Critical,18,17.9,1.0,1,DHH0108,Appliance
 APP_DSM0109_ceiling_fan_1,DSM0109_ceiling_fan_1,ceiling_fan,Curtailable,75,89.9,0.85,3,DHH0109,Appliance
-APP_DSM0109_split_ac_1ton_1,DSM0109_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1248.4,0.65,1,DHH0109,Appliance
-APP_DSM0109_split_ac_1_5ton_1,DSM0109_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1465.2,0.65,2,DHH0109,Appliance
+APP_DSM0109_split_ac_1ton_1,DSM0109_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1248.4,0.65,1,DHH0109,Appliance
+APP_DSM0109_split_ac_1_5ton_1,DSM0109_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1465.2,0.65,2,DHH0109,Appliance
 APP_DSM0109_refrigerator_1,DSM0109_refrigerator_1,refrigerator,Critical,150,141.2,0.42,1,DHH0109,Appliance
 APP_DSM0109_deep_freezer_1,DSM0109_deep_freezer_1,deep_freezer,Critical,180,205.1,0.5,1,DHH0109,Appliance
 APP_DSM0109_led_light_1,DSM0109_led_light_1,led_light,Critical,10,7.7,1.0,10,DHH0109,Appliance
@@ -2791,8 +2791,8 @@ APP_DSM0109_router_charger_standby_1,DSM0109_router_charger_standby_1,router_cha
 APP_DSM0109_exhaust_fan_1,DSM0109_exhaust_fan_1,exhaust_fan,Curtailable,35,31.4,0.9,3,DHH0109,Appliance
 APP_DSM0110_ceiling_fan_1,DSM0110_ceiling_fan_1,ceiling_fan,Curtailable,75,92.6,0.85,4,DHH0110,Appliance
 APP_DSM0110_table_fan_1,DSM0110_table_fan_1,table_fan,Curtailable,45,46.6,0.8,1,DHH0110,Appliance
-APP_DSM0110_split_ac_1ton_1,DSM0110_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1039.2,0.65,2,DHH0110,Appliance
-APP_DSM0110_split_ac_1_5ton_1,DSM0110_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1531.1,0.65,2,DHH0110,Appliance
+APP_DSM0110_split_ac_1ton_1,DSM0110_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1039.2,0.65,2,DHH0110,Appliance
+APP_DSM0110_split_ac_1_5ton_1,DSM0110_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1531.1,0.65,2,DHH0110,Appliance
 APP_DSM0110_refrigerator_1,DSM0110_refrigerator_1,refrigerator,Critical,150,169.5,0.42,1,DHH0110,Appliance
 APP_DSM0110_deep_freezer_1,DSM0110_deep_freezer_1,deep_freezer,Critical,180,194.3,0.5,1,DHH0110,Appliance
 APP_DSM0110_led_light_1,DSM0110_led_light_1,led_light,Critical,10,7.7,1.0,14,DHH0110,Appliance
@@ -2810,8 +2810,8 @@ APP_DSM0110_router_charger_standby_1,DSM0110_router_charger_standby_1,router_cha
 APP_DSM0110_exhaust_fan_1,DSM0110_exhaust_fan_1,exhaust_fan,Curtailable,35,35.9,0.9,2,DHH0110,Appliance
 APP_DSM0111_ceiling_fan_1,DSM0111_ceiling_fan_1,ceiling_fan,Curtailable,75,86.2,0.85,3,DHH0111,Appliance
 APP_DSM0111_table_fan_1,DSM0111_table_fan_1,table_fan,Curtailable,45,44.7,0.8,1,DHH0111,Appliance
-APP_DSM0111_split_ac_1ton_1,DSM0111_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1140.6,0.65,1,DHH0111,Appliance
-APP_DSM0111_split_ac_1_5ton_1,DSM0111_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,2024.1,0.65,1,DHH0111,Appliance
+APP_DSM0111_split_ac_1ton_1,DSM0111_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1140.6,0.65,1,DHH0111,Appliance
+APP_DSM0111_split_ac_1_5ton_1,DSM0111_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,2024.1,0.65,1,DHH0111,Appliance
 APP_DSM0111_refrigerator_1,DSM0111_refrigerator_1,refrigerator,Critical,150,135.5,0.42,1,DHH0111,Appliance
 APP_DSM0111_deep_freezer_1,DSM0111_deep_freezer_1,deep_freezer,Critical,180,186.1,0.5,1,DHH0111,Appliance
 APP_DSM0111_led_light_1,DSM0111_led_light_1,led_light,Critical,10,5.0,1.0,12,DHH0111,Appliance
@@ -2828,7 +2828,7 @@ APP_DSM0111_router_charger_standby_1,DSM0111_router_charger_standby_1,router_cha
 APP_DSM0111_exhaust_fan_1,DSM0111_exhaust_fan_1,exhaust_fan,Curtailable,35,33.3,0.9,1,DHH0111,Appliance
 APP_DSM0112_ceiling_fan_1,DSM0112_ceiling_fan_1,ceiling_fan,Curtailable,75,69.0,0.85,6,DHH0112,Appliance
 APP_DSM0112_table_fan_1,DSM0112_table_fan_1,table_fan,Curtailable,45,51.0,0.8,1,DHH0112,Appliance
-APP_DSM0112_split_ac_1_5ton_1,DSM0112_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1431.9,0.65,1,DHH0112,Appliance
+APP_DSM0112_split_ac_1_5ton_1,DSM0112_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1431.9,0.65,1,DHH0112,Appliance
 APP_DSM0112_refrigerator_1,DSM0112_refrigerator_1,refrigerator,Critical,150,127.3,0.42,2,DHH0112,Appliance
 APP_DSM0112_deep_freezer_1,DSM0112_deep_freezer_1,deep_freezer,Critical,180,178.8,0.5,1,DHH0112,Appliance
 APP_DSM0112_led_light_1,DSM0112_led_light_1,led_light,Critical,10,12.1,1.0,11,DHH0112,Appliance
@@ -2844,7 +2844,7 @@ APP_DSM0112_computer_laptop_1,DSM0112_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0112_router_charger_standby_1,DSM0112_router_charger_standby_1,router_charger_standby,Critical,18,25.5,1.0,1,DHH0112,Appliance
 APP_DSM0112_exhaust_fan_1,DSM0112_exhaust_fan_1,exhaust_fan,Curtailable,35,40.4,0.9,2,DHH0112,Appliance
 APP_DSM0113_ceiling_fan_1,DSM0113_ceiling_fan_1,ceiling_fan,Curtailable,75,66.7,0.85,3,DHH0113,Appliance
-APP_DSM0113_split_ac_1_5ton_1,DSM0113_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1580.5,0.65,1,DHH0113,Appliance
+APP_DSM0113_split_ac_1_5ton_1,DSM0113_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1580.5,0.65,1,DHH0113,Appliance
 APP_DSM0113_refrigerator_1,DSM0113_refrigerator_1,refrigerator,Critical,150,161.5,0.42,1,DHH0113,Appliance
 APP_DSM0113_led_light_1,DSM0113_led_light_1,led_light,Critical,10,8.9,1.0,9,DHH0113,Appliance
 APP_DSM0113_tube_light_1,DSM0113_tube_light_1,tube_light,Critical,36,34.3,1.0,2,DHH0113,Appliance
@@ -2874,8 +2874,8 @@ APP_DSM0114_computer_laptop_1,DSM0114_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0114_router_charger_standby_1,DSM0114_router_charger_standby_1,router_charger_standby,Critical,18,15.2,1.0,2,DHH0114,Appliance
 APP_DSM0114_exhaust_fan_1,DSM0114_exhaust_fan_1,exhaust_fan,Curtailable,35,35.2,0.9,2,DHH0114,Appliance
 APP_DSM0115_ceiling_fan_1,DSM0115_ceiling_fan_1,ceiling_fan,Curtailable,75,65.2,0.85,5,DHH0115,Appliance
-APP_DSM0115_split_ac_1ton_1,DSM0115_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1055.0,0.65,2,DHH0115,Appliance
-APP_DSM0115_split_ac_1_5ton_1,DSM0115_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1667.7,0.65,1,DHH0115,Appliance
+APP_DSM0115_split_ac_1ton_1,DSM0115_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1055.0,0.65,2,DHH0115,Appliance
+APP_DSM0115_split_ac_1_5ton_1,DSM0115_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1667.7,0.65,1,DHH0115,Appliance
 APP_DSM0115_refrigerator_1,DSM0115_refrigerator_1,refrigerator,Critical,150,172.3,0.42,1,DHH0115,Appliance
 APP_DSM0115_deep_freezer_1,DSM0115_deep_freezer_1,deep_freezer,Critical,180,179.0,0.5,1,DHH0115,Appliance
 APP_DSM0115_led_light_1,DSM0115_led_light_1,led_light,Critical,10,7.6,1.0,13,DHH0115,Appliance
@@ -2891,7 +2891,7 @@ APP_DSM0115_geyser_water_heater_1,DSM0115_geyser_water_heater_1,geyser_water_hea
 APP_DSM0115_computer_laptop_1,DSM0115_computer_laptop_1,computer_laptop,Curtailable,80,78.5,1.0,1,DHH0115,Appliance
 APP_DSM0115_router_charger_standby_1,DSM0115_router_charger_standby_1,router_charger_standby,Critical,18,19.5,1.0,2,DHH0115,Appliance
 APP_DSM0116_ceiling_fan_1,DSM0116_ceiling_fan_1,ceiling_fan,Curtailable,75,90.6,0.85,5,DHH0116,Appliance
-APP_DSM0116_split_ac_1_5ton_1,DSM0116_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1519.3,0.65,1,DHH0116,Appliance
+APP_DSM0116_split_ac_1_5ton_1,DSM0116_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1519.3,0.65,1,DHH0116,Appliance
 APP_DSM0116_refrigerator_1,DSM0116_refrigerator_1,refrigerator,Critical,150,205.1,0.42,1,DHH0116,Appliance
 APP_DSM0116_led_light_1,DSM0116_led_light_1,led_light,Critical,10,7.3,1.0,15,DHH0116,Appliance
 APP_DSM0116_tv_led_1,DSM0116_tv_led_1,tv_led,Curtailable,60,47.4,1.0,2,DHH0116,Appliance
@@ -2907,7 +2907,7 @@ APP_DSM0116_geyser_water_heater_1,DSM0116_geyser_water_heater_1,geyser_water_hea
 APP_DSM0116_computer_laptop_1,DSM0116_computer_laptop_1,computer_laptop,Curtailable,80,62.7,1.0,3,DHH0116,Appliance
 APP_DSM0116_router_charger_standby_1,DSM0116_router_charger_standby_1,router_charger_standby,Critical,18,21.1,1.0,1,DHH0116,Appliance
 APP_DSM0117_ceiling_fan_1,DSM0117_ceiling_fan_1,ceiling_fan,Curtailable,75,66.5,0.85,3,DHH0117,Appliance
-APP_DSM0117_split_ac_1ton_1,DSM0117_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,953.6,0.65,1,DHH0117,Appliance
+APP_DSM0117_split_ac_1ton_1,DSM0117_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,953.6,0.65,1,DHH0117,Appliance
 APP_DSM0117_refrigerator_1,DSM0117_refrigerator_1,refrigerator,Critical,150,119.4,0.42,2,DHH0117,Appliance
 APP_DSM0117_deep_freezer_1,DSM0117_deep_freezer_1,deep_freezer,Critical,180,183.4,0.5,1,DHH0117,Appliance
 APP_DSM0117_led_light_1,DSM0117_led_light_1,led_light,Critical,10,9.0,1.0,10,DHH0117,Appliance
@@ -2925,8 +2925,8 @@ APP_DSM0117_computer_laptop_1,DSM0117_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0117_router_charger_standby_1,DSM0117_router_charger_standby_1,router_charger_standby,Critical,18,16.0,1.0,3,DHH0117,Appliance
 APP_DSM0117_exhaust_fan_1,DSM0117_exhaust_fan_1,exhaust_fan,Curtailable,35,33.4,0.9,1,DHH0117,Appliance
 APP_DSM0118_ceiling_fan_1,DSM0118_ceiling_fan_1,ceiling_fan,Curtailable,75,99.3,0.85,5,DHH0118,Appliance
-APP_DSM0118_split_ac_1ton_1,DSM0118_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1089.3,0.65,2,DHH0118,Appliance
-APP_DSM0118_split_ac_1_5ton_1,DSM0118_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1464.3,0.65,2,DHH0118,Appliance
+APP_DSM0118_split_ac_1ton_1,DSM0118_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1089.3,0.65,2,DHH0118,Appliance
+APP_DSM0118_split_ac_1_5ton_1,DSM0118_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1464.3,0.65,2,DHH0118,Appliance
 APP_DSM0118_refrigerator_1,DSM0118_refrigerator_1,refrigerator,Critical,150,125.7,0.42,1,DHH0118,Appliance
 APP_DSM0118_led_light_1,DSM0118_led_light_1,led_light,Critical,10,14.1,1.0,11,DHH0118,Appliance
 APP_DSM0118_tube_light_1,DSM0118_tube_light_1,tube_light,Critical,36,32.3,1.0,4,DHH0118,Appliance
@@ -2940,8 +2940,8 @@ APP_DSM0118_computer_laptop_1,DSM0118_computer_laptop_1,computer_laptop,Curtaila
 APP_DSM0118_router_charger_standby_1,DSM0118_router_charger_standby_1,router_charger_standby,Critical,18,18.2,1.0,1,DHH0118,Appliance
 APP_DSM0118_exhaust_fan_1,DSM0118_exhaust_fan_1,exhaust_fan,Curtailable,35,41.7,0.9,1,DHH0118,Appliance
 APP_DSM0119_ceiling_fan_1,DSM0119_ceiling_fan_1,ceiling_fan,Curtailable,75,72.9,0.85,4,DHH0119,Appliance
-APP_DSM0119_split_ac_1ton_1,DSM0119_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1058.1,0.65,2,DHH0119,Appliance
-APP_DSM0119_split_ac_1_5ton_1,DSM0119_split_ac_1_5ton_1,split_ac_1_5ton,Schedulable,1650,1552.1,0.65,2,DHH0119,Appliance
+APP_DSM0119_split_ac_1ton_1,DSM0119_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1058.1,0.65,2,DHH0119,Appliance
+APP_DSM0119_split_ac_1_5ton_1,DSM0119_split_ac_1_5ton_1,split_ac_1_5ton,Curtailable,1650,1552.1,0.65,2,DHH0119,Appliance
 APP_DSM0119_refrigerator_1,DSM0119_refrigerator_1,refrigerator,Critical,150,187.1,0.42,1,DHH0119,Appliance
 APP_DSM0119_led_light_1,DSM0119_led_light_1,led_light,Critical,10,12.5,1.0,9,DHH0119,Appliance
 APP_DSM0119_tube_light_1,DSM0119_tube_light_1,tube_light,Critical,36,36.5,1.0,3,DHH0119,Appliance
@@ -2957,7 +2957,7 @@ APP_DSM0119_geyser_water_heater_1,DSM0119_geyser_water_heater_1,geyser_water_hea
 APP_DSM0119_router_charger_standby_1,DSM0119_router_charger_standby_1,router_charger_standby,Critical,18,11.3,1.0,1,DHH0119,Appliance
 APP_DSM0119_exhaust_fan_1,DSM0119_exhaust_fan_1,exhaust_fan,Curtailable,35,26.3,0.9,1,DHH0119,Appliance
 APP_DSM0120_ceiling_fan_1,DSM0120_ceiling_fan_1,ceiling_fan,Curtailable,75,80.2,0.85,4,DHH0120,Appliance
-APP_DSM0120_split_ac_1ton_1,DSM0120_split_ac_1ton_1,split_ac_1ton,Schedulable,1100,1306.7,0.65,1,DHH0120,Appliance
+APP_DSM0120_split_ac_1ton_1,DSM0120_split_ac_1ton_1,split_ac_1ton,Curtailable,1100,1306.7,0.65,1,DHH0120,Appliance
 APP_DSM0120_refrigerator_1,DSM0120_refrigerator_1,refrigerator,Critical,150,141.9,0.42,1,DHH0120,Appliance
 APP_DSM0120_led_light_1,DSM0120_led_light_1,led_light,Critical,10,6.8,1.0,15,DHH0120,Appliance
 APP_DSM0120_tv_led_1,DSM0120_tv_led_1,tv_led,Curtailable,60,56.6,1.0,3,DHH0120,Appliance

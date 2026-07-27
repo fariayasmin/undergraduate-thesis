@@ -123,7 +123,7 @@ DHH0015,Dhanmondi,middle,2,42151,water_pump_0_5hp,1,Schedulable,373,308.4,0.95,1
 DHH0015,Dhanmondi,middle,2,42151,router_charger_standby,1,Critical,18,25.6,1.0,1,DSM0015,DSM0015_router_charger_standby_1
 DHH0016,Dhanmondi,middle,4,47303,ceiling_fan,1,Curtailable,75,77.0,0.85,4,DSM0016,DSM0016_ceiling_fan_1
 DHH0016,Dhanmondi,middle,4,47303,table_fan,1,Curtailable,45,29.2,0.8,1,DSM0016,DSM0016_table_fan_1
-DHH0016,Dhanmondi,middle,4,47303,split_ac_1_5ton,1,Schedulable,1650,1650.5,0.65,1,DSM0016,DSM0016_split_ac_1_5ton_1
+DHH0016,Dhanmondi,middle,4,47303,split_ac_1_5ton,1,Curtailable,1650,1650.5,0.65,1,DSM0016,DSM0016_split_ac_1_5ton_1
 DHH0016,Dhanmondi,middle,4,47303,refrigerator,1,Critical,150,143.7,0.42,1,DSM0016,DSM0016_refrigerator_1
 DHH0016,Dhanmondi,middle,4,47303,led_light,1,Critical,10,8.9,1.0,8,DSM0016,DSM0016_led_light_1
 DHH0016,Dhanmondi,middle,4,47303,tube_light,1,Critical,36,39.5,1.0,1,DSM0016,DSM0016_tube_light_1
@@ -203,7 +203,7 @@ DHH0022,Dhanmondi,middle,5,51824,router_charger_standby,1,Critical,18,15.4,1.0,1
 DHH0022,Dhanmondi,middle,5,51824,exhaust_fan,1,Curtailable,35,38.8,0.9,1,DSM0022,DSM0022_exhaust_fan_1
 DHH0023,Dhanmondi,middle,2,46307,ceiling_fan,1,Curtailable,75,82.9,0.85,2,DSM0023,DSM0023_ceiling_fan_1
 DHH0023,Dhanmondi,middle,2,46307,table_fan,1,Curtailable,45,50.4,0.8,1,DSM0023,DSM0023_table_fan_1
-DHH0023,Dhanmondi,middle,2,46307,split_ac_1ton,1,Schedulable,1100,1367.5,0.65,1,DSM0023,DSM0023_split_ac_1ton_1
+DHH0023,Dhanmondi,middle,2,46307,split_ac_1ton,1,Curtailable,1100,1367.5,0.65,1,DSM0023,DSM0023_split_ac_1ton_1
 DHH0023,Dhanmondi,middle,2,46307,refrigerator,1,Critical,150,136.6,0.42,1,DSM0023,DSM0023_refrigerator_1
 DHH0023,Dhanmondi,middle,2,46307,led_light,1,Critical,10,8.6,1.0,8,DSM0023,DSM0023_led_light_1
 DHH0023,Dhanmondi,middle,2,46307,tube_light,1,Critical,36,29.4,1.0,3,DSM0023,DSM0023_tube_light_1
@@ -215,8 +215,8 @@ DHH0023,Dhanmondi,middle,2,46307,water_pump_0_5hp,1,Schedulable,373,388.8,0.95,1
 DHH0023,Dhanmondi,middle,2,46307,router_charger_standby,1,Critical,18,17.4,1.0,2,DSM0023,DSM0023_router_charger_standby_1
 DHH0024,Dhanmondi,middle,4,47958,ceiling_fan,1,Curtailable,75,86.3,0.85,2,DSM0024,DSM0024_ceiling_fan_1
 DHH0024,Dhanmondi,middle,4,47958,table_fan,1,Curtailable,45,61.8,0.8,1,DSM0024,DSM0024_table_fan_1
-DHH0024,Dhanmondi,middle,4,47958,split_ac_1ton,1,Schedulable,1100,1212.4,0.65,1,DSM0024,DSM0024_split_ac_1ton_1
-DHH0024,Dhanmondi,middle,4,47958,split_ac_1_5ton,1,Schedulable,1650,1866.4,0.65,1,DSM0024,DSM0024_split_ac_1_5ton_1
+DHH0024,Dhanmondi,middle,4,47958,split_ac_1ton,1,Curtailable,1100,1212.4,0.65,1,DSM0024,DSM0024_split_ac_1ton_1
+DHH0024,Dhanmondi,middle,4,47958,split_ac_1_5ton,1,Curtailable,1650,1866.4,0.65,1,DSM0024,DSM0024_split_ac_1_5ton_1
 DHH0024,Dhanmondi,middle,4,47958,refrigerator,1,Critical,150,170.7,0.42,1,DSM0024,DSM0024_refrigerator_1
 DHH0024,Dhanmondi,middle,4,47958,led_light,1,Critical,10,9.2,1.0,7,DSM0024,DSM0024_led_light_1
 DHH0024,Dhanmondi,middle,4,47958,tube_light,1,Critical,36,33.7,1.0,2,DSM0024,DSM0024_tube_light_1
@@ -228,7 +228,7 @@ DHH0024,Dhanmondi,middle,4,47958,water_pump_0_5hp,1,Schedulable,373,378.6,0.95,1
 DHH0024,Dhanmondi,middle,4,47958,ips_backup,1,Schedulable,300,300.7,0.6,1,DSM0024,DSM0024_ips_backup_1
 DHH0025,Dhanmondi,middle,3,48837,ceiling_fan,1,Curtailable,75,66.1,0.85,2,DSM0025,DSM0025_ceiling_fan_1
 DHH0025,Dhanmondi,middle,3,48837,table_fan,1,Curtailable,45,60.4,0.8,1,DSM0025,DSM0025_table_fan_1
-DHH0025,Dhanmondi,middle,3,48837,split_ac_1ton,1,Schedulable,1100,985.1,0.65,1,DSM0025,DSM0025_split_ac_1ton_1
+DHH0025,Dhanmondi,middle,3,48837,split_ac_1ton,1,Curtailable,1100,985.1,0.65,1,DSM0025,DSM0025_split_ac_1ton_1
 DHH0025,Dhanmondi,middle,3,48837,refrigerator,1,Critical,150,147.3,0.42,1,DSM0025,DSM0025_refrigerator_1
 DHH0025,Dhanmondi,middle,3,48837,led_light,1,Critical,10,9.0,1.0,7,DSM0025,DSM0025_led_light_1
 DHH0025,Dhanmondi,middle,3,48837,tube_light,1,Critical,36,40.4,1.0,1,DSM0025,DSM0025_tube_light_1
@@ -253,7 +253,7 @@ DHH0026,Dhanmondi,middle,4,60409,electric_iron,1,Schedulable,1000,895.4,0.8,1,DS
 DHH0026,Dhanmondi,middle,4,60409,washing_machine,1,Schedulable,450,461.8,0.7,1,DSM0026,DSM0026_washing_machine_1
 DHH0027,Dhanmondi,middle,4,47885,ceiling_fan,1,Curtailable,75,77.1,0.85,3,DSM0027,DSM0027_ceiling_fan_1
 DHH0027,Dhanmondi,middle,4,47885,table_fan,1,Curtailable,45,30.4,0.8,1,DSM0027,DSM0027_table_fan_1
-DHH0027,Dhanmondi,middle,4,47885,split_ac_1ton,1,Schedulable,1100,1250.2,0.65,1,DSM0027,DSM0027_split_ac_1ton_1
+DHH0027,Dhanmondi,middle,4,47885,split_ac_1ton,1,Curtailable,1100,1250.2,0.65,1,DSM0027,DSM0027_split_ac_1ton_1
 DHH0027,Dhanmondi,middle,4,47885,refrigerator,1,Critical,150,146.3,0.42,1,DSM0027,DSM0027_refrigerator_1
 DHH0027,Dhanmondi,middle,4,47885,deep_freezer,1,Critical,180,145.7,0.5,1,DSM0027,DSM0027_deep_freezer_1
 DHH0027,Dhanmondi,middle,4,47885,led_light,1,Critical,10,11.0,1.0,5,DSM0027,DSM0027_led_light_1
@@ -276,7 +276,7 @@ DHH0028,Dhanmondi,middle,4,47640,electric_iron,1,Schedulable,1000,1055.8,0.8,1,D
 DHH0028,Dhanmondi,middle,4,47640,ips_backup,1,Schedulable,300,263.9,0.6,1,DSM0028,DSM0028_ips_backup_1
 DHH0028,Dhanmondi,middle,4,47640,router_charger_standby,1,Critical,18,13.8,1.0,2,DSM0028,DSM0028_router_charger_standby_1
 DHH0029,Dhanmondi,middle,1,53213,ceiling_fan,1,Curtailable,75,76.3,0.85,3,DSM0029,DSM0029_ceiling_fan_1
-DHH0029,Dhanmondi,middle,1,53213,split_ac_1_5ton,1,Schedulable,1650,1433.3,0.65,1,DSM0029,DSM0029_split_ac_1_5ton_1
+DHH0029,Dhanmondi,middle,1,53213,split_ac_1_5ton,1,Curtailable,1650,1433.3,0.65,1,DSM0029,DSM0029_split_ac_1_5ton_1
 DHH0029,Dhanmondi,middle,1,53213,refrigerator,1,Critical,150,149.2,0.42,1,DSM0029,DSM0029_refrigerator_1
 DHH0029,Dhanmondi,middle,1,53213,deep_freezer,1,Critical,180,142.4,0.5,1,DSM0029,DSM0029_deep_freezer_1
 DHH0029,Dhanmondi,middle,1,53213,led_light,1,Critical,10,10.1,1.0,6,DSM0029,DSM0029_led_light_1
@@ -325,7 +325,7 @@ DHH0032,Dhanmondi,middle,3,36163,computer_laptop,1,Curtailable,80,92.9,1.0,1,DSM
 DHH0032,Dhanmondi,middle,3,36163,router_charger_standby,1,Critical,18,10.3,1.0,2,DSM0032,DSM0032_router_charger_standby_1
 DHH0033,Dhanmondi,middle,2,48807,ceiling_fan,1,Curtailable,75,69.8,0.85,2,DSM0033,DSM0033_ceiling_fan_1
 DHH0033,Dhanmondi,middle,2,48807,table_fan,1,Curtailable,45,50.9,0.8,1,DSM0033,DSM0033_table_fan_1
-DHH0033,Dhanmondi,middle,2,48807,split_ac_1ton,1,Schedulable,1100,1296.8,0.65,1,DSM0033,DSM0033_split_ac_1ton_1
+DHH0033,Dhanmondi,middle,2,48807,split_ac_1ton,1,Curtailable,1100,1296.8,0.65,1,DSM0033,DSM0033_split_ac_1ton_1
 DHH0033,Dhanmondi,middle,2,48807,refrigerator,1,Critical,150,153.8,0.42,1,DSM0033,DSM0033_refrigerator_1
 DHH0033,Dhanmondi,middle,2,48807,deep_freezer,1,Critical,180,144.9,0.5,1,DSM0033,DSM0033_deep_freezer_1
 DHH0033,Dhanmondi,middle,2,48807,led_light,1,Critical,10,8.6,1.0,7,DSM0033,DSM0033_led_light_1
@@ -355,7 +355,7 @@ DHH0034,Dhanmondi,middle,1,47452,electric_iron,1,Schedulable,1000,841.3,0.8,1,DS
 DHH0034,Dhanmondi,middle,1,47452,router_charger_standby,1,Critical,18,21.8,1.0,2,DSM0034,DSM0034_router_charger_standby_1
 DHH0035,Dhanmondi,middle,3,42350,ceiling_fan,1,Curtailable,75,74.0,0.85,3,DSM0035,DSM0035_ceiling_fan_1
 DHH0035,Dhanmondi,middle,3,42350,table_fan,1,Curtailable,45,41.4,0.8,1,DSM0035,DSM0035_table_fan_1
-DHH0035,Dhanmondi,middle,3,42350,split_ac_1ton,1,Schedulable,1100,1134.2,0.65,1,DSM0035,DSM0035_split_ac_1ton_1
+DHH0035,Dhanmondi,middle,3,42350,split_ac_1ton,1,Curtailable,1100,1134.2,0.65,1,DSM0035,DSM0035_split_ac_1ton_1
 DHH0035,Dhanmondi,middle,3,42350,refrigerator,1,Critical,150,154.1,0.42,1,DSM0035,DSM0035_refrigerator_1
 DHH0035,Dhanmondi,middle,3,42350,led_light,1,Critical,10,10.7,1.0,8,DSM0035,DSM0035_led_light_1
 DHH0035,Dhanmondi,middle,3,42350,tube_light,1,Critical,36,30.2,1.0,3,DSM0035,DSM0035_tube_light_1
@@ -393,7 +393,7 @@ DHH0037,Dhanmondi,middle,5,42400,electric_iron,1,Schedulable,1000,1001.5,0.8,1,D
 DHH0037,Dhanmondi,middle,5,42400,computer_laptop,1,Curtailable,80,125.1,1.0,1,DSM0037,DSM0037_computer_laptop_1
 DHH0037,Dhanmondi,middle,5,42400,router_charger_standby,1,Critical,18,23.7,1.0,2,DSM0037,DSM0037_router_charger_standby_1
 DHH0038,Dhanmondi,middle,4,53416,ceiling_fan,1,Curtailable,75,97.7,0.85,4,DSM0038,DSM0038_ceiling_fan_1
-DHH0038,Dhanmondi,middle,4,53416,split_ac_1ton,1,Schedulable,1100,1059.7,0.65,1,DSM0038,DSM0038_split_ac_1ton_1
+DHH0038,Dhanmondi,middle,4,53416,split_ac_1ton,1,Curtailable,1100,1059.7,0.65,1,DSM0038,DSM0038_split_ac_1ton_1
 DHH0038,Dhanmondi,middle,4,53416,refrigerator,1,Critical,150,121.8,0.42,1,DSM0038,DSM0038_refrigerator_1
 DHH0038,Dhanmondi,middle,4,53416,deep_freezer,1,Critical,180,195.6,0.5,1,DSM0038,DSM0038_deep_freezer_1
 DHH0038,Dhanmondi,middle,4,53416,led_light,1,Critical,10,11.4,1.0,8,DSM0038,DSM0038_led_light_1
@@ -405,7 +405,7 @@ DHH0038,Dhanmondi,middle,4,53416,water_pump_0_5hp,1,Schedulable,373,369.6,0.95,1
 DHH0038,Dhanmondi,middle,4,53416,computer_laptop,1,Curtailable,80,81.1,1.0,1,DSM0038,DSM0038_computer_laptop_1
 DHH0039,Dhanmondi,middle,5,63029,ceiling_fan,1,Curtailable,75,80.5,0.85,5,DSM0039,DSM0039_ceiling_fan_1
 DHH0039,Dhanmondi,middle,5,63029,table_fan,1,Curtailable,45,43.1,0.8,1,DSM0039,DSM0039_table_fan_1
-DHH0039,Dhanmondi,middle,5,63029,split_ac_1ton,1,Schedulable,1100,861.1,0.65,1,DSM0039,DSM0039_split_ac_1ton_1
+DHH0039,Dhanmondi,middle,5,63029,split_ac_1ton,1,Curtailable,1100,861.1,0.65,1,DSM0039,DSM0039_split_ac_1ton_1
 DHH0039,Dhanmondi,middle,5,63029,refrigerator,1,Critical,150,135.3,0.42,1,DSM0039,DSM0039_refrigerator_1
 DHH0039,Dhanmondi,middle,5,63029,led_light,1,Critical,10,9.2,1.0,6,DSM0039,DSM0039_led_light_1
 DHH0039,Dhanmondi,middle,5,63029,tube_light,1,Critical,36,30.1,1.0,2,DSM0039,DSM0039_tube_light_1
@@ -418,7 +418,7 @@ DHH0039,Dhanmondi,middle,5,63029,ips_backup,1,Schedulable,300,328.9,0.6,1,DSM003
 DHH0039,Dhanmondi,middle,5,63029,router_charger_standby,1,Critical,18,15.9,1.0,2,DSM0039,DSM0039_router_charger_standby_1
 DHH0039,Dhanmondi,middle,5,63029,exhaust_fan,1,Curtailable,35,31.7,0.9,1,DSM0039,DSM0039_exhaust_fan_1
 DHH0040,Dhanmondi,middle,4,50458,ceiling_fan,1,Curtailable,75,68.2,0.85,4,DSM0040,DSM0040_ceiling_fan_1
-DHH0040,Dhanmondi,middle,4,50458,split_ac_1ton,1,Schedulable,1100,1246.6,0.65,1,DSM0040,DSM0040_split_ac_1ton_1
+DHH0040,Dhanmondi,middle,4,50458,split_ac_1ton,1,Curtailable,1100,1246.6,0.65,1,DSM0040,DSM0040_split_ac_1ton_1
 DHH0040,Dhanmondi,middle,4,50458,refrigerator,1,Critical,150,147.6,0.42,1,DSM0040,DSM0040_refrigerator_1
 DHH0040,Dhanmondi,middle,4,50458,led_light,1,Critical,10,10.3,1.0,7,DSM0040,DSM0040_led_light_1
 DHH0040,Dhanmondi,middle,4,50458,tube_light,1,Critical,36,34.5,1.0,3,DSM0040,DSM0040_tube_light_1
@@ -429,7 +429,7 @@ DHH0040,Dhanmondi,middle,4,50458,electric_iron,1,Schedulable,1000,800.9,0.8,1,DS
 DHH0040,Dhanmondi,middle,4,50458,ips_backup,1,Schedulable,300,435.4,0.6,1,DSM0040,DSM0040_ips_backup_1
 DHH0040,Dhanmondi,middle,4,50458,router_charger_standby,1,Critical,18,9.8,1.0,1,DSM0040,DSM0040_router_charger_standby_1
 DHH0041,Dhanmondi,middle,5,56496,ceiling_fan,1,Curtailable,75,72.6,0.85,2,DSM0041,DSM0041_ceiling_fan_1
-DHH0041,Dhanmondi,middle,5,56496,split_ac_1_5ton,1,Schedulable,1650,1517.5,0.65,1,DSM0041,DSM0041_split_ac_1_5ton_1
+DHH0041,Dhanmondi,middle,5,56496,split_ac_1_5ton,1,Curtailable,1650,1517.5,0.65,1,DSM0041,DSM0041_split_ac_1_5ton_1
 DHH0041,Dhanmondi,middle,5,56496,refrigerator,1,Critical,150,124.8,0.42,1,DSM0041,DSM0041_refrigerator_1
 DHH0041,Dhanmondi,middle,5,56496,led_light,1,Critical,10,10.4,1.0,6,DSM0041,DSM0041_led_light_1
 DHH0041,Dhanmondi,middle,5,56496,tube_light,1,Critical,36,34.1,1.0,2,DSM0041,DSM0041_tube_light_1
@@ -494,7 +494,7 @@ DHH0045,Dhanmondi,middle,4,51635,electric_iron,1,Schedulable,1000,1167.2,0.8,1,D
 DHH0045,Dhanmondi,middle,4,51635,ips_backup,1,Schedulable,300,325.0,0.6,1,DSM0045,DSM0045_ips_backup_1
 DHH0045,Dhanmondi,middle,4,51635,router_charger_standby,1,Critical,18,17.2,1.0,1,DSM0045,DSM0045_router_charger_standby_1
 DHH0046,Dhanmondi,middle,3,44664,ceiling_fan,1,Curtailable,75,73.0,0.85,3,DSM0046,DSM0046_ceiling_fan_1
-DHH0046,Dhanmondi,middle,3,44664,split_ac_1ton,1,Schedulable,1100,1037.0,0.65,1,DSM0046,DSM0046_split_ac_1ton_1
+DHH0046,Dhanmondi,middle,3,44664,split_ac_1ton,1,Curtailable,1100,1037.0,0.65,1,DSM0046,DSM0046_split_ac_1ton_1
 DHH0046,Dhanmondi,middle,3,44664,refrigerator,1,Critical,150,114.9,0.42,1,DSM0046,DSM0046_refrigerator_1
 DHH0046,Dhanmondi,middle,3,44664,led_light,1,Critical,10,10.0,1.0,9,DSM0046,DSM0046_led_light_1
 DHH0046,Dhanmondi,middle,3,44664,tv_led,1,Curtailable,60,63.8,1.0,2,DSM0046,DSM0046_tv_led_1
@@ -508,7 +508,7 @@ DHH0046,Dhanmondi,middle,3,44664,router_charger_standby,1,Critical,18,15.5,1.0,1
 DHH0046,Dhanmondi,middle,3,44664,exhaust_fan,1,Curtailable,35,38.2,0.9,1,DSM0046,DSM0046_exhaust_fan_1
 DHH0047,Dhanmondi,middle,5,49667,ceiling_fan,1,Curtailable,75,75.0,0.85,3,DSM0047,DSM0047_ceiling_fan_1
 DHH0047,Dhanmondi,middle,5,49667,table_fan,1,Curtailable,45,43.1,0.8,1,DSM0047,DSM0047_table_fan_1
-DHH0047,Dhanmondi,middle,5,49667,split_ac_1ton,1,Schedulable,1100,1173.0,0.65,1,DSM0047,DSM0047_split_ac_1ton_1
+DHH0047,Dhanmondi,middle,5,49667,split_ac_1ton,1,Curtailable,1100,1173.0,0.65,1,DSM0047,DSM0047_split_ac_1ton_1
 DHH0047,Dhanmondi,middle,5,49667,refrigerator,1,Critical,150,126.8,0.42,1,DSM0047,DSM0047_refrigerator_1
 DHH0047,Dhanmondi,middle,5,49667,led_light,1,Critical,10,11.3,1.0,6,DSM0047,DSM0047_led_light_1
 DHH0047,Dhanmondi,middle,5,49667,tube_light,1,Critical,36,34.7,1.0,2,DSM0047,DSM0047_tube_light_1
@@ -522,7 +522,7 @@ DHH0047,Dhanmondi,middle,5,49667,water_pump_0_5hp,1,Schedulable,373,373.6,0.95,1
 DHH0047,Dhanmondi,middle,5,49667,computer_laptop,1,Curtailable,80,96.5,1.0,1,DSM0047,DSM0047_computer_laptop_1
 DHH0047,Dhanmondi,middle,5,49667,router_charger_standby,1,Critical,18,11.1,1.0,1,DSM0047,DSM0047_router_charger_standby_1
 DHH0048,Dhanmondi,middle,2,60286,ceiling_fan,1,Curtailable,75,73.1,0.85,3,DSM0048,DSM0048_ceiling_fan_1
-DHH0048,Dhanmondi,middle,2,60286,split_ac_1ton,1,Schedulable,1100,1223.3,0.65,1,DSM0048,DSM0048_split_ac_1ton_1
+DHH0048,Dhanmondi,middle,2,60286,split_ac_1ton,1,Curtailable,1100,1223.3,0.65,1,DSM0048,DSM0048_split_ac_1ton_1
 DHH0048,Dhanmondi,middle,2,60286,refrigerator,1,Critical,150,147.0,0.42,1,DSM0048,DSM0048_refrigerator_1
 DHH0048,Dhanmondi,middle,2,60286,deep_freezer,1,Critical,180,192.1,0.5,1,DSM0048,DSM0048_deep_freezer_1
 DHH0048,Dhanmondi,middle,2,60286,led_light,1,Critical,10,14.7,1.0,7,DSM0048,DSM0048_led_light_1
@@ -541,7 +541,7 @@ DHH0049,Dhanmondi,middle,5,56025,ips_backup,1,Schedulable,300,333.3,0.6,1,DSM004
 DHH0049,Dhanmondi,middle,5,56025,computer_laptop,1,Curtailable,80,138.6,1.0,1,DSM0049,DSM0049_computer_laptop_1
 DHH0049,Dhanmondi,middle,5,56025,router_charger_standby,1,Critical,18,31.6,1.0,2,DSM0049,DSM0049_router_charger_standby_1
 DHH0050,Dhanmondi,middle,5,52941,ceiling_fan,1,Curtailable,75,78.1,0.85,3,DSM0050,DSM0050_ceiling_fan_1
-DHH0050,Dhanmondi,middle,5,52941,split_ac_1ton,1,Schedulable,1100,1103.2,0.65,1,DSM0050,DSM0050_split_ac_1ton_1
+DHH0050,Dhanmondi,middle,5,52941,split_ac_1ton,1,Curtailable,1100,1103.2,0.65,1,DSM0050,DSM0050_split_ac_1ton_1
 DHH0050,Dhanmondi,middle,5,52941,refrigerator,1,Critical,150,163.5,0.42,1,DSM0050,DSM0050_refrigerator_1
 DHH0050,Dhanmondi,middle,5,52941,led_light,1,Critical,10,5.0,1.0,8,DSM0050,DSM0050_led_light_1
 DHH0050,Dhanmondi,middle,5,52941,tube_light,1,Critical,36,36.8,1.0,4,DSM0050,DSM0050_tube_light_1
@@ -552,7 +552,7 @@ DHH0050,Dhanmondi,middle,5,52941,microwave_oven,1,Schedulable,1100,1139.1,0.85,1
 DHH0050,Dhanmondi,middle,5,52941,washing_machine,1,Schedulable,450,420.4,0.7,1,DSM0050,DSM0050_washing_machine_1
 DHH0050,Dhanmondi,middle,5,52941,router_charger_standby,1,Critical,18,17.6,1.0,1,DSM0050,DSM0050_router_charger_standby_1
 DHH0051,Dhanmondi,middle,2,61877,ceiling_fan,1,Curtailable,75,71.1,0.85,3,DSM0051,DSM0051_ceiling_fan_1
-DHH0051,Dhanmondi,middle,2,61877,split_ac_1ton,1,Schedulable,1100,1270.0,0.65,1,DSM0051,DSM0051_split_ac_1ton_1
+DHH0051,Dhanmondi,middle,2,61877,split_ac_1ton,1,Curtailable,1100,1270.0,0.65,1,DSM0051,DSM0051_split_ac_1ton_1
 DHH0051,Dhanmondi,middle,2,61877,refrigerator,1,Critical,150,170.6,0.42,1,DSM0051,DSM0051_refrigerator_1
 DHH0051,Dhanmondi,middle,2,61877,led_light,1,Critical,10,12.6,1.0,5,DSM0051,DSM0051_led_light_1
 DHH0051,Dhanmondi,middle,2,61877,tube_light,1,Critical,36,37.2,1.0,3,DSM0051,DSM0051_tube_light_1
@@ -575,7 +575,7 @@ DHH0052,Dhanmondi,middle,4,64866,router_charger_standby,1,Critical,18,20.8,1.0,1
 DHH0052,Dhanmondi,middle,4,64866,exhaust_fan,1,Curtailable,35,34.5,0.9,1,DSM0052,DSM0052_exhaust_fan_1
 DHH0053,Dhanmondi,middle,6,40353,ceiling_fan,1,Curtailable,75,68.7,0.85,4,DSM0053,DSM0053_ceiling_fan_1
 DHH0053,Dhanmondi,middle,6,40353,table_fan,1,Curtailable,45,41.1,0.8,1,DSM0053,DSM0053_table_fan_1
-DHH0053,Dhanmondi,middle,6,40353,split_ac_1ton,1,Schedulable,1100,1080.4,0.65,1,DSM0053,DSM0053_split_ac_1ton_1
+DHH0053,Dhanmondi,middle,6,40353,split_ac_1ton,1,Curtailable,1100,1080.4,0.65,1,DSM0053,DSM0053_split_ac_1ton_1
 DHH0053,Dhanmondi,middle,6,40353,refrigerator,1,Critical,150,152.4,0.42,1,DSM0053,DSM0053_refrigerator_1
 DHH0053,Dhanmondi,middle,6,40353,deep_freezer,1,Critical,180,196.9,0.5,1,DSM0053,DSM0053_deep_freezer_1
 DHH0053,Dhanmondi,middle,6,40353,led_light,1,Critical,10,14.5,1.0,7,DSM0053,DSM0053_led_light_1
@@ -653,7 +653,7 @@ DHH0059,Dhanmondi,middle,2,59272,water_pump_0_5hp,1,Schedulable,373,388.5,0.95,1
 DHH0059,Dhanmondi,middle,2,59272,router_charger_standby,1,Critical,18,20.5,1.0,2,DSM0059,DSM0059_router_charger_standby_1
 DHH0059,Dhanmondi,middle,2,59272,exhaust_fan,1,Curtailable,35,37.1,0.9,1,DSM0059,DSM0059_exhaust_fan_1
 DHH0060,Dhanmondi,middle,4,56248,ceiling_fan,1,Curtailable,75,55.5,0.85,4,DSM0060,DSM0060_ceiling_fan_1
-DHH0060,Dhanmondi,middle,4,56248,split_ac_1ton,1,Schedulable,1100,984.4,0.65,1,DSM0060,DSM0060_split_ac_1ton_1
+DHH0060,Dhanmondi,middle,4,56248,split_ac_1ton,1,Curtailable,1100,984.4,0.65,1,DSM0060,DSM0060_split_ac_1ton_1
 DHH0060,Dhanmondi,middle,4,56248,refrigerator,1,Critical,150,155.0,0.42,1,DSM0060,DSM0060_refrigerator_1
 DHH0060,Dhanmondi,middle,4,56248,deep_freezer,1,Critical,180,178.9,0.5,1,DSM0060,DSM0060_deep_freezer_1
 DHH0060,Dhanmondi,middle,4,56248,led_light,1,Critical,10,7.3,1.0,6,DSM0060,DSM0060_led_light_1
@@ -704,7 +704,7 @@ DHH0063,Dhanmondi,middle,4,56528,washing_machine,1,Schedulable,450,374.1,0.7,1,D
 DHH0063,Dhanmondi,middle,4,56528,water_pump_0_5hp,1,Schedulable,373,344.5,0.95,1,DSM0063,DSM0063_water_pump_0_5hp_1
 DHH0063,Dhanmondi,middle,4,56528,router_charger_standby,1,Critical,18,14.5,1.0,2,DSM0063,DSM0063_router_charger_standby_1
 DHH0064,Dhanmondi,middle,3,35055,ceiling_fan,1,Curtailable,75,90.0,0.85,3,DSM0064,DSM0064_ceiling_fan_1
-DHH0064,Dhanmondi,middle,3,35055,split_ac_1ton,1,Schedulable,1100,1252.8,0.65,1,DSM0064,DSM0064_split_ac_1ton_1
+DHH0064,Dhanmondi,middle,3,35055,split_ac_1ton,1,Curtailable,1100,1252.8,0.65,1,DSM0064,DSM0064_split_ac_1ton_1
 DHH0064,Dhanmondi,middle,3,35055,refrigerator,1,Critical,150,112.4,0.42,1,DSM0064,DSM0064_refrigerator_1
 DHH0064,Dhanmondi,middle,3,35055,led_light,1,Critical,10,9.9,1.0,9,DSM0064,DSM0064_led_light_1
 DHH0064,Dhanmondi,middle,3,35055,tube_light,1,Critical,36,46.0,1.0,2,DSM0064,DSM0064_tube_light_1
@@ -757,7 +757,7 @@ DHH0067,Dhanmondi,upper_middle,4,65377,geyser_water_heater,1,Schedulable,1800,18
 DHH0067,Dhanmondi,upper_middle,4,65377,computer_laptop,1,Curtailable,80,62.9,1.0,2,DSM0067,DSM0067_computer_laptop_1
 DHH0067,Dhanmondi,upper_middle,4,65377,router_charger_standby,1,Critical,18,16.7,1.0,2,DSM0067,DSM0067_router_charger_standby_1
 DHH0067,Dhanmondi,upper_middle,4,65377,exhaust_fan,1,Curtailable,35,42.8,0.9,2,DSM0067,DSM0067_exhaust_fan_1
-DHH0068,Dhanmondi,upper_middle,3,91108,split_ac_1_5ton,1,Schedulable,1650,1494.0,0.65,1,DSM0068,DSM0068_split_ac_1_5ton_1
+DHH0068,Dhanmondi,upper_middle,3,91108,split_ac_1_5ton,1,Curtailable,1650,1494.0,0.65,1,DSM0068,DSM0068_split_ac_1_5ton_1
 DHH0068,Dhanmondi,upper_middle,3,91108,refrigerator,1,Critical,150,171.1,0.42,2,DSM0068,DSM0068_refrigerator_1
 DHH0068,Dhanmondi,upper_middle,3,91108,led_light,1,Critical,10,8.7,1.0,11,DSM0068,DSM0068_led_light_1
 DHH0068,Dhanmondi,upper_middle,3,91108,tv_led,1,Curtailable,60,60.4,1.0,1,DSM0068,DSM0068_tv_led_1
@@ -772,8 +772,8 @@ DHH0068,Dhanmondi,upper_middle,3,91108,computer_laptop,1,Curtailable,80,33.9,1.0
 DHH0068,Dhanmondi,upper_middle,3,91108,router_charger_standby,1,Critical,18,20.5,1.0,2,DSM0068,DSM0068_router_charger_standby_1
 DHH0068,Dhanmondi,upper_middle,3,91108,exhaust_fan,1,Curtailable,35,40.1,0.9,1,DSM0068,DSM0068_exhaust_fan_1
 DHH0069,Dhanmondi,upper_middle,4,86822,ceiling_fan,1,Curtailable,75,65.7,0.85,3,DSM0069,DSM0069_ceiling_fan_1
-DHH0069,Dhanmondi,upper_middle,4,86822,split_ac_1ton,1,Schedulable,1100,1162.6,0.65,3,DSM0069,DSM0069_split_ac_1ton_1
-DHH0069,Dhanmondi,upper_middle,4,86822,split_ac_1_5ton,1,Schedulable,1650,1680.8,0.65,1,DSM0069,DSM0069_split_ac_1_5ton_1
+DHH0069,Dhanmondi,upper_middle,4,86822,split_ac_1ton,1,Curtailable,1100,1162.6,0.65,3,DSM0069,DSM0069_split_ac_1ton_1
+DHH0069,Dhanmondi,upper_middle,4,86822,split_ac_1_5ton,1,Curtailable,1650,1680.8,0.65,1,DSM0069,DSM0069_split_ac_1_5ton_1
 DHH0069,Dhanmondi,upper_middle,4,86822,refrigerator,1,Critical,150,172.7,0.42,1,DSM0069,DSM0069_refrigerator_1
 DHH0069,Dhanmondi,upper_middle,4,86822,led_light,1,Critical,10,8.6,1.0,14,DSM0069,DSM0069_led_light_1
 DHH0069,Dhanmondi,upper_middle,4,86822,tv_led,1,Curtailable,60,57.2,1.0,2,DSM0069,DSM0069_tv_led_1
@@ -790,8 +790,8 @@ DHH0069,Dhanmondi,upper_middle,4,86822,computer_laptop,1,Curtailable,80,25.1,1.0
 DHH0069,Dhanmondi,upper_middle,4,86822,router_charger_standby,1,Critical,18,16.2,1.0,1,DSM0069,DSM0069_router_charger_standby_1
 DHH0069,Dhanmondi,upper_middle,4,86822,exhaust_fan,1,Curtailable,35,36.6,0.9,2,DSM0069,DSM0069_exhaust_fan_1
 DHH0070,Dhanmondi,upper_middle,5,97834,ceiling_fan,1,Curtailable,75,78.9,0.85,5,DSM0070,DSM0070_ceiling_fan_1
-DHH0070,Dhanmondi,upper_middle,5,97834,split_ac_1ton,1,Schedulable,1100,1262.0,0.65,1,DSM0070,DSM0070_split_ac_1ton_1
-DHH0070,Dhanmondi,upper_middle,5,97834,split_ac_1_5ton,1,Schedulable,1650,1598.0,0.65,1,DSM0070,DSM0070_split_ac_1_5ton_1
+DHH0070,Dhanmondi,upper_middle,5,97834,split_ac_1ton,1,Curtailable,1100,1262.0,0.65,1,DSM0070,DSM0070_split_ac_1ton_1
+DHH0070,Dhanmondi,upper_middle,5,97834,split_ac_1_5ton,1,Curtailable,1650,1598.0,0.65,1,DSM0070,DSM0070_split_ac_1_5ton_1
 DHH0070,Dhanmondi,upper_middle,5,97834,refrigerator,1,Critical,150,127.7,0.42,1,DSM0070,DSM0070_refrigerator_1
 DHH0070,Dhanmondi,upper_middle,5,97834,deep_freezer,1,Critical,180,207.2,0.5,1,DSM0070,DSM0070_deep_freezer_1
 DHH0070,Dhanmondi,upper_middle,5,97834,led_light,1,Critical,10,10.1,1.0,11,DSM0070,DSM0070_led_light_1
@@ -805,8 +805,8 @@ DHH0070,Dhanmondi,upper_middle,5,97834,geyser_water_heater,1,Schedulable,1800,18
 DHH0070,Dhanmondi,upper_middle,5,97834,router_charger_standby,1,Critical,18,21.7,1.0,2,DSM0070,DSM0070_router_charger_standby_1
 DHH0070,Dhanmondi,upper_middle,5,97834,exhaust_fan,1,Curtailable,35,33.7,0.9,1,DSM0070,DSM0070_exhaust_fan_1
 DHH0071,Dhanmondi,upper_middle,3,104749,ceiling_fan,1,Curtailable,75,67.5,0.85,5,DSM0071,DSM0071_ceiling_fan_1
-DHH0071,Dhanmondi,upper_middle,3,104749,split_ac_1ton,1,Schedulable,1100,923.6,0.65,2,DSM0071,DSM0071_split_ac_1ton_1
-DHH0071,Dhanmondi,upper_middle,3,104749,split_ac_1_5ton,1,Schedulable,1650,1653.2,0.65,1,DSM0071,DSM0071_split_ac_1_5ton_1
+DHH0071,Dhanmondi,upper_middle,3,104749,split_ac_1ton,1,Curtailable,1100,923.6,0.65,2,DSM0071,DSM0071_split_ac_1ton_1
+DHH0071,Dhanmondi,upper_middle,3,104749,split_ac_1_5ton,1,Curtailable,1650,1653.2,0.65,1,DSM0071,DSM0071_split_ac_1_5ton_1
 DHH0071,Dhanmondi,upper_middle,3,104749,refrigerator,1,Critical,150,154.6,0.42,1,DSM0071,DSM0071_refrigerator_1
 DHH0071,Dhanmondi,upper_middle,3,104749,deep_freezer,1,Critical,180,159.8,0.5,1,DSM0071,DSM0071_deep_freezer_1
 DHH0071,Dhanmondi,upper_middle,3,104749,led_light,1,Critical,10,9.0,1.0,15,DSM0071,DSM0071_led_light_1
@@ -824,8 +824,8 @@ DHH0071,Dhanmondi,upper_middle,3,104749,computer_laptop,1,Curtailable,80,96.8,1.
 DHH0071,Dhanmondi,upper_middle,3,104749,router_charger_standby,1,Critical,18,18.9,1.0,1,DSM0071,DSM0071_router_charger_standby_1
 DHH0071,Dhanmondi,upper_middle,3,104749,exhaust_fan,1,Curtailable,35,27.1,0.9,2,DSM0071,DSM0071_exhaust_fan_1
 DHH0072,Dhanmondi,upper_middle,4,86599,ceiling_fan,1,Curtailable,75,78.9,0.85,6,DSM0072,DSM0072_ceiling_fan_1
-DHH0072,Dhanmondi,upper_middle,4,86599,split_ac_1ton,1,Schedulable,1100,1056.6,0.65,1,DSM0072,DSM0072_split_ac_1ton_1
-DHH0072,Dhanmondi,upper_middle,4,86599,split_ac_1_5ton,1,Schedulable,1650,2060.7,0.65,1,DSM0072,DSM0072_split_ac_1_5ton_1
+DHH0072,Dhanmondi,upper_middle,4,86599,split_ac_1ton,1,Curtailable,1100,1056.6,0.65,1,DSM0072,DSM0072_split_ac_1ton_1
+DHH0072,Dhanmondi,upper_middle,4,86599,split_ac_1_5ton,1,Curtailable,1650,2060.7,0.65,1,DSM0072,DSM0072_split_ac_1_5ton_1
 DHH0072,Dhanmondi,upper_middle,4,86599,refrigerator,1,Critical,150,119.2,0.42,1,DSM0072,DSM0072_refrigerator_1
 DHH0072,Dhanmondi,upper_middle,4,86599,deep_freezer,1,Critical,180,186.2,0.5,1,DSM0072,DSM0072_deep_freezer_1
 DHH0072,Dhanmondi,upper_middle,4,86599,led_light,1,Critical,10,10.1,1.0,9,DSM0072,DSM0072_led_light_1
@@ -842,7 +842,7 @@ DHH0072,Dhanmondi,upper_middle,4,86599,geyser_water_heater,1,Schedulable,1800,14
 DHH0072,Dhanmondi,upper_middle,4,86599,computer_laptop,1,Curtailable,80,67.1,1.0,1,DSM0072,DSM0072_computer_laptop_1
 DHH0072,Dhanmondi,upper_middle,4,86599,router_charger_standby,1,Critical,18,17.8,1.0,2,DSM0072,DSM0072_router_charger_standby_1
 DHH0072,Dhanmondi,upper_middle,4,86599,exhaust_fan,1,Curtailable,35,25.8,0.9,1,DSM0072,DSM0072_exhaust_fan_1
-DHH0073,Dhanmondi,upper_middle,4,65613,split_ac_1ton,1,Schedulable,1100,965.9,0.65,2,DSM0073,DSM0073_split_ac_1ton_1
+DHH0073,Dhanmondi,upper_middle,4,65613,split_ac_1ton,1,Curtailable,1100,965.9,0.65,2,DSM0073,DSM0073_split_ac_1ton_1
 DHH0073,Dhanmondi,upper_middle,4,65613,refrigerator,1,Critical,150,156.4,0.42,2,DSM0073,DSM0073_refrigerator_1
 DHH0073,Dhanmondi,upper_middle,4,65613,deep_freezer,1,Critical,180,149.6,0.5,1,DSM0073,DSM0073_deep_freezer_1
 DHH0073,Dhanmondi,upper_middle,4,65613,led_light,1,Critical,10,10.5,1.0,13,DSM0073,DSM0073_led_light_1
@@ -859,7 +859,7 @@ DHH0073,Dhanmondi,upper_middle,4,65613,router_charger_standby,1,Critical,18,13.4
 DHH0073,Dhanmondi,upper_middle,4,65613,exhaust_fan,1,Curtailable,35,36.2,0.9,1,DSM0073,DSM0073_exhaust_fan_1
 DHH0074,Dhanmondi,upper_middle,4,94403,ceiling_fan,1,Curtailable,75,78.3,0.85,4,DSM0074,DSM0074_ceiling_fan_1
 DHH0074,Dhanmondi,upper_middle,4,94403,table_fan,1,Curtailable,45,43.8,0.8,1,DSM0074,DSM0074_table_fan_1
-DHH0074,Dhanmondi,upper_middle,4,94403,split_ac_1ton,1,Schedulable,1100,998.0,0.65,1,DSM0074,DSM0074_split_ac_1ton_1
+DHH0074,Dhanmondi,upper_middle,4,94403,split_ac_1ton,1,Curtailable,1100,998.0,0.65,1,DSM0074,DSM0074_split_ac_1ton_1
 DHH0074,Dhanmondi,upper_middle,4,94403,refrigerator,1,Critical,150,95.8,0.42,2,DSM0074,DSM0074_refrigerator_1
 DHH0074,Dhanmondi,upper_middle,4,94403,led_light,1,Critical,10,10.7,1.0,12,DSM0074,DSM0074_led_light_1
 DHH0074,Dhanmondi,upper_middle,4,94403,tube_light,1,Critical,36,37.8,1.0,2,DSM0074,DSM0074_tube_light_1
@@ -876,8 +876,8 @@ DHH0074,Dhanmondi,upper_middle,4,94403,computer_laptop,1,Curtailable,80,102.7,1.
 DHH0074,Dhanmondi,upper_middle,4,94403,router_charger_standby,1,Critical,18,18.3,1.0,2,DSM0074,DSM0074_router_charger_standby_1
 DHH0074,Dhanmondi,upper_middle,4,94403,exhaust_fan,1,Curtailable,35,34.8,0.9,2,DSM0074,DSM0074_exhaust_fan_1
 DHH0075,Dhanmondi,upper_middle,5,77943,ceiling_fan,1,Curtailable,75,84.2,0.85,6,DSM0075,DSM0075_ceiling_fan_1
-DHH0075,Dhanmondi,upper_middle,5,77943,split_ac_1ton,1,Schedulable,1100,1035.7,0.65,1,DSM0075,DSM0075_split_ac_1ton_1
-DHH0075,Dhanmondi,upper_middle,5,77943,split_ac_1_5ton,1,Schedulable,1650,1545.5,0.65,1,DSM0075,DSM0075_split_ac_1_5ton_1
+DHH0075,Dhanmondi,upper_middle,5,77943,split_ac_1ton,1,Curtailable,1100,1035.7,0.65,1,DSM0075,DSM0075_split_ac_1ton_1
+DHH0075,Dhanmondi,upper_middle,5,77943,split_ac_1_5ton,1,Curtailable,1650,1545.5,0.65,1,DSM0075,DSM0075_split_ac_1_5ton_1
 DHH0075,Dhanmondi,upper_middle,5,77943,refrigerator,1,Critical,150,140.9,0.42,2,DSM0075,DSM0075_refrigerator_1
 DHH0075,Dhanmondi,upper_middle,5,77943,deep_freezer,1,Critical,180,168.8,0.5,1,DSM0075,DSM0075_deep_freezer_1
 DHH0075,Dhanmondi,upper_middle,5,77943,led_light,1,Critical,10,11.3,1.0,9,DSM0075,DSM0075_led_light_1
@@ -897,7 +897,7 @@ DHH0075,Dhanmondi,upper_middle,5,77943,router_charger_standby,1,Critical,18,22.7
 DHH0075,Dhanmondi,upper_middle,5,77943,exhaust_fan,1,Curtailable,35,40.7,0.9,1,DSM0075,DSM0075_exhaust_fan_1
 DHH0076,Dhanmondi,upper_middle,3,116293,ceiling_fan,1,Curtailable,75,68.4,0.85,5,DSM0076,DSM0076_ceiling_fan_1
 DHH0076,Dhanmondi,upper_middle,3,116293,table_fan,1,Curtailable,45,34.3,0.8,1,DSM0076,DSM0076_table_fan_1
-DHH0076,Dhanmondi,upper_middle,3,116293,split_ac_1_5ton,1,Schedulable,1650,1470.7,0.65,1,DSM0076,DSM0076_split_ac_1_5ton_1
+DHH0076,Dhanmondi,upper_middle,3,116293,split_ac_1_5ton,1,Curtailable,1650,1470.7,0.65,1,DSM0076,DSM0076_split_ac_1_5ton_1
 DHH0076,Dhanmondi,upper_middle,3,116293,refrigerator,1,Critical,150,170.8,0.42,1,DSM0076,DSM0076_refrigerator_1
 DHH0076,Dhanmondi,upper_middle,3,116293,deep_freezer,1,Critical,180,172.2,0.5,1,DSM0076,DSM0076_deep_freezer_1
 DHH0076,Dhanmondi,upper_middle,3,116293,led_light,1,Critical,10,13.2,1.0,10,DSM0076,DSM0076_led_light_1
@@ -913,8 +913,8 @@ DHH0076,Dhanmondi,upper_middle,3,116293,router_charger_standby,1,Critical,18,5.0
 DHH0076,Dhanmondi,upper_middle,3,116293,exhaust_fan,1,Curtailable,35,40.8,0.9,1,DSM0076,DSM0076_exhaust_fan_1
 DHH0077,Dhanmondi,upper_middle,1,80898,ceiling_fan,1,Curtailable,75,58.0,0.85,2,DSM0077,DSM0077_ceiling_fan_1
 DHH0077,Dhanmondi,upper_middle,1,80898,table_fan,1,Curtailable,45,39.0,0.8,1,DSM0077,DSM0077_table_fan_1
-DHH0077,Dhanmondi,upper_middle,1,80898,split_ac_1ton,1,Schedulable,1100,746.4,0.65,1,DSM0077,DSM0077_split_ac_1ton_1
-DHH0077,Dhanmondi,upper_middle,1,80898,split_ac_1_5ton,1,Schedulable,1650,1714.3,0.65,2,DSM0077,DSM0077_split_ac_1_5ton_1
+DHH0077,Dhanmondi,upper_middle,1,80898,split_ac_1ton,1,Curtailable,1100,746.4,0.65,1,DSM0077,DSM0077_split_ac_1ton_1
+DHH0077,Dhanmondi,upper_middle,1,80898,split_ac_1_5ton,1,Curtailable,1650,1714.3,0.65,2,DSM0077,DSM0077_split_ac_1_5ton_1
 DHH0077,Dhanmondi,upper_middle,1,80898,refrigerator,1,Critical,150,117.0,0.42,1,DSM0077,DSM0077_refrigerator_1
 DHH0077,Dhanmondi,upper_middle,1,80898,led_light,1,Critical,10,10.6,1.0,13,DSM0077,DSM0077_led_light_1
 DHH0077,Dhanmondi,upper_middle,1,80898,tv_led,1,Curtailable,60,69.3,1.0,1,DSM0077,DSM0077_tv_led_1
@@ -929,8 +929,8 @@ DHH0077,Dhanmondi,upper_middle,1,80898,geyser_water_heater,1,Schedulable,1800,16
 DHH0077,Dhanmondi,upper_middle,1,80898,computer_laptop,1,Curtailable,80,117.1,1.0,1,DSM0077,DSM0077_computer_laptop_1
 DHH0077,Dhanmondi,upper_middle,1,80898,router_charger_standby,1,Critical,18,12.4,1.0,2,DSM0077,DSM0077_router_charger_standby_1
 DHH0078,Dhanmondi,upper_middle,2,81596,ceiling_fan,1,Curtailable,75,60.4,0.85,5,DSM0078,DSM0078_ceiling_fan_1
-DHH0078,Dhanmondi,upper_middle,2,81596,split_ac_1ton,1,Schedulable,1100,1109.4,0.65,2,DSM0078,DSM0078_split_ac_1ton_1
-DHH0078,Dhanmondi,upper_middle,2,81596,split_ac_1_5ton,1,Schedulable,1650,1845.9,0.65,2,DSM0078,DSM0078_split_ac_1_5ton_1
+DHH0078,Dhanmondi,upper_middle,2,81596,split_ac_1ton,1,Curtailable,1100,1109.4,0.65,2,DSM0078,DSM0078_split_ac_1ton_1
+DHH0078,Dhanmondi,upper_middle,2,81596,split_ac_1_5ton,1,Curtailable,1650,1845.9,0.65,2,DSM0078,DSM0078_split_ac_1_5ton_1
 DHH0078,Dhanmondi,upper_middle,2,81596,refrigerator,1,Critical,150,172.9,0.42,2,DSM0078,DSM0078_refrigerator_1
 DHH0078,Dhanmondi,upper_middle,2,81596,led_light,1,Critical,10,9.9,1.0,15,DSM0078,DSM0078_led_light_1
 DHH0078,Dhanmondi,upper_middle,2,81596,tv_led,1,Curtailable,60,58.0,1.0,2,DSM0078,DSM0078_tv_led_1
@@ -945,7 +945,7 @@ DHH0078,Dhanmondi,upper_middle,2,81596,router_charger_standby,1,Critical,18,30.0
 DHH0078,Dhanmondi,upper_middle,2,81596,exhaust_fan,1,Curtailable,35,31.1,0.9,1,DSM0078,DSM0078_exhaust_fan_1
 DHH0079,Dhanmondi,upper_middle,3,106648,ceiling_fan,1,Curtailable,75,71.8,0.85,5,DSM0079,DSM0079_ceiling_fan_1
 DHH0079,Dhanmondi,upper_middle,3,106648,table_fan,1,Curtailable,45,41.7,0.8,1,DSM0079,DSM0079_table_fan_1
-DHH0079,Dhanmondi,upper_middle,3,106648,split_ac_1_5ton,1,Schedulable,1650,1755.1,0.65,1,DSM0079,DSM0079_split_ac_1_5ton_1
+DHH0079,Dhanmondi,upper_middle,3,106648,split_ac_1_5ton,1,Curtailable,1650,1755.1,0.65,1,DSM0079,DSM0079_split_ac_1_5ton_1
 DHH0079,Dhanmondi,upper_middle,3,106648,refrigerator,1,Critical,150,145.9,0.42,1,DSM0079,DSM0079_refrigerator_1
 DHH0079,Dhanmondi,upper_middle,3,106648,led_light,1,Critical,10,11.3,1.0,13,DSM0079,DSM0079_led_light_1
 DHH0079,Dhanmondi,upper_middle,3,106648,tv_led,1,Curtailable,60,52.3,1.0,3,DSM0079,DSM0079_tv_led_1
@@ -961,8 +961,8 @@ DHH0079,Dhanmondi,upper_middle,3,106648,computer_laptop,1,Curtailable,80,59.5,1.
 DHH0079,Dhanmondi,upper_middle,3,106648,router_charger_standby,1,Critical,18,27.6,1.0,2,DSM0079,DSM0079_router_charger_standby_1
 DHH0079,Dhanmondi,upper_middle,3,106648,exhaust_fan,1,Curtailable,35,42.0,0.9,1,DSM0079,DSM0079_exhaust_fan_1
 DHH0080,Dhanmondi,upper_middle,1,66873,ceiling_fan,1,Curtailable,75,74.1,0.85,4,DSM0080,DSM0080_ceiling_fan_1
-DHH0080,Dhanmondi,upper_middle,1,66873,split_ac_1ton,1,Schedulable,1100,1092.7,0.65,2,DSM0080,DSM0080_split_ac_1ton_1
-DHH0080,Dhanmondi,upper_middle,1,66873,split_ac_1_5ton,1,Schedulable,1650,1405.1,0.65,2,DSM0080,DSM0080_split_ac_1_5ton_1
+DHH0080,Dhanmondi,upper_middle,1,66873,split_ac_1ton,1,Curtailable,1100,1092.7,0.65,2,DSM0080,DSM0080_split_ac_1ton_1
+DHH0080,Dhanmondi,upper_middle,1,66873,split_ac_1_5ton,1,Curtailable,1650,1405.1,0.65,2,DSM0080,DSM0080_split_ac_1_5ton_1
 DHH0080,Dhanmondi,upper_middle,1,66873,refrigerator,1,Critical,150,172.8,0.42,1,DSM0080,DSM0080_refrigerator_1
 DHH0080,Dhanmondi,upper_middle,1,66873,led_light,1,Critical,10,11.6,1.0,13,DSM0080,DSM0080_led_light_1
 DHH0080,Dhanmondi,upper_middle,1,66873,tv_led,1,Curtailable,60,35.1,1.0,1,DSM0080,DSM0080_tv_led_1
@@ -976,7 +976,7 @@ DHH0080,Dhanmondi,upper_middle,1,66873,computer_laptop,1,Curtailable,80,51.9,1.0
 DHH0080,Dhanmondi,upper_middle,1,66873,router_charger_standby,1,Critical,18,17.4,1.0,1,DSM0080,DSM0080_router_charger_standby_1
 DHH0080,Dhanmondi,upper_middle,1,66873,exhaust_fan,1,Curtailable,35,33.5,0.9,2,DSM0080,DSM0080_exhaust_fan_1
 DHH0081,Dhanmondi,upper_middle,2,119565,ceiling_fan,1,Curtailable,75,92.8,0.85,4,DSM0081,DSM0081_ceiling_fan_1
-DHH0081,Dhanmondi,upper_middle,2,119565,split_ac_1ton,1,Schedulable,1100,1711.6,0.65,1,DSM0081,DSM0081_split_ac_1ton_1
+DHH0081,Dhanmondi,upper_middle,2,119565,split_ac_1ton,1,Curtailable,1100,1711.6,0.65,1,DSM0081,DSM0081_split_ac_1ton_1
 DHH0081,Dhanmondi,upper_middle,2,119565,refrigerator,1,Critical,150,137.3,0.42,1,DSM0081,DSM0081_refrigerator_1
 DHH0081,Dhanmondi,upper_middle,2,119565,led_light,1,Critical,10,9.3,1.0,7,DSM0081,DSM0081_led_light_1
 DHH0081,Dhanmondi,upper_middle,2,119565,tv_led,1,Curtailable,60,59.4,1.0,2,DSM0081,DSM0081_tv_led_1
@@ -990,8 +990,8 @@ DHH0081,Dhanmondi,upper_middle,2,119565,computer_laptop,1,Curtailable,80,75.7,1.
 DHH0081,Dhanmondi,upper_middle,2,119565,router_charger_standby,1,Critical,18,17.8,1.0,3,DSM0081,DSM0081_router_charger_standby_1
 DHH0081,Dhanmondi,upper_middle,2,119565,exhaust_fan,1,Curtailable,35,39.2,0.9,2,DSM0081,DSM0081_exhaust_fan_1
 DHH0082,Dhanmondi,upper_middle,5,90070,ceiling_fan,1,Curtailable,75,71.6,0.85,3,DSM0082,DSM0082_ceiling_fan_1
-DHH0082,Dhanmondi,upper_middle,5,90070,split_ac_1ton,1,Schedulable,1100,1192.6,0.65,2,DSM0082,DSM0082_split_ac_1ton_1
-DHH0082,Dhanmondi,upper_middle,5,90070,split_ac_1_5ton,1,Schedulable,1650,2041.4,0.65,3,DSM0082,DSM0082_split_ac_1_5ton_1
+DHH0082,Dhanmondi,upper_middle,5,90070,split_ac_1ton,1,Curtailable,1100,1192.6,0.65,2,DSM0082,DSM0082_split_ac_1ton_1
+DHH0082,Dhanmondi,upper_middle,5,90070,split_ac_1_5ton,1,Curtailable,1650,2041.4,0.65,3,DSM0082,DSM0082_split_ac_1_5ton_1
 DHH0082,Dhanmondi,upper_middle,5,90070,refrigerator,1,Critical,150,142.7,0.42,1,DSM0082,DSM0082_refrigerator_1
 DHH0082,Dhanmondi,upper_middle,5,90070,deep_freezer,1,Critical,180,215.6,0.5,1,DSM0082,DSM0082_deep_freezer_1
 DHH0082,Dhanmondi,upper_middle,5,90070,led_light,1,Critical,10,12.4,1.0,14,DSM0082,DSM0082_led_light_1
@@ -1007,7 +1007,7 @@ DHH0082,Dhanmondi,upper_middle,5,90070,computer_laptop,1,Curtailable,80,77.1,1.0
 DHH0082,Dhanmondi,upper_middle,5,90070,router_charger_standby,1,Critical,18,20.6,1.0,2,DSM0082,DSM0082_router_charger_standby_1
 DHH0082,Dhanmondi,upper_middle,5,90070,exhaust_fan,1,Curtailable,35,36.5,0.9,2,DSM0082,DSM0082_exhaust_fan_1
 DHH0083,Dhanmondi,upper_middle,2,71093,ceiling_fan,1,Curtailable,75,58.6,0.85,5,DSM0083,DSM0083_ceiling_fan_1
-DHH0083,Dhanmondi,upper_middle,2,71093,split_ac_1ton,1,Schedulable,1100,1086.5,0.65,1,DSM0083,DSM0083_split_ac_1ton_1
+DHH0083,Dhanmondi,upper_middle,2,71093,split_ac_1ton,1,Curtailable,1100,1086.5,0.65,1,DSM0083,DSM0083_split_ac_1ton_1
 DHH0083,Dhanmondi,upper_middle,2,71093,refrigerator,1,Critical,150,157.1,0.42,1,DSM0083,DSM0083_refrigerator_1
 DHH0083,Dhanmondi,upper_middle,2,71093,led_light,1,Critical,10,8.2,1.0,9,DSM0083,DSM0083_led_light_1
 DHH0083,Dhanmondi,upper_middle,2,71093,tube_light,1,Critical,36,30.6,1.0,1,DSM0083,DSM0083_tube_light_1
@@ -1026,8 +1026,8 @@ DHH0083,Dhanmondi,upper_middle,2,71093,router_charger_standby,1,Critical,18,18.2
 DHH0083,Dhanmondi,upper_middle,2,71093,exhaust_fan,1,Curtailable,35,32.3,0.9,2,DSM0083,DSM0083_exhaust_fan_1
 DHH0084,Dhanmondi,upper_middle,5,103557,ceiling_fan,1,Curtailable,75,90.1,0.85,4,DSM0084,DSM0084_ceiling_fan_1
 DHH0084,Dhanmondi,upper_middle,5,103557,table_fan,1,Curtailable,45,36.4,0.8,1,DSM0084,DSM0084_table_fan_1
-DHH0084,Dhanmondi,upper_middle,5,103557,split_ac_1ton,1,Schedulable,1100,1134.7,0.65,2,DSM0084,DSM0084_split_ac_1ton_1
-DHH0084,Dhanmondi,upper_middle,5,103557,split_ac_1_5ton,1,Schedulable,1650,1508.4,0.65,2,DSM0084,DSM0084_split_ac_1_5ton_1
+DHH0084,Dhanmondi,upper_middle,5,103557,split_ac_1ton,1,Curtailable,1100,1134.7,0.65,2,DSM0084,DSM0084_split_ac_1ton_1
+DHH0084,Dhanmondi,upper_middle,5,103557,split_ac_1_5ton,1,Curtailable,1650,1508.4,0.65,2,DSM0084,DSM0084_split_ac_1_5ton_1
 DHH0084,Dhanmondi,upper_middle,5,103557,refrigerator,1,Critical,150,171.4,0.42,1,DSM0084,DSM0084_refrigerator_1
 DHH0084,Dhanmondi,upper_middle,5,103557,led_light,1,Critical,10,10.2,1.0,13,DSM0084,DSM0084_led_light_1
 DHH0084,Dhanmondi,upper_middle,5,103557,tv_led,1,Curtailable,60,59.6,1.0,2,DSM0084,DSM0084_tv_led_1
@@ -1042,8 +1042,8 @@ DHH0084,Dhanmondi,upper_middle,5,103557,computer_laptop,1,Curtailable,80,67.6,1.
 DHH0084,Dhanmondi,upper_middle,5,103557,router_charger_standby,1,Critical,18,13.8,1.0,2,DSM0084,DSM0084_router_charger_standby_1
 DHH0084,Dhanmondi,upper_middle,5,103557,exhaust_fan,1,Curtailable,35,34.5,0.9,2,DSM0084,DSM0084_exhaust_fan_1
 DHH0085,Dhanmondi,upper_middle,6,93507,ceiling_fan,1,Curtailable,75,89.9,0.85,5,DSM0085,DSM0085_ceiling_fan_1
-DHH0085,Dhanmondi,upper_middle,6,93507,split_ac_1ton,1,Schedulable,1100,1221.5,0.65,2,DSM0085,DSM0085_split_ac_1ton_1
-DHH0085,Dhanmondi,upper_middle,6,93507,split_ac_1_5ton,1,Schedulable,1650,1583.5,0.65,1,DSM0085,DSM0085_split_ac_1_5ton_1
+DHH0085,Dhanmondi,upper_middle,6,93507,split_ac_1ton,1,Curtailable,1100,1221.5,0.65,2,DSM0085,DSM0085_split_ac_1ton_1
+DHH0085,Dhanmondi,upper_middle,6,93507,split_ac_1_5ton,1,Curtailable,1650,1583.5,0.65,1,DSM0085,DSM0085_split_ac_1_5ton_1
 DHH0085,Dhanmondi,upper_middle,6,93507,refrigerator,1,Critical,150,156.6,0.42,2,DSM0085,DSM0085_refrigerator_1
 DHH0085,Dhanmondi,upper_middle,6,93507,deep_freezer,1,Critical,180,146.1,0.5,1,DSM0085,DSM0085_deep_freezer_1
 DHH0085,Dhanmondi,upper_middle,6,93507,led_light,1,Critical,10,9.1,1.0,11,DSM0085,DSM0085_led_light_1
@@ -1059,7 +1059,7 @@ DHH0085,Dhanmondi,upper_middle,6,93507,router_charger_standby,1,Critical,18,12.4
 DHH0085,Dhanmondi,upper_middle,6,93507,exhaust_fan,1,Curtailable,35,34.2,0.9,1,DSM0085,DSM0085_exhaust_fan_1
 DHH0086,Dhanmondi,upper_middle,3,91710,ceiling_fan,1,Curtailable,75,90.7,0.85,6,DSM0086,DSM0086_ceiling_fan_1
 DHH0086,Dhanmondi,upper_middle,3,91710,table_fan,1,Curtailable,45,43.6,0.8,1,DSM0086,DSM0086_table_fan_1
-DHH0086,Dhanmondi,upper_middle,3,91710,split_ac_1ton,1,Schedulable,1100,1217.5,0.65,2,DSM0086,DSM0086_split_ac_1ton_1
+DHH0086,Dhanmondi,upper_middle,3,91710,split_ac_1ton,1,Curtailable,1100,1217.5,0.65,2,DSM0086,DSM0086_split_ac_1ton_1
 DHH0086,Dhanmondi,upper_middle,3,91710,refrigerator,1,Critical,150,180.3,0.42,1,DSM0086,DSM0086_refrigerator_1
 DHH0086,Dhanmondi,upper_middle,3,91710,led_light,1,Critical,10,11.0,1.0,11,DSM0086,DSM0086_led_light_1
 DHH0086,Dhanmondi,upper_middle,3,91710,tube_light,1,Critical,36,37.5,1.0,2,DSM0086,DSM0086_tube_light_1
@@ -1077,7 +1077,7 @@ DHH0086,Dhanmondi,upper_middle,3,91710,router_charger_standby,1,Critical,18,16.4
 DHH0086,Dhanmondi,upper_middle,3,91710,exhaust_fan,1,Curtailable,35,34.6,0.9,1,DSM0086,DSM0086_exhaust_fan_1
 DHH0087,Dhanmondi,upper_middle,5,69907,ceiling_fan,1,Curtailable,75,79.6,0.85,5,DSM0087,DSM0087_ceiling_fan_1
 DHH0087,Dhanmondi,upper_middle,5,69907,table_fan,1,Curtailable,45,43.3,0.8,1,DSM0087,DSM0087_table_fan_1
-DHH0087,Dhanmondi,upper_middle,5,69907,split_ac_1ton,1,Schedulable,1100,966.6,0.65,1,DSM0087,DSM0087_split_ac_1ton_1
+DHH0087,Dhanmondi,upper_middle,5,69907,split_ac_1ton,1,Curtailable,1100,966.6,0.65,1,DSM0087,DSM0087_split_ac_1ton_1
 DHH0087,Dhanmondi,upper_middle,5,69907,refrigerator,1,Critical,150,147.4,0.42,1,DSM0087,DSM0087_refrigerator_1
 DHH0087,Dhanmondi,upper_middle,5,69907,deep_freezer,1,Critical,180,196.3,0.5,1,DSM0087,DSM0087_deep_freezer_1
 DHH0087,Dhanmondi,upper_middle,5,69907,led_light,1,Critical,10,9.7,1.0,13,DSM0087,DSM0087_led_light_1
@@ -1092,7 +1092,7 @@ DHH0087,Dhanmondi,upper_middle,5,69907,router_charger_standby,1,Critical,18,15.1
 DHH0087,Dhanmondi,upper_middle,5,69907,exhaust_fan,1,Curtailable,35,46.9,0.9,1,DSM0087,DSM0087_exhaust_fan_1
 DHH0088,Dhanmondi,upper_middle,2,102082,ceiling_fan,1,Curtailable,75,57.9,0.85,3,DSM0088,DSM0088_ceiling_fan_1
 DHH0088,Dhanmondi,upper_middle,2,102082,table_fan,1,Curtailable,45,42.8,0.8,1,DSM0088,DSM0088_table_fan_1
-DHH0088,Dhanmondi,upper_middle,2,102082,split_ac_1_5ton,1,Schedulable,1650,1640.5,0.65,2,DSM0088,DSM0088_split_ac_1_5ton_1
+DHH0088,Dhanmondi,upper_middle,2,102082,split_ac_1_5ton,1,Curtailable,1650,1640.5,0.65,2,DSM0088,DSM0088_split_ac_1_5ton_1
 DHH0088,Dhanmondi,upper_middle,2,102082,refrigerator,1,Critical,150,148.7,0.42,1,DSM0088,DSM0088_refrigerator_1
 DHH0088,Dhanmondi,upper_middle,2,102082,deep_freezer,1,Critical,180,176.1,0.5,1,DSM0088,DSM0088_deep_freezer_1
 DHH0088,Dhanmondi,upper_middle,2,102082,led_light,1,Critical,10,9.4,1.0,16,DSM0088,DSM0088_led_light_1
@@ -1109,8 +1109,8 @@ DHH0088,Dhanmondi,upper_middle,2,102082,router_charger_standby,1,Critical,18,13.
 DHH0088,Dhanmondi,upper_middle,2,102082,exhaust_fan,1,Curtailable,35,39.3,0.9,2,DSM0088,DSM0088_exhaust_fan_1
 DHH0089,Dhanmondi,upper_middle,2,117812,ceiling_fan,1,Curtailable,75,97.8,0.85,3,DSM0089,DSM0089_ceiling_fan_1
 DHH0089,Dhanmondi,upper_middle,2,117812,table_fan,1,Curtailable,45,47.0,0.8,1,DSM0089,DSM0089_table_fan_1
-DHH0089,Dhanmondi,upper_middle,2,117812,split_ac_1ton,1,Schedulable,1100,943.7,0.65,1,DSM0089,DSM0089_split_ac_1ton_1
-DHH0089,Dhanmondi,upper_middle,2,117812,split_ac_1_5ton,1,Schedulable,1650,1822.5,0.65,1,DSM0089,DSM0089_split_ac_1_5ton_1
+DHH0089,Dhanmondi,upper_middle,2,117812,split_ac_1ton,1,Curtailable,1100,943.7,0.65,1,DSM0089,DSM0089_split_ac_1ton_1
+DHH0089,Dhanmondi,upper_middle,2,117812,split_ac_1_5ton,1,Curtailable,1650,1822.5,0.65,1,DSM0089,DSM0089_split_ac_1_5ton_1
 DHH0089,Dhanmondi,upper_middle,2,117812,refrigerator,1,Critical,150,166.4,0.42,1,DSM0089,DSM0089_refrigerator_1
 DHH0089,Dhanmondi,upper_middle,2,117812,led_light,1,Critical,10,7.3,1.0,15,DSM0089,DSM0089_led_light_1
 DHH0089,Dhanmondi,upper_middle,2,117812,tv_led,1,Curtailable,60,67.5,1.0,2,DSM0089,DSM0089_tv_led_1
@@ -1123,8 +1123,8 @@ DHH0089,Dhanmondi,upper_middle,2,117812,washing_machine,1,Schedulable,450,445.3,
 DHH0089,Dhanmondi,upper_middle,2,117812,geyser_water_heater,1,Schedulable,1800,1762.5,0.8,1,DSM0089,DSM0089_geyser_water_heater_1
 DHH0089,Dhanmondi,upper_middle,2,117812,router_charger_standby,1,Critical,18,16.1,1.0,1,DSM0089,DSM0089_router_charger_standby_1
 DHH0090,Dhanmondi,upper_middle,5,76191,ceiling_fan,1,Curtailable,75,72.0,0.85,4,DSM0090,DSM0090_ceiling_fan_1
-DHH0090,Dhanmondi,upper_middle,5,76191,split_ac_1ton,1,Schedulable,1100,966.2,0.65,1,DSM0090,DSM0090_split_ac_1ton_1
-DHH0090,Dhanmondi,upper_middle,5,76191,split_ac_1_5ton,1,Schedulable,1650,1765.4,0.65,2,DSM0090,DSM0090_split_ac_1_5ton_1
+DHH0090,Dhanmondi,upper_middle,5,76191,split_ac_1ton,1,Curtailable,1100,966.2,0.65,1,DSM0090,DSM0090_split_ac_1ton_1
+DHH0090,Dhanmondi,upper_middle,5,76191,split_ac_1_5ton,1,Curtailable,1650,1765.4,0.65,2,DSM0090,DSM0090_split_ac_1_5ton_1
 DHH0090,Dhanmondi,upper_middle,5,76191,refrigerator,1,Critical,150,111.2,0.42,3,DSM0090,DSM0090_refrigerator_1
 DHH0090,Dhanmondi,upper_middle,5,76191,deep_freezer,1,Critical,180,187.0,0.5,1,DSM0090,DSM0090_deep_freezer_1
 DHH0090,Dhanmondi,upper_middle,5,76191,led_light,1,Critical,10,7.1,1.0,19,DSM0090,DSM0090_led_light_1
@@ -1139,8 +1139,8 @@ DHH0090,Dhanmondi,upper_middle,5,76191,washing_machine,1,Schedulable,450,442.9,0
 DHH0090,Dhanmondi,upper_middle,5,76191,router_charger_standby,1,Critical,18,17.7,1.0,2,DSM0090,DSM0090_router_charger_standby_1
 DHH0091,Dhanmondi,upper_middle,3,111452,ceiling_fan,1,Curtailable,75,90.6,0.85,5,DSM0091,DSM0091_ceiling_fan_1
 DHH0091,Dhanmondi,upper_middle,3,111452,table_fan,1,Curtailable,45,33.4,0.8,1,DSM0091,DSM0091_table_fan_1
-DHH0091,Dhanmondi,upper_middle,3,111452,split_ac_1ton,1,Schedulable,1100,1041.2,0.65,2,DSM0091,DSM0091_split_ac_1ton_1
-DHH0091,Dhanmondi,upper_middle,3,111452,split_ac_1_5ton,1,Schedulable,1650,1801.3,0.65,1,DSM0091,DSM0091_split_ac_1_5ton_1
+DHH0091,Dhanmondi,upper_middle,3,111452,split_ac_1ton,1,Curtailable,1100,1041.2,0.65,2,DSM0091,DSM0091_split_ac_1ton_1
+DHH0091,Dhanmondi,upper_middle,3,111452,split_ac_1_5ton,1,Curtailable,1650,1801.3,0.65,1,DSM0091,DSM0091_split_ac_1_5ton_1
 DHH0091,Dhanmondi,upper_middle,3,111452,refrigerator,1,Critical,150,191.6,0.42,1,DSM0091,DSM0091_refrigerator_1
 DHH0091,Dhanmondi,upper_middle,3,111452,deep_freezer,1,Critical,180,176.0,0.5,1,DSM0091,DSM0091_deep_freezer_1
 DHH0091,Dhanmondi,upper_middle,3,111452,led_light,1,Critical,10,9.9,1.0,14,DSM0091,DSM0091_led_light_1
@@ -1157,8 +1157,8 @@ DHH0091,Dhanmondi,upper_middle,3,111452,computer_laptop,1,Curtailable,80,55.8,1.
 DHH0091,Dhanmondi,upper_middle,3,111452,router_charger_standby,1,Critical,18,15.2,1.0,1,DSM0091,DSM0091_router_charger_standby_1
 DHH0091,Dhanmondi,upper_middle,3,111452,exhaust_fan,1,Curtailable,35,33.4,0.9,1,DSM0091,DSM0091_exhaust_fan_1
 DHH0092,Dhanmondi,upper_middle,8,74918,ceiling_fan,1,Curtailable,75,80.9,0.85,6,DSM0092,DSM0092_ceiling_fan_1
-DHH0092,Dhanmondi,upper_middle,8,74918,split_ac_1ton,1,Schedulable,1100,1114.6,0.65,2,DSM0092,DSM0092_split_ac_1ton_1
-DHH0092,Dhanmondi,upper_middle,8,74918,split_ac_1_5ton,1,Schedulable,1650,1769.7,0.65,2,DSM0092,DSM0092_split_ac_1_5ton_1
+DHH0092,Dhanmondi,upper_middle,8,74918,split_ac_1ton,1,Curtailable,1100,1114.6,0.65,2,DSM0092,DSM0092_split_ac_1ton_1
+DHH0092,Dhanmondi,upper_middle,8,74918,split_ac_1_5ton,1,Curtailable,1650,1769.7,0.65,2,DSM0092,DSM0092_split_ac_1_5ton_1
 DHH0092,Dhanmondi,upper_middle,8,74918,refrigerator,1,Critical,150,156.7,0.42,2,DSM0092,DSM0092_refrigerator_1
 DHH0092,Dhanmondi,upper_middle,8,74918,led_light,1,Critical,10,9.1,1.0,11,DSM0092,DSM0092_led_light_1
 DHH0092,Dhanmondi,upper_middle,8,74918,tv_led,1,Curtailable,60,63.5,1.0,2,DSM0092,DSM0092_tv_led_1
@@ -1172,8 +1172,8 @@ DHH0092,Dhanmondi,upper_middle,8,74918,computer_laptop,1,Curtailable,80,124.6,1.
 DHH0092,Dhanmondi,upper_middle,8,74918,router_charger_standby,1,Critical,18,23.9,1.0,3,DSM0092,DSM0092_router_charger_standby_1
 DHH0093,Dhanmondi,upper_middle,6,93180,ceiling_fan,1,Curtailable,75,69.8,0.85,3,DSM0093,DSM0093_ceiling_fan_1
 DHH0093,Dhanmondi,upper_middle,6,93180,table_fan,1,Curtailable,45,44.7,0.8,1,DSM0093,DSM0093_table_fan_1
-DHH0093,Dhanmondi,upper_middle,6,93180,split_ac_1ton,1,Schedulable,1100,1215.6,0.65,2,DSM0093,DSM0093_split_ac_1ton_1
-DHH0093,Dhanmondi,upper_middle,6,93180,split_ac_1_5ton,1,Schedulable,1650,1670.7,0.65,1,DSM0093,DSM0093_split_ac_1_5ton_1
+DHH0093,Dhanmondi,upper_middle,6,93180,split_ac_1ton,1,Curtailable,1100,1215.6,0.65,2,DSM0093,DSM0093_split_ac_1ton_1
+DHH0093,Dhanmondi,upper_middle,6,93180,split_ac_1_5ton,1,Curtailable,1650,1670.7,0.65,1,DSM0093,DSM0093_split_ac_1_5ton_1
 DHH0093,Dhanmondi,upper_middle,6,93180,refrigerator,1,Critical,150,119.2,0.42,2,DSM0093,DSM0093_refrigerator_1
 DHH0093,Dhanmondi,upper_middle,6,93180,led_light,1,Critical,10,9.8,1.0,9,DSM0093,DSM0093_led_light_1
 DHH0093,Dhanmondi,upper_middle,6,93180,tv_led,1,Curtailable,60,64.0,1.0,4,DSM0093,DSM0093_tv_led_1
@@ -1189,7 +1189,7 @@ DHH0093,Dhanmondi,upper_middle,6,93180,router_charger_standby,1,Critical,18,15.9
 DHH0093,Dhanmondi,upper_middle,6,93180,exhaust_fan,1,Curtailable,35,29.6,0.9,2,DSM0093,DSM0093_exhaust_fan_1
 DHH0094,Dhanmondi,upper_middle,4,93556,ceiling_fan,1,Curtailable,75,76.1,0.85,5,DSM0094,DSM0094_ceiling_fan_1
 DHH0094,Dhanmondi,upper_middle,4,93556,table_fan,1,Curtailable,45,61.7,0.8,1,DSM0094,DSM0094_table_fan_1
-DHH0094,Dhanmondi,upper_middle,4,93556,split_ac_1ton,1,Schedulable,1100,1163.8,0.65,2,DSM0094,DSM0094_split_ac_1ton_1
+DHH0094,Dhanmondi,upper_middle,4,93556,split_ac_1ton,1,Curtailable,1100,1163.8,0.65,2,DSM0094,DSM0094_split_ac_1ton_1
 DHH0094,Dhanmondi,upper_middle,4,93556,refrigerator,1,Critical,150,152.0,0.42,1,DSM0094,DSM0094_refrigerator_1
 DHH0094,Dhanmondi,upper_middle,4,93556,deep_freezer,1,Critical,180,162.2,0.5,1,DSM0094,DSM0094_deep_freezer_1
 DHH0094,Dhanmondi,upper_middle,4,93556,led_light,1,Critical,10,7.3,1.0,10,DSM0094,DSM0094_led_light_1
@@ -1237,8 +1237,8 @@ DHH0096,Dhanmondi,upper_middle,4,100846,computer_laptop,1,Curtailable,80,106.8,1
 DHH0096,Dhanmondi,upper_middle,4,100846,router_charger_standby,1,Critical,18,22.8,1.0,3,DSM0096,DSM0096_router_charger_standby_1
 DHH0096,Dhanmondi,upper_middle,4,100846,exhaust_fan,1,Curtailable,35,39.4,0.9,2,DSM0096,DSM0096_exhaust_fan_1
 DHH0097,Dhanmondi,upper_middle,4,94261,ceiling_fan,1,Curtailable,75,85.7,0.85,5,DSM0097,DSM0097_ceiling_fan_1
-DHH0097,Dhanmondi,upper_middle,4,94261,split_ac_1ton,1,Schedulable,1100,1139.5,0.65,1,DSM0097,DSM0097_split_ac_1ton_1
-DHH0097,Dhanmondi,upper_middle,4,94261,split_ac_1_5ton,1,Schedulable,1650,1522.2,0.65,1,DSM0097,DSM0097_split_ac_1_5ton_1
+DHH0097,Dhanmondi,upper_middle,4,94261,split_ac_1ton,1,Curtailable,1100,1139.5,0.65,1,DSM0097,DSM0097_split_ac_1ton_1
+DHH0097,Dhanmondi,upper_middle,4,94261,split_ac_1_5ton,1,Curtailable,1650,1522.2,0.65,1,DSM0097,DSM0097_split_ac_1_5ton_1
 DHH0097,Dhanmondi,upper_middle,4,94261,refrigerator,1,Critical,150,153.7,0.42,2,DSM0097,DSM0097_refrigerator_1
 DHH0097,Dhanmondi,upper_middle,4,94261,deep_freezer,1,Critical,180,195.0,0.5,1,DSM0097,DSM0097_deep_freezer_1
 DHH0097,Dhanmondi,upper_middle,4,94261,led_light,1,Critical,10,12.0,1.0,11,DSM0097,DSM0097_led_light_1
@@ -1257,7 +1257,7 @@ DHH0097,Dhanmondi,upper_middle,4,94261,computer_laptop,1,Curtailable,80,46.3,1.0
 DHH0097,Dhanmondi,upper_middle,4,94261,router_charger_standby,1,Critical,18,19.0,1.0,2,DSM0097,DSM0097_router_charger_standby_1
 DHH0097,Dhanmondi,upper_middle,4,94261,exhaust_fan,1,Curtailable,35,41.6,0.9,1,DSM0097,DSM0097_exhaust_fan_1
 DHH0098,Dhanmondi,upper_middle,4,79952,ceiling_fan,1,Curtailable,75,67.8,0.85,4,DSM0098,DSM0098_ceiling_fan_1
-DHH0098,Dhanmondi,upper_middle,4,79952,split_ac_1ton,1,Schedulable,1100,999.6,0.65,2,DSM0098,DSM0098_split_ac_1ton_1
+DHH0098,Dhanmondi,upper_middle,4,79952,split_ac_1ton,1,Curtailable,1100,999.6,0.65,2,DSM0098,DSM0098_split_ac_1ton_1
 DHH0098,Dhanmondi,upper_middle,4,79952,refrigerator,1,Critical,150,130.0,0.42,1,DSM0098,DSM0098_refrigerator_1
 DHH0098,Dhanmondi,upper_middle,4,79952,led_light,1,Critical,10,7.4,1.0,14,DSM0098,DSM0098_led_light_1
 DHH0098,Dhanmondi,upper_middle,4,79952,tv_led,1,Curtailable,60,43.9,1.0,2,DSM0098,DSM0098_tv_led_1
@@ -1271,7 +1271,7 @@ DHH0098,Dhanmondi,upper_middle,4,79952,computer_laptop,1,Curtailable,80,79.3,1.0
 DHH0098,Dhanmondi,upper_middle,4,79952,router_charger_standby,1,Critical,18,18.9,1.0,2,DSM0098,DSM0098_router_charger_standby_1
 DHH0098,Dhanmondi,upper_middle,4,79952,exhaust_fan,1,Curtailable,35,25.7,0.9,3,DSM0098,DSM0098_exhaust_fan_1
 DHH0099,Dhanmondi,upper_middle,4,103333,ceiling_fan,1,Curtailable,75,89.3,0.85,3,DSM0099,DSM0099_ceiling_fan_1
-DHH0099,Dhanmondi,upper_middle,4,103333,split_ac_1_5ton,1,Schedulable,1650,1815.4,0.65,1,DSM0099,DSM0099_split_ac_1_5ton_1
+DHH0099,Dhanmondi,upper_middle,4,103333,split_ac_1_5ton,1,Curtailable,1650,1815.4,0.65,1,DSM0099,DSM0099_split_ac_1_5ton_1
 DHH0099,Dhanmondi,upper_middle,4,103333,refrigerator,1,Critical,150,90.5,0.42,2,DSM0099,DSM0099_refrigerator_1
 DHH0099,Dhanmondi,upper_middle,4,103333,led_light,1,Critical,10,12.1,1.0,13,DSM0099,DSM0099_led_light_1
 DHH0099,Dhanmondi,upper_middle,4,103333,tube_light,1,Critical,36,34.9,1.0,2,DSM0099,DSM0099_tube_light_1
@@ -1287,7 +1287,7 @@ DHH0099,Dhanmondi,upper_middle,4,103333,computer_laptop,1,Curtailable,80,93.4,1.
 DHH0099,Dhanmondi,upper_middle,4,103333,router_charger_standby,1,Critical,18,13.1,1.0,3,DSM0099,DSM0099_router_charger_standby_1
 DHH0099,Dhanmondi,upper_middle,4,103333,exhaust_fan,1,Curtailable,35,30.2,0.9,2,DSM0099,DSM0099_exhaust_fan_1
 DHH0100,Dhanmondi,upper_middle,3,111775,ceiling_fan,1,Curtailable,75,59.3,0.85,5,DSM0100,DSM0100_ceiling_fan_1
-DHH0100,Dhanmondi,upper_middle,3,111775,split_ac_1_5ton,1,Schedulable,1650,1523.6,0.65,1,DSM0100,DSM0100_split_ac_1_5ton_1
+DHH0100,Dhanmondi,upper_middle,3,111775,split_ac_1_5ton,1,Curtailable,1650,1523.6,0.65,1,DSM0100,DSM0100_split_ac_1_5ton_1
 DHH0100,Dhanmondi,upper_middle,3,111775,refrigerator,1,Critical,150,172.5,0.42,2,DSM0100,DSM0100_refrigerator_1
 DHH0100,Dhanmondi,upper_middle,3,111775,deep_freezer,1,Critical,180,168.1,0.5,1,DSM0100,DSM0100_deep_freezer_1
 DHH0100,Dhanmondi,upper_middle,3,111775,led_light,1,Critical,10,8.3,1.0,10,DSM0100,DSM0100_led_light_1
@@ -1301,8 +1301,8 @@ DHH0100,Dhanmondi,upper_middle,3,111775,computer_laptop,1,Curtailable,80,50.9,1.
 DHH0100,Dhanmondi,upper_middle,3,111775,router_charger_standby,1,Critical,18,27.8,1.0,3,DSM0100,DSM0100_router_charger_standby_1
 DHH0100,Dhanmondi,upper_middle,3,111775,exhaust_fan,1,Curtailable,35,34.8,0.9,1,DSM0100,DSM0100_exhaust_fan_1
 DHH0101,Dhanmondi,upper_middle,5,118569,ceiling_fan,1,Curtailable,75,84.1,0.85,4,DSM0101,DSM0101_ceiling_fan_1
-DHH0101,Dhanmondi,upper_middle,5,118569,split_ac_1ton,1,Schedulable,1100,1015.3,0.65,1,DSM0101,DSM0101_split_ac_1ton_1
-DHH0101,Dhanmondi,upper_middle,5,118569,split_ac_1_5ton,1,Schedulable,1650,1431.2,0.65,2,DSM0101,DSM0101_split_ac_1_5ton_1
+DHH0101,Dhanmondi,upper_middle,5,118569,split_ac_1ton,1,Curtailable,1100,1015.3,0.65,1,DSM0101,DSM0101_split_ac_1ton_1
+DHH0101,Dhanmondi,upper_middle,5,118569,split_ac_1_5ton,1,Curtailable,1650,1431.2,0.65,2,DSM0101,DSM0101_split_ac_1_5ton_1
 DHH0101,Dhanmondi,upper_middle,5,118569,refrigerator,1,Critical,150,160.1,0.42,1,DSM0101,DSM0101_refrigerator_1
 DHH0101,Dhanmondi,upper_middle,5,118569,led_light,1,Critical,10,5.4,1.0,13,DSM0101,DSM0101_led_light_1
 DHH0101,Dhanmondi,upper_middle,5,118569,tv_led,1,Curtailable,60,75.1,1.0,2,DSM0101,DSM0101_tv_led_1
@@ -1318,8 +1318,8 @@ DHH0101,Dhanmondi,upper_middle,5,118569,router_charger_standby,1,Critical,18,26.
 DHH0101,Dhanmondi,upper_middle,5,118569,exhaust_fan,1,Curtailable,35,28.9,0.9,2,DSM0101,DSM0101_exhaust_fan_1
 DHH0102,Dhanmondi,upper_middle,3,68160,ceiling_fan,1,Curtailable,75,51.4,0.85,5,DSM0102,DSM0102_ceiling_fan_1
 DHH0102,Dhanmondi,upper_middle,3,68160,table_fan,1,Curtailable,45,49.3,0.8,1,DSM0102,DSM0102_table_fan_1
-DHH0102,Dhanmondi,upper_middle,3,68160,split_ac_1ton,1,Schedulable,1100,1022.6,0.65,2,DSM0102,DSM0102_split_ac_1ton_1
-DHH0102,Dhanmondi,upper_middle,3,68160,split_ac_1_5ton,1,Schedulable,1650,1662.8,0.65,2,DSM0102,DSM0102_split_ac_1_5ton_1
+DHH0102,Dhanmondi,upper_middle,3,68160,split_ac_1ton,1,Curtailable,1100,1022.6,0.65,2,DSM0102,DSM0102_split_ac_1ton_1
+DHH0102,Dhanmondi,upper_middle,3,68160,split_ac_1_5ton,1,Curtailable,1650,1662.8,0.65,2,DSM0102,DSM0102_split_ac_1_5ton_1
 DHH0102,Dhanmondi,upper_middle,3,68160,refrigerator,1,Critical,150,116.5,0.42,1,DSM0102,DSM0102_refrigerator_1
 DHH0102,Dhanmondi,upper_middle,3,68160,led_light,1,Critical,10,7.9,1.0,8,DSM0102,DSM0102_led_light_1
 DHH0102,Dhanmondi,upper_middle,3,68160,tv_led,1,Curtailable,60,64.0,1.0,1,DSM0102,DSM0102_tv_led_1
@@ -1333,7 +1333,7 @@ DHH0102,Dhanmondi,upper_middle,3,68160,ips_backup,1,Schedulable,300,336.1,0.6,1,
 DHH0102,Dhanmondi,upper_middle,3,68160,computer_laptop,1,Curtailable,80,59.5,1.0,2,DSM0102,DSM0102_computer_laptop_1
 DHH0102,Dhanmondi,upper_middle,3,68160,router_charger_standby,1,Critical,18,20.1,1.0,2,DSM0102,DSM0102_router_charger_standby_1
 DHH0103,Dhanmondi,upper_middle,4,75769,table_fan,1,Curtailable,45,52.4,0.8,1,DSM0103,DSM0103_table_fan_1
-DHH0103,Dhanmondi,upper_middle,4,75769,split_ac_1_5ton,1,Schedulable,1650,1547.1,0.65,1,DSM0103,DSM0103_split_ac_1_5ton_1
+DHH0103,Dhanmondi,upper_middle,4,75769,split_ac_1_5ton,1,Curtailable,1650,1547.1,0.65,1,DSM0103,DSM0103_split_ac_1_5ton_1
 DHH0103,Dhanmondi,upper_middle,4,75769,refrigerator,1,Critical,150,148.9,0.42,1,DSM0103,DSM0103_refrigerator_1
 DHH0103,Dhanmondi,upper_middle,4,75769,deep_freezer,1,Critical,180,193.1,0.5,1,DSM0103,DSM0103_deep_freezer_1
 DHH0103,Dhanmondi,upper_middle,4,75769,led_light,1,Critical,10,12.4,1.0,17,DSM0103,DSM0103_led_light_1
@@ -1350,8 +1350,8 @@ DHH0103,Dhanmondi,upper_middle,4,75769,computer_laptop,1,Curtailable,80,59.7,1.0
 DHH0103,Dhanmondi,upper_middle,4,75769,router_charger_standby,1,Critical,18,13.3,1.0,2,DSM0103,DSM0103_router_charger_standby_1
 DHH0103,Dhanmondi,upper_middle,4,75769,exhaust_fan,1,Curtailable,35,39.5,0.9,1,DSM0103,DSM0103_exhaust_fan_1
 DHH0104,Dhanmondi,upper_middle,4,105576,ceiling_fan,1,Curtailable,75,52.6,0.85,4,DSM0104,DSM0104_ceiling_fan_1
-DHH0104,Dhanmondi,upper_middle,4,105576,split_ac_1ton,1,Schedulable,1100,1022.7,0.65,1,DSM0104,DSM0104_split_ac_1ton_1
-DHH0104,Dhanmondi,upper_middle,4,105576,split_ac_1_5ton,1,Schedulable,1650,2169.8,0.65,1,DSM0104,DSM0104_split_ac_1_5ton_1
+DHH0104,Dhanmondi,upper_middle,4,105576,split_ac_1ton,1,Curtailable,1100,1022.7,0.65,1,DSM0104,DSM0104_split_ac_1ton_1
+DHH0104,Dhanmondi,upper_middle,4,105576,split_ac_1_5ton,1,Curtailable,1650,2169.8,0.65,1,DSM0104,DSM0104_split_ac_1_5ton_1
 DHH0104,Dhanmondi,upper_middle,4,105576,refrigerator,1,Critical,150,153.1,0.42,1,DSM0104,DSM0104_refrigerator_1
 DHH0104,Dhanmondi,upper_middle,4,105576,led_light,1,Critical,10,11.0,1.0,9,DSM0104,DSM0104_led_light_1
 DHH0104,Dhanmondi,upper_middle,4,105576,tv_led,1,Curtailable,60,71.4,1.0,2,DSM0104,DSM0104_tv_led_1
@@ -1367,7 +1367,7 @@ DHH0104,Dhanmondi,upper_middle,4,105576,computer_laptop,1,Curtailable,80,27.6,1.
 DHH0104,Dhanmondi,upper_middle,4,105576,router_charger_standby,1,Critical,18,15.8,1.0,2,DSM0104,DSM0104_router_charger_standby_1
 DHH0104,Dhanmondi,upper_middle,4,105576,exhaust_fan,1,Curtailable,35,46.2,0.9,1,DSM0104,DSM0104_exhaust_fan_1
 DHH0105,Dhanmondi,upper_middle,5,111304,ceiling_fan,1,Curtailable,75,90.2,0.85,5,DSM0105,DSM0105_ceiling_fan_1
-DHH0105,Dhanmondi,upper_middle,5,111304,split_ac_1_5ton,1,Schedulable,1650,1205.8,0.65,1,DSM0105,DSM0105_split_ac_1_5ton_1
+DHH0105,Dhanmondi,upper_middle,5,111304,split_ac_1_5ton,1,Curtailable,1650,1205.8,0.65,1,DSM0105,DSM0105_split_ac_1_5ton_1
 DHH0105,Dhanmondi,upper_middle,5,111304,refrigerator,1,Critical,150,138.8,0.42,1,DSM0105,DSM0105_refrigerator_1
 DHH0105,Dhanmondi,upper_middle,5,111304,led_light,1,Critical,10,11.5,1.0,12,DSM0105,DSM0105_led_light_1
 DHH0105,Dhanmondi,upper_middle,5,111304,tv_led,1,Curtailable,60,45.8,1.0,1,DSM0105,DSM0105_tv_led_1
@@ -1381,8 +1381,8 @@ DHH0105,Dhanmondi,upper_middle,5,111304,computer_laptop,1,Curtailable,80,71.5,1.
 DHH0105,Dhanmondi,upper_middle,5,111304,router_charger_standby,1,Critical,18,21.4,1.0,3,DSM0105,DSM0105_router_charger_standby_1
 DHH0105,Dhanmondi,upper_middle,5,111304,exhaust_fan,1,Curtailable,35,39.6,0.9,1,DSM0105,DSM0105_exhaust_fan_1
 DHH0106,Dhanmondi,upper_middle,1,97884,ceiling_fan,1,Curtailable,75,77.2,0.85,4,DSM0106,DSM0106_ceiling_fan_1
-DHH0106,Dhanmondi,upper_middle,1,97884,split_ac_1ton,1,Schedulable,1100,1138.4,0.65,1,DSM0106,DSM0106_split_ac_1ton_1
-DHH0106,Dhanmondi,upper_middle,1,97884,split_ac_1_5ton,1,Schedulable,1650,1738.8,0.65,1,DSM0106,DSM0106_split_ac_1_5ton_1
+DHH0106,Dhanmondi,upper_middle,1,97884,split_ac_1ton,1,Curtailable,1100,1138.4,0.65,1,DSM0106,DSM0106_split_ac_1ton_1
+DHH0106,Dhanmondi,upper_middle,1,97884,split_ac_1_5ton,1,Curtailable,1650,1738.8,0.65,1,DSM0106,DSM0106_split_ac_1_5ton_1
 DHH0106,Dhanmondi,upper_middle,1,97884,refrigerator,1,Critical,150,161.4,0.42,2,DSM0106,DSM0106_refrigerator_1
 DHH0106,Dhanmondi,upper_middle,1,97884,led_light,1,Critical,10,10.7,1.0,13,DSM0106,DSM0106_led_light_1
 DHH0106,Dhanmondi,upper_middle,1,97884,tv_led,1,Curtailable,60,81.0,1.0,2,DSM0106,DSM0106_tv_led_1
@@ -1398,7 +1398,7 @@ DHH0106,Dhanmondi,upper_middle,1,97884,computer_laptop,1,Curtailable,80,98.7,1.0
 DHH0106,Dhanmondi,upper_middle,1,97884,router_charger_standby,1,Critical,18,12.1,1.0,2,DSM0106,DSM0106_router_charger_standby_1
 DHH0106,Dhanmondi,upper_middle,1,97884,exhaust_fan,1,Curtailable,35,33.9,0.9,2,DSM0106,DSM0106_exhaust_fan_1
 DHH0107,Dhanmondi,upper_middle,4,106702,ceiling_fan,1,Curtailable,75,73.7,0.85,4,DSM0107,DSM0107_ceiling_fan_1
-DHH0107,Dhanmondi,upper_middle,4,106702,split_ac_1_5ton,1,Schedulable,1650,1739.0,0.65,1,DSM0107,DSM0107_split_ac_1_5ton_1
+DHH0107,Dhanmondi,upper_middle,4,106702,split_ac_1_5ton,1,Curtailable,1650,1739.0,0.65,1,DSM0107,DSM0107_split_ac_1_5ton_1
 DHH0107,Dhanmondi,upper_middle,4,106702,refrigerator,1,Critical,150,140.8,0.42,1,DSM0107,DSM0107_refrigerator_1
 DHH0107,Dhanmondi,upper_middle,4,106702,deep_freezer,1,Critical,180,203.8,0.5,1,DSM0107,DSM0107_deep_freezer_1
 DHH0107,Dhanmondi,upper_middle,4,106702,led_light,1,Critical,10,8.3,1.0,12,DSM0107,DSM0107_led_light_1
@@ -1414,7 +1414,7 @@ DHH0107,Dhanmondi,upper_middle,4,106702,computer_laptop,1,Curtailable,80,76.6,1.
 DHH0107,Dhanmondi,upper_middle,4,106702,router_charger_standby,1,Critical,18,16.7,1.0,3,DSM0107,DSM0107_router_charger_standby_1
 DHH0107,Dhanmondi,upper_middle,4,106702,exhaust_fan,1,Curtailable,35,44.2,0.9,1,DSM0107,DSM0107_exhaust_fan_1
 DHH0108,Dhanmondi,upper_middle,3,67663,ceiling_fan,1,Curtailable,75,79.8,0.85,4,DSM0108,DSM0108_ceiling_fan_1
-DHH0108,Dhanmondi,upper_middle,3,67663,split_ac_1ton,1,Schedulable,1100,1407.1,0.65,2,DSM0108,DSM0108_split_ac_1ton_1
+DHH0108,Dhanmondi,upper_middle,3,67663,split_ac_1ton,1,Curtailable,1100,1407.1,0.65,2,DSM0108,DSM0108_split_ac_1ton_1
 DHH0108,Dhanmondi,upper_middle,3,67663,refrigerator,1,Critical,150,155.5,0.42,2,DSM0108,DSM0108_refrigerator_1
 DHH0108,Dhanmondi,upper_middle,3,67663,led_light,1,Critical,10,5.6,1.0,14,DSM0108,DSM0108_led_light_1
 DHH0108,Dhanmondi,upper_middle,3,67663,tv_led,1,Curtailable,60,61.6,1.0,3,DSM0108,DSM0108_tv_led_1
@@ -1428,8 +1428,8 @@ DHH0108,Dhanmondi,upper_middle,3,67663,geyser_water_heater,1,Schedulable,1800,18
 DHH0108,Dhanmondi,upper_middle,3,67663,computer_laptop,1,Curtailable,80,36.2,1.0,3,DSM0108,DSM0108_computer_laptop_1
 DHH0108,Dhanmondi,upper_middle,3,67663,router_charger_standby,1,Critical,18,17.9,1.0,1,DSM0108,DSM0108_router_charger_standby_1
 DHH0109,Dhanmondi,upper_middle,5,65663,ceiling_fan,1,Curtailable,75,89.9,0.85,3,DSM0109,DSM0109_ceiling_fan_1
-DHH0109,Dhanmondi,upper_middle,5,65663,split_ac_1ton,1,Schedulable,1100,1248.4,0.65,1,DSM0109,DSM0109_split_ac_1ton_1
-DHH0109,Dhanmondi,upper_middle,5,65663,split_ac_1_5ton,1,Schedulable,1650,1465.2,0.65,2,DSM0109,DSM0109_split_ac_1_5ton_1
+DHH0109,Dhanmondi,upper_middle,5,65663,split_ac_1ton,1,Curtailable,1100,1248.4,0.65,1,DSM0109,DSM0109_split_ac_1ton_1
+DHH0109,Dhanmondi,upper_middle,5,65663,split_ac_1_5ton,1,Curtailable,1650,1465.2,0.65,2,DSM0109,DSM0109_split_ac_1_5ton_1
 DHH0109,Dhanmondi,upper_middle,5,65663,refrigerator,1,Critical,150,141.2,0.42,1,DSM0109,DSM0109_refrigerator_1
 DHH0109,Dhanmondi,upper_middle,5,65663,deep_freezer,1,Critical,180,205.1,0.5,1,DSM0109,DSM0109_deep_freezer_1
 DHH0109,Dhanmondi,upper_middle,5,65663,led_light,1,Critical,10,7.7,1.0,10,DSM0109,DSM0109_led_light_1
@@ -1446,8 +1446,8 @@ DHH0109,Dhanmondi,upper_middle,5,65663,router_charger_standby,1,Critical,18,13.7
 DHH0109,Dhanmondi,upper_middle,5,65663,exhaust_fan,1,Curtailable,35,31.4,0.9,3,DSM0109,DSM0109_exhaust_fan_1
 DHH0110,Dhanmondi,upper_middle,4,101355,ceiling_fan,1,Curtailable,75,92.6,0.85,4,DSM0110,DSM0110_ceiling_fan_1
 DHH0110,Dhanmondi,upper_middle,4,101355,table_fan,1,Curtailable,45,46.6,0.8,1,DSM0110,DSM0110_table_fan_1
-DHH0110,Dhanmondi,upper_middle,4,101355,split_ac_1ton,1,Schedulable,1100,1039.2,0.65,2,DSM0110,DSM0110_split_ac_1ton_1
-DHH0110,Dhanmondi,upper_middle,4,101355,split_ac_1_5ton,1,Schedulable,1650,1531.1,0.65,2,DSM0110,DSM0110_split_ac_1_5ton_1
+DHH0110,Dhanmondi,upper_middle,4,101355,split_ac_1ton,1,Curtailable,1100,1039.2,0.65,2,DSM0110,DSM0110_split_ac_1ton_1
+DHH0110,Dhanmondi,upper_middle,4,101355,split_ac_1_5ton,1,Curtailable,1650,1531.1,0.65,2,DSM0110,DSM0110_split_ac_1_5ton_1
 DHH0110,Dhanmondi,upper_middle,4,101355,refrigerator,1,Critical,150,169.5,0.42,1,DSM0110,DSM0110_refrigerator_1
 DHH0110,Dhanmondi,upper_middle,4,101355,deep_freezer,1,Critical,180,194.3,0.5,1,DSM0110,DSM0110_deep_freezer_1
 DHH0110,Dhanmondi,upper_middle,4,101355,led_light,1,Critical,10,7.7,1.0,14,DSM0110,DSM0110_led_light_1
@@ -1465,8 +1465,8 @@ DHH0110,Dhanmondi,upper_middle,4,101355,router_charger_standby,1,Critical,18,17.
 DHH0110,Dhanmondi,upper_middle,4,101355,exhaust_fan,1,Curtailable,35,35.9,0.9,2,DSM0110,DSM0110_exhaust_fan_1
 DHH0111,Dhanmondi,upper_middle,5,90724,ceiling_fan,1,Curtailable,75,86.2,0.85,3,DSM0111,DSM0111_ceiling_fan_1
 DHH0111,Dhanmondi,upper_middle,5,90724,table_fan,1,Curtailable,45,44.7,0.8,1,DSM0111,DSM0111_table_fan_1
-DHH0111,Dhanmondi,upper_middle,5,90724,split_ac_1ton,1,Schedulable,1100,1140.6,0.65,1,DSM0111,DSM0111_split_ac_1ton_1
-DHH0111,Dhanmondi,upper_middle,5,90724,split_ac_1_5ton,1,Schedulable,1650,2024.1,0.65,1,DSM0111,DSM0111_split_ac_1_5ton_1
+DHH0111,Dhanmondi,upper_middle,5,90724,split_ac_1ton,1,Curtailable,1100,1140.6,0.65,1,DSM0111,DSM0111_split_ac_1ton_1
+DHH0111,Dhanmondi,upper_middle,5,90724,split_ac_1_5ton,1,Curtailable,1650,2024.1,0.65,1,DSM0111,DSM0111_split_ac_1_5ton_1
 DHH0111,Dhanmondi,upper_middle,5,90724,refrigerator,1,Critical,150,135.5,0.42,1,DSM0111,DSM0111_refrigerator_1
 DHH0111,Dhanmondi,upper_middle,5,90724,deep_freezer,1,Critical,180,186.1,0.5,1,DSM0111,DSM0111_deep_freezer_1
 DHH0111,Dhanmondi,upper_middle,5,90724,led_light,1,Critical,10,5.0,1.0,12,DSM0111,DSM0111_led_light_1
@@ -1483,7 +1483,7 @@ DHH0111,Dhanmondi,upper_middle,5,90724,router_charger_standby,1,Critical,18,15.7
 DHH0111,Dhanmondi,upper_middle,5,90724,exhaust_fan,1,Curtailable,35,33.3,0.9,1,DSM0111,DSM0111_exhaust_fan_1
 DHH0112,Dhanmondi,upper_middle,5,105268,ceiling_fan,1,Curtailable,75,69.0,0.85,6,DSM0112,DSM0112_ceiling_fan_1
 DHH0112,Dhanmondi,upper_middle,5,105268,table_fan,1,Curtailable,45,51.0,0.8,1,DSM0112,DSM0112_table_fan_1
-DHH0112,Dhanmondi,upper_middle,5,105268,split_ac_1_5ton,1,Schedulable,1650,1431.9,0.65,1,DSM0112,DSM0112_split_ac_1_5ton_1
+DHH0112,Dhanmondi,upper_middle,5,105268,split_ac_1_5ton,1,Curtailable,1650,1431.9,0.65,1,DSM0112,DSM0112_split_ac_1_5ton_1
 DHH0112,Dhanmondi,upper_middle,5,105268,refrigerator,1,Critical,150,127.3,0.42,2,DSM0112,DSM0112_refrigerator_1
 DHH0112,Dhanmondi,upper_middle,5,105268,deep_freezer,1,Critical,180,178.8,0.5,1,DSM0112,DSM0112_deep_freezer_1
 DHH0112,Dhanmondi,upper_middle,5,105268,led_light,1,Critical,10,12.1,1.0,11,DSM0112,DSM0112_led_light_1
@@ -1499,7 +1499,7 @@ DHH0112,Dhanmondi,upper_middle,5,105268,computer_laptop,1,Curtailable,80,95.2,1.
 DHH0112,Dhanmondi,upper_middle,5,105268,router_charger_standby,1,Critical,18,25.5,1.0,1,DSM0112,DSM0112_router_charger_standby_1
 DHH0112,Dhanmondi,upper_middle,5,105268,exhaust_fan,1,Curtailable,35,40.4,0.9,2,DSM0112,DSM0112_exhaust_fan_1
 DHH0113,Dhanmondi,upper_middle,3,111571,ceiling_fan,1,Curtailable,75,66.7,0.85,3,DSM0113,DSM0113_ceiling_fan_1
-DHH0113,Dhanmondi,upper_middle,3,111571,split_ac_1_5ton,1,Schedulable,1650,1580.5,0.65,1,DSM0113,DSM0113_split_ac_1_5ton_1
+DHH0113,Dhanmondi,upper_middle,3,111571,split_ac_1_5ton,1,Curtailable,1650,1580.5,0.65,1,DSM0113,DSM0113_split_ac_1_5ton_1
 DHH0113,Dhanmondi,upper_middle,3,111571,refrigerator,1,Critical,150,161.5,0.42,1,DSM0113,DSM0113_refrigerator_1
 DHH0113,Dhanmondi,upper_middle,3,111571,led_light,1,Critical,10,8.9,1.0,9,DSM0113,DSM0113_led_light_1
 DHH0113,Dhanmondi,upper_middle,3,111571,tube_light,1,Critical,36,34.3,1.0,2,DSM0113,DSM0113_tube_light_1
@@ -1529,8 +1529,8 @@ DHH0114,Dhanmondi,upper_middle,3,84093,computer_laptop,1,Curtailable,80,72.3,1.0
 DHH0114,Dhanmondi,upper_middle,3,84093,router_charger_standby,1,Critical,18,15.2,1.0,2,DSM0114,DSM0114_router_charger_standby_1
 DHH0114,Dhanmondi,upper_middle,3,84093,exhaust_fan,1,Curtailable,35,35.2,0.9,2,DSM0114,DSM0114_exhaust_fan_1
 DHH0115,Dhanmondi,upper_middle,1,118804,ceiling_fan,1,Curtailable,75,65.2,0.85,5,DSM0115,DSM0115_ceiling_fan_1
-DHH0115,Dhanmondi,upper_middle,1,118804,split_ac_1ton,1,Schedulable,1100,1055.0,0.65,2,DSM0115,DSM0115_split_ac_1ton_1
-DHH0115,Dhanmondi,upper_middle,1,118804,split_ac_1_5ton,1,Schedulable,1650,1667.7,0.65,1,DSM0115,DSM0115_split_ac_1_5ton_1
+DHH0115,Dhanmondi,upper_middle,1,118804,split_ac_1ton,1,Curtailable,1100,1055.0,0.65,2,DSM0115,DSM0115_split_ac_1ton_1
+DHH0115,Dhanmondi,upper_middle,1,118804,split_ac_1_5ton,1,Curtailable,1650,1667.7,0.65,1,DSM0115,DSM0115_split_ac_1_5ton_1
 DHH0115,Dhanmondi,upper_middle,1,118804,refrigerator,1,Critical,150,172.3,0.42,1,DSM0115,DSM0115_refrigerator_1
 DHH0115,Dhanmondi,upper_middle,1,118804,deep_freezer,1,Critical,180,179.0,0.5,1,DSM0115,DSM0115_deep_freezer_1
 DHH0115,Dhanmondi,upper_middle,1,118804,led_light,1,Critical,10,7.6,1.0,13,DSM0115,DSM0115_led_light_1
@@ -1546,7 +1546,7 @@ DHH0115,Dhanmondi,upper_middle,1,118804,geyser_water_heater,1,Schedulable,1800,1
 DHH0115,Dhanmondi,upper_middle,1,118804,computer_laptop,1,Curtailable,80,78.5,1.0,1,DSM0115,DSM0115_computer_laptop_1
 DHH0115,Dhanmondi,upper_middle,1,118804,router_charger_standby,1,Critical,18,19.5,1.0,2,DSM0115,DSM0115_router_charger_standby_1
 DHH0116,Dhanmondi,upper_middle,3,70760,ceiling_fan,1,Curtailable,75,90.6,0.85,5,DSM0116,DSM0116_ceiling_fan_1
-DHH0116,Dhanmondi,upper_middle,3,70760,split_ac_1_5ton,1,Schedulable,1650,1519.3,0.65,1,DSM0116,DSM0116_split_ac_1_5ton_1
+DHH0116,Dhanmondi,upper_middle,3,70760,split_ac_1_5ton,1,Curtailable,1650,1519.3,0.65,1,DSM0116,DSM0116_split_ac_1_5ton_1
 DHH0116,Dhanmondi,upper_middle,3,70760,refrigerator,1,Critical,150,205.1,0.42,1,DSM0116,DSM0116_refrigerator_1
 DHH0116,Dhanmondi,upper_middle,3,70760,led_light,1,Critical,10,7.3,1.0,15,DSM0116,DSM0116_led_light_1
 DHH0116,Dhanmondi,upper_middle,3,70760,tv_led,1,Curtailable,60,47.4,1.0,2,DSM0116,DSM0116_tv_led_1
@@ -1562,7 +1562,7 @@ DHH0116,Dhanmondi,upper_middle,3,70760,geyser_water_heater,1,Schedulable,1800,15
 DHH0116,Dhanmondi,upper_middle,3,70760,computer_laptop,1,Curtailable,80,62.7,1.0,3,DSM0116,DSM0116_computer_laptop_1
 DHH0116,Dhanmondi,upper_middle,3,70760,router_charger_standby,1,Critical,18,21.1,1.0,1,DSM0116,DSM0116_router_charger_standby_1
 DHH0117,Dhanmondi,upper_middle,2,93275,ceiling_fan,1,Curtailable,75,66.5,0.85,3,DSM0117,DSM0117_ceiling_fan_1
-DHH0117,Dhanmondi,upper_middle,2,93275,split_ac_1ton,1,Schedulable,1100,953.6,0.65,1,DSM0117,DSM0117_split_ac_1ton_1
+DHH0117,Dhanmondi,upper_middle,2,93275,split_ac_1ton,1,Curtailable,1100,953.6,0.65,1,DSM0117,DSM0117_split_ac_1ton_1
 DHH0117,Dhanmondi,upper_middle,2,93275,refrigerator,1,Critical,150,119.4,0.42,2,DSM0117,DSM0117_refrigerator_1
 DHH0117,Dhanmondi,upper_middle,2,93275,deep_freezer,1,Critical,180,183.4,0.5,1,DSM0117,DSM0117_deep_freezer_1
 DHH0117,Dhanmondi,upper_middle,2,93275,led_light,1,Critical,10,9.0,1.0,10,DSM0117,DSM0117_led_light_1
@@ -1580,8 +1580,8 @@ DHH0117,Dhanmondi,upper_middle,2,93275,computer_laptop,1,Curtailable,80,104.3,1.
 DHH0117,Dhanmondi,upper_middle,2,93275,router_charger_standby,1,Critical,18,16.0,1.0,3,DSM0117,DSM0117_router_charger_standby_1
 DHH0117,Dhanmondi,upper_middle,2,93275,exhaust_fan,1,Curtailable,35,33.4,0.9,1,DSM0117,DSM0117_exhaust_fan_1
 DHH0118,Dhanmondi,upper_middle,2,69615,ceiling_fan,1,Curtailable,75,99.3,0.85,5,DSM0118,DSM0118_ceiling_fan_1
-DHH0118,Dhanmondi,upper_middle,2,69615,split_ac_1ton,1,Schedulable,1100,1089.3,0.65,2,DSM0118,DSM0118_split_ac_1ton_1
-DHH0118,Dhanmondi,upper_middle,2,69615,split_ac_1_5ton,1,Schedulable,1650,1464.3,0.65,2,DSM0118,DSM0118_split_ac_1_5ton_1
+DHH0118,Dhanmondi,upper_middle,2,69615,split_ac_1ton,1,Curtailable,1100,1089.3,0.65,2,DSM0118,DSM0118_split_ac_1ton_1
+DHH0118,Dhanmondi,upper_middle,2,69615,split_ac_1_5ton,1,Curtailable,1650,1464.3,0.65,2,DSM0118,DSM0118_split_ac_1_5ton_1
 DHH0118,Dhanmondi,upper_middle,2,69615,refrigerator,1,Critical,150,125.7,0.42,1,DSM0118,DSM0118_refrigerator_1
 DHH0118,Dhanmondi,upper_middle,2,69615,led_light,1,Critical,10,14.1,1.0,11,DSM0118,DSM0118_led_light_1
 DHH0118,Dhanmondi,upper_middle,2,69615,tube_light,1,Critical,36,32.3,1.0,4,DSM0118,DSM0118_tube_light_1
@@ -1595,8 +1595,8 @@ DHH0118,Dhanmondi,upper_middle,2,69615,computer_laptop,1,Curtailable,80,45.1,1.0
 DHH0118,Dhanmondi,upper_middle,2,69615,router_charger_standby,1,Critical,18,18.2,1.0,1,DSM0118,DSM0118_router_charger_standby_1
 DHH0118,Dhanmondi,upper_middle,2,69615,exhaust_fan,1,Curtailable,35,41.7,0.9,1,DSM0118,DSM0118_exhaust_fan_1
 DHH0119,Dhanmondi,upper_middle,5,108948,ceiling_fan,1,Curtailable,75,72.9,0.85,4,DSM0119,DSM0119_ceiling_fan_1
-DHH0119,Dhanmondi,upper_middle,5,108948,split_ac_1ton,1,Schedulable,1100,1058.1,0.65,2,DSM0119,DSM0119_split_ac_1ton_1
-DHH0119,Dhanmondi,upper_middle,5,108948,split_ac_1_5ton,1,Schedulable,1650,1552.1,0.65,2,DSM0119,DSM0119_split_ac_1_5ton_1
+DHH0119,Dhanmondi,upper_middle,5,108948,split_ac_1ton,1,Curtailable,1100,1058.1,0.65,2,DSM0119,DSM0119_split_ac_1ton_1
+DHH0119,Dhanmondi,upper_middle,5,108948,split_ac_1_5ton,1,Curtailable,1650,1552.1,0.65,2,DSM0119,DSM0119_split_ac_1_5ton_1
 DHH0119,Dhanmondi,upper_middle,5,108948,refrigerator,1,Critical,150,187.1,0.42,1,DSM0119,DSM0119_refrigerator_1
 DHH0119,Dhanmondi,upper_middle,5,108948,led_light,1,Critical,10,12.5,1.0,9,DSM0119,DSM0119_led_light_1
 DHH0119,Dhanmondi,upper_middle,5,108948,tube_light,1,Critical,36,36.5,1.0,3,DSM0119,DSM0119_tube_light_1
@@ -1612,7 +1612,7 @@ DHH0119,Dhanmondi,upper_middle,5,108948,geyser_water_heater,1,Schedulable,1800,1
 DHH0119,Dhanmondi,upper_middle,5,108948,router_charger_standby,1,Critical,18,11.3,1.0,1,DSM0119,DSM0119_router_charger_standby_1
 DHH0119,Dhanmondi,upper_middle,5,108948,exhaust_fan,1,Curtailable,35,26.3,0.9,1,DSM0119,DSM0119_exhaust_fan_1
 DHH0120,Dhanmondi,upper_middle,6,65589,ceiling_fan,1,Curtailable,75,80.2,0.85,4,DSM0120,DSM0120_ceiling_fan_1
-DHH0120,Dhanmondi,upper_middle,6,65589,split_ac_1ton,1,Schedulable,1100,1306.7,0.65,1,DSM0120,DSM0120_split_ac_1ton_1
+DHH0120,Dhanmondi,upper_middle,6,65589,split_ac_1ton,1,Curtailable,1100,1306.7,0.65,1,DSM0120,DSM0120_split_ac_1ton_1
 DHH0120,Dhanmondi,upper_middle,6,65589,refrigerator,1,Critical,150,141.9,0.42,1,DSM0120,DSM0120_refrigerator_1
 DHH0120,Dhanmondi,upper_middle,6,65589,led_light,1,Critical,10,6.8,1.0,15,DSM0120,DSM0120_led_light_1
 DHH0120,Dhanmondi,upper_middle,6,65589,tv_led,1,Curtailable,60,56.6,1.0,3,DSM0120,DSM0120_tv_led_1

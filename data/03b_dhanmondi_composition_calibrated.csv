@@ -1,24 +1,24 @@
-substation,category,subcategory,units_initial,per_unit_mean_daily_peak_kw,units_2024,k_2024,units_2025,k_2025,units_2026,k_2026
-Dhanmondi,residential,lower_middle,4788,0.35,6354,1.327,6179,1.2906,5074,1.0596
-Dhanmondi,residential,middle,17157,0.95,22768,1.327,22142,1.2906,18180,1.0596
-Dhanmondi,residential,upper_middle,17955,2.6,23827,1.327,23172,1.2906,19026,1.0596
-Dhanmondi,commercial,commercial_shop,6290,3.0,8347,1.327,8118,1.2906,6665,1.0596
-Dhanmondi,commercial,office_smb,790,8.0,1048,1.327,1020,1.2906,837,1.0596
-Dhanmondi,educational,school,466,18.0,618,1.327,601,1.2906,494,1.0596
-Dhanmondi,health,hospital::Labaid Specialized Hospital,1,2000.0,1,1.327,1,1.2906,1,1.0596
-Dhanmondi,health,hospital::Labaid Cardiac Hospital,1,900.0,1,1.327,1,1.2906,1,1.0596
-Dhanmondi,health,hospital::Popular Medical College Hospital,1,1600.0,1,1.327,1,1.2906,1,1.0596
-Dhanmondi,health,hospital::Ibn Sina Hospital Dhanmondi,1,1300.0,1,1.327,1,1.2906,1,1.0596
-Dhanmondi,health,hospital::Anwer Khan Modern Hospital,1,1200.0,1,1.327,1,1.2906,1,1.0596
-Dhanmondi,health,hospital::Bangladesh Medical College Hosp.,1,1100.0,1,1.327,1,1.2906,1,1.0596
-Dhanmondi,health,hospital::Central Hospital Dhanmondi,1,900.0,1,1.327,1,1.2906,1,1.0596
-Dhanmondi,health,hospital::Gonoshasthaya Nagar Hospital,1,700.0,1,1.327,1,1.2906,1,1.0596
-Dhanmondi,health,hospital::City Hospital Ltd,1,700.0,1,1.327,1,1.2906,1,1.0596
-Dhanmondi,health,hospital::Medinova Medical Services,1,600.0,1,1.327,1,1.2906,1,1.0596
-Dhanmondi,health,hospital::Renaissance Hospital,1,500.0,1,1.327,1,1.2906,1,1.0596
-Dhanmondi,health,hospital::Comfort Diagnostic Centre,1,500.0,1,1.327,1,1.2906,1,1.0596
-Dhanmondi,health,clinic_small,30,80.0,40,1.327,39,1.2906,32,1.0596
-Dhanmondi,industrial,workshop,100,12.0,133,1.327,129,1.2906,106,1.0596
-Dhanmondi,infrastructure,wasa_pump,18,150.0,24,1.327,23,1.2906,19,1.0596
-Dhanmondi,infrastructure,streetlight_block,175,12.0,232,1.327,226,1.2906,185,1.0596
-Dhanmondi,infrastructure,mosque,120,10.0,159,1.327,155,1.2906,127,1.0596
+substation,category,subcategory,units_initial,scalable,per_unit_mean_daily_peak_kw,units_2024,k_2024,units_2025,k_2025,units_2026,k_2026
+Dhanmondi,residential,lower_middle,4788,True,0.35,6351,1.3263,6489,1.3553,4889,1.021
+Dhanmondi,residential,middle,17157,True,0.95,22756,1.3263,23254,1.3553,17517,1.021
+Dhanmondi,residential,upper_middle,17955,True,2.6,23815,1.3263,24335,1.3553,18332,1.021
+Dhanmondi,commercial,commercial_shop,6290,True,3.0,8343,1.3263,8525,1.3553,6422,1.021
+Dhanmondi,commercial,office_smb,790,True,8.0,1048,1.3263,1071,1.3553,807,1.021
+Dhanmondi,educational,school,466,True,18.0,618,1.3263,632,1.3553,476,1.021
+Dhanmondi,health,hospital::Labaid Specialized Hospital,1,False,2000.0,1,1.0,1,1.0,1,1.0
+Dhanmondi,health,hospital::Labaid Cardiac Hospital,1,False,900.0,1,1.0,1,1.0,1,1.0
+Dhanmondi,health,hospital::Popular Medical College Hospital,1,False,1600.0,1,1.0,1,1.0,1,1.0
+Dhanmondi,health,hospital::Ibn Sina Hospital Dhanmondi,1,False,1300.0,1,1.0,1,1.0,1,1.0
+Dhanmondi,health,hospital::Anwer Khan Modern Hospital,1,False,1200.0,1,1.0,1,1.0,1,1.0
+Dhanmondi,health,hospital::Bangladesh Medical College Hosp.,1,False,1100.0,1,1.0,1,1.0,1,1.0
+Dhanmondi,health,hospital::Central Hospital Dhanmondi,1,False,900.0,1,1.0,1,1.0,1,1.0
+Dhanmondi,health,hospital::Gonoshasthaya Nagar Hospital,1,False,700.0,1,1.0,1,1.0,1,1.0
+Dhanmondi,health,hospital::City Hospital Ltd,1,False,700.0,1,1.0,1,1.0,1,1.0
+Dhanmondi,health,hospital::Medinova Medical Services,1,False,600.0,1,1.0,1,1.0,1,1.0
+Dhanmondi,health,hospital::Renaissance Hospital,1,False,500.0,1,1.0,1,1.0,1,1.0
+Dhanmondi,health,hospital::Comfort Diagnostic Centre,1,False,500.0,1,1.0,1,1.0,1,1.0
+Dhanmondi,health,clinic_small,30,True,80.0,40,1.3263,41,1.3553,31,1.021
+Dhanmondi,industrial,workshop,100,True,12.0,133,1.3263,136,1.3553,102,1.021
+Dhanmondi,infrastructure,wasa_pump,18,True,150.0,24,1.3263,24,1.3553,18,1.021
+Dhanmondi,infrastructure,streetlight_block,175,True,12.0,232,1.3263,237,1.3553,179,1.021
+Dhanmondi,infrastructure,mosque,120,True,10.0,159,1.3263,163,1.3553,123,1.021

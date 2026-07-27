@@ -25,7 +25,7 @@ Purpose: let an LLM answer customer questions such as
   category constraint (must_run / flexible_start / power_reduction_allowed),
   TOU period and tariff slab -- the LLM never has to invent numbers.
 - flexibility_index on BELONGS_TO lets the LLM rank which appliance was
-  chosen first and say so ("your washing machine is 14x more flexible
+  chosen first and say so ("your air conditioner is 16x more flexible
   than your refrigerator").
 - Substation nodes carry the real BPDB yearly peak means, so grid-level
   answers ("why was 2025-05-14 a stress day?") tie back to observed data.
