@@ -29,12 +29,26 @@ Outputs (data/):
   04_<sub>_appliance_sample_7days.csv   appliance-level, 10 HH × 7 days (long)
 """
 
+import hashlib
 import json
 import numpy as np
 import pandas as pd
 import config as C
 
 rng_global = np.random.default_rng(C.SEED)
+
+
+def stable_seed(*parts) -> int:
+    """Deterministic seed from string parts.
+
+    Python's built-in hash() is salted per interpreter process (PEP 456), so
+    hash((substation, tier, SEED)) returns a different value on every run and
+    the cohort draw is NOT reproducible. md5 is stable across processes,
+    platforms and Python versions; it is used here purely as a deterministic
+    string-to-int map, not for any security purpose.
+    """
+    digest = hashlib.md5("|".join(map(str, parts)).encode("utf-8")).hexdigest()
+    return int(digest[:8], 16)
 
 # ── Load shared inputs ────────────────────────────────────────────────────────
 CAL = pd.read_csv(C.DATA_DIR / "00_bd_calendar_30min.csv",
@@ -213,7 +227,7 @@ def simulate_household(tier: str, rng: np.random.Generator,
 
 def build_tier_cohort_profile(tier: str, substation: str) -> np.ndarray:
     """Mean per-household profile (kW) normalised to the tier's design ADMD."""
-    rng = np.random.default_rng(abs(hash((substation, tier, C.SEED))) % 2**32)
+    rng = np.random.default_rng(stable_seed(C.SEED, substation, tier))
     acc = np.zeros(T, dtype=np.float64)
     for _ in range(C.N_ARCHETYPES):
         w, _, _, _ = simulate_household(tier, rng)
@@ -233,6 +247,14 @@ def build_tier_cohort_profile(tier: str, substation: str) -> np.ndarray:
 def ac_factor(strength: float) -> np.ndarray:
     return 1.0 + strength * SIG((TEMP - 28.5) / 1.7)
 
+
+def cooling_strength(subcat: str) -> float:
+    """Cooling response of a non-residential class, times the global
+    calibration multiplier C.NONRES_COOLING_SCALE. Named hospitals share the
+    generic 'hospital' entry."""
+    key = "hospital" if str(subcat).startswith("hospital") else str(subcat)
+    return C.NONRES_COOLING_STRENGTH.get(key, 0.0) * C.NONRES_COOLING_SCALE
+
 def _norm(shape: np.ndarray, peak_kw: float, rng) -> np.ndarray:
     shape = shape * (1 + rng.normal(0, 0.04, T))
     daily_max = shape.reshape(-1, C.SLOTS_PER_DAY).max(axis=1)
@@ -244,21 +266,21 @@ def unit_profile(subcat: str, peak_kw: float, rng) -> np.ndarray:
         a = np.where(win(17, 21.5), 1.0, a)
         a *= np.where(IS_EID, 0.20, np.where(DAY_TYPE == "Public Holiday", 0.70,
              np.where(DAY_TYPE == "Durga Puja", 0.85, 1.0)))
-        a = a * ac_factor(0.70)
+        a = a * ac_factor(cooling_strength(subcat))
         # Ramadan: shops stay open late for iftar/Eid shopping
         a = np.where(IS_RAMADAN & win(19, 23), a * 1.25, a)
 
     elif subcat == "office_smb":
         openh = win(9, 17) & ~IS_WEEKEND & ~IS_HOLIDAY
-        a = np.where(openh, 1.0, 0.08) * ac_factor(0.70)
+        a = np.where(openh, 1.0, 0.08) * ac_factor(cooling_strength(subcat))
 
     elif subcat == "school":
         openh = win(8, 13.5) & ~IS_WEEKEND & ~IS_HOLIDAY
-        a = np.where(openh, 1.0, 0.05) * ac_factor(0.25)
+        a = np.where(openh, 1.0, 0.05) * ac_factor(cooling_strength(subcat))
 
     elif subcat.startswith("hospital") or subcat == "clinic_small":
         a = np.where(win(8, 14), 1.0, np.where(win(14, 21), 0.78, 0.55))
-        a = a * ac_factor(0.75)                    # hospitals never close
+        a = a * ac_factor(cooling_strength(subcat))                    # hospitals never close
 
     elif subcat == "workshop":
         openh = win(9, 18) & (DOW != 4) & ~IS_EID  # closed Friday + Eid
@@ -280,7 +302,7 @@ def unit_profile(subcat: str, peak_kw: float, rng) -> np.ndarray:
         a = np.where((DOW == 4) & win(12.5, 14.0), 1.0, a)          # Jummah
         a = np.where(IS_RAMADAN & (HOUR_F >= DUSK + 1.0)
                      & (HOUR_F < DUSK + 3.0), 1.0, a)               # Tarawih
-        a = a * ac_factor(0.30)
+        a = a * ac_factor(cooling_strength(subcat))
     else:
         raise ValueError(subcat)
 
@@ -310,40 +332,102 @@ def build_substation(substation: str):
         components.append((f"{r['category']}_kw", r["category"],
                            r["subcategory"], int(r["units"]), prof))
 
-    total = np.zeros(T)
-    for _, _, _, n, prof in components:
-        total += n * prof
-    daily_max = total.reshape(-1, C.SLOTS_PER_DAY).max(axis=1) / 1000
-    day_year  = YEAR.reshape(-1, C.SLOTS_PER_DAY)[:, 0]
-
     # ── Pass 2: calibrate UNIT COUNTS per YEAR (not output scaling).
     #    (a) category peaks do not coincide in time → first pass undershoots;
     #    (b) the customer base evolves year to year (new connections, feeder
     #        transfers — e.g. Dhanmondi 2026 load moved to adjacent feeders).
     #    Both are represented by year-wise customer counts.
+    #
+    #    NAMED INSTITUTIONS ARE NOT SCALABLE. The Dhanmondi hospitals are real,
+    #    individually identified sites; there cannot be 1.3 of Labaid. Under
+    #    the previous formulation they entered the multiplier as
+    #    max(1, round(1*k)) == 1, so they silently absorbed none of the
+    #    calibration and the substation systematically undershot its target by
+    #    their share (~12 MW of 119.8 MW at Dhanmondi). They are now held at a
+    #    fixed count and k is solved over the SCALABLE population only, so the
+    #    calibration still adjusts counts and never rescales a load profile.
+    is_fixed = lambda subcat: str(subcat).startswith("hospital::")
+    fixed_w = np.zeros(T)
+    scalable_w = np.zeros(T)
+    for _, _, subcat, n, prof in components:
+        (fixed_w if is_fixed(subcat) else scalable_w).__iadd__(n * prof)
+
+    day_year = YEAR.reshape(-1, C.SLOTS_PER_DAY)[:, 0]
+
+    def mean_daily_peak(k: float, ymask: np.ndarray) -> float:
+        dm = (fixed_w + k * scalable_w).reshape(
+            -1, C.SLOTS_PER_DAY).max(axis=1) / 1000.0
+        return dm[ymask].mean()
+
+    def solve_k(target_mw: float, ymask: np.ndarray) -> float:
+        """Bisect for the count multiplier on the scalable population.
+        mean_daily_peak is monotone increasing in k, so this is well posed."""
+        lo, hi = 1e-3, 10.0
+        for _ in range(60):
+            mid = 0.5 * (lo + hi)
+            if mean_daily_peak(mid, ymask) < target_mw:
+                lo = mid
+            else:
+                hi = mid
+        return 0.5 * (lo + hi)
+
     targets = C.bpdb_yearly_targets(substation)
-    k_year = {}
-    for y in C.YEARS:
-        ach = daily_max[day_year == y].mean()
-        k_year[y] = targets.get(y, target) / ach
-        print(f"  {y}: achieved {ach:.1f} MW → target "
-              f"{targets.get(y, target):.1f} MW  (count multiplier "
-              f"k={k_year[y]:.3f})")
-    k_slot = np.array([k_year[y] for y in YEAR])       # per-slot multiplier
+
+    # Anchor each year's multiplier at the centroid of that year's coverage and
+    # interpolate linearly between anchors (flat outside the first/last), so the
+    # customer base evolves continuously.  A step function at 1 January implied
+    # e.g. ~4,000 Dhanmondi customers disconnecting overnight (86.1 -> 68.6 MW
+    # between 2025-12-31 and 2026-01-01), a discontinuity a forecaster would
+    # learn as a structural break.  The genuine year-on-year level change is
+    # preserved: Dhanmondi's Jan-Jun mean really does fall ~19% from 2025 to
+    # 2026 in the BPDB record.
+    #
+    # Smoothing changes each year's mean, so the anchors are refined by fixed
+    # point until every year still reproduces its BPDB target.
+    day_index = np.arange(len(day_year), dtype=float)
+    anchor_x = np.array([day_index[day_year == y].mean() for y in C.YEARS])
+    anchor_k = np.array([1.0 for _ in C.YEARS])
+    tgt_vec = np.array([targets.get(y, target) for y in C.YEARS])
+
+    # start from the piecewise-constant solution, then relax
+    for i, y in enumerate(C.YEARS):
+        anchor_k[i] = solve_k(tgt_vec[i], day_year == y)
+
+    for _ in range(40):
+        k_day = np.interp(day_index, anchor_x, anchor_k)
+        dm = (fixed_w + np.repeat(k_day, C.SLOTS_PER_DAY) * scalable_w).reshape(
+            -1, C.SLOTS_PER_DAY).max(axis=1) / 1000.0
+        achieved = np.array([dm[day_year == y].mean() for y in C.YEARS])
+        if np.max(np.abs(achieved - tgt_vec)) < 1e-3:
+            break
+        anchor_k *= (tgt_vec / achieved) ** 0.7      # damped fixed point
+
+    k_day = np.interp(day_index, anchor_x, anchor_k)
+    k_year = {y: float(anchor_k[i]) for i, y in enumerate(C.YEARS)}
+    for i, y in enumerate(C.YEARS):
+        print(f"  {y}: achieved {mean_daily_peak(1.0, day_year == y):.1f} MW → "
+              f"target {tgt_vec[i]:.1f} MW  (anchor multiplier "
+              f"k={anchor_k[i]:.3f} on scalable customers; named institutions "
+              f"fixed; interpolated between anchors)")
+    k_slot = np.repeat(k_day, C.SLOTS_PER_DAY)         # per-slot multiplier
 
     agg = pd.DataFrame({"timestamp": TS})
     cal_rows = []
     for col, cat, subcat, n, prof in components:
-        n_cal_slot = np.maximum(1, np.round(n * k_slot)).astype(np.int32)
+        fixed = is_fixed(subcat)
+        k_eff = np.ones(T) if fixed else k_slot
+        n_cal_slot = np.maximum(1, np.round(n * k_eff)).astype(np.int32)
         contrib = np.round(prof * n_cal_slot, 1)
         agg[col] = (agg[col] + contrib) if col in agg.columns else contrib
         pk = prof.reshape(-1, C.SLOTS_PER_DAY).max(axis=1).mean()
         row = {"substation": substation, "category": cat,
                "subcategory": subcat, "units_initial": n,
+               "scalable": not fixed,
                "per_unit_mean_daily_peak_kw": round(pk, 3)}
         for y in C.YEARS:
-            row[f"units_{y}"] = max(1, int(round(n * k_year[y])))
-            row[f"k_{y}"] = round(k_year[y], 4)
+            ky = 1.0 if fixed else k_year[y]
+            row[f"units_{y}"] = max(1, int(round(n * ky)))
+            row[f"k_{y}"] = round(ky, 4)
         cal_rows.append(row)
         label = f"{cat}/{subcat}" if cat == "residential" else subcat
         counts = " → ".join(str(row[f"units_{y}"]) for y in C.YEARS)
@@ -440,4 +524,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    

@@ -90,7 +90,11 @@ SUBSTATION_META = {   # for the knowledge graph
 }
 
 N_DETAILED_HH = 120
-N_ARCHETYPES  = 36
+# Monte-Carlo cohort size. Convergence study (3 seeds x N in 36/72/150/300/
+# 600): the mean seasonal swing and MAPE are stable from N=72, but the
+# between-seed sd of the swing keeps falling to N~300 (Dhanmondi 0.023 ->
+# 0.016) and of MAPE to 0.05. 300 is the variance/cost knee.
+N_ARCHETYPES  = 300
 
 # ── Bangladesh calendar 2024–2026 (simplified; lunar dates approximate,
 #    edit here if the observed dates differed) ───────────────────────────────
@@ -135,9 +139,80 @@ TOU = {"off_peak": {"hours": (23, 6),  "multiplier": 0.80},
 
 TIER_RATE_BDT_KWH   = {"lower_middle": 6.5, "middle": 8.0, "upper_middle": 10.5}
 SGO_SUPPLY_COST     = {"off_peak": 5.5, "standard": 7.5, "peak": 11.5}  # BDT/kWh
-TIER_ALPHA          = {"lower_middle": 0.80, "middle": 0.60, "upper_middle": 0.35}
+# alpha_upper raised 0.35 -> 0.40 (commit 5b). Under the real BERC marginal
+# slab an upper-middle household sits in SLAB_7 (14.61 BDT/kWh, peak 19.72),
+# so Eq. 31 gives alpha* = d_c/(r*mu_pk + rho + d_c) = 14/(19.72+3+14) = 0.381.
+# At alpha = 0.40 the tier curtails on STRESS days only (0.40*22.72 = 9.09 >
+# 0.60*14 = 8.40) and never routinely (0.40*19.72 = 7.89 < 8.40), and still
+# never shifts (0.40*8.04 = 3.21 < 4.80). The rebate is what buys the highest-
+# consumption tier's participation, and only when the grid needs it.
+TIER_ALPHA          = {"lower_middle": 0.80, "middle": 0.60, "upper_middle": 0.40}
 DISCOMFORT_SHIFT    = {"lower_middle": 2.0, "middle": 4.0, "upper_middle": 8.0}
 DISCOMFORT_CURTAIL  = {"lower_middle": 4.0, "middle": 7.0, "upper_middle": 14.0}
 MAX_CURTAIL_FRAC    = 0.5
 DR_STRESS_QUANTILE  = 0.90      # top 10% synthetic peak days = grid stress
 DR_REBATE_BDT_KWH   = 3.0
+
+
+# ── Non-residential cooling response ─────────────────────────────────────────
+# unit_profile applies ac_factor(s) = 1 + s * sigmoid((T - 28.5) / 1.7) to the
+# temperature-sensitive non-residential classes. `s` is the cooling strength of
+# that class; NONRES_COOLING_SCALE is a single global multiplier used as the
+# calibration parameter for the residual seasonal amplitude (see CHANGELOG).
+# Household AC penetration is NOT used for this: the catalogue already implies
+# a weighted residential penetration at or above what the BBS/BSVS urban series
+# supports, so the residual is absorbed by commercial cooling, which household
+# surveys do not constrain.
+NONRES_COOLING_STRENGTH = {
+    "commercial_shop": 0.70,
+    "office_smb":      0.70,
+    "school":          0.25,
+    "hospital":        0.75,
+    "clinic_small":    0.75,
+    "mosque":          0.30,
+    "workshop":        0.00,
+}
+NONRES_COOLING_SCALE = 1.00
+
+
+# ── Retail tariff: BERC residential slabs ────────────────────────────────────
+# Single source of truth. Previously this table lived only in
+# 08_knowledge_graph.py while 06_molp_optimizer.py billed at a flat invented
+# tier rate (6.5 / 8.0 / 10.5), so the knowledge graph exposed slab rates that
+# no bill had ever been computed from -- a household's MonthlyBill could not be
+# reconciled with its own SUBJECT_TO slab, breaking the Eq. 50 grounding
+# constraint and the GF = 1 claim.  Both layers now read this table.
+#   (slab_id, from_kwh, to_kwh, rate_bdt_per_kwh)
+TARIFF_SLABS = [
+    (1,   0,     50, 4.63), (2,   0,     75, 5.26), (3,  76,    200,  7.20),
+    (4, 201,    300, 7.59), (5, 301,    400, 8.02), (6, 401,    600, 12.67),
+    (7, 601, 100000, 14.61),
+]
+
+
+def slab_for(monthly_kwh: float) -> int:
+    """Slab id containing a monthly consumption."""
+    for sid, lo, hi, _ in TARIFF_SLABS:
+        if lo <= monthly_kwh <= hi:
+            return sid
+    return TARIFF_SLABS[-1][0]
+
+
+def marginal_slab_rate(monthly_kwh: float) -> float:
+    """Marginal retail rate (BDT/kWh) at a given monthly consumption.
+
+    The MOLP thresholds (Eqs. 30-31) are exact only because the objective is
+    LINEAR in (x, y).  A full block tariff is piecewise linear, so the marginal
+    rate is used instead of the flat tier rate: evaluated at the household's
+    BASELINE monthly consumption it is a per-household CONSTANT, independent of
+    the decision variables, and the bang-bang result is preserved unchanged
+    with r_g replaced by r_slab(h).
+
+    Baseline (not optimised) consumption is used deliberately: making the rate
+    depend on the post-DR bill would make the threshold depend on its own
+    solution.
+    """
+    for _, lo, hi, rate in TARIFF_SLABS:
+        if lo <= monthly_kwh <= hi:
+            return rate
+    return TARIFF_SLABS[-1][3]

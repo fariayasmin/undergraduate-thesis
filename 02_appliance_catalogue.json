@@ -1,130 +1,570 @@
 {
-  "_comment": "Verified Bangladesh residential appliance catalogue. power_w cross-checked against locally dominant brands (Walton, Singer, Vision, Gree, Minister, Gazi, RFL). ownership_prob is PER TIER {lower_middle, middle, upper_middle}. quantity_dist = [mean, std] of units owned. category matches nodes_Category.csv {Critical, Schedulable, Curtailable}. usage = time-of-day behaviour class used by the load generator. temp_driven appliances respond to temperature_c inside the generator (no multiplier columns in the dataset).",
-
+  "_comment": "Verified Bangladesh residential appliance catalogue. power_w cross-checked against locally dominant brands (Walton, Singer, Vision, Gree, Minister, Gazi, RFL). ownership_prob is PER TIER {lower_middle, middle, upper_middle}. quantity_dist = [mean, std] of units owned. category matches nodes_Category.csv {Critical, Schedulable, Curtailable}. usage = time-of-day behaviour class used by the load generator. temp_driven appliances respond to temperature_c inside the generator (no multiplier columns in the dataset). Split air-conditioners are Curtailable, not Schedulable: a thermostatically controlled load is throttled (setpoint raised / duty reduced) during a peak, not deferred to 23:00-06:00, which would leave the dwelling uncooled through the hottest hours. This matches the proposal's own taxonomy ('Curtailable / Thermostatically Controlled (Air Conditioner)') and the worked examples of the mathematical model.",
   "ceiling_fan": {
-    "power_w": 75, "power_std_w": 10, "duty_cycle": 0.85,
-    "category": "Curtailable", "usage": "comfort", "temp_driven": true,
-    "ownership_prob": {"lower_middle": 0.99, "middle": 0.99, "upper_middle": 0.97},
-    "quantity_dist": {"lower_middle": [1.8, 0.6], "middle": [3.0, 0.8], "upper_middle": [4.5, 1.0]}
+    "power_w": 75,
+    "power_std_w": 10,
+    "duty_cycle": 0.85,
+    "category": "Curtailable",
+    "usage": "comfort",
+    "temp_driven": true,
+    "ownership_prob": {
+      "lower_middle": 0.99,
+      "middle": 0.99,
+      "upper_middle": 0.97
+    },
+    "quantity_dist": {
+      "lower_middle": [
+        1.8,
+        0.6
+      ],
+      "middle": [
+        3.0,
+        0.8
+      ],
+      "upper_middle": [
+        4.5,
+        1.0
+      ]
+    }
   },
   "table_fan": {
-    "power_w": 45, "power_std_w": 8, "duty_cycle": 0.8,
-    "category": "Curtailable", "usage": "comfort", "temp_driven": true,
-    "ownership_prob": {"lower_middle": 0.75, "middle": 0.55, "upper_middle": 0.30},
-    "quantity_dist": {"lower_middle": [1.2, 0.4], "middle": [1.0, 0.3], "upper_middle": [1.0, 0.2]}
+    "power_w": 45,
+    "power_std_w": 8,
+    "duty_cycle": 0.8,
+    "category": "Curtailable",
+    "usage": "comfort",
+    "temp_driven": true,
+    "ownership_prob": {
+      "lower_middle": 0.75,
+      "middle": 0.55,
+      "upper_middle": 0.3
+    },
+    "quantity_dist": {
+      "lower_middle": [
+        1.2,
+        0.4
+      ],
+      "middle": [
+        1.0,
+        0.3
+      ],
+      "upper_middle": [
+        1.0,
+        0.2
+      ]
+    }
   },
   "split_ac_1ton": {
-    "power_w": 1100, "power_std_w": 150, "duty_cycle": 0.65,
-    "category": "Schedulable", "usage": "cooling", "temp_driven": true,
-    "ownership_prob": {"lower_middle": 0.02, "middle": 0.28, "upper_middle": 0.65},
-    "quantity_dist": {"lower_middle": [1.0, 0.0], "middle": [1.0, 0.2], "upper_middle": [1.4, 0.5]}
+    "power_w": 1100,
+    "power_std_w": 150,
+    "duty_cycle": 0.65,
+    "category": "Curtailable",
+    "usage": "cooling",
+    "temp_driven": true,
+    "ownership_prob": {
+      "lower_middle": 0.02,
+      "middle": 0.28,
+      "upper_middle": 0.65
+    },
+    "quantity_dist": {
+      "lower_middle": [
+        1.0,
+        0.0
+      ],
+      "middle": [
+        1.0,
+        0.2
+      ],
+      "upper_middle": [
+        1.4,
+        0.5
+      ]
+    }
   },
   "split_ac_1_5ton": {
-    "power_w": 1650, "power_std_w": 200, "duty_cycle": 0.65,
-    "category": "Schedulable", "usage": "cooling", "temp_driven": true,
-    "ownership_prob": {"lower_middle": 0.0, "middle": 0.08, "upper_middle": 0.55},
-    "quantity_dist": {"lower_middle": [1.0, 0.0], "middle": [1.0, 0.0], "upper_middle": [1.3, 0.5]}
+    "power_w": 1650,
+    "power_std_w": 200,
+    "duty_cycle": 0.65,
+    "category": "Curtailable",
+    "usage": "cooling",
+    "temp_driven": true,
+    "ownership_prob": {
+      "lower_middle": 0.0,
+      "middle": 0.08,
+      "upper_middle": 0.55
+    },
+    "quantity_dist": {
+      "lower_middle": [
+        1.0,
+        0.0
+      ],
+      "middle": [
+        1.0,
+        0.0
+      ],
+      "upper_middle": [
+        1.3,
+        0.5
+      ]
+    }
   },
   "refrigerator": {
-    "power_w": 150, "power_std_w": 25, "duty_cycle": 0.42,
-    "category": "Critical", "usage": "always_on", "temp_driven": true,
-    "ownership_prob": {"lower_middle": 0.72, "middle": 0.97, "upper_middle": 1.0},
-    "quantity_dist": {"lower_middle": [1.0, 0.0], "middle": [1.0, 0.1], "upper_middle": [1.3, 0.5]}
+    "power_w": 150,
+    "power_std_w": 25,
+    "duty_cycle": 0.42,
+    "category": "Critical",
+    "usage": "always_on",
+    "temp_driven": true,
+    "ownership_prob": {
+      "lower_middle": 0.72,
+      "middle": 0.97,
+      "upper_middle": 1.0
+    },
+    "quantity_dist": {
+      "lower_middle": [
+        1.0,
+        0.0
+      ],
+      "middle": [
+        1.0,
+        0.1
+      ],
+      "upper_middle": [
+        1.3,
+        0.5
+      ]
+    }
   },
   "deep_freezer": {
-    "power_w": 180, "power_std_w": 25, "duty_cycle": 0.5,
-    "category": "Critical", "usage": "always_on", "temp_driven": true,
-    "ownership_prob": {"lower_middle": 0.03, "middle": 0.15, "upper_middle": 0.45},
-    "quantity_dist": {"lower_middle": [1.0, 0.0], "middle": [1.0, 0.0], "upper_middle": [1.0, 0.0]}
+    "power_w": 180,
+    "power_std_w": 25,
+    "duty_cycle": 0.5,
+    "category": "Critical",
+    "usage": "always_on",
+    "temp_driven": true,
+    "ownership_prob": {
+      "lower_middle": 0.03,
+      "middle": 0.15,
+      "upper_middle": 0.45
+    },
+    "quantity_dist": {
+      "lower_middle": [
+        1.0,
+        0.0
+      ],
+      "middle": [
+        1.0,
+        0.0
+      ],
+      "upper_middle": [
+        1.0,
+        0.0
+      ]
+    }
   },
   "led_light": {
-    "power_w": 10, "power_std_w": 2, "duty_cycle": 1.0,
-    "category": "Critical", "usage": "lighting", "temp_driven": false,
-    "ownership_prob": {"lower_middle": 1.0, "middle": 1.0, "upper_middle": 1.0},
-    "quantity_dist": {"lower_middle": [4.0, 1.0], "middle": [7.0, 1.5], "upper_middle": [12.0, 2.5]}
+    "power_w": 10,
+    "power_std_w": 2,
+    "duty_cycle": 1.0,
+    "category": "Critical",
+    "usage": "lighting",
+    "temp_driven": false,
+    "ownership_prob": {
+      "lower_middle": 1.0,
+      "middle": 1.0,
+      "upper_middle": 1.0
+    },
+    "quantity_dist": {
+      "lower_middle": [
+        4.0,
+        1.0
+      ],
+      "middle": [
+        7.0,
+        1.5
+      ],
+      "upper_middle": [
+        12.0,
+        2.5
+      ]
+    }
   },
   "tube_light": {
-    "power_w": 36, "power_std_w": 4, "duty_cycle": 1.0,
-    "category": "Critical", "usage": "lighting", "temp_driven": false,
-    "ownership_prob": {"lower_middle": 0.85, "middle": 0.7, "upper_middle": 0.4},
-    "quantity_dist": {"lower_middle": [2.0, 0.7], "middle": [2.0, 0.7], "upper_middle": [2.0, 0.7]}
+    "power_w": 36,
+    "power_std_w": 4,
+    "duty_cycle": 1.0,
+    "category": "Critical",
+    "usage": "lighting",
+    "temp_driven": false,
+    "ownership_prob": {
+      "lower_middle": 0.85,
+      "middle": 0.7,
+      "upper_middle": 0.4
+    },
+    "quantity_dist": {
+      "lower_middle": [
+        2.0,
+        0.7
+      ],
+      "middle": [
+        2.0,
+        0.7
+      ],
+      "upper_middle": [
+        2.0,
+        0.7
+      ]
+    }
   },
   "tv_led": {
-    "power_w": 60, "power_std_w": 15, "duty_cycle": 1.0,
-    "category": "Curtailable", "usage": "entertainment", "temp_driven": false,
-    "ownership_prob": {"lower_middle": 0.80, "middle": 0.96, "upper_middle": 1.0},
-    "quantity_dist": {"lower_middle": [1.0, 0.0], "middle": [1.1, 0.3], "upper_middle": [1.8, 0.6]}
+    "power_w": 60,
+    "power_std_w": 15,
+    "duty_cycle": 1.0,
+    "category": "Curtailable",
+    "usage": "entertainment",
+    "temp_driven": false,
+    "ownership_prob": {
+      "lower_middle": 0.8,
+      "middle": 0.96,
+      "upper_middle": 1.0
+    },
+    "quantity_dist": {
+      "lower_middle": [
+        1.0,
+        0.0
+      ],
+      "middle": [
+        1.1,
+        0.3
+      ],
+      "upper_middle": [
+        1.8,
+        0.6
+      ]
+    }
   },
   "rice_cooker": {
-    "power_w": 650, "power_std_w": 70, "duty_cycle": 0.6,
-    "category": "Schedulable", "usage": "cooking", "temp_driven": false,
-    "ownership_prob": {"lower_middle": 0.45, "middle": 0.80, "upper_middle": 0.90},
-    "quantity_dist": {"lower_middle": [1.0, 0.0], "middle": [1.0, 0.0], "upper_middle": [1.0, 0.0]}
+    "power_w": 650,
+    "power_std_w": 70,
+    "duty_cycle": 0.6,
+    "category": "Schedulable",
+    "usage": "cooking",
+    "temp_driven": false,
+    "ownership_prob": {
+      "lower_middle": 0.45,
+      "middle": 0.8,
+      "upper_middle": 0.9
+    },
+    "quantity_dist": {
+      "lower_middle": [
+        1.0,
+        0.0
+      ],
+      "middle": [
+        1.0,
+        0.0
+      ],
+      "upper_middle": [
+        1.0,
+        0.0
+      ]
+    }
   },
   "electric_kettle": {
-    "power_w": 1800, "power_std_w": 150, "duty_cycle": 0.9,
-    "category": "Schedulable", "usage": "cooking_short", "temp_driven": false,
-    "ownership_prob": {"lower_middle": 0.15, "middle": 0.55, "upper_middle": 0.85},
-    "quantity_dist": {"lower_middle": [1.0, 0.0], "middle": [1.0, 0.0], "upper_middle": [1.0, 0.0]}
+    "power_w": 1800,
+    "power_std_w": 150,
+    "duty_cycle": 0.9,
+    "category": "Schedulable",
+    "usage": "cooking_short",
+    "temp_driven": false,
+    "ownership_prob": {
+      "lower_middle": 0.15,
+      "middle": 0.55,
+      "upper_middle": 0.85
+    },
+    "quantity_dist": {
+      "lower_middle": [
+        1.0,
+        0.0
+      ],
+      "middle": [
+        1.0,
+        0.0
+      ],
+      "upper_middle": [
+        1.0,
+        0.0
+      ]
+    }
   },
   "microwave_oven": {
-    "power_w": 1100, "power_std_w": 150, "duty_cycle": 0.85,
-    "category": "Schedulable", "usage": "cooking_short", "temp_driven": false,
-    "ownership_prob": {"lower_middle": 0.03, "middle": 0.35, "upper_middle": 0.80},
-    "quantity_dist": {"lower_middle": [1.0, 0.0], "middle": [1.0, 0.0], "upper_middle": [1.0, 0.0]}
+    "power_w": 1100,
+    "power_std_w": 150,
+    "duty_cycle": 0.85,
+    "category": "Schedulable",
+    "usage": "cooking_short",
+    "temp_driven": false,
+    "ownership_prob": {
+      "lower_middle": 0.03,
+      "middle": 0.35,
+      "upper_middle": 0.8
+    },
+    "quantity_dist": {
+      "lower_middle": [
+        1.0,
+        0.0
+      ],
+      "middle": [
+        1.0,
+        0.0
+      ],
+      "upper_middle": [
+        1.0,
+        0.0
+      ]
+    }
   },
   "blender_mixer": {
-    "power_w": 400, "power_std_w": 60, "duty_cycle": 0.9,
-    "category": "Schedulable", "usage": "cooking_short", "temp_driven": false,
-    "ownership_prob": {"lower_middle": 0.25, "middle": 0.70, "upper_middle": 0.92},
-    "quantity_dist": {"lower_middle": [1.0, 0.0], "middle": [1.0, 0.0], "upper_middle": [1.0, 0.0]}
+    "power_w": 400,
+    "power_std_w": 60,
+    "duty_cycle": 0.9,
+    "category": "Schedulable",
+    "usage": "cooking_short",
+    "temp_driven": false,
+    "ownership_prob": {
+      "lower_middle": 0.25,
+      "middle": 0.7,
+      "upper_middle": 0.92
+    },
+    "quantity_dist": {
+      "lower_middle": [
+        1.0,
+        0.0
+      ],
+      "middle": [
+        1.0,
+        0.0
+      ],
+      "upper_middle": [
+        1.0,
+        0.0
+      ]
+    }
   },
   "electric_iron": {
-    "power_w": 1000, "power_std_w": 100, "duty_cycle": 0.8,
-    "category": "Schedulable", "usage": "chore_morning", "temp_driven": false,
-    "ownership_prob": {"lower_middle": 0.55, "middle": 0.90, "upper_middle": 0.98},
-    "quantity_dist": {"lower_middle": [1.0, 0.0], "middle": [1.0, 0.0], "upper_middle": [1.0, 0.0]}
+    "power_w": 1000,
+    "power_std_w": 100,
+    "duty_cycle": 0.8,
+    "category": "Schedulable",
+    "usage": "chore_morning",
+    "temp_driven": false,
+    "ownership_prob": {
+      "lower_middle": 0.55,
+      "middle": 0.9,
+      "upper_middle": 0.98
+    },
+    "quantity_dist": {
+      "lower_middle": [
+        1.0,
+        0.0
+      ],
+      "middle": [
+        1.0,
+        0.0
+      ],
+      "upper_middle": [
+        1.0,
+        0.0
+      ]
+    }
   },
   "washing_machine": {
-    "power_w": 450, "power_std_w": 60, "duty_cycle": 0.7,
-    "category": "Schedulable", "usage": "chore_morning", "temp_driven": false,
-    "ownership_prob": {"lower_middle": 0.02, "middle": 0.25, "upper_middle": 0.70},
-    "quantity_dist": {"lower_middle": [1.0, 0.0], "middle": [1.0, 0.0], "upper_middle": [1.0, 0.0]}
+    "power_w": 450,
+    "power_std_w": 60,
+    "duty_cycle": 0.7,
+    "category": "Schedulable",
+    "usage": "chore_morning",
+    "temp_driven": false,
+    "ownership_prob": {
+      "lower_middle": 0.02,
+      "middle": 0.25,
+      "upper_middle": 0.7
+    },
+    "quantity_dist": {
+      "lower_middle": [
+        1.0,
+        0.0
+      ],
+      "middle": [
+        1.0,
+        0.0
+      ],
+      "upper_middle": [
+        1.0,
+        0.0
+      ]
+    }
   },
   "water_pump_0_5hp": {
-    "power_w": 373, "power_std_w": 30, "duty_cycle": 0.95,
-    "category": "Schedulable", "usage": "pump", "temp_driven": false,
-    "ownership_prob": {"lower_middle": 0.20, "middle": 0.45, "upper_middle": 0.60},
-    "quantity_dist": {"lower_middle": [1.0, 0.0], "middle": [1.0, 0.0], "upper_middle": [1.0, 0.0]}
+    "power_w": 373,
+    "power_std_w": 30,
+    "duty_cycle": 0.95,
+    "category": "Schedulable",
+    "usage": "pump",
+    "temp_driven": false,
+    "ownership_prob": {
+      "lower_middle": 0.2,
+      "middle": 0.45,
+      "upper_middle": 0.6
+    },
+    "quantity_dist": {
+      "lower_middle": [
+        1.0,
+        0.0
+      ],
+      "middle": [
+        1.0,
+        0.0
+      ],
+      "upper_middle": [
+        1.0,
+        0.0
+      ]
+    }
   },
   "ips_backup": {
-    "power_w": 300, "power_std_w": 60, "duty_cycle": 0.6,
-    "category": "Schedulable", "usage": "evening_charge", "temp_driven": false,
-    "ownership_prob": {"lower_middle": 0.05, "middle": 0.40, "upper_middle": 0.75},
-    "quantity_dist": {"lower_middle": [1.0, 0.0], "middle": [1.0, 0.0], "upper_middle": [1.0, 0.0]}
+    "power_w": 300,
+    "power_std_w": 60,
+    "duty_cycle": 0.6,
+    "category": "Schedulable",
+    "usage": "evening_charge",
+    "temp_driven": false,
+    "ownership_prob": {
+      "lower_middle": 0.05,
+      "middle": 0.4,
+      "upper_middle": 0.75
+    },
+    "quantity_dist": {
+      "lower_middle": [
+        1.0,
+        0.0
+      ],
+      "middle": [
+        1.0,
+        0.0
+      ],
+      "upper_middle": [
+        1.0,
+        0.0
+      ]
+    }
   },
   "geyser_water_heater": {
-    "power_w": 1800, "power_std_w": 200, "duty_cycle": 0.8,
-    "category": "Schedulable", "usage": "winter_morning", "temp_driven": true,
-    "ownership_prob": {"lower_middle": 0.0, "middle": 0.10, "upper_middle": 0.55},
-    "quantity_dist": {"lower_middle": [1.0, 0.0], "middle": [1.0, 0.0], "upper_middle": [1.2, 0.4]}
+    "power_w": 1800,
+    "power_std_w": 200,
+    "duty_cycle": 0.8,
+    "category": "Schedulable",
+    "usage": "winter_morning",
+    "temp_driven": true,
+    "ownership_prob": {
+      "lower_middle": 0.0,
+      "middle": 0.1,
+      "upper_middle": 0.55
+    },
+    "quantity_dist": {
+      "lower_middle": [
+        1.0,
+        0.0
+      ],
+      "middle": [
+        1.0,
+        0.0
+      ],
+      "upper_middle": [
+        1.2,
+        0.4
+      ]
+    }
   },
   "computer_laptop": {
-    "power_w": 80, "power_std_w": 30, "duty_cycle": 1.0,
-    "category": "Curtailable", "usage": "evening_work", "temp_driven": false,
-    "ownership_prob": {"lower_middle": 0.15, "middle": 0.55, "upper_middle": 0.90},
-    "quantity_dist": {"lower_middle": [1.0, 0.0], "middle": [1.2, 0.4], "upper_middle": [1.8, 0.6]}
+    "power_w": 80,
+    "power_std_w": 30,
+    "duty_cycle": 1.0,
+    "category": "Curtailable",
+    "usage": "evening_work",
+    "temp_driven": false,
+    "ownership_prob": {
+      "lower_middle": 0.15,
+      "middle": 0.55,
+      "upper_middle": 0.9
+    },
+    "quantity_dist": {
+      "lower_middle": [
+        1.0,
+        0.0
+      ],
+      "middle": [
+        1.2,
+        0.4
+      ],
+      "upper_middle": [
+        1.8,
+        0.6
+      ]
+    }
   },
   "router_charger_standby": {
-    "power_w": 18, "power_std_w": 5, "duty_cycle": 1.0,
-    "category": "Critical", "usage": "always_on", "temp_driven": false,
-    "ownership_prob": {"lower_middle": 0.50, "middle": 0.90, "upper_middle": 1.0},
-    "quantity_dist": {"lower_middle": [1.0, 0.0], "middle": [1.3, 0.5], "upper_middle": [2.0, 0.7]}
+    "power_w": 18,
+    "power_std_w": 5,
+    "duty_cycle": 1.0,
+    "category": "Critical",
+    "usage": "always_on",
+    "temp_driven": false,
+    "ownership_prob": {
+      "lower_middle": 0.5,
+      "middle": 0.9,
+      "upper_middle": 1.0
+    },
+    "quantity_dist": {
+      "lower_middle": [
+        1.0,
+        0.0
+      ],
+      "middle": [
+        1.3,
+        0.5
+      ],
+      "upper_middle": [
+        2.0,
+        0.7
+      ]
+    }
   },
   "exhaust_fan": {
-    "power_w": 35, "power_std_w": 5, "duty_cycle": 0.9,
-    "category": "Curtailable", "usage": "cooking", "temp_driven": false,
-    "ownership_prob": {"lower_middle": 0.10, "middle": 0.45, "upper_middle": 0.80},
-    "quantity_dist": {"lower_middle": [1.0, 0.0], "middle": [1.0, 0.2], "upper_middle": [1.5, 0.5]}
+    "power_w": 35,
+    "power_std_w": 5,
+    "duty_cycle": 0.9,
+    "category": "Curtailable",
+    "usage": "cooking",
+    "temp_driven": false,
+    "ownership_prob": {
+      "lower_middle": 0.1,
+      "middle": 0.45,
+      "upper_middle": 0.8
+    },
+    "quantity_dist": {
+      "lower_middle": [
+        1.0,
+        0.0
+      ],
+      "middle": [
+        1.0,
+        0.2
+      ],
+      "upper_middle": [
+        1.5,
+        0.5
+      ]
+    }
   }
 }

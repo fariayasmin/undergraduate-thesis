@@ -73,13 +73,21 @@ if sys.platform == "win32":
 rng = np.random.default_rng(C.SEED)
 
 # BERC Feb-2024 residential slab tariff (BDT/kWh) — same as project file
-TARIFF_SLABS = [
+TARIFF_SLABS = C.TARIFF_SLABS   # single source of truth: config.py
+_LEGACY_SLABS = [
     (1, 0,   50,  4.63), (2, 0,   75,  5.26), (3, 76, 200, 7.20),
     (4, 201, 300, 7.59), (5, 301, 400, 8.02), (6, 401, 600, 12.67),
     (7, 601, 100000, 14.61),
 ]
 
-FLEX_INDEX = {"Critical": 0.05, "Schedulable": 0.70, "Curtailable": 0.45}
+# flexibility_index measures GRID-CONTROL flexibility (capacity to contribute
+# to a DR action), not ease of rescheduling in time -- it is consumed to
+# justify WHICH appliance was actioned first. A thermostatically controlled
+# load can be throttled continuously and is the single largest residential
+# load, so Curtailable now ranks above Schedulable. This also preserves the
+# model document's worked ratio: AC 0.70*eps = 0.753 vs refrigerator
+# 0.05*eps = 0.046, i.e. ~16x.
+FLEX_INDEX = {"Critical": 0.05, "Schedulable": 0.45, "Curtailable": 0.70}
 
 CATEGORY_ROWS = [
     {"nodeId": "CAT_Critical", "name": "Critical", "curtailment_priority": 3,
@@ -571,7 +579,7 @@ Purpose: let an LLM answer customer questions such as
   category constraint (must_run / flexible_start / power_reduction_allowed),
   TOU period and tariff slab -- the LLM never has to invent numbers.
 - flexibility_index on BELONGS_TO lets the LLM rank which appliance was
-  chosen first and say so ("your washing machine is 14x more flexible
+  chosen first and say so ("your air conditioner is 16x more flexible
   than your refrigerator").
 - Substation nodes carry the real BPDB yearly peak means, so grid-level
   answers ("why was 2025-05-14 a stress day?") tie back to observed data.

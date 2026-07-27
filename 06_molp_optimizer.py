@@ -142,7 +142,12 @@ def optimise_substation(substation: str, alphas_override=None):
     crit_kw  = z["critical_w"] / 1000.0
     n_hh = len(hh_ids)
 
-    rate  = np.array([C.TIER_RATE_BDT_KWH[t] for t in tiers])       # (n_hh,)
+    # Marginal BERC slab rate at each household's BASELINE monthly consumption
+    # (commit 5b). Per-household constant -> Eqs. 30-31 stay exact.
+    _months = pd.PeriodIndex(CAL["timestamp"], freq="M")
+    _n_months = _months.nunique()
+    _base_kwh = (sched_kw + curt_kw + crit_kw).sum(axis=0) * H / _n_months
+    rate  = np.array([C.marginal_slab_rate(k) for k in _base_kwh])   # (n_hh,)
     alpha = (np.full(n_hh, alphas_override) if alphas_override is not None
              else np.array([C.TIER_ALPHA[t] for t in tiers]))
     d_s   = np.array([C.DISCOMFORT_SHIFT[t] for t in tiers])
@@ -246,7 +251,7 @@ def optimise_substation(substation: str, alphas_override=None):
             "tou_period": "peak",
             "tou_multiplier": C.TOU["peak"]["multiplier"],
             "tou_rate_bdt_kwh": round(
-                C.TIER_RATE_BDT_KWH[tiers[j]] * C.TOU["peak"]["multiplier"], 3),
+                rate[j] * C.TOU["peak"]["multiplier"], 3),
             "predicted_load_w": pw.round(1),
             "optimised_load_w": ow.round(1),
             "power_deviation_w": (pw - ow).round(1),
