@@ -1,4 +1,0 @@
-nodeId,name,income_min_bdt,income_max_bdt,label
-TIER_lower_middle,Lower Middle,15000,35000,SocioeconomicTier
-TIER_middle,Middle,35001,65000,SocioeconomicTier
-TIER_upper_middle,Upper Middle,65001,120000,SocioeconomicTier

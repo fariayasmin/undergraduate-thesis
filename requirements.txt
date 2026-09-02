@@ -1,0 +1,30 @@
+# ─────────────────────────────────────────────────────────────────────────
+# requirements.txt — dependencies for the Smart Grid Digital Twin pipeline
+#
+# Two groups. The GPU box that runs Phase 1 (Run_research.py /
+# research_multihorizon.py) needs ONLY the first group. The second group is
+# the data-collection layer (00_bd_calendar, 01_dhaka_weather,
+# dataset_from_website) and is not imported by any training code.
+#
+# Versions below are the ones the local CPU run used (py -3.13 on Windows).
+# On the remote box, after installing, capture the real environment with:
+#     pip freeze > environment_used.txt
+# ─────────────────────────────────────────────────────────────────────────
+
+# ── TRAINING (Phase 1 sweep + 05b deployment) ────────────────────────────
+# On a Linux GPU box install tensorflow as:  pip install "tensorflow[and-cuda]==2.21.0"
+# Plain `pip install tensorflow` is CPU-only on Linux from 2.16 onward.
+tensorflow==2.21.0
+numpy==2.5.1
+pandas==3.0.5
+scikit-learn==1.9.0
+matplotlib==3.11.1
+joblib==1.5.3
+
+# ── DATA COLLECTION (scrapers; not needed to train) ──────────────────────
+requests==2.34.2
+urllib3==2.7.0
+tqdm==4.69.1
+pdfplumber
+beautifulsoup4
+holidays

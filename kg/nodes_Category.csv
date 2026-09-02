@@ -1,4 +1,0 @@
-nodeId,name,curtailment_priority,can_curtail,can_schedule,label,molp_constraint,explanation_template
-CAT_Critical,Critical,3,False,False,Category,must_run,The {appliance} in your home is classified as Critical. It will NOT be affected during demand response events to protect food safety and essential services.
-CAT_Schedulable,Schedulable,2,False,True,Category,flexible_start,"Your {appliance} can be shifted to run during off-peak hours (23:00-06:00) to reduce your electricity cost. This does not affect its function, only its start time."
-CAT_Curtailable,Curtailable,1,True,False,Category,power_reduction_allowed,"During grid stress events, your {appliance} may be temporarily reduced. You are notified in advance and compensated with a bill credit of 3 BDT per curtailed kWh."

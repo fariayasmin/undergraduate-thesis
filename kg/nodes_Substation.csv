@@ -1,3 +1,0 @@
-nodeId,name,city,division,utility,mean_daily_peak_mw_2024,mean_daily_peak_mw_2025,mean_daily_peak_mw_2026,feeder_voltage_kv,latitude,longitude,label
-SUB_Kalyanpur,Kalyanpur 132/33kV Substation,Dhaka,Dhaka,DESCO,96.56,94.8,99.66,33.0,23.7776,90.356,Substation
-SUB_Dhanmondi,Dhanmondi 132/33kV Substation,Dhaka,Dhaka,DPDC,119.84,119.0,96.1,33.0,23.7461,90.3742,Substation

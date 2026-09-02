@@ -135,11 +135,28 @@ USABLE_SUBSTATIONS = [
 EXOG_FEATURES = [
     "Holiday_type_encoded",
     "Is_Weekend",
+    "Is_Bridge_Day",
+    "Days_To_Holiday",
     "Season_Encoded",
     "Temp_Max_C", "Temp_Min_C", "Temp_Mean_C",
     "Humidity_Mean_Pct", "Precip_Sum_mm", "Rain_Sum_mm", "Wind_Max_kmh",
     "Month_sin", "Month_cos", "DOW_sin", "DOW_cos",
 ]
+
+# Bangladesh weekend is Friday + Saturday (weekday 4, 5), NOT Sat/Sun. Every
+# calendar feature below depends on this; using pandas' dayofweek >= 5 would
+# silently produce a European calendar.
+WEEKEND_DAYS = (4, 5)
+
+# Days_To_Holiday is clipped to +/- this many days. Beyond about a week the
+# proximity effect on Dhaka load is indistinguishable from a normal working
+# day, and leaving the variable unbounded would let a single long holiday-free
+# stretch dominate the MinMax scaling of the whole column.
+HOLIDAY_PROXIMITY_CLIP = 7
+
+# Written by load_and_clean so the exact frame the models are trained on can be
+# inspected and cited. The RAW CSV is never modified.
+PROCESSED_CSV = Path(__file__).parent / "data" / "processed_dataset.csv"
 
 FESTIVE_HOLIDAY_TYPES = {"Eid", "Durga Puja"}
 
@@ -179,6 +196,94 @@ def is_implausible_load_outlier(load_val) -> bool:
 
 # ── Step 1: Load + Clean ──────────────────────────────────────────────────────
 
+def calendar_bridge_features(is_holiday: pd.Series, is_weekend: pd.Series
+                             ) -> tuple[pd.Series, pd.Series]:
+    """Derive Is_Bridge_Day and Days_To_Holiday from a CONTIGUOUS daily index.
+
+    Both inputs must be boolean Series on a gap-free daily DatetimeIndex. The
+    caller is responsible for that: the raw BPDB record is missing 131 of 2445
+    calendar days, and computing "previous day" on the raw rows would compare a
+    day against whatever row happened to precede it, which can be a week away.
+
+    Is_Bridge_Day (sandwiched definition)
+    -------------------------------------
+    1 iff the day is a WORKING day (neither a gazetted holiday nor a Fri/Sat
+    weekend) AND both neighbouring days are non-working. This is the definition
+    used in the load-forecasting literature: a bridge day is a lone working day
+    trapped between two non-working days, which is why people take it off and
+    why the load collapses toward a weekend profile. A working day that merely
+    sits next to a holiday on one side is NOT a bridge day -- that is the
+    separate "holiday eve / day after" effect, and here it is carried by
+    Days_To_Holiday instead.
+
+    A holiday is never a bridge day. A weekend is never a bridge day. Days at
+    the very start/end of the record are treated as having a working-day
+    neighbour, so they are never flagged; this is the conservative choice.
+
+    Days_To_Holiday (signed proximity, clipped)
+    -------------------------------------------
+    Signed distance in days to the NEAREST gazetted holiday:
+        0   on a holiday itself
+        -n  n days BEFORE the next holiday   (e.g. -1 = holiday tomorrow)
+        +n  n days AFTER the previous one    (e.g. +1 = holiday yesterday)
+    Ties resolve to the past. Clipped to +/- HOLIDAY_PROXIMITY_CLIP.
+
+    Looking forward in the calendar is legitimate and is not leakage: the
+    Bangladesh holiday gazette is published in advance, so on day d the date of
+    the next holiday is already known. This is deterministic calendar
+    information, exactly like Month or DOW, not an observation of the future.
+    """
+    is_holiday = np.asarray(is_holiday, dtype=bool)
+    is_weekend = np.asarray(is_weekend, dtype=bool)
+    n = len(is_holiday)
+
+    non_working = is_holiday | is_weekend
+    working = ~non_working
+
+    prev_nw = np.r_[False, non_working[:-1]]     # start of record: assume working
+    next_nw = np.r_[non_working[1:], False]      # end of record:   assume working
+    bridge = (working & prev_nw & next_nw).astype("int8")
+
+    hol_pos = np.flatnonzero(is_holiday)
+    if hol_pos.size == 0:
+        proximity = np.zeros(n, dtype="int16")
+    else:
+        pos = np.arange(n)
+        j = np.searchsorted(hol_pos, pos, side="left")   # hol_pos[j] >= pos
+        big = n + 1
+        d_next = np.where(j < hol_pos.size, hol_pos[np.minimum(j, hol_pos.size - 1)] - pos, big)
+        d_prev = np.where(j > 0, pos - hol_pos[np.maximum(j - 1, 0)], big)
+        # on a holiday d_next == 0, so the else-branch gives -0 == 0
+        proximity = np.where(d_prev <= d_next, d_prev, -d_next)
+        proximity = np.clip(proximity, -HOLIDAY_PROXIMITY_CLIP,
+                            HOLIDAY_PROXIMITY_CLIP).astype("int16")
+
+    return pd.Series(bridge), pd.Series(proximity)
+
+
+def verify_calendar_features(df: pd.DataFrame) -> None:
+    """Requirement 7: assert the derived features are clean, then report."""
+    b, p = df["Is_Bridge_Day"], df["Days_To_Holiday"]
+    assert b.notna().all(), "Is_Bridge_Day contains NaN"
+    assert p.notna().all(), "Days_To_Holiday contains NaN"
+    assert set(b.unique()) <= {0, 1}, f"Is_Bridge_Day not binary: {sorted(b.unique())}"
+    assert p.between(-HOLIDAY_PROXIMITY_CLIP, HOLIDAY_PROXIMITY_CLIP).all(), \
+        "Days_To_Holiday outside the clip range"
+    hol = df["Holiday_type"].ne("No Holiday") if "Holiday_type" in df.columns \
+        else pd.Series(False, index=df.index)
+    assert not (b.eq(1) & df["Is_Weekend"].eq(1)).any(), "a weekend was flagged as a bridge day"
+    assert not (b.eq(1) & hol).any(), "a holiday was flagged as a bridge day"
+
+    dow = df["Date"].dt.day_name() if "Date" in df.columns else df.index.day_name()
+    by_dow = dow[b.eq(1)].value_counts()
+    print(f"  calendar features: Is_Bridge_Day = {int(b.sum())} days "
+          f"({b.mean()*100:.2f}% of {len(b)}), binary, no NaN"
+          + (f" | {', '.join(f'{k} {v}' for k, v in by_dow.items())}" if len(by_dow) else ""))
+    print(f"  Days_To_Holiday in [{int(p.min())}, {int(p.max())}], "
+          f"{int(p.eq(0).sum())} holiday days, "
+          f"{int(p.abs().le(3).sum())} days within +/-3 of a holiday")
+
+
 def load_and_clean(csv_path: str) -> pd.DataFrame:
     df = pd.read_csv(csv_path)
     df["Date"] = pd.to_datetime(df["Date"])
@@ -216,6 +321,15 @@ def load_and_clean(csv_path: str) -> pd.DataFrame:
         df["Holiday_type"] = "No Holiday"
         df["Holiday_type_encoded"] = 0
 
+    # The calendar features below are derived from the SAME holiday notion the
+    # model receives in Holiday_type_encoded, i.e. after the ffill/bfill above.
+    # 131 of the 2445 calendar days have no BPDB record and inherit their
+    # neighbour's label; 11 of those become holidays. Deriving from the raw
+    # pre-fill mask instead gives the same 31 bridge days and differs on only
+    # two dates, but it would let a day be encoded as a holiday and flagged as
+    # a working bridge day at the same time. Consistency wins.
+    holiday_mask = df["Holiday_type_encoded"].ne(0)
+
     weather_cols = [
         "Temp_Max_C","Temp_Min_C","Temp_Mean_C",
         "Humidity_Mean_Pct","Precip_Sum_mm","Rain_Sum_mm","Wind_Max_kmh",
@@ -230,6 +344,13 @@ def load_and_clean(csv_path: str) -> pd.DataFrame:
     df["Month_cos"] = np.cos(2 * np.pi * df["Month"] / 12)
     df["DOW_sin"]   = np.sin(2 * np.pi * dow_num / 7)
     df["DOW_cos"]   = np.cos(2 * np.pi * dow_num / 7)
+
+    # Derived AFTER the reindex above, so "previous day" and "next day" are
+    # true calendar neighbours rather than adjacent surviving rows.
+    _bridge, _prox = calendar_bridge_features(holiday_mask,
+                                              df["Is_Weekend"].astype(bool))
+    df["Is_Bridge_Day"] = _bridge.values
+    df["Days_To_Holiday"] = _prox.values
 
     df["DOW_num"] = dow_num
     for sub in USABLE_SUBSTATIONS:
@@ -270,7 +391,25 @@ def load_and_clean(csv_path: str) -> pd.DataFrame:
         df[col] = df[col].clip(lo, hi)
 
     df = df.reset_index()
+    verify_calendar_features(df)                       # requirement 7
+    save_processed_dataset(df)                         # requirement 3 / 6
     return df
+
+
+def save_processed_dataset(df: pd.DataFrame, path: Path | None = None) -> Path | None:
+    """Write the cleaned, feature-engineered frame the models actually see.
+
+    The RAW CSV is never touched. Set LP_WRITE_PROCESSED=0 to skip the write
+    (useful inside the 108-cell sweep, where load_and_clean runs once anyway).
+    """
+    if os.environ.get("LP_WRITE_PROCESSED", "1") == "0":
+        return None
+    path = Path(path) if path is not None else PROCESSED_CSV
+    path.parent.mkdir(parents=True, exist_ok=True)
+    df.to_csv(path, index=False, encoding="utf-8")
+    print(f"  processed dataset written: {path} "
+          f"({len(df)} rows x {df.shape[1]} cols)")
+    return path
 
 # ── Step 2: Feature engineering ──────────────────────────────────────────────
 

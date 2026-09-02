@@ -61,6 +61,9 @@ OUTPUTS (forecast_outputs/)
   horizon_skill_by_model.png          skill curves, one line per architecture
   multihorizon_model_selection.png    selection table
   multihorizon_r2_boxplot.png         distribution of the selection metric
+  <sub>_<winner>_lead_forecast.png    actual vs predicted at leads 1 / 7 / 15
+  mh_preds/<sub>__<model>.npz         stored test predictions, so the figures
+                                      above can be redrawn without retraining
 """
 
 from __future__ import annotations
@@ -98,6 +101,41 @@ MODELS = (os.environ["MH_MODELS"].split()
 SUBSTATIONS = (os.environ["MH_SUBSTATIONS"].split()
                if "MH_SUBSTATIONS" in os.environ
                else list(LP.USABLE_SUBSTATIONS))
+
+
+PRED_DIR = OUTPUT_DIR / f"mh_preds{_SUF}"
+
+
+def mape_by_horizon(y_true: np.ndarray, y_pred: np.ndarray) -> np.ndarray:
+    """Per-lead MAPE (%), guarded against near-zero actuals.
+
+    MH.horizon_metrics returns R2/RMSE/MAE only. MAPE is computed here rather
+    than added there so multihorizon.py stays exactly as written.
+    """
+    out = np.empty(y_true.shape[1])
+    for k in range(y_true.shape[1]):
+        yt, yp = y_true[:, k], y_pred[:, k]
+        m = np.abs(yt) > 1e-6
+        out[k] = (np.mean(np.abs((yt[m] - yp[m]) / yt[m])) * 100.0
+                  if m.any() else np.nan)
+    return out
+
+
+def test_first_target_dates(sub_df: pd.DataFrame) -> pd.DatetimeIndex:
+    """Date of the lead-1 target of each TEST sequence.
+
+    prepare_multi seeds the test block with the last WINDOW days of train+val,
+    so test sequence i has its lead-1 target on the i-th test day; the lead-k
+    target falls (k-1) days later because load_and_clean reindexes the record
+    to a contiguous daily range.
+    """
+    year = sub_df["Date"].dt.year
+    n_tr = int((year <= LP.TRAIN_END_YEAR).sum())
+    n_va = int((year == LP.VAL_YEAR).sum())
+    n_te = int((year >= LP.TEST_START_YEAR).sum())
+    n_seq = n_te - MH.HORIZON + 1
+    return pd.DatetimeIndex(
+        sub_df["Date"].iloc[n_tr + n_va: n_tr + n_va + n_seq].values)
 
 
 # ── one (substation, model) cell ────────────────────────────────────────────
@@ -143,21 +181,48 @@ def run_cell(df_clean: pd.DataFrame, substation: str, model_name: str):
         "test_r2":  [m["r2"] for m in te_m],
         "test_rmse": [m["rmse"] for m in te_m],
         "test_mae": [m["mae"] for m in te_m],
+        "val_mape": mape_by_horizon(va_true, va_pred),
+        "test_mape": mape_by_horizon(te_true, te_pred),
         "sigma_k_mw": np.round(sigma_k, 4),
         "z_beta_sigma_mw": np.round(MH.Z_BETA * sigma_k, 4),
     })
 
+    # Keep the test predictions. Without this the lead-1/7/15 figures below
+    # cannot be produced without retraining all 108 models.
+    PRED_DIR.mkdir(parents=True, exist_ok=True)
+    np.savez_compressed(
+        PRED_DIR / f"{substation.lower().replace(' ', '_')}__"
+                   f"{model_name.lower().replace('+', '_')}.npz",
+        first_target_date=test_first_target_dates(sub_df).values
+                          .astype("datetime64[D]"),
+        y_true=te_true.astype("float32"), y_pred=te_pred.astype("float32"))
+
     sc = MH.selection_score
+    _w = MH.horizon_weights(MH.HORIZON, WEIGHT_MODE)
+
+    def agg(per_lead_values):
+        """Weighted mean over leads, using the SAME omega_k as the loss.
+
+        Under WEIGHT_MODE='uniform' every weight is 1, so this is exactly the
+        plain mean it replaces and the default run's numbers are unchanged.
+        Under 'decaying' it stops val_rmse/val_mae from being aggregated on a
+        different weighting than val_r2 and the training objective.
+        """
+        v = np.asarray(per_lead_values, dtype=float)
+        return float(np.sum(v * _w) / np.sum(_w))
+
     row = {
         "substation": substation, "model": model_name,
         # aggregated over ALL leads — these are the selection quantities
         "train_r2": sc([m["r2"] for m in tr_m], WEIGHT_MODE),
         "val_r2":   sc([m["r2"] for m in va_m], WEIGHT_MODE),
-        "val_rmse": float(np.mean([m["rmse"] for m in va_m])),
-        "val_mae":  float(np.mean([m["mae"] for m in va_m])),
+        "val_rmse": agg([m["rmse"] for m in va_m]),
+        "val_mae":  agg([m["mae"] for m in va_m]),
         "test_r2":  sc([m["r2"] for m in te_m], WEIGHT_MODE),
-        "test_rmse": float(np.mean([m["rmse"] for m in te_m])),
-        "test_mae":  float(np.mean([m["mae"] for m in te_m])),
+        "test_rmse": agg([m["rmse"] for m in te_m]),
+        "test_mae":  agg([m["mae"] for m in te_m]),
+        "val_mape":  agg(mape_by_horizon(va_true, va_pred)),
+        "test_mape": agg(mape_by_horizon(te_true, te_pred)),
         # per-lead reference points, reported but never selected on
         "val_r2_lead1":   va_m[0]["r2"],
         "val_r2_lead7":   va_m[min(6, len(va_m) - 1)]["r2"],
@@ -281,7 +346,12 @@ def plot_boxplot(summary: pd.DataFrame, best: str, out: Path):
              .sort_values(ascending=False).index.tolist())
     data = [summary.loc[summary.model == m, "val_r2"].values for m in order]
     fig, ax = plt.subplots(figsize=(9, 5))
-    bp = ax.boxplot(data, labels=order, patch_artist=True)
+    # matplotlib renamed boxplot's labels= to tick_labels= in 3.9 and
+    # removes the old name in 3.11 — same shim load_prediction.py uses
+    import matplotlib as _mpl
+    _mm = tuple(int(v) for v in _mpl.__version__.split(".")[:2])
+    _label_kw = "tick_labels" if _mm >= (3, 9) else "labels"
+    bp = ax.boxplot(data, **{_label_kw: order}, patch_artist=True)
     for patch, name in zip(bp["boxes"], order):
         patch.set_facecolor("#95d5b2" if name == best else "#e9ecef")
     ax.set_ylabel("Validation $R^2$, mean over all leads")
@@ -292,6 +362,52 @@ def plot_boxplot(summary: pd.DataFrame, best: str, out: Path):
     fig.tight_layout()
     fig.savefig(out / f"multihorizon_r2_boxplot{_SUF}.png", dpi=150)
     plt.close(fig)
+
+
+def plot_lead_forecasts(summary: pd.DataFrame, best: str, out: Path,
+                        leads=(1, 7, MH.HORIZON)):
+    """Actual vs predicted at lead 1 / 7 / 15 for the selected architecture.
+
+    Priority 7 of the review: the skill curve shows how accuracy DECAYS with
+    lead, but not what a 15-day-ahead forecast actually looks like against the
+    truth. Drawn from the stored .npz, so no retraining.
+    """
+    leads = sorted({k for k in leads if 1 <= k <= MH.HORIZON})
+    for sub in sorted(summary.loc[summary.model == best, "substation"].unique()):
+        f = PRED_DIR / (f"{sub.lower().replace(' ', '_')}__"
+                        f"{best.lower().replace('+', '_')}.npz")
+        if not f.exists():
+            continue
+        with np.load(f) as z:
+            d0 = pd.to_datetime(z["first_target_date"])
+            y_true, y_pred = z["y_true"], z["y_pred"]
+
+        fig, axes = plt.subplots(len(leads), 1, figsize=(13, 3.1 * len(leads)),
+                                 sharex=True)
+        axes = np.atleast_1d(axes)
+        for ax, k in zip(axes, leads):
+            yt, yp = y_true[:, k - 1], y_pred[:, k - 1]
+            res = yt - yp
+            r2 = 1 - np.sum(res ** 2) / np.sum((yt - yt.mean()) ** 2)
+            ax.plot(d0 + pd.Timedelta(days=k - 1), yt, color="#1f3b57",
+                    lw=1.1, label="Actual")
+            ax.plot(d0 + pd.Timedelta(days=k - 1), yp, color="#d1495b",
+                    lw=1.1, alpha=0.85, label=f"Predicted (lead {k})")
+            ax.set_title(f"Lead {k} day{'s' if k > 1 else ''} ahead — "
+                         f"$R^2$ = {r2:.3f}, "
+                         f"RMSE = {np.sqrt(np.mean(res ** 2)):.2f} MW",
+                         fontsize=10, fontweight="bold")
+            ax.set_ylabel("Peak load (MW)")
+            ax.grid(alpha=0.3)
+            ax.legend(fontsize=8, loc="upper left")
+        axes[-1].set_xlabel(f"Date (test years {LP.TEST_START_YEAR}+)")
+        fig.suptitle(f"{sub} — {best}, direct {MH.HORIZON}-day forecast",
+                     fontsize=12, fontweight="bold")
+        fig.tight_layout(rect=(0, 0, 1, 0.97))
+        fig.savefig(out / f"{sub.lower()}_{best.lower().replace('+', '_')}"
+                          f"_lead_forecast{_SUF}.png", dpi=150)
+        plt.close(fig)
+    print(f"lead-{'/'.join(str(k) for k in leads)} forecast figures written")
 
 
 # ── main ────────────────────────────────────────────────────────────────────
@@ -402,6 +518,7 @@ def main():
     plot_skill_curves(skill, best, OUTPUT_DIR)
     plot_selection_table(sel, best, OUTPUT_DIR)
     plot_boxplot(summary, best, OUTPUT_DIR)
+    plot_lead_forecasts(summary, best, OUTPUT_DIR)
 
     curve = (skill[skill.model == best].groupby("horizon_days")
              [["test_r2", "sigma_k_mw"]].mean())

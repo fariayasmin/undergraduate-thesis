@@ -1,0 +1,62 @@
+# ─────────────────────────────────────────────────────────────────────────
+# Generated pipeline artefacts.
+# Every one of these folders is recreated by the code that writes it
+# (config.py mkdirs data/ and kg/, 05b mkdirs models/, research_multihorizon
+# mkdirs forecast_outputs/), so a fresh clone runs without them.
+# ─────────────────────────────────────────────────────────────────────────
+data/
+kg/
+models/
+forecast_outputs/
+
+# Results you DO want versioned go in here instead — see the note below.
+!results_archive/
+
+# ── Scraper caches ───────────────────────────────────────────────────────
+# bpdb_page3_pdfs/ holds one PDF per day since 2019. Thousands of files,
+# hundreds of MB. Never commit it; dataset_from_website.py rebuilds it.
+bpdb_page3_pdfs/
+bpdb_page3_url_cache.json
+bpdb_page3_parse_cache.json
+bpdb_page3_weather_cache.json
+bpdb_page3_failed_downloads.txt
+bpdb_page3_failed_parses.txt
+*.log
+
+# Secondary scraper output; the CSV is the source of truth and IS tracked.
+BPDB_Dhaka_City_Substations_Page3.xlsx
+
+# ── Model / binary artefacts (safety net, in case one escapes a folder) ──
+*.keras
+*.h5
+*.hdf5
+*.pkl
+*.joblib
+*.npz
+*.parquet
+
+# ── Python ───────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+*.egg-info/
+
+# ── Editor / OS ──────────────────────────────────────────────────────────
+.claude/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ─────────────────────────────────────────────────────────────────────────
+# NOT ignored, and must stay tracked:
+#   BPDB_Dhaka_City_Substations_Page3.csv   the raw record (~950 KB) — the
+#                                           remote box needs this to train
+#   *.py                                    all pipeline code
+#   *.pdf                                   proposal / mathematical model
+#   results_archive/                        selection CSVs you cite
+# ─────────────────────────────────────────────────────────────────────────
