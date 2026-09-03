@@ -117,10 +117,21 @@ import matplotlib.gridspec as gridspec
 # EVERY model is trained on EVERY one of these so that a single global
 # best model can be selected for the paper.
 USABLE_SUBSTATIONS = [
-    "Agargaon", "Bangabhaban", "Bashundhara", "Dhanmondi", "Gulshan",
+    "Bangabhaban", "Bashundhara", "Dhanmondi", "Gulshan",
     "Hasnabad", "Kalyanpur", "Lalbag", "Madartek", "Maniknagar", "Matual",
-    "Mirpur", "Narinda", "Savar", "Shyampur",
+    "Mirpur", "Narinda", "Shyampur",
     "Ullon", "Uttara", "Uttara New",
+    # ── Excluded from architecture selection (16 substations retained) ─────
+    # "Agargaon", "Savar" — both underwent a non-stationary load regime
+    # change after the training period. Verified with verify_clipping.py:
+    # the 99.5th-percentile winsorisation, whose bounds are estimated on
+    # 2019-2023, altered 43.6% (Agargaon) and 42.7% (Savar) of their observed
+    # test-year days, against a design rate of 0.5% observed on every other
+    # substation. Their true test peaks reach 153 MW and 255 MW against
+    # ceilings of 114 MW and 208 MW. Architecture selection on substations
+    # whose evaluation targets are dominated by a preprocessing artefact
+    # would bias the comparison, so they are excluded from Phase 1.
+    # They are NOT excluded for being hard to predict.
     # Excluded (too sparse / late start / non-comparable):
     # "Banani", "Aftabnagar", "Motijheel", "Moghbazar", "Cantonment", "Kodda",
     # "Keranigonj", "Kamrangirchar", "Purbachal", "Postogola", "Dhaka University",
@@ -159,6 +170,20 @@ HOLIDAY_PROXIMITY_CLIP = 7
 PROCESSED_CSV = Path(__file__).parent / "data" / "processed_dataset.csv"
 
 FESTIVE_HOLIDAY_TYPES = {"Eid", "Durga Puja"}
+
+# ── Winsorisation scope ──────────────────────────────────────────────────
+# The 0.5/99.5 percentile bounds are ALWAYS estimated on the training years
+# only (that part is required, or test information leaks into preprocessing).
+# This flag controls which rows the resulting clip is APPLIED to.
+#   "all"   — current/published behaviour: clip train, validation and test.
+#   "train" — clip the training rows only; validation and test keep their
+#             observed values. Use for the winsorisation-scope ablation.
+# Default is "all" so this constant changes nothing until you flip it.
+# NOTE: switching to "train" is EXPECTED to LOWER R2. It restores genuine
+# high peaks that the clip was flattening, which makes the task harder and
+# exposes the train/test level shift. That is a correctness result, not a
+# regression — report the before/after rather than reverting it.
+WINSORISE_SPLITS = "all"
 
 WINDOW        = 14
 TRAIN_END_YEAR = 2023  # train = 2019..2023 (strict chronological)
@@ -388,7 +413,11 @@ def load_and_clean(csv_path: str) -> pd.DataFrame:
         if base.notna().sum() == 0:
             base = df[col]
         lo, hi = base.quantile([0.005, 0.995])
-        df[col] = df[col].clip(lo, hi)
+        if WINSORISE_SPLITS == "train":
+            m = df.index.year <= TRAIN_END_YEAR
+            df.loc[m, col] = df.loc[m, col].clip(lo, hi)
+        else:
+            df[col] = df[col].clip(lo, hi)
 
     df = df.reset_index()
     verify_calendar_features(df)                       # requirement 7

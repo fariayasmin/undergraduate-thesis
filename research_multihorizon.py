@@ -478,6 +478,22 @@ def main():
     summary = pd.DataFrame(done_rows)
     skill = pd.concat(done_skill, ignore_index=True) if done_skill \
         else pd.read_csv(SKILL_CKPT)
+
+    # Restrict to the substations configured for THIS run. Without this, a
+    # checkpoint written before a substation was removed from
+    # LP.USABLE_SUBSTATIONS keeps feeding that substation into
+    # select_global_best_model, so the excluded data still decides the winner.
+    keep = set(SUBSTATIONS)
+    dropped = sorted(set(summary["substation"]) - keep)
+    if dropped:
+        print(f"\nNOTE: dropping {len(dropped)} substation(s) present in the "
+              f"checkpoint but not in this run's configuration: "
+              f"{', '.join(dropped)}")
+        summary = summary[summary["substation"].isin(keep)].reset_index(drop=True)
+        skill = skill[skill["substation"].isin(keep)].reset_index(drop=True)
+        if summary.empty:
+            print("Nothing left after filtering — delete the checkpoint and re-run.")
+            return
     summary.to_csv(OUTPUT_DIR / f"metrics_summary_multihorizon{_SUF}.csv",
                    index=False)
     skill.to_csv(OUTPUT_DIR / f"horizon_skill_all{_SUF}.csv", index=False)

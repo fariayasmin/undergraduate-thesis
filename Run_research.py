@@ -3,7 +3,7 @@ Run_research.py — PHASE 1: the model-selection experiment.
 
     python Run_research.py
 
-Trains all 6 architectures on all 18 usable BPDB substations under the
+Trains all 6 architectures on all 16 retained BPDB substations under the
 MULTI-HORIZON objective (K = 15, Eq. 14) and selects the single architecture
 with the highest mean VALIDATION R2 across all 15 leads. The winner is written
 to forecast_outputs/global_model_selection.csv and deployed by
@@ -26,7 +26,7 @@ Protocol (leak-free, unchanged)
 
 Cost and safety
 ---------------
-108 trainings, roughly 6-8 hours on CPU. The sweep is RESUMABLE: it
+96 trainings, roughly 5-7 hours on CPU. The sweep is RESUMABLE: it
 checkpoints after every model and skips completed cells when re-run, so an
 interruption costs one model rather than the whole run.
 
@@ -46,7 +46,7 @@ import multihorizon as MH
 
 print("#" * 70)
 print("# PHASE 1 — MULTI-HORIZON MODEL SELECTION EXPERIMENT")
-print("# 6 architectures x 18 substations = 108 model trainings")
+print("# 6 architectures x 16 substations = 96 model trainings")
 print(f"# Horizon K = {MH.HORIZON}; loss and selection both aggregate all leads")
 print("# Split: train 2019-2023 | validation 2024 | test 2025-2026")
 print("# Selection: highest mean VALIDATION R2 over ALL leads")
