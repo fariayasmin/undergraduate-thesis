@@ -185,7 +185,24 @@ FESTIVE_HOLIDAY_TYPES = {"Eid", "Durga Puja"}
 # regression — report the before/after rather than reverting it.
 WINSORISE_SPLITS = "all"
 
-WINDOW        = 14
+# ── Extra long-memory lag features (ablation, off by default) ────────────
+# LP_EXTRA_LAGS=1 adds lag_14, lag_28, roll_mean_14, roll_mean_28, roll_std_28
+# to the 4 short-memory features already built (lag_1, lag_7, roll_mean_7,
+# roll_std_7), taking the input from 21 to 26 features.
+#
+# Motivated by measurement, not by guesswork: on this dataset the 28-day
+# moving average is the strongest naive baseline over the whole horizon
+# (mean test R2 0.214 vs 0.053 for persistence) and the ONLY naive method
+# still positive at lead 15 (0.142). The model currently has no feature
+# longer than 7 days, so that signal is not available to it. Lags at 14 and
+# 28 are multiples of 7, preserving the weekly cycle.
+EXTRA_LAGS = os.environ.get("LP_EXTRA_LAGS", "0") == "1"
+
+# WINDOW is overridable from the environment so the input-length ablation
+# can be run without editing this file (keeps the one-change-at-a-time
+# discipline, and keeps the edited constant out of your git diff):
+#     LP_WINDOW=30 MH_TAG=w30 python research_multihorizon.py
+WINDOW        = int(os.environ.get("LP_WINDOW", 14))
 TRAIN_END_YEAR = 2023  # train = 2019..2023 (strict chronological)
 VAL_YEAR       = 2024  # validation year: early stopping + MODEL SELECTION
 TEST_START_YEAR = 2025   # test = Year >= 2025 (includes 2025 and 2026)
@@ -456,6 +473,16 @@ def build_substation_frame(df: pd.DataFrame, substation: str) -> pd.DataFrame:
     sub_df["lag_7"]       = sub_df[load_col].shift(7)
     sub_df["roll_mean_7"] = sub_df[load_col].shift(1).rolling(7).mean()
     sub_df["roll_std_7"]  = sub_df[load_col].shift(1).rolling(7).std()
+    if EXTRA_LAGS:
+        # every term is shift(1)-based, so day d's features use days <= d-1
+        # only and no future value can enter a window
+        sub_df["lag_14"]       = sub_df[load_col].shift(14)
+        sub_df["lag_28"]       = sub_df[load_col].shift(28)
+        sub_df["roll_mean_14"] = sub_df[load_col].shift(1).rolling(14).mean()
+        sub_df["roll_mean_28"] = sub_df[load_col].shift(1).rolling(28).mean()
+        sub_df["roll_std_28"]  = sub_df[load_col].shift(1).rolling(28).std()
+    # bfill only touches the first rows of the record, which lie inside the
+    # training years; no validation or test row is affected
     sub_df = sub_df.bfill()
     return sub_df
 
