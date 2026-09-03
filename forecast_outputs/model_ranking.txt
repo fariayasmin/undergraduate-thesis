@@ -1,0 +1,11 @@
+==========================================================================================
+OVERALL MODEL RANKING — mean metrics across ALL substations (sorted by Test R², n_substations=18)
+==========================================================================================
+  #1  BiLSTM+BiGRU           Test R²=0.7517  Train R²=0.7931  Test RMSE=9.59  Test MAE=7.28
+  #2  BiGRU                  Test R²=0.7490  Train R²=0.7742  Test RMSE=9.49  Test MAE=7.23
+  #3  BiGRU+BiLSTM           Test R²=0.7422  Train R²=0.7929  Test RMSE=9.76  Test MAE=7.43
+  #4  CNN+BiGRU+BiLSTM       Test R²=0.7372  Train R²=0.7930  Test RMSE=9.83  Test MAE=7.42
+  #5  BiLSTM                 Test R²=0.7337  Train R²=0.7825  Test RMSE=9.97  Test MAE=7.63
+  #6  CNN+BiLSTM+BiGRU       Test R²=0.7119  Train R²=0.7896  Test RMSE=10.11  Test MAE=7.69
+
+BEST OVERALL MODEL: BiLSTM+BiGRU (mean Test R²=0.7517 across all substations)

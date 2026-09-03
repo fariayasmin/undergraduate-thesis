@@ -1,0 +1,18 @@
+14-day forecast for Uttara New (2026-06-30 → 2026-07-13)
+Best model: BiLSTM+BiGRU  (Test R²=0.8431)
+7-day rolling mean (last known): 57.1 MW  | Lag-1: 58.0 MW
+
+  Day  1 (2026-06-30): 52.1 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=34.6 MW) from all prior years.
+  Day  2 (2026-07-01): 51.0 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=34.6 MW) from all prior years.
+  Day  3 (2026-07-02): 49.6 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=34.6 MW) from all prior years.
+  Day  4 (2026-07-03): 47.8 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=34.6 MW) from all prior years.
+  Day  5 (2026-07-04): 49.4 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=34.6 MW) from all prior years.
+  Day  6 (2026-07-05): 50.6 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=34.6 MW) from all prior years.
+  Day  7 (2026-07-06): 49.3 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=34.6 MW) from all prior years.
+  Day  8 (2026-07-07): 49.3 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=34.6 MW) from all prior years.
+  Day  9 (2026-07-08): 49.3 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=34.6 MW) from all prior years.
+  Day 10 (2026-07-09): 48.7 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=34.6 MW) from all prior years.
+  Day 11 (2026-07-10): 47.5 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=34.6 MW) from all prior years.
+  Day 12 (2026-07-11): 49.6 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=34.6 MW) from all prior years.
+  Day 13 (2026-07-12): 51.2 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=34.6 MW) from all prior years.
+  Day 14 (2026-07-13): 50.2 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=34.6 MW) from all prior years.

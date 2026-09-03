@@ -1,0 +1,15 @@
+substation,model,date,day_ahead,predicted_mw,context
+Dhanmondi,CNN+BiGRU+BiLSTM,2026-06-30,1,109.9,Festive context (Eid): used 90 historical same-holiday readings (mean=91.2 MW) from all prior years.
+Dhanmondi,CNN+BiGRU+BiLSTM,2026-07-01,2,111.34,Festive context (Eid): used 90 historical same-holiday readings (mean=91.2 MW) from all prior years.
+Dhanmondi,CNN+BiGRU+BiLSTM,2026-07-02,3,101.35,Festive context (Eid): used 90 historical same-holiday readings (mean=91.2 MW) from all prior years.
+Dhanmondi,CNN+BiGRU+BiLSTM,2026-07-03,4,83.54,Festive context (Eid): used 90 historical same-holiday readings (mean=91.2 MW) from all prior years.
+Dhanmondi,CNN+BiGRU+BiLSTM,2026-07-04,5,92.78,Festive context (Eid): used 90 historical same-holiday readings (mean=91.2 MW) from all prior years.
+Dhanmondi,CNN+BiGRU+BiLSTM,2026-07-05,6,103.32,Festive context (Eid): used 90 historical same-holiday readings (mean=91.2 MW) from all prior years.
+Dhanmondi,CNN+BiGRU+BiLSTM,2026-07-06,7,101.35,Festive context (Eid): used 90 historical same-holiday readings (mean=91.2 MW) from all prior years.
+Dhanmondi,CNN+BiGRU+BiLSTM,2026-07-07,8,101.91,Festive context (Eid): used 90 historical same-holiday readings (mean=91.2 MW) from all prior years.
+Dhanmondi,CNN+BiGRU+BiLSTM,2026-07-08,9,110.1,Festive context (Eid): used 90 historical same-holiday readings (mean=91.2 MW) from all prior years.
+Dhanmondi,CNN+BiGRU+BiLSTM,2026-07-09,10,108.54,Festive context (Eid): used 90 historical same-holiday readings (mean=91.2 MW) from all prior years.
+Dhanmondi,CNN+BiGRU+BiLSTM,2026-07-10,11,87.01,Festive context (Eid): used 90 historical same-holiday readings (mean=91.2 MW) from all prior years.
+Dhanmondi,CNN+BiGRU+BiLSTM,2026-07-11,12,98.31,Festive context (Eid): used 90 historical same-holiday readings (mean=91.2 MW) from all prior years.
+Dhanmondi,CNN+BiGRU+BiLSTM,2026-07-12,13,107.78,Festive context (Eid): used 90 historical same-holiday readings (mean=91.2 MW) from all prior years.
+Dhanmondi,CNN+BiGRU+BiLSTM,2026-07-13,14,106.92,Festive context (Eid): used 90 historical same-holiday readings (mean=91.2 MW) from all prior years.

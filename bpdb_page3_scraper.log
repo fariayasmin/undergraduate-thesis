@@ -1,0 +1,39 @@
+15:29:18  INFO      BPDB Page-3 Dhaka city substation scraper
+15:29:18  INFO      Range: 2019-10-19 to 2026-06-30
+15:29:18  INFO      Crawling BPDB archive for Page-3 PDF links
+15:29:19  INFO      Archive reports 680 pages
+15:29:29  INFO      Archive checkpoint: page 25, cached URLs 250
+15:29:39  INFO      Archive checkpoint: page 50, cached URLs 500
+15:29:50  INFO      Archive checkpoint: page 75, cached URLs 749
+15:30:00  INFO      Archive checkpoint: page 100, cached URLs 999
+15:30:11  INFO      Archive checkpoint: page 125, cached URLs 1249
+15:30:22  INFO      Archive checkpoint: page 150, cached URLs 1499
+15:30:32  INFO      Archive checkpoint: page 175, cached URLs 1749
+15:30:43  INFO      Archive checkpoint: page 200, cached URLs 1999
+15:30:53  INFO      Archive checkpoint: page 225, cached URLs 2249
+15:31:04  INFO      Archive checkpoint: page 250, cached URLs 2434
+15:31:15  INFO      Archive checkpoint: page 275, cached URLs 2434
+15:31:25  INFO      Archive checkpoint: page 300, cached URLs 2434
+15:31:36  INFO      Archive checkpoint: page 325, cached URLs 2434
+15:31:47  INFO      Archive checkpoint: page 350, cached URLs 2434
+15:31:57  INFO      Archive checkpoint: page 375, cached URLs 2434
+15:32:08  INFO      Archive checkpoint: page 400, cached URLs 2434
+15:32:19  INFO      Archive checkpoint: page 425, cached URLs 2434
+15:32:30  INFO      Archive checkpoint: page 450, cached URLs 2434
+15:32:40  INFO      Archive checkpoint: page 475, cached URLs 2434
+15:32:51  INFO      Archive checkpoint: page 500, cached URLs 2434
+15:33:03  INFO      Archive checkpoint: page 525, cached URLs 2434
+15:33:14  INFO      Archive checkpoint: page 550, cached URLs 2434
+15:33:25  INFO      Archive checkpoint: page 575, cached URLs 2434
+15:33:35  INFO      Archive checkpoint: page 600, cached URLs 2434
+15:33:46  INFO      Archive checkpoint: page 625, cached URLs 2434
+15:33:57  INFO      Archive checkpoint: page 650, cached URLs 2434
+15:34:08  INFO      Archive checkpoint: page 675, cached URLs 2434
+15:34:10  INFO      URL cache contains 2435 Page-3 links
+15:51:40  INFO      Downloaded/refreshed 2434 PDFs; failed 1
+15:51:40  INFO      Parsing 2434 PDFs with 15 workers …
+15:53:05  INFO      Parsed 2434 PDFs; 2 returned no records.
+15:53:05  INFO      Fetching weather for 2315 day(s) from Open-Meteo
+15:53:13  INFO      Saved CSV: BPDB_Dhaka_City_Substations_Page3.csv (2315 rows)
+15:53:15  INFO      Saved XLSX: BPDB_Dhaka_City_Substations_Page3.xlsx
+15:53:15  INFO      Done: 2315 rows, 38 substations, 2019-10-19 to 2026-06-29

@@ -1,0 +1,18 @@
+14-day forecast for Madartek (2026-06-30 → 2026-07-13)
+Best model: BiGRU  (Test R²=0.8844)
+7-day rolling mean (last known): 89.6 MW  | Lag-1: 96.0 MW
+
+  Day  1 (2026-06-30): 84.3 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=71.1 MW) from all prior years.
+  Day  2 (2026-07-01): 80.2 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=71.1 MW) from all prior years.
+  Day  3 (2026-07-02): 78.8 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=71.1 MW) from all prior years.
+  Day  4 (2026-07-03): 77.8 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=71.1 MW) from all prior years.
+  Day  5 (2026-07-04): 77.5 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=71.1 MW) from all prior years.
+  Day  6 (2026-07-05): 77.4 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=71.1 MW) from all prior years.
+  Day  7 (2026-07-06): 77.2 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=71.1 MW) from all prior years.
+  Day  8 (2026-07-07): 77.1 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=71.1 MW) from all prior years.
+  Day  9 (2026-07-08): 77.0 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=71.1 MW) from all prior years.
+  Day 10 (2026-07-09): 77.0 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=71.1 MW) from all prior years.
+  Day 11 (2026-07-10): 77.1 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=71.1 MW) from all prior years.
+  Day 12 (2026-07-11): 77.3 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=71.1 MW) from all prior years.
+  Day 13 (2026-07-12): 77.7 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=71.1 MW) from all prior years.
+  Day 14 (2026-07-13): 77.7 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=71.1 MW) from all prior years.

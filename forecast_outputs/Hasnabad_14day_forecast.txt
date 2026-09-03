@@ -1,0 +1,18 @@
+14-day forecast for Hasnabad (2026-06-30 → 2026-07-13)
+Best model: BiLSTM+BiGRU  (Test R²=0.5238)
+7-day rolling mean (last known): 95.4 MW  | Lag-1: 97.0 MW
+
+  Day  1 (2026-06-30): 94.7 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=79.4 MW) from all prior years.
+  Day  2 (2026-07-01): 86.3 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=79.4 MW) from all prior years.
+  Day  3 (2026-07-02): 79.7 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=79.4 MW) from all prior years.
+  Day  4 (2026-07-03): 75.2 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=79.4 MW) from all prior years.
+  Day  5 (2026-07-04): 75.6 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=79.4 MW) from all prior years.
+  Day  6 (2026-07-05): 76.8 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=79.4 MW) from all prior years.
+  Day  7 (2026-07-06): 75.7 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=79.4 MW) from all prior years.
+  Day  8 (2026-07-07): 75.3 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=79.4 MW) from all prior years.
+  Day  9 (2026-07-08): 73.7 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=79.4 MW) from all prior years.
+  Day 10 (2026-07-09): 71.1 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=79.4 MW) from all prior years.
+  Day 11 (2026-07-10): 68.7 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=79.4 MW) from all prior years.
+  Day 12 (2026-07-11): 70.6 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=79.4 MW) from all prior years.
+  Day 13 (2026-07-12): 72.6 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=79.4 MW) from all prior years.
+  Day 14 (2026-07-13): 72.2 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=79.4 MW) from all prior years.

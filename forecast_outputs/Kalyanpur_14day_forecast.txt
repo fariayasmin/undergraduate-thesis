@@ -1,0 +1,18 @@
+14-day forecast for Kalyanpur (2026-06-30 → 2026-07-13)
+Best model: BiGRU  (Test R²=0.8534)
+7-day rolling mean (last known): 131.1 MW  | Lag-1: 135.0 MW
+
+  Day  1 (2026-06-30): 116.7 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=91.4 MW) from all prior years.
+  Day  2 (2026-07-01): 110.1 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=91.4 MW) from all prior years.
+  Day  3 (2026-07-02): 106.1 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=91.4 MW) from all prior years.
+  Day  4 (2026-07-03): 104.0 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=91.4 MW) from all prior years.
+  Day  5 (2026-07-04): 105.0 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=91.4 MW) from all prior years.
+  Day  6 (2026-07-05): 105.6 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=91.4 MW) from all prior years.
+  Day  7 (2026-07-06): 104.2 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=91.4 MW) from all prior years.
+  Day  8 (2026-07-07): 103.5 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=91.4 MW) from all prior years.
+  Day  9 (2026-07-08): 101.7 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=91.4 MW) from all prior years.
+  Day 10 (2026-07-09): 100.1 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=91.4 MW) from all prior years.
+  Day 11 (2026-07-10): 99.0 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=91.4 MW) from all prior years.
+  Day 12 (2026-07-11): 100.5 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=91.4 MW) from all prior years.
+  Day 13 (2026-07-12): 101.5 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=91.4 MW) from all prior years.
+  Day 14 (2026-07-13): 100.7 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=91.4 MW) from all prior years.

@@ -1,0 +1,18 @@
+14-day forecast for Matual (2026-06-30 → 2026-07-13)
+Best model: BiGRU  (Test R²=0.8217)
+7-day rolling mean (last known): 80.3 MW  | Lag-1: 82.0 MW
+
+  Day  1 (2026-06-30): 65.0 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=42.3 MW) from all prior years.
+  Day  2 (2026-07-01): 55.0 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=42.3 MW) from all prior years.
+  Day  3 (2026-07-02): 47.6 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=42.3 MW) from all prior years.
+  Day  4 (2026-07-03): 40.2 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=42.3 MW) from all prior years.
+  Day  5 (2026-07-04): 42.3 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=42.3 MW) from all prior years.
+  Day  6 (2026-07-05): 41.9 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=42.3 MW) from all prior years.
+  Day  7 (2026-07-06): 39.9 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=42.3 MW) from all prior years.
+  Day  8 (2026-07-07): 40.6 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=42.3 MW) from all prior years.
+  Day  9 (2026-07-08): 41.3 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=42.3 MW) from all prior years.
+  Day 10 (2026-07-09): 40.3 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=42.3 MW) from all prior years.
+  Day 11 (2026-07-10): 37.2 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=42.3 MW) from all prior years.
+  Day 12 (2026-07-11): 41.3 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=42.3 MW) from all prior years.
+  Day 13 (2026-07-12): 42.1 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=42.3 MW) from all prior years.
+  Day 14 (2026-07-13): 41.2 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=42.3 MW) from all prior years.

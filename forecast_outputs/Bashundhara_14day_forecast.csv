@@ -1,0 +1,15 @@
+substation,model,date,day_ahead,predicted_mw,context
+Bashundhara,BiLSTM+BiGRU,2026-06-30,1,177.77,Festive context (Eid): used 90 historical same-holiday readings (mean=98.9 MW) from all prior years.
+Bashundhara,BiLSTM+BiGRU,2026-07-01,2,167.29,Festive context (Eid): used 90 historical same-holiday readings (mean=98.9 MW) from all prior years.
+Bashundhara,BiLSTM+BiGRU,2026-07-02,3,159.05,Festive context (Eid): used 90 historical same-holiday readings (mean=98.9 MW) from all prior years.
+Bashundhara,BiLSTM+BiGRU,2026-07-03,4,153.6,Festive context (Eid): used 90 historical same-holiday readings (mean=98.9 MW) from all prior years.
+Bashundhara,BiLSTM+BiGRU,2026-07-04,5,151.91,Festive context (Eid): used 90 historical same-holiday readings (mean=98.9 MW) from all prior years.
+Bashundhara,BiLSTM+BiGRU,2026-07-05,6,151.3,Festive context (Eid): used 90 historical same-holiday readings (mean=98.9 MW) from all prior years.
+Bashundhara,BiLSTM+BiGRU,2026-07-06,7,148.48,Festive context (Eid): used 90 historical same-holiday readings (mean=98.9 MW) from all prior years.
+Bashundhara,BiLSTM+BiGRU,2026-07-07,8,142.63,Festive context (Eid): used 90 historical same-holiday readings (mean=98.9 MW) from all prior years.
+Bashundhara,BiLSTM+BiGRU,2026-07-08,9,140.05,Festive context (Eid): used 90 historical same-holiday readings (mean=98.9 MW) from all prior years.
+Bashundhara,BiLSTM+BiGRU,2026-07-09,10,139.19,Festive context (Eid): used 90 historical same-holiday readings (mean=98.9 MW) from all prior years.
+Bashundhara,BiLSTM+BiGRU,2026-07-10,11,141.12,Festive context (Eid): used 90 historical same-holiday readings (mean=98.9 MW) from all prior years.
+Bashundhara,BiLSTM+BiGRU,2026-07-11,12,144.62,Festive context (Eid): used 90 historical same-holiday readings (mean=98.9 MW) from all prior years.
+Bashundhara,BiLSTM+BiGRU,2026-07-12,13,147.96,Festive context (Eid): used 90 historical same-holiday readings (mean=98.9 MW) from all prior years.
+Bashundhara,BiLSTM+BiGRU,2026-07-13,14,147.51,Festive context (Eid): used 90 historical same-holiday readings (mean=98.9 MW) from all prior years.

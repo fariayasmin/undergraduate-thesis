@@ -1,0 +1,18 @@
+14-day forecast for Uttara (2026-06-30 → 2026-07-13)
+Best model: BiGRU  (Test R²=0.7954)
+7-day rolling mean (last known): 104.6 MW  | Lag-1: 110.0 MW
+
+  Day  1 (2026-06-30): 90.9 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=69.0 MW) from all prior years.
+  Day  2 (2026-07-01): 85.6 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=69.0 MW) from all prior years.
+  Day  3 (2026-07-02): 81.4 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=69.0 MW) from all prior years.
+  Day  4 (2026-07-03): 76.9 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=69.0 MW) from all prior years.
+  Day  5 (2026-07-04): 77.6 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=69.0 MW) from all prior years.
+  Day  6 (2026-07-05): 80.1 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=69.0 MW) from all prior years.
+  Day  7 (2026-07-06): 79.2 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=69.0 MW) from all prior years.
+  Day  8 (2026-07-07): 78.1 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=69.0 MW) from all prior years.
+  Day  9 (2026-07-08): 77.1 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=69.0 MW) from all prior years.
+  Day 10 (2026-07-09): 75.6 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=69.0 MW) from all prior years.
+  Day 11 (2026-07-10): 73.2 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=69.0 MW) from all prior years.
+  Day 12 (2026-07-11): 75.8 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=69.0 MW) from all prior years.
+  Day 13 (2026-07-12): 79.5 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=69.0 MW) from all prior years.
+  Day 14 (2026-07-13): 79.2 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=69.0 MW) from all prior years.

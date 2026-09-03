@@ -1,0 +1,18 @@
+14-day forecast for Bangabhaban (2026-06-30 → 2026-07-13)
+Best model: CNN+BiGRU+BiLSTM  (Test R²=0.7214)
+7-day rolling mean (last known): 17.1 MW  | Lag-1: 23.0 MW
+
+  Day  1 (2026-06-30): 18.5 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=8.3 MW) from all prior years.
+  Day  2 (2026-07-01): 15.1 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=8.3 MW) from all prior years.
+  Day  3 (2026-07-02): 12.6 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=8.3 MW) from all prior years.
+  Day  4 (2026-07-03): 6.9 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=8.3 MW) from all prior years.
+  Day  5 (2026-07-04): 10.2 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=8.3 MW) from all prior years.
+  Day  6 (2026-07-05): 17.0 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=8.3 MW) from all prior years.
+  Day  7 (2026-07-06): 16.7 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=8.3 MW) from all prior years.
+  Day  8 (2026-07-07): 16.9 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=8.3 MW) from all prior years.
+  Day  9 (2026-07-08): 17.2 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=8.3 MW) from all prior years.
+  Day 10 (2026-07-09): 15.9 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=8.3 MW) from all prior years.
+  Day 11 (2026-07-10): 7.7 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=8.3 MW) from all prior years.
+  Day 12 (2026-07-11): 10.6 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=8.3 MW) from all prior years.
+  Day 13 (2026-07-12): 17.2 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=8.3 MW) from all prior years.
+  Day 14 (2026-07-13): 17.1 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=8.3 MW) from all prior years.

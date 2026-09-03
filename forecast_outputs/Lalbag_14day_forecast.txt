@@ -1,0 +1,18 @@
+14-day forecast for Lalbag (2026-06-30 → 2026-07-13)
+Best model: BiLSTM+BiGRU  (Test R²=0.7743)
+7-day rolling mean (last known): 78.3 MW  | Lag-1: 78.0 MW
+
+  Day  1 (2026-06-30): 62.1 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=41.5 MW) from all prior years.
+  Day  2 (2026-07-01): 52.8 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=41.5 MW) from all prior years.
+  Day  3 (2026-07-02): 44.3 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=41.5 MW) from all prior years.
+  Day  4 (2026-07-03): 37.0 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=41.5 MW) from all prior years.
+  Day  5 (2026-07-04): 44.4 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=41.5 MW) from all prior years.
+  Day  6 (2026-07-05): 49.1 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=41.5 MW) from all prior years.
+  Day  7 (2026-07-06): 44.1 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=41.5 MW) from all prior years.
+  Day  8 (2026-07-07): 44.0 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=41.5 MW) from all prior years.
+  Day  9 (2026-07-08): 44.6 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=41.5 MW) from all prior years.
+  Day 10 (2026-07-09): 42.6 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=41.5 MW) from all prior years.
+  Day 11 (2026-07-10): 39.0 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=41.5 MW) from all prior years.
+  Day 12 (2026-07-11): 47.7 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=41.5 MW) from all prior years.
+  Day 13 (2026-07-12): 52.8 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=41.5 MW) from all prior years.
+  Day 14 (2026-07-13): 47.9 MW  — Festive context (Eid): used 90 historical same-holiday readings (mean=41.5 MW) from all prior years.

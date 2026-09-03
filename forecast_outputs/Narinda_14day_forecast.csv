@@ -1,0 +1,15 @@
+substation,model,date,day_ahead,predicted_mw,context
+Narinda,CNN+BiGRU+BiLSTM,2026-06-30,1,61.28,Festive context (Eid): used 90 historical same-holiday readings (mean=47.0 MW) from all prior years.
+Narinda,CNN+BiGRU+BiLSTM,2026-07-01,2,54.63,Festive context (Eid): used 90 historical same-holiday readings (mean=47.0 MW) from all prior years.
+Narinda,CNN+BiGRU+BiLSTM,2026-07-02,3,46.65,Festive context (Eid): used 90 historical same-holiday readings (mean=47.0 MW) from all prior years.
+Narinda,CNN+BiGRU+BiLSTM,2026-07-03,4,35.02,Festive context (Eid): used 90 historical same-holiday readings (mean=47.0 MW) from all prior years.
+Narinda,CNN+BiGRU+BiLSTM,2026-07-04,5,42.49,Festive context (Eid): used 90 historical same-holiday readings (mean=47.0 MW) from all prior years.
+Narinda,CNN+BiGRU+BiLSTM,2026-07-05,6,45.66,Festive context (Eid): used 90 historical same-holiday readings (mean=47.0 MW) from all prior years.
+Narinda,CNN+BiGRU+BiLSTM,2026-07-06,7,45.03,Festive context (Eid): used 90 historical same-holiday readings (mean=47.0 MW) from all prior years.
+Narinda,CNN+BiGRU+BiLSTM,2026-07-07,8,45.91,Festive context (Eid): used 90 historical same-holiday readings (mean=47.0 MW) from all prior years.
+Narinda,CNN+BiGRU+BiLSTM,2026-07-08,9,47.72,Festive context (Eid): used 90 historical same-holiday readings (mean=47.0 MW) from all prior years.
+Narinda,CNN+BiGRU+BiLSTM,2026-07-09,10,47.24,Festive context (Eid): used 90 historical same-holiday readings (mean=47.0 MW) from all prior years.
+Narinda,CNN+BiGRU+BiLSTM,2026-07-10,11,39.3,Festive context (Eid): used 90 historical same-holiday readings (mean=47.0 MW) from all prior years.
+Narinda,CNN+BiGRU+BiLSTM,2026-07-11,12,46.55,Festive context (Eid): used 90 historical same-holiday readings (mean=47.0 MW) from all prior years.
+Narinda,CNN+BiGRU+BiLSTM,2026-07-12,13,50.23,Festive context (Eid): used 90 historical same-holiday readings (mean=47.0 MW) from all prior years.
+Narinda,CNN+BiGRU+BiLSTM,2026-07-13,14,50.34,Festive context (Eid): used 90 historical same-holiday readings (mean=47.0 MW) from all prior years.

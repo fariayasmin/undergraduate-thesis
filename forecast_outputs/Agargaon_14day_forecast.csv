@@ -1,0 +1,15 @@
+substation,model,date,day_ahead,predicted_mw,context
+Agargaon,BiGRU,2026-06-30,1,116.95,Festive context (Eid): used 90 historical same-holiday readings (mean=79.1 MW) from all prior years.
+Agargaon,BiGRU,2026-07-01,2,111.6,Festive context (Eid): used 90 historical same-holiday readings (mean=79.1 MW) from all prior years.
+Agargaon,BiGRU,2026-07-02,3,106.47,Festive context (Eid): used 90 historical same-holiday readings (mean=79.1 MW) from all prior years.
+Agargaon,BiGRU,2026-07-03,4,98.46,Festive context (Eid): used 90 historical same-holiday readings (mean=79.1 MW) from all prior years.
+Agargaon,BiGRU,2026-07-04,5,100.55,Festive context (Eid): used 90 historical same-holiday readings (mean=79.1 MW) from all prior years.
+Agargaon,BiGRU,2026-07-05,6,107.11,Festive context (Eid): used 90 historical same-holiday readings (mean=79.1 MW) from all prior years.
+Agargaon,BiGRU,2026-07-06,7,105.74,Festive context (Eid): used 90 historical same-holiday readings (mean=79.1 MW) from all prior years.
+Agargaon,BiGRU,2026-07-07,8,105.72,Festive context (Eid): used 90 historical same-holiday readings (mean=79.1 MW) from all prior years.
+Agargaon,BiGRU,2026-07-08,9,104.58,Festive context (Eid): used 90 historical same-holiday readings (mean=79.1 MW) from all prior years.
+Agargaon,BiGRU,2026-07-09,10,101.37,Festive context (Eid): used 90 historical same-holiday readings (mean=79.1 MW) from all prior years.
+Agargaon,BiGRU,2026-07-10,11,94.58,Festive context (Eid): used 90 historical same-holiday readings (mean=79.1 MW) from all prior years.
+Agargaon,BiGRU,2026-07-11,12,98.1,Festive context (Eid): used 90 historical same-holiday readings (mean=79.1 MW) from all prior years.
+Agargaon,BiGRU,2026-07-12,13,104.93,Festive context (Eid): used 90 historical same-holiday readings (mean=79.1 MW) from all prior years.
+Agargaon,BiGRU,2026-07-13,14,103.59,Festive context (Eid): used 90 historical same-holiday readings (mean=79.1 MW) from all prior years.
