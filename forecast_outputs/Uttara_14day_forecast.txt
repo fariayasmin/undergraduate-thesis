@@ -1,0 +1,35 @@
+14-day forecast for Uttara (2026-06-30 -> 2026-07-13)
+Model selected on VALIDATION R2: BiGRU (Val R2=0.6411, held-out Test R2=0.8207)
+Weather mode: forecast   Exog alignment: target
+Last known 7-day mean: 105.0 MW | lag-1: 113.0 MW
+
+Expected recursive error at this horizon (from the backtest):
+    day+ 1: RMSE=5.6 MW, MAE=4.0 MW, R2=0.891
+    day+ 2: RMSE=9.1 MW, MAE=6.9 MW, R2=0.748
+    day+ 3: RMSE=7.3 MW, MAE=5.8 MW, R2=0.708
+    day+ 4: RMSE=10.1 MW, MAE=7.9 MW, R2=0.657
+    day+ 5: RMSE=10.1 MW, MAE=7.9 MW, R2=0.631
+    day+ 6: RMSE=9.2 MW, MAE=7.1 MW, R2=0.553
+    day+ 7: RMSE=10.5 MW, MAE=8.3 MW, R2=0.478
+    day+ 8: RMSE=9.8 MW, MAE=7.9 MW, R2=0.586
+    day+ 9: RMSE=10.1 MW, MAE=8.0 MW, R2=0.458
+    day+10: RMSE=9.3 MW, MAE=7.3 MW, R2=0.498
+    day+11: RMSE=10.2 MW, MAE=7.9 MW, R2=0.516
+    day+12: RMSE=10.1 MW, MAE=8.0 MW, R2=0.614
+    day+13: RMSE=10.4 MW, MAE=8.1 MW, R2=0.570
+    day+14: RMSE=10.2 MW, MAE=8.3 MW, R2=0.615
+
+  Day  1 (2026-06-30): 100.9 MW [101.6 - 100.3] weather=climatology, holiday=No Holiday
+  Day  2 (2026-07-01): 96.5 MW [97.5 - 95.5] weather=climatology, holiday=No Holiday
+  Day  3 (2026-07-02): 94.3 MW [95.6 - 93.1] weather=climatology, holiday=No Holiday
+  Day  4 (2026-07-03): 89.6 MW [91.2 - 88.1] weather=climatology, holiday=No Holiday
+  Day  5 (2026-07-04): 89.0 MW [90.7 - 87.2] weather=climatology, holiday=No Holiday
+  Day  6 (2026-07-05): 92.4 MW [94.3 - 90.5] weather=climatology, holiday=No Holiday
+  Day  7 (2026-07-06): 92.9 MW [94.3 - 90.2] weather=api, holiday=No Holiday
+  Day  8 (2026-07-07): 92.5 MW [93.4 - 89.1] weather=api, holiday=No Holiday
+  Day  9 (2026-07-08): 89.9 MW [92.4 - 88.0] weather=api, holiday=No Holiday
+  Day 10 (2026-07-09): 89.2 MW [92.7 - 88.3] weather=api, holiday=No Holiday
+  Day 11 (2026-07-10): 85.0 MW [90.4 - 85.9] weather=api, holiday=No Holiday
+  Day 12 (2026-07-11): 86.3 MW [91.2 - 86.7] weather=api, holiday=No Holiday
+  Day 13 (2026-07-12): 90.4 MW [95.8 - 91.2] weather=api, holiday=No Holiday
+  Day 14 (2026-07-13): 91.7 MW [96.8 - 92.0] weather=api, holiday=No Holiday

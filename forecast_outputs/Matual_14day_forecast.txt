@@ -1,0 +1,35 @@
+14-day forecast for Matual (2026-06-30 -> 2026-07-13)
+Model selected on VALIDATION R2: BiGRU (Val R2=0.5888, held-out Test R2=0.8279)
+Weather mode: forecast   Exog alignment: target
+Last known 7-day mean: 80.3 MW | lag-1: 82.0 MW
+
+Expected recursive error at this horizon (from the backtest):
+    day+ 1: RMSE=4.9 MW, MAE=3.6 MW, R2=0.846
+    day+ 2: RMSE=6.6 MW, MAE=4.1 MW, R2=0.742
+    day+ 3: RMSE=6.6 MW, MAE=5.3 MW, R2=0.704
+    day+ 4: RMSE=6.0 MW, MAE=4.5 MW, R2=0.743
+    day+ 5: RMSE=5.6 MW, MAE=4.3 MW, R2=0.770
+    day+ 6: RMSE=6.4 MW, MAE=5.0 MW, R2=0.670
+    day+ 7: RMSE=6.9 MW, MAE=5.3 MW, R2=0.674
+    day+ 8: RMSE=8.5 MW, MAE=6.4 MW, R2=0.575
+    day+ 9: RMSE=8.1 MW, MAE=6.3 MW, R2=0.589
+    day+10: RMSE=9.0 MW, MAE=7.5 MW, R2=0.438
+    day+11: RMSE=10.5 MW, MAE=7.4 MW, R2=0.416
+    day+12: RMSE=9.0 MW, MAE=7.4 MW, R2=0.519
+    day+13: RMSE=7.6 MW, MAE=5.9 MW, R2=0.549
+    day+14: RMSE=9.9 MW, MAE=7.3 MW, R2=0.446
+
+  Day  1 (2026-06-30): 78.8 MW [79.1 - 78.5] weather=climatology, holiday=No Holiday
+  Day  2 (2026-07-01): 77.5 MW [78.1 - 77.0] weather=climatology, holiday=No Holiday
+  Day  3 (2026-07-02): 75.5 MW [76.1 - 74.8] weather=climatology, holiday=No Holiday
+  Day  4 (2026-07-03): 69.3 MW [70.0 - 68.6] weather=climatology, holiday=No Holiday
+  Day  5 (2026-07-04): 73.6 MW [74.5 - 72.7] weather=climatology, holiday=No Holiday
+  Day  6 (2026-07-05): 75.4 MW [76.4 - 74.4] weather=climatology, holiday=No Holiday
+  Day  7 (2026-07-06): 75.0 MW [75.7 - 73.5] weather=api, holiday=No Holiday
+  Day  8 (2026-07-07): 74.7 MW [75.4 - 72.7] weather=api, holiday=No Holiday
+  Day  9 (2026-07-08): 73.5 MW [75.0 - 72.4] weather=api, holiday=No Holiday
+  Day 10 (2026-07-09): 71.7 MW [73.5 - 71.0] weather=api, holiday=No Holiday
+  Day 11 (2026-07-10): 65.9 MW [68.0 - 65.9] weather=api, holiday=No Holiday
+  Day 12 (2026-07-11): 70.4 MW [72.6 - 70.2] weather=api, holiday=No Holiday
+  Day 13 (2026-07-12): 72.0 MW [74.8 - 72.2] weather=api, holiday=No Holiday
+  Day 14 (2026-07-13): 71.8 MW [74.4 - 71.6] weather=api, holiday=No Holiday

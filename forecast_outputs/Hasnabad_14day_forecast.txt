@@ -1,0 +1,35 @@
+14-day forecast for Hasnabad (2026-06-30 -> 2026-07-13)
+Model selected on VALIDATION R2: BiGRU (Val R2=0.3275, held-out Test R2=0.4806)
+Weather mode: forecast   Exog alignment: target
+Last known 7-day mean: 95.4 MW | lag-1: 97.0 MW
+
+Expected recursive error at this horizon (from the backtest):
+    day+ 1: RMSE=10.4 MW, MAE=8.2 MW, R2=0.366
+    day+ 2: RMSE=11.2 MW, MAE=8.7 MW, R2=0.381
+    day+ 3: RMSE=10.1 MW, MAE=8.0 MW, R2=0.319
+    day+ 4: RMSE=13.0 MW, MAE=10.1 MW, R2=-0.034
+    day+ 5: RMSE=11.1 MW, MAE=8.6 MW, R2=0.231
+    day+ 6: RMSE=9.4 MW, MAE=7.7 MW, R2=0.426
+    day+ 7: RMSE=7.9 MW, MAE=6.4 MW, R2=0.563
+    day+ 8: RMSE=10.4 MW, MAE=8.2 MW, R2=0.394
+    day+ 9: RMSE=11.0 MW, MAE=8.8 MW, R2=0.227
+    day+10: RMSE=12.2 MW, MAE=10.1 MW, R2=0.002
+    day+11: RMSE=12.7 MW, MAE=9.8 MW, R2=0.070
+    day+12: RMSE=11.5 MW, MAE=9.0 MW, R2=0.244
+    day+13: RMSE=12.4 MW, MAE=9.3 MW, R2=0.085
+    day+14: RMSE=12.5 MW, MAE=10.1 MW, R2=-0.065
+
+  Day  1 (2026-06-30): 96.9 MW [97.4 - 96.3] weather=climatology, holiday=No Holiday
+  Day  2 (2026-07-01): 95.9 MW [96.9 - 94.8] weather=climatology, holiday=No Holiday
+  Day  3 (2026-07-02): 95.8 MW [96.9 - 94.3] weather=climatology, holiday=No Holiday
+  Day  4 (2026-07-03): 92.3 MW [94.1 - 90.5] weather=climatology, holiday=No Holiday
+  Day  5 (2026-07-04): 92.5 MW [94.6 - 90.4] weather=climatology, holiday=No Holiday
+  Day  6 (2026-07-05): 97.4 MW [98.9 - 95.7] weather=climatology, holiday=No Holiday
+  Day  7 (2026-07-06): 99.0 MW [99.7 - 96.6] weather=api, holiday=No Holiday
+  Day  8 (2026-07-07): 98.5 MW [99.1 - 95.7] weather=api, holiday=No Holiday
+  Day  9 (2026-07-08): 96.8 MW [98.3 - 94.4] weather=api, holiday=No Holiday
+  Day 10 (2026-07-09): 95.6 MW [98.1 - 94.2] weather=api, holiday=No Holiday
+  Day 11 (2026-07-10): 90.6 MW [95.8 - 90.7] weather=api, holiday=No Holiday
+  Day 12 (2026-07-11): 91.4 MW [96.5 - 91.0] weather=api, holiday=No Holiday
+  Day 13 (2026-07-12): 96.8 MW [100.5 - 96.4] weather=api, holiday=No Holiday
+  Day 14 (2026-07-13): 98.4 MW [101.7 - 97.6] weather=api, holiday=No Holiday

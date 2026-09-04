@@ -1674,10 +1674,16 @@ def plot_r2_distribution(summary: pd.DataFrame, output_dir: Path):
     # -- Left: distribution per model ----------------------------------------
     ax = axes[0]
     data = [dl.loc[dl["model"] == m, "test_r2"].dropna().values for m in MODEL_NAMES]
-    bp = ax.boxplot(data, labels=MODEL_NAMES, showmeans=True, patch_artist=True,
-                    medianprops={"color": "black", "linewidth": 1.4},
-                    meanprops={"marker": "D", "markerfacecolor": "white",
-                               "markeredgecolor": "black", "markersize": 5})
+    # matplotlib renamed boxplot's `labels` to `tick_labels` in 3.9 and removed
+    # the old name in 3.11, so try the new spelling first and fall back.
+    box_kw = dict(showmeans=True, patch_artist=True,
+                  medianprops={"color": "black", "linewidth": 1.4},
+                  meanprops={"marker": "D", "markerfacecolor": "white",
+                             "markeredgecolor": "black", "markersize": 5})
+    try:
+        bp = ax.boxplot(data, tick_labels=MODEL_NAMES, **box_kw)
+    except TypeError:
+        bp = ax.boxplot(data, labels=MODEL_NAMES, **box_kw)
     for patch in bp["boxes"]:
         patch.set_facecolor("#cfe2f3")
         patch.set_alpha(0.9)
@@ -1967,6 +1973,42 @@ def save_model_ranking(summary: pd.DataFrame, output_dir: Path) -> pd.DataFrame:
 # Main
 # =============================================================================
 
+def write_global_reports(summary: pd.DataFrame, all_records, output_dir: Path) -> None:
+    """Every fleet-level artefact: heatmap, distribution figure, ranking, stats.
+
+    Kept separate from training so it can be re-run on its own via
+    --report-only. A plotting library change should never cost you a retrain.
+    """
+    plot_global_summary_table(all_records, output_dir)
+    plot_r2_distribution(summary, output_dir)
+    save_model_ranking(summary, output_dir)
+    save_distribution_stats(summary, output_dir)
+
+
+def report_flagged_cells(summary: pd.DataFrame, output_dir: Path, csv_name: str,
+                         suggest_commands: bool = True) -> pd.DataFrame:
+    flagged = flag_unstable_cells(summary)
+    if flagged.empty:
+        return flagged
+    flagged.to_csv(output_dir / "flagged_outlier_cells.csv", index=False)
+    print("\n" + "=" * 96)
+    print("POSSIBLE OPTIMISATION ANOMALIES (Test R2 far below the other "
+          "architectures at the same substation)")
+    print("=" * 96)
+    for _, r in flagged.iterrows():
+        print(f"  {r['substation']:<26} {r['model']:<20} "
+              f"Test R2={r['test_r2']:.4f}  vs substation median "
+              f"{r['substation_median']:.4f}  (drop {r['drop_below_median']:.4f})")
+    if suggest_commands:
+        print("\n  These are cheap to explain without re-running everything. "
+              "For each one:")
+        for _, r in flagged.head(3).iterrows():
+            print(f"    python {Path(__file__).name} --csv {csv_name} "
+                  f"--probe-only --probe \"{r['substation']}:{r['model']}\"")
+        print("  (or add --auto-probe to do it in the same run)")
+    return flagged
+
+
 def main():
     global FORECAST_DAYS, EXOG_ALIGNMENT, WEATHER_MODE, FESTIVE_BLEND
     global RUN_BACKTEST, BACKTEST_STRIDE, EPOCHS, OUTPUT_DIR, N_RUNS
@@ -1998,6 +2040,12 @@ def main():
                         "--probe 'Agargaon:CNN+BiLSTM+BiGRU'. Repeatable.")
     p.add_argument("--probe-seeds", type=int, default=5,
                    help="Seeds per probe (default 5).")
+    p.add_argument("--report-only", action="store_true",
+                   help="Do NOT train. Rebuild the fleet-level figures, ranking "
+                        "and distribution stats from the metrics_summary.csv "
+                        "already sitting in --output-dir. Use this when a "
+                        "plotting or reporting step failed after training "
+                        "finished - your per-substation outputs are untouched.")
     p.add_argument("--probe-only", action="store_true",
                    help="Run only the probes and skip the full experiment.")
     p.add_argument("--auto-probe", action="store_true",
@@ -2023,6 +2071,20 @@ def main():
           f"test Year>={TEST_START_YEAR}")
     print(f"  exog alignment={EXOG_ALIGNMENT}  weather mode={WEATHER_MODE}  "
           f"festive blend={FESTIVE_BLEND}  backtest={RUN_BACKTEST}  runs/model={N_RUNS}")
+
+    if args.report_only:
+        summary_path = OUTPUT_DIR / "metrics_summary.csv"
+        if not summary_path.exists():
+            print(f"--report-only needs {summary_path}, which does not exist. "
+                  f"Point --output-dir at the folder from your training run.")
+            return
+        summary = pd.read_csv(summary_path)
+        print(f"\nRebuilding reports from {summary_path} "
+              f"({summary['substation'].nunique()} substations, no training).")
+        write_global_reports(summary, summary.to_dict("records"), OUTPUT_DIR)
+        report_flagged_cells(summary, OUTPUT_DIR, args.csv, suggest_commands=True)
+        print(f"\nReports written to: {OUTPUT_DIR.resolve()}")
+        return
 
     print("\nLoading raw data (rule-based cleaning only, no statistics)...")
     df_raw = load_raw(args.csv)
@@ -2085,10 +2147,7 @@ def main():
     if all_runs:
         pd.DataFrame(all_runs).to_csv(OUTPUT_DIR / "metrics_all_runs.csv", index=False)
 
-    plot_global_summary_table(all_records, OUTPUT_DIR)
-    plot_r2_distribution(summary, OUTPUT_DIR)
-    save_model_ranking(summary, OUTPUT_DIR)
-    save_distribution_stats(summary, OUTPUT_DIR)
+    write_global_reports(summary, all_records, OUTPUT_DIR)
 
     print("\n" + "=" * 96)
     print("PER-SUBSTATION selected model (chosen on VALIDATION R2; test shown for reporting):")
@@ -2104,24 +2163,8 @@ def main():
               f"MAE={best['test_mae']:.2f}  (persistence Test R2={bl_r2:.4f})")
 
     # ---- anomaly detection: flag cells that look like bad initialisations --
-    flagged = flag_unstable_cells(summary)
-    if not flagged.empty:
-        flagged.to_csv(OUTPUT_DIR / "flagged_outlier_cells.csv", index=False)
-        print("\n" + "=" * 96)
-        print("POSSIBLE OPTIMISATION ANOMALIES (Test R2 far below the other "
-              "architectures at the same substation)")
-        print("=" * 96)
-        for _, r in flagged.iterrows():
-            print(f"  {r['substation']:<26} {r['model']:<20} "
-                  f"Test R2={r['test_r2']:.4f}  vs substation median "
-                  f"{r['substation_median']:.4f}  (drop {r['drop_below_median']:.4f})")
-        if not args.auto_probe:
-            print("\n  These are cheap to explain without re-running everything. "
-                  "For each one:")
-            for _, r in flagged.head(3).iterrows():
-                print(f"    python {Path(__file__).name} --csv {args.csv} "
-                      f"--probe-only --probe \"{r['substation']}:{r['model']}\"")
-            print("  (or add --auto-probe to do it in the same run)")
+    flagged = report_flagged_cells(summary, OUTPUT_DIR, args.csv,
+                                   suggest_commands=not args.auto_probe)
 
     probes = list(args.probe or [])
     if args.auto_probe and not flagged.empty:

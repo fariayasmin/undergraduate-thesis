@@ -1,0 +1,35 @@
+14-day forecast for Maniknagar (2026-06-30 -> 2026-07-13)
+Model selected on VALIDATION R2: CNN+BiGRU+BiLSTM (Val R2=0.6431, held-out Test R2=0.8174)
+Weather mode: forecast   Exog alignment: target
+Last known 7-day mean: 79.6 MW | lag-1: 82.0 MW
+
+Expected recursive error at this horizon (from the backtest):
+    day+ 1: RMSE=6.1 MW, MAE=5.0 MW, R2=0.817
+    day+ 2: RMSE=6.9 MW, MAE=5.2 MW, R2=0.783
+    day+ 3: RMSE=7.3 MW, MAE=5.7 MW, R2=0.593
+    day+ 4: RMSE=8.3 MW, MAE=6.2 MW, R2=0.656
+    day+ 5: RMSE=10.1 MW, MAE=7.3 MW, R2=0.591
+    day+ 6: RMSE=8.4 MW, MAE=6.8 MW, R2=0.624
+    day+ 7: RMSE=7.8 MW, MAE=6.4 MW, R2=0.701
+    day+ 8: RMSE=9.4 MW, MAE=8.1 MW, R2=0.649
+    day+ 9: RMSE=8.6 MW, MAE=7.2 MW, R2=0.609
+    day+10: RMSE=7.1 MW, MAE=5.8 MW, R2=0.539
+    day+11: RMSE=8.7 MW, MAE=7.5 MW, R2=0.593
+    day+12: RMSE=8.7 MW, MAE=7.3 MW, R2=0.654
+    day+13: RMSE=8.0 MW, MAE=6.5 MW, R2=0.689
+    day+14: RMSE=8.7 MW, MAE=7.7 MW, R2=0.663
+
+  Day  1 (2026-06-30): 83.2 MW [83.6 - 82.8] weather=climatology, holiday=No Holiday
+  Day  2 (2026-07-01): 80.3 MW [81.4 - 79.0] weather=climatology, holiday=No Holiday
+  Day  3 (2026-07-02): 77.3 MW [78.7 - 75.9] weather=climatology, holiday=No Holiday
+  Day  4 (2026-07-03): 63.6 MW [64.7 - 62.6] weather=climatology, holiday=No Holiday
+  Day  5 (2026-07-04): 67.0 MW [68.5 - 65.4] weather=climatology, holiday=No Holiday
+  Day  6 (2026-07-05): 76.7 MW [78.7 - 74.5] weather=climatology, holiday=No Holiday
+  Day  7 (2026-07-06): 75.2 MW [78.0 - 72.6] weather=api, holiday=No Holiday
+  Day  8 (2026-07-07): 75.3 MW [78.4 - 72.4] weather=api, holiday=No Holiday
+  Day  9 (2026-07-08): 70.4 MW [76.3 - 69.8] weather=api, holiday=No Holiday
+  Day 10 (2026-07-09): 67.7 MW [74.4 - 68.5] weather=api, holiday=No Holiday
+  Day 11 (2026-07-10): 56.1 MW [61.8 - 58.2] weather=api, holiday=No Holiday
+  Day 12 (2026-07-11): 60.0 MW [66.3 - 62.3] weather=api, holiday=No Holiday
+  Day 13 (2026-07-12): 68.3 MW [77.1 - 71.6] weather=api, holiday=No Holiday
+  Day 14 (2026-07-13): 67.8 MW [77.3 - 70.9] weather=api, holiday=No Holiday

@@ -1,0 +1,15 @@
+substation,model,date,day_ahead,predicted_mw,predicted_mw_cool_wet,predicted_mw_hot_dry,weather_source,holiday_type,context
+Madartek,BiGRU,2026-06-30,1,88.18,88.33,88.02,climatology,No Holiday,Standard 14-day window ending 2026-06-29
+Madartek,BiGRU,2026-07-01,2,86.47,86.71,86.24,climatology,No Holiday,Standard 14-day window ending 2026-06-30
+Madartek,BiGRU,2026-07-02,3,85.17,85.44,84.88,climatology,No Holiday,Standard 14-day window ending 2026-07-01
+Madartek,BiGRU,2026-07-03,4,84.22,84.56,83.88,climatology,No Holiday,Standard 14-day window ending 2026-07-02
+Madartek,BiGRU,2026-07-04,5,83.8,84.18,83.41,climatology,No Holiday,Standard 14-day window ending 2026-07-03
+Madartek,BiGRU,2026-07-05,6,83.83,84.28,83.38,climatology,No Holiday,Standard 14-day window ending 2026-07-04
+Madartek,BiGRU,2026-07-06,7,83.46,84.43,83.36,api,No Holiday,Standard 14-day window ending 2026-07-05
+Madartek,BiGRU,2026-07-07,8,84.35,84.54,83.42,api,No Holiday,Standard 14-day window ending 2026-07-06
+Madartek,BiGRU,2026-07-08,9,82.43,84.5,83.43,api,No Holiday,Standard 14-day window ending 2026-07-07
+Madartek,BiGRU,2026-07-09,10,81.39,84.52,83.54,api,No Holiday,Standard 14-day window ending 2026-07-08
+Madartek,BiGRU,2026-07-10,11,79.78,84.8,83.9,api,No Holiday,Standard 14-day window ending 2026-07-09
+Madartek,BiGRU,2026-07-11,12,80.86,85.45,84.62,api,No Holiday,Standard 14-day window ending 2026-07-10
+Madartek,BiGRU,2026-07-12,13,81.4,86.36,85.53,api,No Holiday,Standard 14-day window ending 2026-07-11
+Madartek,BiGRU,2026-07-13,14,81.99,87.16,86.25,api,No Holiday,Standard 14-day window ending 2026-07-12

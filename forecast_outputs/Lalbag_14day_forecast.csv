@@ -1,0 +1,15 @@
+substation,model,date,day_ahead,predicted_mw,predicted_mw_cool_wet,predicted_mw_hot_dry,weather_source,holiday_type,context
+Lalbag,BiGRU,2026-06-30,1,82.77,82.93,82.6,climatology,No Holiday,Standard 14-day window ending 2026-06-29
+Lalbag,BiGRU,2026-07-01,2,85.24,85.59,84.88,climatology,No Holiday,Standard 14-day window ending 2026-06-30
+Lalbag,BiGRU,2026-07-02,3,84.98,85.36,84.6,climatology,No Holiday,Standard 14-day window ending 2026-07-01
+Lalbag,BiGRU,2026-07-03,4,73.53,74.08,72.97,climatology,No Holiday,Standard 14-day window ending 2026-07-02
+Lalbag,BiGRU,2026-07-04,5,81.41,81.88,80.94,climatology,No Holiday,Standard 14-day window ending 2026-07-03
+Lalbag,BiGRU,2026-07-05,6,85.81,86.41,85.21,climatology,No Holiday,Standard 14-day window ending 2026-07-04
+Lalbag,BiGRU,2026-07-06,7,86.66,86.94,85.84,api,No Holiday,Standard 14-day window ending 2026-07-05
+Lalbag,BiGRU,2026-07-07,8,87.8,87.99,86.7,api,No Holiday,Standard 14-day window ending 2026-07-06
+Lalbag,BiGRU,2026-07-08,9,87.29,87.94,86.75,api,No Holiday,Standard 14-day window ending 2026-07-07
+Lalbag,BiGRU,2026-07-09,10,86.63,87.9,86.61,api,No Holiday,Standard 14-day window ending 2026-07-08
+Lalbag,BiGRU,2026-07-10,11,74.19,76.13,75.02,api,No Holiday,Standard 14-day window ending 2026-07-09
+Lalbag,BiGRU,2026-07-11,12,82.0,83.7,82.65,api,No Holiday,Standard 14-day window ending 2026-07-10
+Lalbag,BiGRU,2026-07-12,13,85.59,87.52,86.48,api,No Holiday,Standard 14-day window ending 2026-07-11
+Lalbag,BiGRU,2026-07-13,14,86.47,87.88,86.91,api,No Holiday,Standard 14-day window ending 2026-07-12
