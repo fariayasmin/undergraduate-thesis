@@ -208,6 +208,40 @@ FORECAST_DAYS   = 14
 TRAIN_END_YEAR  = 2024
 TEST_START_YEAR = 2025
 VAL_FRACTION    = 0.15      # chronological tail of the training block
+
+# --- validation window placement --------------------------------------------
+# The split stays STRICTLY CHRONOLOGICAL:  train  <  validation  <  test.
+# Nothing is shuffled, and no training row ever post-dates the validation
+# block.  The only freedom taken is WHERE the validation block ends.
+#
+# Why it must move:  the chronological tail of the training period (2024 H2)
+# contains a multi-week outage.  Only 56% of load days there are observed
+# fleet-wide, and 1% at Gulshan and Hasnabad.  Validating on that block scores
+# the imputation, not the forecast, which is why validation R2 previously ran
+# ~0.19 below test R2 at almost every substation.
+#
+# What "dense" does instead:  the validation block is the densest window of the
+# usual length that ENDS within VAL_MAX_LOOKBACK_DAYS of the test start, so it
+# stays recent.  Training is everything strictly before it.  Whatever remains
+# between validation and test -- the outage -- is DROPPED rather than trained
+# on, because using it would place training data after the validation block.
+#
+# The window is chosen from the preprocessor's imputation flags alone.  No model
+# has been fitted when the choice is made, so it cannot be tuned to flatter a
+# score.
+VAL_PLACEMENT         = "dense"  # "dense" = densest recent window (see above)
+                                 # "tail"  = previous behaviour, the last
+                                 #           VAL_FRACTION of the training block
+                                 #           whatever its coverage
+VAL_MAX_LOOKBACK_DAYS = 365      # validation must end no earlier than this many
+                                 # days before the test start, so the block
+                                 # stays close to the period it has to predict
+VAL_MIN_OBSERVED      = 0.85     # advisory only: coverage below this is warned
+                                 # about, never silently accepted
+VAL_COVERAGE_TOL      = 0.02     # among windows of near-equal coverage, prefer
+                                 # the LATEST one.  This only ever moves the
+                                 # block closer to the test period, which
+                                 # shortens the gap that has to be dropped.
 EPOCHS          = 150
 BATCH_SIZE      = 16
 PATIENCE        = 15
@@ -638,6 +672,47 @@ class Arrays:
     test_dates: np.ndarray
     scaler: MinMaxScaler
     n_features: int
+    n_dropped: int = 0
+
+
+def choose_val_window(target_imputed: np.ndarray, n_val: int,
+                      max_lookback_seq: int) -> tuple[int, int]:
+    """Place the validation block on the densest RECENT window of the train period.
+
+    ``target_imputed`` flags, per training sequence, whether that sequence's
+    target day was imputed rather than observed.  Candidate windows are the
+    contiguous runs of ``n_val`` sequences whose END lies within
+    ``max_lookback_seq`` of the end of the training block; among those, the one
+    with the highest observed fraction is returned, with ties and near-ties
+    (within ``VAL_COVERAGE_TOL``) broken toward the later window.
+
+    Two constraints are deliberately in tension.  Recency keeps the validation
+    block close to the test period it stands in for, so the lookback cap is a
+    hard bound.  Coverage keeps it scoreable, so density decides within that
+    bound.  Restricting the search to recent windows also stops a substation
+    with a sparse recent record from reaching years backwards for a marginal
+    density gain, which would leave almost nothing to train on.
+
+    Reads only imputation flags: no prediction, residual or metric is involved.
+    """
+    n_seq = len(target_imputed)
+    n_val = int(min(n_val, max(1, n_seq - 1)))
+    observed = (~np.asarray(target_imputed, dtype=bool)).astype(np.float64)
+    csum = np.concatenate([[0.0], np.cumsum(observed)])
+
+    starts = np.arange(0, n_seq - n_val + 1)
+    earliest = max(0, n_seq - n_val - int(max_lookback_seq))
+    allowed = starts[starts >= earliest]
+    if len(allowed) == 0:
+        allowed = starts[-1:]
+
+    coverage = (csum[allowed + n_val] - csum[allowed]) / n_val
+    best = float(coverage.max())
+    # Among windows within VAL_COVERAGE_TOL of the densest, take the latest.
+    # This can only shift the block forward in time, never backward, so it
+    # shortens the span dropped between validation and test.
+    start = int(allowed[np.flatnonzero(coverage >= best - VAL_COVERAGE_TOL)[-1]])
+    return start, start + n_val
 
 
 def prepare_arrays(full: pd.DataFrame, load_col: str, feature_cols: list,
@@ -678,20 +753,35 @@ def prepare_arrays(full: pd.DataFrame, load_col: str, feature_cols: list,
     n_seq = len(y_train)
     n_val = max(WINDOW, int(round(n_seq * VAL_FRACTION)))
     n_val = min(n_val, max(1, n_seq // 3))
-    split = n_seq - n_val
+
+    if VAL_PLACEMENT == "dense":
+        v0, v1 = choose_val_window(train_imputed, n_val, VAL_MAX_LOOKBACK_DAYS)
+    else:
+        v0, v1 = n_seq - n_val, n_seq
+
+    # STRICT CHRONOLOGY: fit < validation < test, with no overlap and no
+    # training row post-dating the validation block.  Sequences after v1 fall
+    # between validation and test and are dropped, not trained on.
+    fit_idx = np.arange(0, v0)
+    val_idx = np.arange(v0, v1)
+    n_dropped = n_seq - v1
+
+    if len(fit_idx) < WINDOW:
+        raise ValueError("validation window leaves too few fitting sequences")
 
     return Arrays(
-        X_fit=X_train[:split], y_fit=y_train[:split],
-        X_val=X_train[split:], y_val=y_train[split:],
+        X_fit=X_train[fit_idx], y_fit=y_train[fit_idx],
+        X_val=X_train[val_idx], y_val=y_train[val_idx],
         X_test=X_test, y_test=y_test,
-        fit_eval_mask=~train_imputed[:split],
-        val_eval_mask=~train_imputed[split:],
+        fit_eval_mask=~train_imputed[fit_idx],
+        val_eval_mask=~train_imputed[val_idx],
         test_eval_mask=~test_imputed,
-        fit_dates=train_dates[:split],
-        val_dates=train_dates[split:],
+        fit_dates=train_dates[fit_idx],
+        val_dates=train_dates[val_idx],
         test_dates=test_dates,
         scaler=scaler,
         n_features=len(feature_cols),
+        n_dropped=n_dropped,
     )
 
 
@@ -1219,7 +1309,7 @@ def plot_train_val_test(substation, model_name, metrics, arr, preds, output_dir)
     fig, axes = plt.subplots(3, 1, figsize=(14, 12))
     panels = [
         ("train", arr.fit_dates,  "TRAIN (fit block)"),
-        ("val",   arr.val_dates,  "VALIDATION (chronological tail of train)"),
+        ("val",   arr.val_dates,  "VALIDATION (chronological, before test)"),
         ("test",  arr.test_dates, f"TEST (>= {TEST_START_YEAR}), one-day-ahead"),
     ]
     for ax, (key, dts, label) in zip(axes, panels):
@@ -1430,6 +1520,22 @@ def run_substation(df_raw: pd.DataFrame, substation: str, output_dir: Path) -> d
     print(f"  Preprocessing fitted on {pd.Timestamp(pp_train.fitted_on_dates[0]).date()} "
           f"-> {pd.Timestamp(pp_train.fitted_on_dates[1]).date()} (train only)")
     print(f"  Fit {arr.X_fit.shape} | Val {arr.X_val.shape} | Test {arr.X_test.shape}")
+    _fd = pd.to_datetime(arr.fit_dates)
+    _vd = pd.to_datetime(arr.val_dates)
+    _td = pd.to_datetime(arr.test_dates)
+    _vcov = float(arr.val_eval_mask.mean()) if len(arr.val_eval_mask) else float("nan")
+    print(f"  Split (chronological, no overlap):")
+    print(f"    TRAIN {_fd.min().date()} -> {_fd.max().date()}  n={len(_fd)}, "
+          f"observed={float(arr.fit_eval_mask.mean()):.1%}")
+    print(f"    VAL   {_vd.min().date()} -> {_vd.max().date()}  n={len(_vd)}, "
+          f"observed={_vcov:.1%}")
+    print(f"    TEST  {_td.min().date()} -> {_td.max().date()}  n={len(_td)}")
+    if arr.n_dropped:
+        print(f"    dropped {arr.n_dropped} days between VAL and TEST "
+              f"(sparse tail; excluded to keep train < val < test)")
+    if _vcov < VAL_MIN_OBSERVED:
+        print(f"    WARNING: validation coverage below {VAL_MIN_OBSERVED:.0%}; "
+              f"this substation has no dense recent window. Val R2 will read low.")
     print(f"  Test days scored: {int(arr.test_eval_mask.sum())} of {len(arr.test_eval_mask)} "
           f"({len(arr.test_eval_mask) - int(arr.test_eval_mask.sum())} imputed, excluded)")
 
@@ -2067,8 +2173,14 @@ def main():
 
     print("Configuration")
     print(f"  window={WINDOW}  horizon={FORECAST_DAYS}  epochs={EPOCHS}")
-    print(f"  split: train Year<={TRAIN_END_YEAR} (last {VAL_FRACTION:.0%} = validation), "
-          f"test Year>={TEST_START_YEAR}")
+    print(f"  split: strictly chronological  train < validation < test  "
+          f"(test Year>={TEST_START_YEAR})")
+    if VAL_PLACEMENT == "dense":
+        print(f"  validation: {VAL_FRACTION:.0%} of train, on the densest window ending "
+              f"within {VAL_MAX_LOOKBACK_DAYS} days of the test start "
+              f"(chosen on data coverage, never on any score)")
+    else:
+        print(f"  validation: last {VAL_FRACTION:.0%} of train (chronological tail)")
     print(f"  exog alignment={EXOG_ALIGNMENT}  weather mode={WEATHER_MODE}  "
           f"festive blend={FESTIVE_BLEND}  backtest={RUN_BACKTEST}  runs/model={N_RUNS}")
 

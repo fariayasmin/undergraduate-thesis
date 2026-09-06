@@ -1,0 +1,35 @@
+14-day forecast for Gulshan (2026-06-30 -> 2026-07-13)
+Model selected on VALIDATION R2: CNN+BiLSTM+BiGRU (Val R2=0.6236, held-out Test R2=0.8654)
+Weather mode: forecast   Exog alignment: target
+Last known 7-day mean: 125.1 MW | lag-1: 142.0 MW
+
+Expected recursive error at this horizon (from the backtest):
+    day+ 1: RMSE=9.5 MW, MAE=7.2 MW, R2=0.886
+    day+ 2: RMSE=11.0 MW, MAE=8.5 MW, R2=0.865
+    day+ 3: RMSE=10.0 MW, MAE=8.3 MW, R2=0.640
+    day+ 4: RMSE=9.8 MW, MAE=7.4 MW, R2=0.838
+    day+ 5: RMSE=12.7 MW, MAE=9.3 MW, R2=0.793
+    day+ 6: RMSE=12.5 MW, MAE=8.5 MW, R2=0.765
+    day+ 7: RMSE=11.1 MW, MAE=7.6 MW, R2=0.841
+    day+ 8: RMSE=14.7 MW, MAE=10.8 MW, R2=0.752
+    day+ 9: RMSE=14.8 MW, MAE=9.8 MW, R2=0.694
+    day+10: RMSE=13.2 MW, MAE=9.6 MW, R2=0.294
+    day+11: RMSE=17.2 MW, MAE=12.0 MW, R2=0.435
+    day+12: RMSE=18.5 MW, MAE=12.3 MW, R2=0.549
+    day+13: RMSE=17.5 MW, MAE=11.1 MW, R2=0.539
+    day+14: RMSE=15.5 MW, MAE=10.5 MW, R2=0.663
+
+  Day  1 (2026-06-30): 135.5 MW [136.0 - 135.1] weather=climatology, holiday=No Holiday
+  Day  2 (2026-07-01): 129.8 MW [130.8 - 128.8] weather=climatology, holiday=No Holiday
+  Day  3 (2026-07-02): 129.3 MW [130.6 - 128.0] weather=climatology, holiday=No Holiday
+  Day  4 (2026-07-03): 101.8 MW [104.2 - 99.5] weather=climatology, holiday=No Holiday
+  Day  5 (2026-07-04): 114.4 MW [116.5 - 112.3] weather=climatology, holiday=No Holiday
+  Day  6 (2026-07-05): 128.7 MW [132.2 - 125.2] weather=climatology, holiday=No Holiday
+  Day  7 (2026-07-06): 130.5 MW [132.5 - 127.5] weather=api, holiday=No Holiday
+  Day  8 (2026-07-07): 130.2 MW [131.9 - 126.2] weather=api, holiday=No Holiday
+  Day  9 (2026-07-08): 125.1 MW [128.9 - 123.7] weather=api, holiday=No Holiday
+  Day 10 (2026-07-09): 122.8 MW [128.4 - 122.6] weather=api, holiday=No Holiday
+  Day 11 (2026-07-10): 89.3 MW [101.7 - 92.8] weather=api, holiday=No Holiday
+  Day 12 (2026-07-11): 106.4 MW [114.6 - 107.7] weather=api, holiday=No Holiday
+  Day 13 (2026-07-12): 119.5 MW [130.9 - 121.1] weather=api, holiday=No Holiday
+  Day 14 (2026-07-13): 125.4 MW [132.4 - 125.2] weather=api, holiday=No Holiday

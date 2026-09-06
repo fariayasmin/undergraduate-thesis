@@ -1,0 +1,15 @@
+substation,model,date,day_ahead,predicted_mw,predicted_mw_cool_wet,predicted_mw_hot_dry,weather_source,holiday_type,context
+Bashundhara,CNN+BiLSTM+BiGRU,2026-06-30,1,213.04,213.96,212.11,climatology,No Holiday,Standard 14-day window ending 2026-06-29
+Bashundhara,CNN+BiLSTM+BiGRU,2026-07-01,2,205.17,208.12,201.87,climatology,No Holiday,Standard 14-day window ending 2026-06-30
+Bashundhara,CNN+BiLSTM+BiGRU,2026-07-02,3,203.63,207.8,198.67,climatology,No Holiday,Standard 14-day window ending 2026-07-01
+Bashundhara,CNN+BiLSTM+BiGRU,2026-07-03,4,199.13,206.02,191.71,climatology,No Holiday,Standard 14-day window ending 2026-07-02
+Bashundhara,CNN+BiLSTM+BiGRU,2026-07-04,5,199.9,208.76,190.35,climatology,No Holiday,Standard 14-day window ending 2026-07-03
+Bashundhara,CNN+BiLSTM+BiGRU,2026-07-05,6,207.85,215.62,197.67,climatology,No Holiday,Standard 14-day window ending 2026-07-04
+Bashundhara,CNN+BiLSTM+BiGRU,2026-07-06,7,207.59,216.82,196.06,api,No Holiday,Standard 14-day window ending 2026-07-05
+Bashundhara,CNN+BiLSTM+BiGRU,2026-07-07,8,204.26,213.34,191.37,api,No Holiday,Standard 14-day window ending 2026-07-06
+Bashundhara,CNN+BiLSTM+BiGRU,2026-07-08,9,196.43,208.93,186.12,api,No Holiday,Standard 14-day window ending 2026-07-07
+Bashundhara,CNN+BiLSTM+BiGRU,2026-07-09,10,195.65,209.69,188.06,api,No Holiday,Standard 14-day window ending 2026-07-08
+Bashundhara,CNN+BiLSTM+BiGRU,2026-07-10,11,190.2,210.81,185.68,api,No Holiday,Standard 14-day window ending 2026-07-09
+Bashundhara,CNN+BiLSTM+BiGRU,2026-07-11,12,190.44,213.55,187.51,api,No Holiday,Standard 14-day window ending 2026-07-10
+Bashundhara,CNN+BiLSTM+BiGRU,2026-07-12,13,200.25,221.21,198.22,api,No Holiday,Standard 14-day window ending 2026-07-11
+Bashundhara,CNN+BiLSTM+BiGRU,2026-07-13,14,201.32,222.85,198.75,api,No Holiday,Standard 14-day window ending 2026-07-12

@@ -1,0 +1,15 @@
+substation,model,date,day_ahead,predicted_mw,predicted_mw_cool_wet,predicted_mw_hot_dry,weather_source,holiday_type,context
+Hasnabad,BiGRU,2026-06-30,1,96.85,97.39,96.32,climatology,No Holiday,Standard 14-day window ending 2026-06-29
+Hasnabad,BiGRU,2026-07-01,2,95.94,96.9,94.75,climatology,No Holiday,Standard 14-day window ending 2026-06-30
+Hasnabad,BiGRU,2026-07-02,3,95.83,96.92,94.32,climatology,No Holiday,Standard 14-day window ending 2026-07-01
+Hasnabad,BiGRU,2026-07-03,4,92.28,94.09,90.46,climatology,No Holiday,Standard 14-day window ending 2026-07-02
+Hasnabad,BiGRU,2026-07-04,5,92.48,94.56,90.39,climatology,No Holiday,Standard 14-day window ending 2026-07-03
+Hasnabad,BiGRU,2026-07-05,6,97.41,98.87,95.72,climatology,No Holiday,Standard 14-day window ending 2026-07-04
+Hasnabad,BiGRU,2026-07-06,7,99.0,99.68,96.59,api,No Holiday,Standard 14-day window ending 2026-07-05
+Hasnabad,BiGRU,2026-07-07,8,98.47,99.12,95.72,api,No Holiday,Standard 14-day window ending 2026-07-06
+Hasnabad,BiGRU,2026-07-08,9,96.85,98.26,94.45,api,No Holiday,Standard 14-day window ending 2026-07-07
+Hasnabad,BiGRU,2026-07-09,10,95.63,98.12,94.24,api,No Holiday,Standard 14-day window ending 2026-07-08
+Hasnabad,BiGRU,2026-07-10,11,90.6,95.81,90.7,api,No Holiday,Standard 14-day window ending 2026-07-09
+Hasnabad,BiGRU,2026-07-11,12,91.35,96.53,90.96,api,No Holiday,Standard 14-day window ending 2026-07-10
+Hasnabad,BiGRU,2026-07-12,13,96.85,100.51,96.44,api,No Holiday,Standard 14-day window ending 2026-07-11
+Hasnabad,BiGRU,2026-07-13,14,98.42,101.73,97.57,api,No Holiday,Standard 14-day window ending 2026-07-12

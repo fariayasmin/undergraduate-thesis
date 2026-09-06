@@ -1,0 +1,15 @@
+substation,model,date,day_ahead,predicted_mw,predicted_mw_cool_wet,predicted_mw_hot_dry,weather_source,holiday_type,context
+Maniknagar,CNN+BiGRU+BiLSTM,2026-06-30,1,83.17,83.57,82.77,climatology,No Holiday,Standard 14-day window ending 2026-06-29
+Maniknagar,CNN+BiGRU+BiLSTM,2026-07-01,2,80.27,81.44,79.04,climatology,No Holiday,Standard 14-day window ending 2026-06-30
+Maniknagar,CNN+BiGRU+BiLSTM,2026-07-02,3,77.27,78.66,75.88,climatology,No Holiday,Standard 14-day window ending 2026-07-01
+Maniknagar,CNN+BiGRU+BiLSTM,2026-07-03,4,63.62,64.66,62.63,climatology,No Holiday,Standard 14-day window ending 2026-07-02
+Maniknagar,CNN+BiGRU+BiLSTM,2026-07-04,5,67.0,68.48,65.39,climatology,No Holiday,Standard 14-day window ending 2026-07-03
+Maniknagar,CNN+BiGRU+BiLSTM,2026-07-05,6,76.71,78.73,74.49,climatology,No Holiday,Standard 14-day window ending 2026-07-04
+Maniknagar,CNN+BiGRU+BiLSTM,2026-07-06,7,75.24,78.01,72.65,api,No Holiday,Standard 14-day window ending 2026-07-05
+Maniknagar,CNN+BiGRU+BiLSTM,2026-07-07,8,75.3,78.38,72.39,api,No Holiday,Standard 14-day window ending 2026-07-06
+Maniknagar,CNN+BiGRU+BiLSTM,2026-07-08,9,70.43,76.26,69.78,api,No Holiday,Standard 14-day window ending 2026-07-07
+Maniknagar,CNN+BiGRU+BiLSTM,2026-07-09,10,67.75,74.37,68.54,api,No Holiday,Standard 14-day window ending 2026-07-08
+Maniknagar,CNN+BiGRU+BiLSTM,2026-07-10,11,56.12,61.78,58.22,api,No Holiday,Standard 14-day window ending 2026-07-09
+Maniknagar,CNN+BiGRU+BiLSTM,2026-07-11,12,59.99,66.29,62.32,api,No Holiday,Standard 14-day window ending 2026-07-10
+Maniknagar,CNN+BiGRU+BiLSTM,2026-07-12,13,68.27,77.11,71.61,api,No Holiday,Standard 14-day window ending 2026-07-11
+Maniknagar,CNN+BiGRU+BiLSTM,2026-07-13,14,67.77,77.31,70.9,api,No Holiday,Standard 14-day window ending 2026-07-12

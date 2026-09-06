@@ -1,35 +1,35 @@
 14-day forecast for Agargaon (2026-06-30 -> 2026-07-13)
-Model selected on VALIDATION R2: BiGRU (Val R2=0.6271, held-out Test R2=0.8717)
+Model selected on VALIDATION R2: BiGRU (Val R2=0.8230, held-out Test R2=0.8585)
 Weather mode: forecast   Exog alignment: target
 Last known 7-day mean: 123.7 MW | lag-1: 138.0 MW
 
 Expected recursive error at this horizon (from the backtest):
-    day+ 1: RMSE=8.3 MW, MAE=6.9 MW, R2=0.886
-    day+ 2: RMSE=9.8 MW, MAE=7.7 MW, R2=0.842
-    day+ 3: RMSE=8.1 MW, MAE=6.0 MW, R2=0.806
-    day+ 4: RMSE=11.5 MW, MAE=9.4 MW, R2=0.747
-    day+ 5: RMSE=10.4 MW, MAE=8.5 MW, R2=0.813
-    day+ 6: RMSE=11.6 MW, MAE=9.3 MW, R2=0.751
-    day+ 7: RMSE=10.1 MW, MAE=8.5 MW, R2=0.816
-    day+ 8: RMSE=14.3 MW, MAE=11.0 MW, R2=0.696
-    day+ 9: RMSE=11.9 MW, MAE=9.6 MW, R2=0.733
-    day+10: RMSE=10.1 MW, MAE=8.1 MW, R2=0.715
-    day+11: RMSE=12.7 MW, MAE=10.2 MW, R2=0.703
-    day+12: RMSE=13.8 MW, MAE=12.0 MW, R2=0.723
-    day+13: RMSE=12.4 MW, MAE=10.5 MW, R2=0.744
-    day+14: RMSE=12.2 MW, MAE=10.6 MW, R2=0.742
+    day+ 1: RMSE=8.9 MW, MAE=7.5 MW, R2=0.871
+    day+ 2: RMSE=10.7 MW, MAE=8.7 MW, R2=0.813
+    day+ 3: RMSE=7.8 MW, MAE=6.2 MW, R2=0.820
+    day+ 4: RMSE=12.1 MW, MAE=9.9 MW, R2=0.719
+    day+ 5: RMSE=11.9 MW, MAE=9.8 MW, R2=0.757
+    day+ 6: RMSE=12.9 MW, MAE=10.6 MW, R2=0.693
+    day+ 7: RMSE=11.4 MW, MAE=9.4 MW, R2=0.770
+    day+ 8: RMSE=15.7 MW, MAE=12.5 MW, R2=0.635
+    day+ 9: RMSE=13.6 MW, MAE=11.3 MW, R2=0.653
+    day+10: RMSE=10.6 MW, MAE=8.3 MW, R2=0.687
+    day+11: RMSE=13.7 MW, MAE=11.0 MW, R2=0.653
+    day+12: RMSE=15.8 MW, MAE=14.3 MW, R2=0.640
+    day+13: RMSE=14.4 MW, MAE=12.6 MW, R2=0.653
+    day+14: RMSE=14.1 MW, MAE=12.6 MW, R2=0.658
 
-  Day  1 (2026-06-30): 127.3 MW [127.4 - 127.1] weather=climatology, holiday=No Holiday
-  Day  2 (2026-07-01): 123.6 MW [123.9 - 123.4] weather=climatology, holiday=No Holiday
-  Day  3 (2026-07-02): 122.2 MW [122.5 - 122.0] weather=climatology, holiday=No Holiday
-  Day  4 (2026-07-03): 112.6 MW [112.9 - 112.2] weather=climatology, holiday=No Holiday
-  Day  5 (2026-07-04): 111.1 MW [111.5 - 110.7] weather=climatology, holiday=No Holiday
-  Day  6 (2026-07-05): 121.0 MW [121.4 - 120.5] weather=climatology, holiday=No Holiday
-  Day  7 (2026-07-06): 121.6 MW [122.9 - 121.8] weather=api, holiday=No Holiday
-  Day  8 (2026-07-07): 121.3 MW [122.0 - 120.9] weather=api, holiday=No Holiday
-  Day  9 (2026-07-08): 118.2 MW [120.9 - 119.8] weather=api, holiday=No Holiday
-  Day 10 (2026-07-09): 117.9 MW [121.3 - 120.2] weather=api, holiday=No Holiday
-  Day 11 (2026-07-10): 108.0 MW [113.1 - 112.0] weather=api, holiday=No Holiday
-  Day 12 (2026-07-11): 108.7 MW [113.1 - 112.0] weather=api, holiday=No Holiday
-  Day 13 (2026-07-12): 118.6 MW [123.2 - 122.1] weather=api, holiday=No Holiday
-  Day 14 (2026-07-13): 120.1 MW [125.4 - 124.1] weather=api, holiday=No Holiday
+  Day  1 (2026-06-30): 126.1 MW [126.6 - 125.6] weather=climatology, holiday=No Holiday
+  Day  2 (2026-07-01): 121.9 MW [122.6 - 121.1] weather=climatology, holiday=No Holiday
+  Day  3 (2026-07-02): 120.0 MW [120.9 - 119.0] weather=climatology, holiday=No Holiday
+  Day  4 (2026-07-03): 109.9 MW [111.1 - 108.7] weather=climatology, holiday=No Holiday
+  Day  5 (2026-07-04): 108.4 MW [109.7 - 107.0] weather=climatology, holiday=No Holiday
+  Day  6 (2026-07-05): 118.2 MW [119.7 - 116.7] weather=climatology, holiday=No Holiday
+  Day  7 (2026-07-06): 118.8 MW [121.1 - 117.8] weather=api, holiday=No Holiday
+  Day  8 (2026-07-07): 118.2 MW [120.2 - 116.6] weather=api, holiday=No Holiday
+  Day  9 (2026-07-08): 114.7 MW [119.0 - 115.4] weather=api, holiday=No Holiday
+  Day 10 (2026-07-09): 114.3 MW [119.1 - 115.6] weather=api, holiday=No Holiday
+  Day 11 (2026-07-10): 104.2 MW [110.9 - 107.3] weather=api, holiday=No Holiday
+  Day 12 (2026-07-11): 105.0 MW [111.0 - 107.4] weather=api, holiday=No Holiday
+  Day 13 (2026-07-12): 114.8 MW [121.3 - 117.5] weather=api, holiday=No Holiday
+  Day 14 (2026-07-13): 116.5 MW [123.6 - 119.4] weather=api, holiday=No Holiday

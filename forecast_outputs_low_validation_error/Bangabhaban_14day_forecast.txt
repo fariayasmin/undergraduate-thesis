@@ -1,0 +1,35 @@
+14-day forecast for Bangabhaban (2026-06-30 -> 2026-07-13)
+Model selected on VALIDATION R2: CNN+BiGRU+BiLSTM (Val R2=0.3301, held-out Test R2=0.8055)
+Weather mode: forecast   Exog alignment: target
+Last known 7-day mean: 17.1 MW | lag-1: 23.0 MW
+
+Expected recursive error at this horizon (from the backtest):
+    day+ 1: RMSE=3.1 MW, MAE=2.3 MW, R2=0.734
+    day+ 2: RMSE=3.0 MW, MAE=2.2 MW, R2=0.744
+    day+ 3: RMSE=3.1 MW, MAE=3.0 MW, R2=-10.908
+    day+ 4: RMSE=3.4 MW, MAE=2.7 MW, R2=0.190
+    day+ 5: RMSE=4.1 MW, MAE=2.9 MW, R2=0.603
+    day+ 6: RMSE=3.3 MW, MAE=2.3 MW, R2=0.716
+    day+ 7: RMSE=3.9 MW, MAE=2.9 MW, R2=0.670
+    day+ 8: RMSE=3.9 MW, MAE=3.2 MW, R2=0.636
+    day+ 9: RMSE=4.0 MW, MAE=3.3 MW, R2=0.605
+    day+10: RMSE=3.1 MW, MAE=3.0 MW, R2=-20.813
+    day+11: RMSE=2.9 MW, MAE=2.5 MW, R2=-0.223
+    day+12: RMSE=3.8 MW, MAE=2.9 MW, R2=0.601
+    day+13: RMSE=3.1 MW, MAE=2.3 MW, R2=0.639
+    day+14: RMSE=3.2 MW, MAE=2.5 MW, R2=0.611
+
+  Day  1 (2026-06-30): 20.5 MW [20.8 - 20.2] weather=climatology, holiday=No Holiday
+  Day  2 (2026-07-01): 19.8 MW [20.3 - 19.3] weather=climatology, holiday=No Holiday
+  Day  3 (2026-07-02): 18.7 MW [19.4 - 17.9] weather=climatology, holiday=No Holiday
+  Day  4 (2026-07-03): 8.3 MW [8.5 - 8.0] weather=climatology, holiday=No Holiday
+  Day  5 (2026-07-04): 10.8 MW [11.3 - 10.3] weather=climatology, holiday=No Holiday
+  Day  6 (2026-07-05): 19.7 MW [20.4 - 18.7] weather=climatology, holiday=No Holiday
+  Day  7 (2026-07-06): 19.9 MW [20.5 - 18.5] weather=api, holiday=No Holiday
+  Day  8 (2026-07-07): 19.5 MW [20.4 - 18.2] weather=api, holiday=No Holiday
+  Day  9 (2026-07-08): 18.2 MW [19.8 - 17.1] weather=api, holiday=No Holiday
+  Day 10 (2026-07-09): 16.8 MW [19.2 - 16.3] weather=api, holiday=No Holiday
+  Day 11 (2026-07-10): 7.8 MW [9.2 - 7.7] weather=api, holiday=No Holiday
+  Day 12 (2026-07-11): 9.9 MW [12.0 - 9.8] weather=api, holiday=No Holiday
+  Day 13 (2026-07-12): 17.8 MW [20.5 - 17.7] weather=api, holiday=No Holiday
+  Day 14 (2026-07-13): 17.8 MW [20.7 - 17.7] weather=api, holiday=No Holiday

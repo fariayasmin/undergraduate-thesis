@@ -1,0 +1,35 @@
+14-day forecast for Savar (2026-06-30 -> 2026-07-13)
+Model selected on VALIDATION R2: CNN+BiGRU+BiLSTM (Val R2=0.5933, held-out Test R2=0.7149)
+Weather mode: forecast   Exog alignment: target
+Last known 7-day mean: 214.6 MW | lag-1: 218.0 MW
+
+Expected recursive error at this horizon (from the backtest):
+    day+ 1: RMSE=22.1 MW, MAE=17.1 MW, R2=0.677
+    day+ 2: RMSE=23.3 MW, MAE=16.1 MW, R2=0.652
+    day+ 3: RMSE=22.4 MW, MAE=17.2 MW, R2=0.442
+    day+ 4: RMSE=24.7 MW, MAE=20.7 MW, R2=0.564
+    day+ 5: RMSE=23.6 MW, MAE=19.9 MW, R2=0.481
+    day+ 6: RMSE=23.4 MW, MAE=20.1 MW, R2=0.478
+    day+ 7: RMSE=21.7 MW, MAE=17.7 MW, R2=0.581
+    day+ 8: RMSE=25.1 MW, MAE=19.2 MW, R2=0.611
+    day+ 9: RMSE=24.5 MW, MAE=18.8 MW, R2=0.604
+    day+10: RMSE=17.9 MW, MAE=14.2 MW, R2=0.672
+    day+11: RMSE=27.4 MW, MAE=23.1 MW, R2=0.479
+    day+12: RMSE=27.1 MW, MAE=22.9 MW, R2=0.445
+    day+13: RMSE=25.3 MW, MAE=21.7 MW, R2=0.424
+    day+14: RMSE=27.7 MW, MAE=23.4 MW, R2=0.426
+
+  Day  1 (2026-06-30): 213.3 MW [213.8 - 212.9] weather=climatology, holiday=No Holiday
+  Day  2 (2026-07-01): 211.5 MW [211.5 - 211.5] weather=climatology, holiday=No Holiday
+  Day  3 (2026-07-02): 209.7 MW [209.4 - 210.1] weather=climatology, holiday=No Holiday
+  Day  4 (2026-07-03): 193.6 MW [192.8 - 194.1] weather=climatology, holiday=No Holiday
+  Day  5 (2026-07-04): 201.8 MW [200.5 - 203.0] weather=climatology, holiday=No Holiday
+  Day  6 (2026-07-05): 207.5 MW [206.0 - 208.7] weather=climatology, holiday=No Holiday
+  Day  7 (2026-07-06): 207.4 MW [205.0 - 208.0] weather=api, holiday=No Holiday
+  Day  8 (2026-07-07): 206.7 MW [205.5 - 208.9] weather=api, holiday=No Holiday
+  Day  9 (2026-07-08): 205.9 MW [206.0 - 209.7] weather=api, holiday=No Holiday
+  Day 10 (2026-07-09): 203.2 MW [204.5 - 208.8] weather=api, holiday=No Holiday
+  Day 11 (2026-07-10): 184.3 MW [188.0 - 192.6] weather=api, holiday=No Holiday
+  Day 12 (2026-07-11): 197.0 MW [196.7 - 202.1] weather=api, holiday=No Holiday
+  Day 13 (2026-07-12): 203.8 MW [203.3 - 208.5] weather=api, holiday=No Holiday
+  Day 14 (2026-07-13): 204.6 MW [203.9 - 208.9] weather=api, holiday=No Holiday

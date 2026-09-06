@@ -1,35 +1,35 @@
 14-day forecast for Narinda (2026-06-30 -> 2026-07-13)
-Model selected on VALIDATION R2: BiGRU (Val R2=0.5187, held-out Test R2=0.8143)
+Model selected on VALIDATION R2: CNN+BiLSTM+BiGRU (Val R2=0.7194, held-out Test R2=0.8508)
 Weather mode: forecast   Exog alignment: target
 Last known 7-day mean: 74.4 MW | lag-1: 80.0 MW
 
 Expected recursive error at this horizon (from the backtest):
-    day+ 1: RMSE=6.1 MW, MAE=4.3 MW, R2=0.787
-    day+ 2: RMSE=8.0 MW, MAE=6.0 MW, R2=0.701
-    day+ 3: RMSE=5.7 MW, MAE=5.1 MW, R2=0.479
-    day+ 4: RMSE=7.5 MW, MAE=5.4 MW, R2=0.637
-    day+ 5: RMSE=6.6 MW, MAE=5.1 MW, R2=0.701
-    day+ 6: RMSE=7.6 MW, MAE=5.4 MW, R2=0.649
-    day+ 7: RMSE=7.3 MW, MAE=6.1 MW, R2=0.673
-    day+ 8: RMSE=9.0 MW, MAE=7.0 MW, R2=0.661
-    day+ 9: RMSE=8.1 MW, MAE=6.8 MW, R2=0.681
-    day+10: RMSE=8.5 MW, MAE=7.0 MW, R2=-0.383
-    day+11: RMSE=9.0 MW, MAE=7.2 MW, R2=0.486
-    day+12: RMSE=9.0 MW, MAE=7.1 MW, R2=0.527
-    day+13: RMSE=8.6 MW, MAE=6.8 MW, R2=0.529
-    day+14: RMSE=9.5 MW, MAE=7.3 MW, R2=0.488
+    day+ 1: RMSE=6.3 MW, MAE=4.1 MW, R2=0.771
+    day+ 2: RMSE=7.8 MW, MAE=5.3 MW, R2=0.715
+    day+ 3: RMSE=5.2 MW, MAE=4.2 MW, R2=0.568
+    day+ 4: RMSE=6.8 MW, MAE=4.9 MW, R2=0.702
+    day+ 5: RMSE=6.7 MW, MAE=5.3 MW, R2=0.693
+    day+ 6: RMSE=7.2 MW, MAE=5.2 MW, R2=0.684
+    day+ 7: RMSE=6.9 MW, MAE=6.0 MW, R2=0.710
+    day+ 8: RMSE=8.3 MW, MAE=6.3 MW, R2=0.715
+    day+ 9: RMSE=7.7 MW, MAE=6.7 MW, R2=0.710
+    day+10: RMSE=7.6 MW, MAE=6.2 MW, R2=-0.099
+    day+11: RMSE=8.1 MW, MAE=6.5 MW, R2=0.585
+    day+12: RMSE=8.2 MW, MAE=6.6 MW, R2=0.609
+    day+13: RMSE=8.5 MW, MAE=6.5 MW, R2=0.542
+    day+14: RMSE=8.7 MW, MAE=6.8 MW, R2=0.564
 
-  Day  1 (2026-06-30): 77.0 MW [77.4 - 76.6] weather=climatology, holiday=No Holiday
-  Day  2 (2026-07-01): 76.8 MW [77.4 - 76.1] weather=climatology, holiday=No Holiday
-  Day  3 (2026-07-02): 74.7 MW [75.5 - 74.0] weather=climatology, holiday=No Holiday
-  Day  4 (2026-07-03): 59.0 MW [59.9 - 58.0] weather=climatology, holiday=No Holiday
-  Day  5 (2026-07-04): 69.3 MW [70.2 - 68.4] weather=climatology, holiday=No Holiday
-  Day  6 (2026-07-05): 74.5 MW [75.7 - 73.3] weather=climatology, holiday=No Holiday
-  Day  7 (2026-07-06): 74.3 MW [75.8 - 73.2] weather=api, holiday=No Holiday
-  Day  8 (2026-07-07): 74.4 MW [75.6 - 73.0] weather=api, holiday=No Holiday
-  Day  9 (2026-07-08): 73.3 MW [76.2 - 73.6] weather=api, holiday=No Holiday
-  Day 10 (2026-07-09): 71.9 MW [75.0 - 72.5] weather=api, holiday=No Holiday
-  Day 11 (2026-07-10): 55.3 MW [60.4 - 57.7] weather=api, holiday=No Holiday
-  Day 12 (2026-07-11): 67.6 MW [71.1 - 68.8] weather=api, holiday=No Holiday
-  Day 13 (2026-07-12): 71.3 MW [76.4 - 73.7] weather=api, holiday=No Holiday
-  Day 14 (2026-07-13): 72.4 MW [77.1 - 74.4] weather=api, holiday=No Holiday
+  Day  1 (2026-06-30): 77.8 MW [77.9 - 77.7] weather=climatology, holiday=No Holiday
+  Day  2 (2026-07-01): 77.5 MW [78.1 - 76.9] weather=climatology, holiday=No Holiday
+  Day  3 (2026-07-02): 75.9 MW [76.7 - 75.1] weather=climatology, holiday=No Holiday
+  Day  4 (2026-07-03): 55.2 MW [55.7 - 54.7] weather=climatology, holiday=No Holiday
+  Day  5 (2026-07-04): 70.6 MW [71.3 - 69.9] weather=climatology, holiday=No Holiday
+  Day  6 (2026-07-05): 74.9 MW [75.6 - 74.2] weather=climatology, holiday=No Holiday
+  Day  7 (2026-07-06): 75.0 MW [76.1 - 74.3] weather=api, holiday=No Holiday
+  Day  8 (2026-07-07): 74.0 MW [76.0 - 73.7] weather=api, holiday=No Holiday
+  Day  9 (2026-07-08): 72.5 MW [76.6 - 74.2] weather=api, holiday=No Holiday
+  Day 10 (2026-07-09): 69.5 MW [75.9 - 73.2] weather=api, holiday=No Holiday
+  Day 11 (2026-07-10): 49.6 MW [55.2 - 53.3] weather=api, holiday=No Holiday
+  Day 12 (2026-07-11): 66.2 MW [71.5 - 69.6] weather=api, holiday=No Holiday
+  Day 13 (2026-07-12): 70.6 MW [76.0 - 74.4] weather=api, holiday=No Holiday
+  Day 14 (2026-07-13): 71.2 MW [77.1 - 75.3] weather=api, holiday=No Holiday

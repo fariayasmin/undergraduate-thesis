@@ -1,35 +1,35 @@
 14-day forecast for Gulshan (2026-06-30 -> 2026-07-13)
-Model selected on VALIDATION R2: CNN+BiLSTM+BiGRU (Val R2=0.6236, held-out Test R2=0.8654)
+Model selected on VALIDATION R2: CNN+BiLSTM+BiGRU (Val R2=0.7764, held-out Test R2=0.8571)
 Weather mode: forecast   Exog alignment: target
 Last known 7-day mean: 125.1 MW | lag-1: 142.0 MW
 
 Expected recursive error at this horizon (from the backtest):
-    day+ 1: RMSE=9.5 MW, MAE=7.2 MW, R2=0.886
-    day+ 2: RMSE=11.0 MW, MAE=8.5 MW, R2=0.865
-    day+ 3: RMSE=10.0 MW, MAE=8.3 MW, R2=0.640
-    day+ 4: RMSE=9.8 MW, MAE=7.4 MW, R2=0.838
-    day+ 5: RMSE=12.7 MW, MAE=9.3 MW, R2=0.793
-    day+ 6: RMSE=12.5 MW, MAE=8.5 MW, R2=0.765
-    day+ 7: RMSE=11.1 MW, MAE=7.6 MW, R2=0.841
-    day+ 8: RMSE=14.7 MW, MAE=10.8 MW, R2=0.752
-    day+ 9: RMSE=14.8 MW, MAE=9.8 MW, R2=0.694
-    day+10: RMSE=13.2 MW, MAE=9.6 MW, R2=0.294
-    day+11: RMSE=17.2 MW, MAE=12.0 MW, R2=0.435
-    day+12: RMSE=18.5 MW, MAE=12.3 MW, R2=0.549
-    day+13: RMSE=17.5 MW, MAE=11.1 MW, R2=0.539
-    day+14: RMSE=15.5 MW, MAE=10.5 MW, R2=0.663
+    day+ 1: RMSE=9.8 MW, MAE=7.6 MW, R2=0.879
+    day+ 2: RMSE=10.9 MW, MAE=8.0 MW, R2=0.866
+    day+ 3: RMSE=10.2 MW, MAE=8.5 MW, R2=0.624
+    day+ 4: RMSE=9.6 MW, MAE=6.9 MW, R2=0.844
+    day+ 5: RMSE=12.9 MW, MAE=10.1 MW, R2=0.789
+    day+ 6: RMSE=15.1 MW, MAE=10.3 MW, R2=0.656
+    day+ 7: RMSE=12.2 MW, MAE=9.3 MW, R2=0.809
+    day+ 8: RMSE=17.0 MW, MAE=12.5 MW, R2=0.665
+    day+ 9: RMSE=17.4 MW, MAE=12.2 MW, R2=0.578
+    day+10: RMSE=14.3 MW, MAE=10.5 MW, R2=0.175
+    day+11: RMSE=18.1 MW, MAE=12.4 MW, R2=0.370
+    day+12: RMSE=19.6 MW, MAE=13.5 MW, R2=0.494
+    day+13: RMSE=19.5 MW, MAE=13.2 MW, R2=0.427
+    day+14: RMSE=17.4 MW, MAE=12.2 MW, R2=0.579
 
-  Day  1 (2026-06-30): 135.5 MW [136.0 - 135.1] weather=climatology, holiday=No Holiday
-  Day  2 (2026-07-01): 129.8 MW [130.8 - 128.8] weather=climatology, holiday=No Holiday
-  Day  3 (2026-07-02): 129.3 MW [130.6 - 128.0] weather=climatology, holiday=No Holiday
-  Day  4 (2026-07-03): 101.8 MW [104.2 - 99.5] weather=climatology, holiday=No Holiday
-  Day  5 (2026-07-04): 114.4 MW [116.5 - 112.3] weather=climatology, holiday=No Holiday
-  Day  6 (2026-07-05): 128.7 MW [132.2 - 125.2] weather=climatology, holiday=No Holiday
-  Day  7 (2026-07-06): 130.5 MW [132.5 - 127.5] weather=api, holiday=No Holiday
-  Day  8 (2026-07-07): 130.2 MW [131.9 - 126.2] weather=api, holiday=No Holiday
-  Day  9 (2026-07-08): 125.1 MW [128.9 - 123.7] weather=api, holiday=No Holiday
-  Day 10 (2026-07-09): 122.8 MW [128.4 - 122.6] weather=api, holiday=No Holiday
-  Day 11 (2026-07-10): 89.3 MW [101.7 - 92.8] weather=api, holiday=No Holiday
-  Day 12 (2026-07-11): 106.4 MW [114.6 - 107.7] weather=api, holiday=No Holiday
-  Day 13 (2026-07-12): 119.5 MW [130.9 - 121.1] weather=api, holiday=No Holiday
-  Day 14 (2026-07-13): 125.4 MW [132.4 - 125.2] weather=api, holiday=No Holiday
+  Day  1 (2026-06-30): 133.4 MW [133.9 - 132.9] weather=climatology, holiday=No Holiday
+  Day  2 (2026-07-01): 128.5 MW [129.5 - 127.5] weather=climatology, holiday=No Holiday
+  Day  3 (2026-07-02): 126.7 MW [128.1 - 125.4] weather=climatology, holiday=No Holiday
+  Day  4 (2026-07-03): 102.4 MW [105.6 - 99.4] weather=climatology, holiday=No Holiday
+  Day  5 (2026-07-04): 113.9 MW [115.9 - 111.4] weather=climatology, holiday=No Holiday
+  Day  6 (2026-07-05): 127.8 MW [131.3 - 124.3] weather=climatology, holiday=No Holiday
+  Day  7 (2026-07-06): 129.3 MW [131.1 - 125.1] weather=api, holiday=No Holiday
+  Day  8 (2026-07-07): 128.9 MW [130.7 - 124.6] weather=api, holiday=No Holiday
+  Day  9 (2026-07-08): 124.3 MW [128.1 - 122.4] weather=api, holiday=No Holiday
+  Day 10 (2026-07-09): 121.2 MW [126.8 - 121.1] weather=api, holiday=No Holiday
+  Day 11 (2026-07-10): 89.8 MW [103.9 - 93.2] weather=api, holiday=No Holiday
+  Day 12 (2026-07-11): 106.0 MW [114.8 - 107.4] weather=api, holiday=No Holiday
+  Day 13 (2026-07-12): 118.8 MW [130.5 - 120.7] weather=api, holiday=No Holiday
+  Day 14 (2026-07-13): 124.4 MW [131.9 - 124.0] weather=api, holiday=No Holiday

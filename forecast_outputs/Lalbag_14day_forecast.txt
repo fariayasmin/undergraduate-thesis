@@ -1,35 +1,35 @@
 14-day forecast for Lalbag (2026-06-30 -> 2026-07-13)
-Model selected on VALIDATION R2: BiGRU (Val R2=0.7620, held-out Test R2=0.7804)
+Model selected on VALIDATION R2: BiGRU (Val R2=0.7725, held-out Test R2=0.7142)
 Weather mode: forecast   Exog alignment: target
 Last known 7-day mean: 78.3 MW | lag-1: 78.0 MW
 
 Expected recursive error at this horizon (from the backtest):
-    day+ 1: RMSE=4.8 MW, MAE=3.9 MW, R2=0.843
-    day+ 2: RMSE=9.6 MW, MAE=6.9 MW, R2=0.343
-    day+ 3: RMSE=8.1 MW, MAE=5.6 MW, R2=0.491
-    day+ 4: RMSE=10.1 MW, MAE=8.1 MW, R2=0.243
-    day+ 5: RMSE=12.6 MW, MAE=10.3 MW, R2=-0.092
-    day+ 6: RMSE=13.5 MW, MAE=11.2 MW, R2=-0.160
-    day+ 7: RMSE=14.6 MW, MAE=12.5 MW, R2=-0.232
-    day+ 8: RMSE=16.3 MW, MAE=13.8 MW, R2=-0.329
-    day+ 9: RMSE=17.1 MW, MAE=14.6 MW, R2=-0.264
-    day+10: RMSE=12.8 MW, MAE=10.9 MW, R2=-0.045
-    day+11: RMSE=15.5 MW, MAE=13.1 MW, R2=-0.123
-    day+12: RMSE=17.3 MW, MAE=14.7 MW, R2=-0.493
-    day+13: RMSE=17.9 MW, MAE=15.6 MW, R2=-0.882
-    day+14: RMSE=18.9 MW, MAE=16.7 MW, R2=-1.233
+    day+ 1: RMSE=5.7 MW, MAE=4.9 MW, R2=0.781
+    day+ 2: RMSE=10.0 MW, MAE=7.6 MW, R2=0.278
+    day+ 3: RMSE=9.0 MW, MAE=7.2 MW, R2=0.379
+    day+ 4: RMSE=11.6 MW, MAE=9.4 MW, R2=0.004
+    day+ 5: RMSE=15.2 MW, MAE=13.1 MW, R2=-0.585
+    day+ 6: RMSE=15.3 MW, MAE=13.4 MW, R2=-0.505
+    day+ 7: RMSE=17.0 MW, MAE=15.4 MW, R2=-0.669
+    day+ 8: RMSE=18.5 MW, MAE=16.2 MW, R2=-0.715
+    day+ 9: RMSE=18.8 MW, MAE=16.3 MW, R2=-0.533
+    day+10: RMSE=15.1 MW, MAE=13.1 MW, R2=-0.451
+    day+11: RMSE=17.2 MW, MAE=14.9 MW, R2=-0.382
+    day+12: RMSE=19.5 MW, MAE=17.3 MW, R2=-0.893
+    day+13: RMSE=19.3 MW, MAE=17.1 MW, R2=-1.184
+    day+14: RMSE=20.0 MW, MAE=17.8 MW, R2=-1.495
 
-  Day  1 (2026-06-30): 82.8 MW [82.9 - 82.6] weather=climatology, holiday=No Holiday
-  Day  2 (2026-07-01): 85.2 MW [85.6 - 84.9] weather=climatology, holiday=No Holiday
-  Day  3 (2026-07-02): 85.0 MW [85.4 - 84.6] weather=climatology, holiday=No Holiday
-  Day  4 (2026-07-03): 73.5 MW [74.1 - 73.0] weather=climatology, holiday=No Holiday
-  Day  5 (2026-07-04): 81.4 MW [81.9 - 80.9] weather=climatology, holiday=No Holiday
-  Day  6 (2026-07-05): 85.8 MW [86.4 - 85.2] weather=climatology, holiday=No Holiday
-  Day  7 (2026-07-06): 86.7 MW [86.9 - 85.8] weather=api, holiday=No Holiday
-  Day  8 (2026-07-07): 87.8 MW [88.0 - 86.7] weather=api, holiday=No Holiday
-  Day  9 (2026-07-08): 87.3 MW [87.9 - 86.8] weather=api, holiday=No Holiday
-  Day 10 (2026-07-09): 86.6 MW [87.9 - 86.6] weather=api, holiday=No Holiday
-  Day 11 (2026-07-10): 74.2 MW [76.1 - 75.0] weather=api, holiday=No Holiday
-  Day 12 (2026-07-11): 82.0 MW [83.7 - 82.6] weather=api, holiday=No Holiday
-  Day 13 (2026-07-12): 85.6 MW [87.5 - 86.5] weather=api, holiday=No Holiday
-  Day 14 (2026-07-13): 86.5 MW [87.9 - 86.9] weather=api, holiday=No Holiday
+  Day  1 (2026-06-30): 82.4 MW [82.4 - 82.3] weather=climatology, holiday=No Holiday
+  Day  2 (2026-07-01): 84.8 MW [85.0 - 84.7] weather=climatology, holiday=No Holiday
+  Day  3 (2026-07-02): 84.5 MW [84.7 - 84.4] weather=climatology, holiday=No Holiday
+  Day  4 (2026-07-03): 73.7 MW [73.9 - 73.5] weather=climatology, holiday=No Holiday
+  Day  5 (2026-07-04): 80.6 MW [80.8 - 80.5] weather=climatology, holiday=No Holiday
+  Day  6 (2026-07-05): 85.4 MW [85.7 - 85.2] weather=climatology, holiday=No Holiday
+  Day  7 (2026-07-06): 85.5 MW [85.7 - 85.3] weather=api, holiday=No Holiday
+  Day  8 (2026-07-07): 86.6 MW [86.7 - 86.2] weather=api, holiday=No Holiday
+  Day  9 (2026-07-08): 86.2 MW [86.8 - 86.4] weather=api, holiday=No Holiday
+  Day 10 (2026-07-09): 85.7 MW [86.7 - 86.4] weather=api, holiday=No Holiday
+  Day 11 (2026-07-10): 73.8 MW [75.6 - 75.2] weather=api, holiday=No Holiday
+  Day 12 (2026-07-11): 81.0 MW [82.3 - 82.1] weather=api, holiday=No Holiday
+  Day 13 (2026-07-12): 85.0 MW [86.5 - 86.3] weather=api, holiday=No Holiday
+  Day 14 (2026-07-13): 85.0 MW [86.2 - 86.2] weather=api, holiday=No Holiday

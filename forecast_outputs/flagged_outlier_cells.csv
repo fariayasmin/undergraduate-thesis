@@ -1,0 +1,2 @@
+substation,model,test_r2,substation_median,drop_below_median
+Bashundhara,BiLSTM+BiGRU,0.3715492486507278,0.6200301497307189,0.2484809010799911
