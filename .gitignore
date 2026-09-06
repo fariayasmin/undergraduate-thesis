@@ -1,3 +1,8 @@
 venv/
 __pycache__/
 *.pyc
+forecast_outputs_low_validation_error/
+forecast_output_good_prediction/
+
+
+
