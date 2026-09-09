@@ -1,0 +1,149 @@
+{
+ "substation": "Kalyanpur",
+ "slots": [
+  36,
+  37,
+  38,
+  39,
+  40,
+  41
+ ],
+ "label": "18:00-21:00 (adaptive local, stress-day derived)",
+ "method": "load-weighted circular KDE (bw=2.0 slots) on days above the p95 peak, density threshold 0.50 x max, longest contiguous run",
+ "n_days_total": 2009,
+ "n_days_stress": 121,
+ "stress_quantile": 0.95,
+ "stress_threshold_mw": 120.0,
+ "bandwidth_slots": 2.0,
+ "threshold_frac": 0.5,
+ "density": [
+  0.030782708969502866,
+  0.016988460354693938,
+  0.007984995934754824,
+  0.0034509498822361145,
+  0.001471900714509605,
+  0.0006117432760820065,
+  0.00022810637638373196,
+  7.08500021081815e-05,
+  1.7628534235820517e-05,
+  3.5860312411557518e-06,
+  1.69264067587047e-06,
+  7.688327769980436e-06,
+  3.8958765168552714e-05,
+  0.00015554908602377155,
+  0.00048667779569174115,
+  0.0011973904753894832,
+  0.002329453078875087,
+  0.003613203386524998,
+  0.004524847411545247,
+  0.00467792056074785,
+  0.004219611028425645,
+  0.003888023309880149,
+  0.004732319879394299,
+  0.007567537963878921,
+  0.012189890167103638,
+  0.016908932632912675,
+  0.01942048747829438,
+  0.018773633886679183,
+  0.01622237177885829,
+  0.013746246428140797,
+  0.012220705172180876,
+  0.011482304352867012,
+  0.01170676521792448,
+  0.014307766790914807,
+  0.02170214999886565,
+  0.03587609120515526,
+  0.05579511871573903,
+  0.07545561976027618,
+  0.0859926089790516,
+  0.08209116303837133,
+  0.06687648213020245,
+  0.049737000804538106,
+  0.03946970762334364,
+  0.03939838986410005,
+  0.04672203365041686,
+  0.054358133194958455,
+  0.054862779668618515,
+  0.045631813674746974
+ ],
+ "mass_in_window": 0.4159479934281787,
+ "secondary_lobes": [
+  {
+   "slots": [
+    44,
+    45,
+    46,
+    47
+   ],
+   "mass": 0.20157476018874082
+  }
+ ],
+ "bootstrap": {
+  "n": 500,
+  "start_median": 36.0,
+  "start_q1": 36.0,
+  "start_q3": 36.0,
+  "start_iqr": 0.0,
+  "end_median": 41.0,
+  "end_q1": 41.0,
+  "end_q3": 41.0,
+  "end_iqr": 0.0,
+  "width_median": 6.0,
+  "width_q1": 6.0,
+  "width_q3": 11.0,
+  "width_iqr": 5.0
+ },
+ "artefact_slots_dropped": [
+  0
+ ],
+ "artefact_share": 0.13067935958459542,
+ "national_overlap_slots": 6,
+ "warnings": [
+  "13.1% of parsed rows carried an artefact peak time and were dropped; peak timing at this substation is less well observed than the row count suggests",
+  "secondary density lobe at 22:00-24:00 (mass 0.202) dropped by the contiguity rule",
+  "window width is unstable under resampling (IQR 5 slots); treat T^pk as indicative"
+ ],
+ "schema_version": 1,
+ "mu_peak": 1.2,
+ "mu_off": 0.9,
+ "mu_source": "BERC order 03 June 2026 (LT-class peak/flat ratio)",
+ "window_source": "GenTwin-SG adaptive local derivation (this module)",
+ "alternative_populations": {
+  "all_days_unweighted": {
+   "n": 2009,
+   "window": "17:30-20:30",
+   "slots": [
+    35,
+    36,
+    37,
+    38,
+    39,
+    40
+   ]
+  },
+  "all_days_load_weighted": {
+   "n": 2009,
+   "window": "17:30-20:30",
+   "slots": [
+    35,
+    36,
+    37,
+    38,
+    39,
+    40
+   ]
+  },
+  "recent_2024plus": {
+   "n": 632,
+   "window": "11:30-14:30",
+   "slots": [
+    23,
+    24,
+    25,
+    26,
+    27,
+    28
+   ]
+  }
+ }
+}

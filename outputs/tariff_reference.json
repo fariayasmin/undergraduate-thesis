@@ -1,0 +1,651 @@
+{
+ "source": "BERC memo 28.01.0000.012.04.003.26.2521, 03 June 2026; effective June 2026 billing month",
+ "verification": {
+  "observed_ratios": [
+   {
+    "class": "LT-C1",
+    "voltage": "LT",
+    "mu_peak": 1.1995,
+    "mu_off": 0.8995
+   },
+   {
+    "class": "LT-D3",
+    "voltage": "LT",
+    "mu_peak": 1.25,
+    "mu_off": 0.8996
+   },
+   {
+    "class": "LT-E",
+    "voltage": "LT",
+    "mu_peak": 1.2012,
+    "mu_off": 0.8997
+   },
+   {
+    "class": "MT-1",
+    "voltage": "MT",
+    "mu_peak": 1.2496,
+    "mu_off": 0.9
+   },
+   {
+    "class": "MT-2",
+    "voltage": "MT",
+    "mu_peak": 1.2498,
+    "mu_off": 0.9002
+   },
+   {
+    "class": "MT-3",
+    "voltage": "MT",
+    "mu_peak": 1.2498,
+    "mu_off": 0.8996
+   },
+   {
+    "class": "MT-4",
+    "voltage": "MT",
+    "mu_peak": 1.25,
+    "mu_off": 0.8998
+   },
+   {
+    "class": "MT-5",
+    "voltage": "MT",
+    "mu_peak": 1.2655,
+    "mu_off": 0.8998
+   },
+   {
+    "class": "MT-7",
+    "voltage": "MT",
+    "mu_peak": 1.2502,
+    "mu_off": 0.9001
+   },
+   {
+    "class": "MT-8",
+    "voltage": "MT",
+    "mu_peak": 1.2507,
+    "mu_off": 0.8997
+   },
+   {
+    "class": "HT-1",
+    "voltage": "HT",
+    "mu_peak": 1.2456,
+    "mu_off": 0.8967
+   },
+   {
+    "class": "HT-2",
+    "voltage": "HT",
+    "mu_peak": 1.25,
+    "mu_off": 0.9003
+   },
+   {
+    "class": "HT-3",
+    "voltage": "HT",
+    "mu_peak": 1.2494,
+    "mu_off": 0.8996
+   },
+   {
+    "class": "HT-4",
+    "voltage": "HT",
+    "mu_peak": 1.25,
+    "mu_off": 0.8997
+   },
+   {
+    "class": "EHT-1",
+    "voltage": "EHT",
+    "mu_peak": 1.2496,
+    "mu_off": 0.8997
+   },
+   {
+    "class": "EHT-2",
+    "voltage": "EHT",
+    "mu_peak": 1.2498,
+    "mu_off": 0.9001
+   }
+  ],
+  "families": {
+   "LT": {
+    "peak": 1.2,
+    "off_peak": 0.9
+   },
+   "MT": {
+    "peak": 1.25,
+    "off_peak": 0.9
+   },
+   "HT": {
+    "peak": 1.25,
+    "off_peak": 0.9
+   },
+   "EHT": {
+    "peak": 1.25,
+    "off_peak": 0.9
+   }
+  },
+  "checks": [
+   {
+    "check": "LT peak ratios ~ 1.20",
+    "pass": true,
+    "detail": "[1.1995, 1.2012]"
+   },
+   {
+    "check": "MT/HT/EHT peak ratios ~ 1.25",
+    "pass": true,
+    "detail": "[1.2496, 1.2498, 1.2498, 1.25, 1.2655, 1.2507, 1.2456, 1.25, 1.2494, 1.25, 1.2496, 1.2498]"
+   },
+   {
+    "check": "off-peak ratio ~ 0.90 everywhere",
+    "pass": true,
+    "detail": "[0.8967, 0.8995, 0.8996, 0.8997, 0.8998, 0.9, 0.9001, 0.9002, 0.9003]"
+   },
+   {
+    "check": "LT-A has no ToU",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "check": "LT-A energy charge at 50 kWh",
+    "pass": true,
+    "detail": "got 266.00, expected 266.00"
+   },
+   {
+    "check": "LT-A energy charge at 51 kWh",
+    "pass": true,
+    "detail": "got 315.18, expected 315.18"
+   },
+   {
+    "check": "LT-A energy charge at 250 kWh",
+    "pass": true,
+    "detail": "got 1981.00, expected 1981.00"
+   },
+   {
+    "check": "marginal rate at 350 kWh is 4th step (9.62)",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "check": "footnote-7 blend = 10.6432 Tk/kWh",
+    "pass": true,
+    "detail": "10.6432"
+   },
+   {
+    "check": "official peak + off-peak tile the 48 slots",
+    "pass": true,
+    "detail": "peak=12 slots, off=36 slots"
+   },
+   {
+    "check": "EV windows tile the 48 slots",
+    "pass": true,
+    "detail": ""
+   }
+  ],
+  "all_pass": true
+ },
+ "lt_a_slabs": [
+  [
+   75,
+   6.18
+  ],
+  [
+   200,
+   8.5
+  ],
+  [
+   300,
+   9.1
+  ],
+  [
+   400,
+   9.62
+  ],
+  [
+   600,
+   15.01
+  ],
+  [
+   null,
+   17.35
+  ]
+ ],
+ "lt_a_lifeline": {
+  "limit_kwh": 50,
+  "rate": 5.32
+ },
+ "classes": {
+  "LT-A": {
+   "code": "LT-A",
+   "name_bn": "\u0986\u09ac\u09be\u09b8\u09bf\u0995",
+   "name_en": "Residential",
+   "voltage": "LT",
+   "flat": null,
+   "off_peak": null,
+   "peak": null,
+   "super_off_peak": null,
+   "demand_charge": 42.0,
+   "lifeline": true,
+   "tou_profile": "none"
+  },
+  "LT-B": {
+   "code": "LT-B",
+   "name_bn": "\u09b8\u09c7\u099a/\u0995\u09c3\u09b7\u09bf\u0995\u09be\u099c\u09c7 \u09ac\u09cd\u09af\u09ac\u09b9\u09c3\u09a4 \u09aa\u09be\u09ae\u09cd\u09aa",
+   "name_en": "Irrigation / agricultural pump",
+   "voltage": "LT",
+   "flat": 6.04,
+   "off_peak": null,
+   "peak": null,
+   "super_off_peak": null,
+   "demand_charge": 42.0,
+   "lifeline": false,
+   "tou_profile": "none"
+  },
+  "LT-C1": {
+   "code": "LT-C1",
+   "name_bn": "\u0995\u09cd\u09b7\u09c1\u09a6\u09cd\u09b0 \u09b6\u09bf\u09b2\u09cd\u09aa",
+   "name_en": "Small industry",
+   "voltage": "LT",
+   "flat": 12.73,
+   "off_peak": 11.45,
+   "peak": 15.27,
+   "super_off_peak": null,
+   "demand_charge": 48.0,
+   "lifeline": false,
+   "tou_profile": "standard"
+  },
+  "LT-C2": {
+   "code": "LT-C2",
+   "name_bn": "\u09a8\u09bf\u09b0\u09cd\u09ae\u09be\u09a3",
+   "name_en": "Construction",
+   "voltage": "LT",
+   "flat": 18.09,
+   "off_peak": null,
+   "peak": null,
+   "super_off_peak": null,
+   "demand_charge": 120.0,
+   "lifeline": false,
+   "tou_profile": "none"
+  },
+  "LT-D1": {
+   "code": "LT-D1",
+   "name_bn": "\u09b6\u09bf\u0995\u09cd\u09b7\u09be, \u09a7\u09b0\u09cd\u09ae\u09c0\u09af\u09bc \u0993 \u09a6\u09be\u09a4\u09ac\u09cd\u09af \u09aa\u09cd\u09b0\u09a4\u09bf\u09b7\u09cd\u09a0\u09be\u09a8 \u098f\u09ac\u0982 \u09b9\u09be\u09b8\u09aa\u09be\u09a4\u09be\u09b2",
+   "name_en": "Education, religious and charitable institutions, and hospitals",
+   "voltage": "LT",
+   "flat": 9.05,
+   "off_peak": null,
+   "peak": null,
+   "super_off_peak": null,
+   "demand_charge": 60.0,
+   "lifeline": false,
+   "tou_profile": "none"
+  },
+  "LT-D2": {
+   "code": "LT-D2",
+   "name_bn": "\u09b0\u09be\u09b8\u09cd\u09a4\u09be\u09b0 \u09ac\u09be\u09a4\u09bf \u0993 \u09aa\u09be\u09a8\u09bf\u09b0 \u09aa\u09be\u09ae\u09cd\u09aa",
+   "name_en": "Street lighting and water pumps",
+   "voltage": "LT",
+   "flat": 11.46,
+   "off_peak": null,
+   "peak": null,
+   "super_off_peak": null,
+   "demand_charge": 90.0,
+   "lifeline": false,
+   "tou_profile": "none"
+  },
+  "LT-D3": {
+   "code": "LT-D3",
+   "name_bn": "\u0987\u09b2\u09c7\u0995\u099f\u09cd\u09b0\u09bf\u0995 \u09ad\u09c7\u09b9\u09bf\u0995\u09c7\u09b2 \u0993 \u09ac\u09cd\u09af\u09be\u099f\u09be\u09b0\u09bf \u099a\u09be\u09b0\u09cd\u099c\u09bf\u0982 \u09b8\u09cd\u099f\u09c7\u09b6\u09a8",
+   "name_en": "EV and battery charging station",
+   "voltage": "LT",
+   "flat": 11.36,
+   "off_peak": 10.22,
+   "peak": 14.2,
+   "super_off_peak": 9.09,
+   "demand_charge": 90.0,
+   "lifeline": false,
+   "tou_profile": "ev"
+  },
+  "LT-E": {
+   "code": "LT-E",
+   "name_bn": "\u09ac\u09be\u09a3\u09bf\u099c\u09cd\u09af\u09bf\u0995 \u0993 \u0985\u09ab\u09bf\u09b8",
+   "name_en": "Commercial and office",
+   "voltage": "LT",
+   "flat": 15.36,
+   "off_peak": 13.82,
+   "peak": 18.45,
+   "super_off_peak": null,
+   "demand_charge": 90.0,
+   "lifeline": false,
+   "tou_profile": "standard"
+  },
+  "LT-T": {
+   "code": "LT-T",
+   "name_bn": "\u0985\u09b8\u09cd\u09a5\u09be\u09af\u09bc\u09c0",
+   "name_en": "Temporary",
+   "voltage": "LT",
+   "flat": 23.81,
+   "off_peak": null,
+   "peak": null,
+   "super_off_peak": null,
+   "demand_charge": 120.0,
+   "lifeline": false,
+   "tou_profile": "none"
+  },
+  "MT-1": {
+   "code": "MT-1",
+   "name_bn": "\u0986\u09ac\u09be\u09b8\u09bf\u0995",
+   "name_en": "Residential",
+   "voltage": "MT",
+   "flat": 12.5,
+   "off_peak": 11.25,
+   "peak": 15.62,
+   "super_off_peak": null,
+   "demand_charge": 90.0,
+   "lifeline": false,
+   "tou_profile": "standard"
+  },
+  "MT-2": {
+   "code": "MT-2",
+   "name_bn": "\u09ac\u09be\u09a3\u09bf\u099c\u09cd\u09af\u09bf\u0995 \u0993 \u0985\u09ab\u09bf\u09b8",
+   "name_en": "Commercial and office",
+   "voltage": "MT",
+   "flat": 13.93,
+   "off_peak": 12.54,
+   "peak": 17.41,
+   "super_off_peak": null,
+   "demand_charge": 90.0,
+   "lifeline": false,
+   "tou_profile": "standard"
+  },
+  "MT-3": {
+   "code": "MT-3",
+   "name_bn": "\u09b6\u09bf\u09b2\u09cd\u09aa",
+   "name_en": "Industry",
+   "voltage": "MT",
+   "flat": 12.85,
+   "off_peak": 11.56,
+   "peak": 16.06,
+   "super_off_peak": null,
+   "demand_charge": 90.0,
+   "lifeline": false,
+   "tou_profile": "standard"
+  },
+  "MT-4": {
+   "code": "MT-4",
+   "name_bn": "\u09a8\u09bf\u09b0\u09cd\u09ae\u09be\u09a3",
+   "name_en": "Construction",
+   "voltage": "MT",
+   "flat": 17.16,
+   "off_peak": 15.44,
+   "peak": 21.45,
+   "super_off_peak": null,
+   "demand_charge": 120.0,
+   "lifeline": false,
+   "tou_profile": "standard"
+  },
+  "MT-5": {
+   "code": "MT-5",
+   "name_bn": "\u09b8\u09be\u09a7\u09be\u09b0\u09a3",
+   "name_en": "General",
+   "voltage": "MT",
+   "flat": 12.58,
+   "off_peak": 11.32,
+   "peak": 15.92,
+   "super_off_peak": null,
+   "demand_charge": 90.0,
+   "lifeline": false,
+   "tou_profile": "standard"
+  },
+  "MT-6": {
+   "code": "MT-6",
+   "name_bn": "\u0985\u09b8\u09cd\u09a5\u09be\u09af\u09bc\u09c0",
+   "name_en": "Temporary",
+   "voltage": "MT",
+   "flat": 22.56,
+   "off_peak": null,
+   "peak": null,
+   "super_off_peak": null,
+   "demand_charge": 120.0,
+   "lifeline": false,
+   "tou_profile": "none"
+  },
+  "MT-7": {
+   "code": "MT-7",
+   "name_bn": "\u0987\u09b2\u09c7\u0995\u099f\u09cd\u09b0\u09bf\u0995 \u09ad\u09c7\u09b9\u09bf\u0995\u09c7\u09b2 \u0993 \u09ac\u09cd\u09af\u09be\u099f\u09be\u09b0\u09bf \u099a\u09be\u09b0\u09cd\u099c\u09bf\u0982 \u09b8\u09cd\u099f\u09c7\u09b6\u09a8",
+   "name_en": "EV and battery charging station",
+   "voltage": "MT",
+   "flat": 11.31,
+   "off_peak": 10.18,
+   "peak": 14.14,
+   "super_off_peak": 9.05,
+   "demand_charge": 90.0,
+   "lifeline": false,
+   "tou_profile": "ev"
+  },
+  "MT-8": {
+   "code": "MT-8",
+   "name_bn": "\u09b8\u09c7\u099a/\u0995\u09c3\u09b7\u09bf\u0995\u09be\u099c\u09c7 \u09ac\u09cd\u09af\u09ac\u09b9\u09c3\u09a4 \u09aa\u09be\u09ae\u09cd\u09aa",
+   "name_en": "Irrigation / agricultural pump",
+   "voltage": "MT",
+   "flat": 7.38,
+   "off_peak": 6.64,
+   "peak": 9.23,
+   "super_off_peak": null,
+   "demand_charge": 90.0,
+   "lifeline": false,
+   "tou_profile": "standard"
+  },
+  "HT-1": {
+   "code": "HT-1",
+   "name_bn": "\u09b8\u09be\u09a7\u09be\u09b0\u09a3",
+   "name_en": "General",
+   "voltage": "HT",
+   "flat": 12.58,
+   "off_peak": 11.28,
+   "peak": 15.67,
+   "super_off_peak": null,
+   "demand_charge": 90.0,
+   "lifeline": false,
+   "tou_profile": "standard"
+  },
+  "HT-2": {
+   "code": "HT-2",
+   "name_bn": "\u09ac\u09be\u09a3\u09bf\u099c\u09cd\u09af\u09bf\u0995 \u0993 \u0985\u09ab\u09bf\u09b8",
+   "name_en": "Commercial and office",
+   "voltage": "HT",
+   "flat": 13.64,
+   "off_peak": 12.28,
+   "peak": 17.05,
+   "super_off_peak": null,
+   "demand_charge": 90.0,
+   "lifeline": false,
+   "tou_profile": "standard"
+  },
+  "HT-3": {
+   "code": "HT-3",
+   "name_bn": "\u09b6\u09bf\u09b2\u09cd\u09aa",
+   "name_en": "Industry",
+   "voltage": "HT",
+   "flat": 12.75,
+   "off_peak": 11.47,
+   "peak": 15.93,
+   "super_off_peak": null,
+   "demand_charge": 90.0,
+   "lifeline": false,
+   "tou_profile": "standard"
+  },
+  "HT-4": {
+   "code": "HT-4",
+   "name_bn": "\u09a8\u09bf\u09b0\u09cd\u09ae\u09be\u09a3",
+   "name_en": "Construction",
+   "voltage": "HT",
+   "flat": 15.96,
+   "off_peak": 14.36,
+   "peak": 19.95,
+   "super_off_peak": null,
+   "demand_charge": 90.0,
+   "lifeline": false,
+   "tou_profile": "standard"
+  },
+  "EHT-1": {
+   "code": "EHT-1",
+   "name_bn": "\u09b8\u09be\u09a7\u09be\u09b0\u09a3",
+   "name_en": "General",
+   "voltage": "EHT",
+   "flat": 12.66,
+   "off_peak": 11.39,
+   "peak": 15.82,
+   "super_off_peak": null,
+   "demand_charge": 90.0,
+   "lifeline": false,
+   "tou_profile": "standard"
+  },
+  "EHT-2": {
+   "code": "EHT-2",
+   "name_bn": "\u09b8\u09be\u09a7\u09be\u09b0\u09a3",
+   "name_en": "General",
+   "voltage": "EHT",
+   "flat": 12.61,
+   "off_peak": 11.35,
+   "peak": 15.76,
+   "super_off_peak": null,
+   "demand_charge": 90.0,
+   "lifeline": false,
+   "tou_profile": "standard"
+  }
+ },
+ "mu_families": {
+  "LT": {
+   "peak": 1.2,
+   "off_peak": 0.9
+  },
+  "MT": {
+   "peak": 1.25,
+   "off_peak": 0.9
+  },
+  "HT": {
+   "peak": 1.25,
+   "off_peak": 0.9
+  },
+  "EHT": {
+   "peak": 1.25,
+   "off_peak": 0.9
+  }
+ },
+ "mu_residential_is_scenario": true,
+ "official_tou": {
+  "peak": [
+   34,
+   35,
+   36,
+   37,
+   38,
+   39,
+   40,
+   41,
+   42,
+   43,
+   44,
+   45
+  ],
+  "off_peak": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   29,
+   30,
+   31,
+   32,
+   33,
+   46,
+   47
+  ],
+  "ev_off_peak": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   29,
+   30,
+   31,
+   32,
+   33,
+   46,
+   47
+  ],
+  "ev_super_off_peak": [
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17
+  ]
+ },
+ "model_peak_windows": {
+  "Dhanmondi": {
+   "slots": [
+    24,
+    25,
+    26,
+    27,
+    28,
+    29
+   ],
+   "label": "12:00-15:00 (observed midday peak)",
+   "source": "observed BPDB peak time distribution"
+  },
+  "Kalyanpur": {
+   "slots": [
+    36,
+    37,
+    38,
+    39,
+    40,
+    41
+   ],
+   "label": "18:00-21:00 (observed evening peak)",
+   "source": "observed BPDB peak time distribution"
+  }
+ },
+ "vat_rate": 0.05,
+ "prepaid_rebate": 0.005
+}

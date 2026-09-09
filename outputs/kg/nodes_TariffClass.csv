@@ -1,0 +1,5 @@
+code,name_en,voltage,flat_tk_per_kwh,demand_charge,has_tou,source,id,off_peak,peak
+LT-D1,"Education, religious and charitable institutions, and hospitals",LT,9.05,60.0,False,"BERC memo 28.01.0000.012.04.003.26.2521, 03 June 2026; effective June 2026 billing month",LT-D1,,
+LT-A,Residential,LT,,42.0,False,"BERC memo 28.01.0000.012.04.003.26.2521, 03 June 2026; effective June 2026 billing month",LT-A,,
+LT-E,Commercial and office,LT,15.36,90.0,True,"BERC memo 28.01.0000.012.04.003.26.2521, 03 June 2026; effective June 2026 billing month",LT-E,13.82,18.45
+LT-C1,Small industry,LT,12.73,48.0,True,"BERC memo 28.01.0000.012.04.003.26.2521, 03 June 2026; effective June 2026 billing month",LT-C1,11.45,15.27

@@ -1,0 +1,4 @@
+date,objective_F_tk,theta1,theta2,theta3,delta_h,slots_per_day,solver,qoe_min,max_c1_slack_kw,n_c7_binding,formulation,id
+2026-06-30,58110029.63139909,1.0,1.0,1.0,0.5,48,highs,0.85,2.9103830456733704e-11,331,"GenTwinSG revised, Eqs. (17)-(35)",RUN-2026-06-30
+2026-07-01,58979682.49361255,1.0,1.0,1.0,0.5,48,highs,0.85,2.9103830456733704e-11,342,"GenTwinSG revised, Eqs. (17)-(35)",RUN-2026-07-01
+2026-07-02,58308651.80328785,1.0,1.0,1.0,0.5,48,highs,0.85,5.820766091346741e-11,339,"GenTwinSG revised, Eqs. (17)-(35)",RUN-2026-07-02

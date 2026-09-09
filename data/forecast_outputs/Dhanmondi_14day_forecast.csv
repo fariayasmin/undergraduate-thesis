@@ -1,0 +1,15 @@
+substation,model,date,day_ahead,predicted_mw,predicted_mw_cool_wet,predicted_mw_hot_dry,weather_source,holiday_type,context
+Dhanmondi,BiGRU,2026-06-30,1,125.69,126.28,125.09,climatology,No Holiday,Standard 14-day window ending 2026-06-29
+Dhanmondi,BiGRU,2026-07-01,2,135.32,136.3,134.35,climatology,No Holiday,Standard 14-day window ending 2026-06-30
+Dhanmondi,BiGRU,2026-07-02,3,134.32,135.93,132.54,climatology,No Holiday,Standard 14-day window ending 2026-07-01
+Dhanmondi,BiGRU,2026-07-03,4,104.49,105.88,103.21,climatology,No Holiday,Standard 14-day window ending 2026-07-02
+Dhanmondi,BiGRU,2026-07-04,5,117.84,120.17,115.58,climatology,No Holiday,Standard 14-day window ending 2026-07-03
+Dhanmondi,BiGRU,2026-07-05,6,137.62,139.79,135.36,climatology,No Holiday,Standard 14-day window ending 2026-07-04
+Dhanmondi,BiGRU,2026-07-06,7,131.56,134.53,128.35,api,No Holiday,Standard 14-day window ending 2026-07-05
+Dhanmondi,BiGRU,2026-07-07,8,126.68,127.15,119.76,api,No Holiday,Standard 14-day window ending 2026-07-06
+Dhanmondi,BiGRU,2026-07-08,9,133.18,136.04,129.48,api,No Holiday,Standard 14-day window ending 2026-07-07
+Dhanmondi,BiGRU,2026-07-09,10,129.96,136.43,127.85,api,No Holiday,Standard 14-day window ending 2026-07-08
+Dhanmondi,BiGRU,2026-07-10,11,100.58,105.95,100.96,api,No Holiday,Standard 14-day window ending 2026-07-09
+Dhanmondi,BiGRU,2026-07-11,12,113.59,121.15,113.22,api,No Holiday,Standard 14-day window ending 2026-07-10
+Dhanmondi,BiGRU,2026-07-12,13,133.58,141.8,133.83,api,No Holiday,Standard 14-day window ending 2026-07-11
+Dhanmondi,BiGRU,2026-07-13,14,127.84,137.33,127.9,api,No Holiday,Standard 14-day window ending 2026-07-12

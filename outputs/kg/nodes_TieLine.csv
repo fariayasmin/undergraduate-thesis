@@ -1,0 +1,3 @@
+from,to,t_max_kw,loss_fraction,price_tk_per_kwh,id
+Dhanmondi,Kalyanpur,20000.0,0.02,9.5,TL-Dhanmondi-Kalyanpur
+Kalyanpur,Dhanmondi,20000.0,0.02,9.5,TL-Kalyanpur-Dhanmondi

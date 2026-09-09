@@ -1,0 +1,4 @@
+name,voll_tk_per_kwh,explanation_template,id
+critical,150.0,Cannot be interrupted without harm or spoilage.,critical
+shiftable,100.0,"The task must happen, but its timing is free.",shiftable
+curtailable,60.0,Can be reduced in intensity at a comfort cost.,curtailable

@@ -1,0 +1,9 @@
+name,category,tariff_class,description,id
+Res-A,Residential,LT-A,"High-income residential, AC-owning",Res-A
+Res-B,Residential,LT-A,Middle-income residential,Res-B
+Res-C,Residential,LT-A,"Low-income residential, lifeline or first-slab",Res-C
+Commercial,Commercial,LT-E,"Shops, offices, restaurants",Commercial
+Industrial,Industrial,LT-C1,"Small industry, light manufacturing",Industrial
+Hospital,Hospital,LT-D1,"Hospitals and clinics; threshold (37) unreachable by parameter value, not by rule",Hospital
+Educational,Educational,LT-D1,"Schools, colleges, universities",Educational
+Government,Government,LT-E,Government and public-service offices,Government

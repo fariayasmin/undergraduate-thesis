@@ -1,0 +1,1540 @@
+{
+ "schema_version": 1,
+ "title": "GenTwin-SG consumer and appliance catalogue",
+ "purpose": "Supplies every quantity Eq. (2) needs: n_{h,a}, P^rat_a, epsilon_a, u_{h,a}(t) and f_a(Theta(t)), for six consumer categories.",
+ "provenance": {
+  "duty_cycles": "LITERATURE / SCENARIO. epsilon_a is the fraction of rated power actually drawn while the appliance is nominally on: near 1.0 for resistive loads, well below 1.0 for thermostatically cycled ones.",
+  "schedules": "SCENARIO. No metered end-use survey exists for Dhaka. Schedules encode documented occupancy patterns for each category and are the single largest modelling assumption in Stage A/B. They are stated here explicitly rather than buried in code so they can be challenged.",
+  "class_assignment": "Follows the brief: C = {critical, shiftable, curtailable}. Critical = cannot be interrupted without harm or spoilage. Shiftable = the task must happen but its timing is free. Curtailable = can be reduced in intensity at a comfort cost.",
+  "thermal_response": "f_a(Theta) forms in `thermal_responses` below. Only cooling and refrigeration loads respond to temperature; everything else has f_a == 1.",
+  "appliance_ratings_kw": "LITERATURE / manufacturer nameplate. Bangladeshi retail market typicals (Walton, Vision, Singer, Gree) for residential; ASHRAE and IEEE 3001 connected-load densities scaled to floor area for non-residential.",
+  "daily_hours": "LITERATURE / SCENARIO. Anchored so that archetype mean monthly consumption lands in the published Dhaka residential range (100-450 kWh/month). Calibrated per archetype, NOT by a uniform scaling of all households."
+ },
+ "notes": {
+  "units": "P_rat_kw in kW, matching P^rat_a of Eq. (2). The formulation's section 1.2 gives kW; no conversion is applied anywhere.",
+  "u_h_a": "u_{h,a}(t) is BINARY, as Eq. (2) states. Each household samples its OWN on/off pattern: `daily_hours` sets how long the appliance runs, and the schedule's level acts as the PROBABILITY that a given slot is one of the ON slots. Two households with the same appliances therefore run them at different hours, which is what produces a realistic coincidence factor. Where daily_hours is null the schedule's own implied hours are used (non-residential, already plausible).",
+  "critical_never_curtailed": "Hospital loads are NOT excluded by rule. They sit in the ordinary classes and are kept out of curtailment by the Proposition 2 threshold, via lambda_g = 0.02 and gamma^cu_g = 5000 in config.CONSUMER_TIERS.",
+  "preferences": "Preferences are NOT stored here. The revised formulation carries lambda_h, gamma^sh_h, gamma^cu_h per HOUSEHOLD (section 1.3, Remark 4), so each consumer samples its own from config.CONSUMER_ARCHETYPES at synthesis time. The archetype names below are a generator only.",
+  "simultaneity": "Fraction of owned units drawing power at once. A household with three ACs rarely runs all three together; without this the multiplicity n_{h,a} overstates demand."
+ },
+ "thermal_responses": {
+  "none": {
+   "form": "f_a(Theta) = 1",
+   "beta_per_c": 0.0,
+   "theta_ref_c": null,
+   "cap": 1.0,
+   "comment": "No temperature sensitivity."
+  },
+  "cooling_ac": {
+   "form": "f_a(Theta) = clip(1 + beta * (Theta - theta_ref)_+, 1, cap)",
+   "beta_per_c": 0.06,
+   "theta_ref_c": 24.0,
+   "cap": 1.75,
+   "comment": "Compressor duty rises with the indoor-outdoor gradient. 6%/C above a 24 C setpoint reaches the 1.75 cap around 36.5 C, which is about the hottest Dhaka gets. This coefficient is what produces the afternoon load rise, so it materially affects peak timing."
+  },
+  "cooling_fan": {
+   "form": "f_a(Theta) = clip(1 + beta * (Theta - theta_ref)_+, 1, cap)",
+   "beta_per_c": 0.03,
+   "theta_ref_c": 26.0,
+   "cap": 1.3,
+   "comment": "Fans do not modulate power much; the effect is mostly more units switched on, which the schedule also carries. Kept deliberately weaker than AC."
+  },
+  "refrigeration": {
+   "form": "f_a(Theta) = clip(1 + beta * (Theta - theta_ref)_+, 1, cap)",
+   "beta_per_c": 0.02,
+   "theta_ref_c": 22.0,
+   "cap": 1.3,
+   "comment": "Ambient heat gain into the cabinet raises compressor duty. Applies to domestic fridges, retail display refrigeration and medical cold chain."
+  }
+ },
+ "schedules": {
+  "_format": "Piecewise blocks over the 24 h clock: {from, to, level} in decimal hours, level in [0,1]. Blocks wrap past midnight. Any hour not covered takes `default`.",
+  "flat_always_on": {
+   "default": 1.0,
+   "blocks": [],
+   "comment": "Refrigeration, servers, security. Duty cycle carries the cycling."
+  },
+  "res_evening_dominant": {
+   "default": 0.12,
+   "blocks": [
+    {
+     "from": 6.0,
+     "to": 8.5,
+     "level": 0.45
+    },
+    {
+     "from": 8.5,
+     "to": 17.0,
+     "level": 0.2
+    },
+    {
+     "from": 17.0,
+     "to": 19.0,
+     "level": 0.7
+    },
+    {
+     "from": 19.0,
+     "to": 23.0,
+     "level": 1.0
+    },
+    {
+     "from": 23.0,
+     "to": 24.0,
+     "level": 0.45
+    }
+   ],
+   "comment": "Television, lighting, general residential use. Evening-dominant, which is the classic Dhaka household shape."
+  },
+  "res_ac_affluent": {
+   "default": 0.25,
+   "blocks": [
+    {
+     "from": 7.0,
+     "to": 10.0,
+     "level": 0.3
+    },
+    {
+     "from": 10.0,
+     "to": 12.0,
+     "level": 0.55
+    },
+    {
+     "from": 12.0,
+     "to": 16.0,
+     "level": 0.85
+    },
+    {
+     "from": 16.0,
+     "to": 18.0,
+     "level": 0.7
+    },
+    {
+     "from": 18.0,
+     "to": 22.0,
+     "level": 0.9
+    },
+    {
+     "from": 22.0,
+     "to": 24.0,
+     "level": 0.75
+    },
+    {
+     "from": 0.0,
+     "to": 6.0,
+     "level": 0.55
+    }
+   ],
+   "comment": "SCENARIO, and one of the more consequential assumptions. Affluent Dhanmondi households frequently have someone home during the day (domestic staff, home working, non-working household members) and run AC through the hot afternoon. A purely evening-dominant residential AC profile would make a midday substation peak impossible to reproduce."
+  },
+  "res_ac_modest": {
+   "default": 0.05,
+   "blocks": [
+    {
+     "from": 13.0,
+     "to": 16.0,
+     "level": 0.3
+    },
+    {
+     "from": 19.0,
+     "to": 23.0,
+     "level": 0.85
+    },
+    {
+     "from": 23.0,
+     "to": 24.0,
+     "level": 0.6
+    },
+    {
+     "from": 0.0,
+     "to": 3.0,
+     "level": 0.45
+    }
+   ],
+   "comment": "Middle and lower-income households: cooling concentrated at night when the dwelling is occupied."
+  },
+  "res_fan": {
+   "default": 0.3,
+   "blocks": [
+    {
+     "from": 6.0,
+     "to": 9.0,
+     "level": 0.5
+    },
+    {
+     "from": 9.0,
+     "to": 12.0,
+     "level": 0.45
+    },
+    {
+     "from": 12.0,
+     "to": 16.0,
+     "level": 0.7
+    },
+    {
+     "from": 16.0,
+     "to": 19.0,
+     "level": 0.75
+    },
+    {
+     "from": 19.0,
+     "to": 23.0,
+     "level": 0.95
+    },
+    {
+     "from": 23.0,
+     "to": 24.0,
+     "level": 0.7
+    },
+    {
+     "from": 0.0,
+     "to": 6.0,
+     "level": 0.55
+    }
+   ],
+   "comment": "Fans run far more of the day than AC in a monsoon climate."
+  },
+  "res_morning_evening_chore": {
+   "default": 0.0,
+   "blocks": [
+    {
+     "from": 6.0,
+     "to": 9.5,
+     "level": 0.85
+    },
+    {
+     "from": 9.5,
+     "to": 12.0,
+     "level": 0.35
+    },
+    {
+     "from": 17.0,
+     "to": 20.5,
+     "level": 0.7
+    }
+   ],
+   "comment": "Washing, ironing, pumping, cooking appliances. This is the shiftable block."
+  },
+  "res_cooking": {
+   "default": 0.0,
+   "blocks": [
+    {
+     "from": 6.5,
+     "to": 9.0,
+     "level": 0.65
+    },
+    {
+     "from": 12.0,
+     "to": 14.0,
+     "level": 0.55
+    },
+    {
+     "from": 18.5,
+     "to": 21.5,
+     "level": 0.9
+    }
+   ],
+   "comment": "Three meal peaks."
+  },
+  "commercial_trading": {
+   "default": 0.05,
+   "blocks": [
+    {
+     "from": 9.0,
+     "to": 11.0,
+     "level": 0.65
+    },
+    {
+     "from": 11.0,
+     "to": 15.0,
+     "level": 1.0
+    },
+    {
+     "from": 15.0,
+     "to": 18.0,
+     "level": 0.9
+    },
+    {
+     "from": 18.0,
+     "to": 21.0,
+     "level": 0.95
+    },
+    {
+     "from": 21.0,
+     "to": 22.5,
+     "level": 0.55
+    }
+   ],
+   "comment": "Dhaka retail: opens mid-morning, midday plateau, second evening trading peak. Shops on Satmasjid and Mirpur Road trade late."
+  },
+  "commercial_base": {
+   "default": 0.35,
+   "blocks": [
+    {
+     "from": 9.0,
+     "to": 22.0,
+     "level": 1.0
+    }
+   ],
+   "comment": "Display refrigeration and POS: reduced but never off outside trading hours."
+  },
+  "industrial_single_shift": {
+   "default": 0.08,
+   "blocks": [
+    {
+     "from": 8.0,
+     "to": 13.0,
+     "level": 1.0
+    },
+    {
+     "from": 13.0,
+     "to": 14.0,
+     "level": 0.55
+    },
+    {
+     "from": 14.0,
+     "to": 18.0,
+     "level": 0.95
+    }
+   ],
+   "comment": "Day shift with a lunch dip. Light industry around Gabtoli/Darus Salam."
+  },
+  "hospital_continuous": {
+   "default": 0.8,
+   "blocks": [
+    {
+     "from": 8.0,
+     "to": 14.0,
+     "level": 1.0
+    },
+    {
+     "from": 14.0,
+     "to": 20.0,
+     "level": 0.95
+    },
+    {
+     "from": 20.0,
+     "to": 24.0,
+     "level": 0.85
+    }
+   ],
+   "comment": "Never below 0.80. Elective and outpatient activity concentrates in the day, which pushes the daytime component up."
+  },
+  "hospital_daytime_service": {
+   "default": 0.15,
+   "blocks": [
+    {
+     "from": 7.0,
+     "to": 16.0,
+     "level": 1.0
+    },
+    {
+     "from": 16.0,
+     "to": 20.0,
+     "level": 0.5
+    }
+   ],
+   "comment": "Laundry, sterilisation, kitchen: the genuinely shiftable hospital block."
+  },
+  "educational_session": {
+   "default": 0.03,
+   "blocks": [
+    {
+     "from": 7.5,
+     "to": 12.0,
+     "level": 1.0
+    },
+    {
+     "from": 12.0,
+     "to": 15.5,
+     "level": 0.9
+    },
+    {
+     "from": 15.5,
+     "to": 18.0,
+     "level": 0.45
+    },
+    {
+     "from": 18.0,
+     "to": 21.0,
+     "level": 0.25
+    }
+   ],
+   "comment": "School and college sessions plus late coaching centres, of which Dhanmondi has a very high density."
+  },
+  "government_office": {
+   "default": 0.05,
+   "blocks": [
+    {
+     "from": 9.0,
+     "to": 13.0,
+     "level": 1.0
+    },
+    {
+     "from": 13.0,
+     "to": 14.0,
+     "level": 0.7
+    },
+    {
+     "from": 14.0,
+     "to": 17.0,
+     "level": 0.95
+    },
+    {
+     "from": 17.0,
+     "to": 18.5,
+     "level": 0.35
+    }
+   ],
+   "comment": "Bangladesh government office hours, 09:00-17:00 with a lunch and prayer dip."
+  },
+  "pump_offpeak_capable": {
+   "default": 0.0,
+   "blocks": [
+    {
+     "from": 5.0,
+     "to": 8.0,
+     "level": 0.8
+    },
+    {
+     "from": 11.0,
+     "to": 13.0,
+     "level": 0.45
+    },
+    {
+     "from": 17.0,
+     "to": 19.0,
+     "level": 0.7
+    }
+   ],
+   "comment": "Overhead-tank filling. Highly shiftable: the tank buffers the service."
+  }
+ },
+ "categories": {
+  "Residential": {
+   "appliances": [
+    {
+     "name": "refrigerator",
+     "class": "critical",
+     "duty_cycle": 0.38,
+     "schedule": "flat_always_on",
+     "thermal": "refrigeration",
+     "ownership": {
+      "Res-A": 1.0,
+      "Res-B": 0.92,
+      "Res-C": 0.55
+     },
+     "n_range": {
+      "Res-A": [
+       1,
+       2
+      ],
+      "Res-B": [
+       1,
+       1
+      ],
+      "Res-C": [
+       1,
+       1
+      ]
+     },
+     "p_rat_kw": 0.15,
+     "daily_hours": 24.0,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "router_and_standby",
+     "class": "critical",
+     "duty_cycle": 0.95,
+     "schedule": "flat_always_on",
+     "thermal": "none",
+     "ownership": {
+      "Res-A": 1.0,
+      "Res-B": 0.95,
+      "Res-C": 0.7
+     },
+     "n_range": {
+      "Res-A": [
+       1,
+       2
+      ],
+      "Res-B": [
+       1,
+       1
+      ],
+      "Res-C": [
+       1,
+       1
+      ]
+     },
+     "p_rat_kw": 0.035,
+     "daily_hours": 24.0,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "medical_device_home",
+     "class": "critical",
+     "duty_cycle": 0.3,
+     "schedule": "flat_always_on",
+     "thermal": "none",
+     "ownership": {
+      "Res-A": 0.08,
+      "Res-B": 0.05,
+      "Res-C": 0.03
+     },
+     "n_range": {
+      "Res-A": [
+       1,
+       1
+      ],
+      "Res-B": [
+       1,
+       1
+      ],
+      "Res-C": [
+       1,
+       1
+      ]
+     },
+     "comment": "Nebulisers, oxygen concentrators, CPAP. Rare but genuinely critical.",
+     "p_rat_kw": 0.12,
+     "daily_hours": 4.0,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "washing_machine",
+     "class": "shiftable",
+     "duty_cycle": 0.85,
+     "schedule": "res_morning_evening_chore",
+     "thermal": "none",
+     "ownership": {
+      "Res-A": 0.85,
+      "Res-B": 0.45,
+      "Res-C": 0.1
+     },
+     "n_range": {
+      "Res-A": [
+       1,
+       1
+      ],
+      "Res-B": [
+       1,
+       1
+      ],
+      "Res-C": [
+       1,
+       1
+      ]
+     },
+     "p_rat_kw": 0.5,
+     "daily_hours": {
+      "Res-A": 1.0,
+      "Res-B": 0.8,
+      "Res-C": 0.6
+     },
+     "simultaneity": 1.0
+    },
+    {
+     "name": "electric_iron",
+     "class": "shiftable",
+     "duty_cycle": 0.55,
+     "schedule": "res_morning_evening_chore",
+     "thermal": "none",
+     "ownership": {
+      "Res-A": 0.9,
+      "Res-B": 0.75,
+      "Res-C": 0.4
+     },
+     "n_range": {
+      "Res-A": [
+       1,
+       1
+      ],
+      "Res-B": [
+       1,
+       1
+      ],
+      "Res-C": [
+       1,
+       1
+      ]
+     },
+     "p_rat_kw": 1.0,
+     "daily_hours": {
+      "Res-A": 0.5,
+      "Res-B": 0.4,
+      "Res-C": 0.3
+     },
+     "simultaneity": 1.0
+    },
+    {
+     "name": "water_pump",
+     "class": "shiftable",
+     "duty_cycle": 0.95,
+     "schedule": "pump_offpeak_capable",
+     "thermal": "none",
+     "ownership": {
+      "Res-A": 0.8,
+      "Res-B": 0.6,
+      "Res-C": 0.35
+     },
+     "n_range": {
+      "Res-A": [
+       1,
+       1
+      ],
+      "Res-B": [
+       1,
+       1
+      ],
+      "Res-C": [
+       1,
+       1
+      ]
+     },
+     "p_rat_kw": 0.75,
+     "daily_hours": {
+      "Res-A": 0.9,
+      "Res-B": 0.7,
+      "Res-C": 0.5
+     },
+     "simultaneity": 1.0
+    },
+    {
+     "name": "rice_cooker",
+     "class": "shiftable",
+     "duty_cycle": 0.6,
+     "schedule": "res_cooking",
+     "thermal": "none",
+     "ownership": {
+      "Res-A": 0.75,
+      "Res-B": 0.65,
+      "Res-C": 0.35
+     },
+     "n_range": {
+      "Res-A": [
+       1,
+       1
+      ],
+      "Res-B": [
+       1,
+       1
+      ],
+      "Res-C": [
+       1,
+       1
+      ]
+     },
+     "p_rat_kw": 0.7,
+     "daily_hours": {
+      "Res-A": 1.5,
+      "Res-B": 1.4,
+      "Res-C": 1.2
+     },
+     "simultaneity": 1.0
+    },
+    {
+     "name": "split_ac_1_5ton",
+     "class": "curtailable",
+     "duty_cycle": 0.62,
+     "schedule": "res_ac_affluent",
+     "thermal": "cooling_ac",
+     "ownership": {
+      "Res-A": 0.88,
+      "Res-B": 0.28,
+      "Res-C": 0.02
+     },
+     "n_range": {
+      "Res-A": [
+       1,
+       3
+      ],
+      "Res-B": [
+       1,
+       1
+      ],
+      "Res-C": [
+       1,
+       1
+      ]
+     },
+     "schedule_override": {
+      "Res-B": "res_ac_modest",
+      "Res-C": "res_ac_modest"
+     },
+     "p_rat_kw": 1.65,
+     "daily_hours": {
+      "Res-A": 5.0,
+      "Res-B": 3.5,
+      "Res-C": 2.5
+     },
+     "simultaneity": 0.5
+    },
+    {
+     "name": "ceiling_fan",
+     "class": "curtailable",
+     "duty_cycle": 0.8,
+     "schedule": "res_fan",
+     "thermal": "cooling_fan",
+     "ownership": {
+      "Res-A": 1.0,
+      "Res-B": 1.0,
+      "Res-C": 0.95
+     },
+     "n_range": {
+      "Res-A": [
+       3,
+       6
+      ],
+      "Res-B": [
+       2,
+       4
+      ],
+      "Res-C": [
+       1,
+       3
+      ]
+     },
+     "p_rat_kw": 0.075,
+     "daily_hours": {
+      "Res-A": 10.0,
+      "Res-B": 12.0,
+      "Res-C": 13.0
+     },
+     "simultaneity": 0.6
+    },
+    {
+     "name": "lighting",
+     "class": "curtailable",
+     "duty_cycle": 0.9,
+     "schedule": "res_evening_dominant",
+     "thermal": "none",
+     "ownership": {
+      "Res-A": 1.0,
+      "Res-B": 1.0,
+      "Res-C": 1.0
+     },
+     "n_range": {
+      "Res-A": [
+       8,
+       14
+      ],
+      "Res-B": [
+       5,
+       10
+      ],
+      "Res-C": [
+       3,
+       6
+      ]
+     },
+     "p_rat_kw": 0.018,
+     "daily_hours": {
+      "Res-A": 5.0,
+      "Res-B": 5.0,
+      "Res-C": 4.5
+     },
+     "simultaneity": 0.55
+    },
+    {
+     "name": "television",
+     "class": "curtailable",
+     "duty_cycle": 0.85,
+     "schedule": "res_evening_dominant",
+     "thermal": "none",
+     "ownership": {
+      "Res-A": 0.95,
+      "Res-B": 0.88,
+      "Res-C": 0.6
+     },
+     "n_range": {
+      "Res-A": [
+       1,
+       2
+      ],
+      "Res-B": [
+       1,
+       1
+      ],
+      "Res-C": [
+       1,
+       1
+      ]
+     },
+     "p_rat_kw": 0.095,
+     "daily_hours": {
+      "Res-A": 5.0,
+      "Res-B": 4.5,
+      "Res-C": 3.0
+     },
+     "simultaneity": 0.8
+    }
+   ],
+   "archetypes": [
+    "Res-A",
+    "Res-B",
+    "Res-C"
+   ]
+  },
+  "Commercial": {
+   "appliances": [
+    {
+     "name": "display_refrigeration",
+     "class": "critical",
+     "duty_cycle": 0.55,
+     "schedule": "commercial_base",
+     "thermal": "refrigeration",
+     "ownership": {
+      "Commercial": 0.55
+     },
+     "n_range": {
+      "Commercial": [
+       1,
+       3
+      ]
+     },
+     "p_rat_kw": 0.8,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "pos_and_servers",
+     "class": "critical",
+     "duty_cycle": 0.8,
+     "schedule": "commercial_base",
+     "thermal": "none",
+     "ownership": {
+      "Commercial": 0.95
+     },
+     "n_range": {
+      "Commercial": [
+       1,
+       2
+      ]
+     },
+     "p_rat_kw": 0.3,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "security_and_cctv",
+     "class": "critical",
+     "duty_cycle": 0.95,
+     "schedule": "flat_always_on",
+     "thermal": "none",
+     "ownership": {
+      "Commercial": 0.85
+     },
+     "n_range": {
+      "Commercial": [
+       1,
+       1
+      ]
+     },
+     "p_rat_kw": 0.15,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "water_pump",
+     "class": "shiftable",
+     "duty_cycle": 0.9,
+     "schedule": "pump_offpeak_capable",
+     "thermal": "none",
+     "ownership": {
+      "Commercial": 0.7
+     },
+     "n_range": {
+      "Commercial": [
+       1,
+       1
+      ]
+     },
+     "p_rat_kw": 1.5,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "water_heater_storage",
+     "class": "shiftable",
+     "duty_cycle": 0.45,
+     "schedule": "commercial_trading",
+     "thermal": "none",
+     "ownership": {
+      "Commercial": 0.3
+     },
+     "n_range": {
+      "Commercial": [
+       1,
+       1
+      ]
+     },
+     "p_rat_kw": 2.0,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "ac_cassette",
+     "class": "curtailable",
+     "duty_cycle": 0.65,
+     "schedule": "commercial_trading",
+     "thermal": "cooling_ac",
+     "ownership": {
+      "Commercial": 0.8
+     },
+     "n_range": {
+      "Commercial": [
+       1,
+       4
+      ]
+     },
+     "p_rat_kw": 3.5,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "lighting_retail",
+     "class": "curtailable",
+     "duty_cycle": 0.95,
+     "schedule": "commercial_trading",
+     "thermal": "none",
+     "ownership": {
+      "Commercial": 1.0
+     },
+     "n_range": {
+      "Commercial": [
+       1,
+       3
+      ]
+     },
+     "p_rat_kw": 0.9,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "signage_and_display",
+     "class": "curtailable",
+     "duty_cycle": 0.9,
+     "schedule": "commercial_trading",
+     "thermal": "none",
+     "ownership": {
+      "Commercial": 0.6
+     },
+     "n_range": {
+      "Commercial": [
+       1,
+       2
+      ]
+     },
+     "p_rat_kw": 0.4,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    }
+   ],
+   "archetypes": [
+    "Commercial"
+   ]
+  },
+  "Industrial": {
+   "appliances": [
+    {
+     "name": "process_motor",
+     "class": "critical",
+     "duty_cycle": 0.7,
+     "schedule": "industrial_single_shift",
+     "thermal": "none",
+     "ownership": {
+      "Industrial": 0.9
+     },
+     "n_range": {
+      "Industrial": [
+       1,
+       3
+      ]
+     },
+     "p_rat_kw": 5.0,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "air_compressor",
+     "class": "critical",
+     "duty_cycle": 0.6,
+     "schedule": "industrial_single_shift",
+     "thermal": "none",
+     "ownership": {
+      "Industrial": 0.65
+     },
+     "n_range": {
+      "Industrial": [
+       1,
+       2
+      ]
+     },
+     "p_rat_kw": 3.0,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "batch_process",
+     "class": "shiftable",
+     "duty_cycle": 0.75,
+     "schedule": "industrial_single_shift",
+     "thermal": "none",
+     "ownership": {
+      "Industrial": 0.55
+     },
+     "n_range": {
+      "Industrial": [
+       1,
+       2
+      ]
+     },
+     "p_rat_kw": 4.0,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "water_pump",
+     "class": "shiftable",
+     "duty_cycle": 0.85,
+     "schedule": "pump_offpeak_capable",
+     "thermal": "none",
+     "ownership": {
+      "Industrial": 0.75
+     },
+     "n_range": {
+      "Industrial": [
+       1,
+       1
+      ]
+     },
+     "p_rat_kw": 2.2,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "ventilation_fan",
+     "class": "curtailable",
+     "duty_cycle": 0.85,
+     "schedule": "industrial_single_shift",
+     "thermal": "cooling_fan",
+     "ownership": {
+      "Industrial": 0.8
+     },
+     "n_range": {
+      "Industrial": [
+       1,
+       3
+      ]
+     },
+     "p_rat_kw": 1.5,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "lighting_shopfloor",
+     "class": "curtailable",
+     "duty_cycle": 0.95,
+     "schedule": "industrial_single_shift",
+     "thermal": "none",
+     "ownership": {
+      "Industrial": 1.0
+     },
+     "n_range": {
+      "Industrial": [
+       1,
+       2
+      ]
+     },
+     "p_rat_kw": 1.2,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "ac_office_block",
+     "class": "curtailable",
+     "duty_cycle": 0.6,
+     "schedule": "industrial_single_shift",
+     "thermal": "cooling_ac",
+     "ownership": {
+      "Industrial": 0.5
+     },
+     "n_range": {
+      "Industrial": [
+       1,
+       2
+      ]
+     },
+     "p_rat_kw": 1.8,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    }
+   ],
+   "archetypes": [
+    "Industrial"
+   ]
+  },
+  "Hospital": {
+   "appliances": [
+    {
+     "name": "ot_and_icu",
+     "class": "critical",
+     "duty_cycle": 0.7,
+     "schedule": "hospital_continuous",
+     "thermal": "none",
+     "ownership": {
+      "Hospital": 1.0
+     },
+     "n_range": {
+      "Hospital": [
+       1,
+       2
+      ]
+     },
+     "p_rat_kw": 15.0,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "diagnostic_imaging",
+     "class": "critical",
+     "duty_cycle": 0.35,
+     "schedule": "hospital_continuous",
+     "thermal": "none",
+     "ownership": {
+      "Hospital": 0.7
+     },
+     "n_range": {
+      "Hospital": [
+       1,
+       2
+      ]
+     },
+     "p_rat_kw": 8.0,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "medical_cold_chain",
+     "class": "critical",
+     "duty_cycle": 0.55,
+     "schedule": "flat_always_on",
+     "thermal": "refrigeration",
+     "ownership": {
+      "Hospital": 1.0
+     },
+     "n_range": {
+      "Hospital": [
+       1,
+       2
+      ]
+     },
+     "p_rat_kw": 2.5,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "lifts_and_life_safety",
+     "class": "critical",
+     "duty_cycle": 0.45,
+     "schedule": "hospital_continuous",
+     "thermal": "none",
+     "ownership": {
+      "Hospital": 0.95
+     },
+     "n_range": {
+      "Hospital": [
+       1,
+       2
+      ]
+     },
+     "p_rat_kw": 4.0,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "laundry",
+     "class": "shiftable",
+     "duty_cycle": 0.7,
+     "schedule": "hospital_daytime_service",
+     "thermal": "none",
+     "ownership": {
+      "Hospital": 0.8
+     },
+     "n_range": {
+      "Hospital": [
+       1,
+       1
+      ]
+     },
+     "p_rat_kw": 6.0,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "sterilisation",
+     "class": "shiftable",
+     "duty_cycle": 0.6,
+     "schedule": "hospital_daytime_service",
+     "thermal": "none",
+     "ownership": {
+      "Hospital": 0.85
+     },
+     "n_range": {
+      "Hospital": [
+       1,
+       1
+      ]
+     },
+     "p_rat_kw": 5.0,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "ac_wards_and_corridors",
+     "class": "curtailable",
+     "duty_cycle": 0.7,
+     "schedule": "hospital_continuous",
+     "thermal": "cooling_ac",
+     "ownership": {
+      "Hospital": 1.0
+     },
+     "n_range": {
+      "Hospital": [
+       1,
+       3
+      ]
+     },
+     "p_rat_kw": 12.0,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "lighting_general",
+     "class": "curtailable",
+     "duty_cycle": 0.9,
+     "schedule": "hospital_continuous",
+     "thermal": "none",
+     "ownership": {
+      "Hospital": 1.0
+     },
+     "n_range": {
+      "Hospital": [
+       1,
+       2
+      ]
+     },
+     "p_rat_kw": 3.5,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    }
+   ],
+   "archetypes": [
+    "Hospital"
+   ]
+  },
+  "Educational": {
+   "appliances": [
+    {
+     "name": "servers_and_security",
+     "class": "critical",
+     "duty_cycle": 0.85,
+     "schedule": "flat_always_on",
+     "thermal": "none",
+     "ownership": {
+      "Educational": 0.9
+     },
+     "n_range": {
+      "Educational": [
+       1,
+       1
+      ]
+     },
+     "p_rat_kw": 0.8,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "water_pump",
+     "class": "shiftable",
+     "duty_cycle": 0.85,
+     "schedule": "pump_offpeak_capable",
+     "thermal": "none",
+     "ownership": {
+      "Educational": 0.85
+     },
+     "n_range": {
+      "Educational": [
+       1,
+       1
+      ]
+     },
+     "p_rat_kw": 1.5,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "laboratory_equipment",
+     "class": "shiftable",
+     "duty_cycle": 0.5,
+     "schedule": "educational_session",
+     "thermal": "none",
+     "ownership": {
+      "Educational": 0.45
+     },
+     "n_range": {
+      "Educational": [
+       1,
+       2
+      ]
+     },
+     "p_rat_kw": 2.0,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "ac_classrooms",
+     "class": "curtailable",
+     "duty_cycle": 0.65,
+     "schedule": "educational_session",
+     "thermal": "cooling_ac",
+     "ownership": {
+      "Educational": 0.55
+     },
+     "n_range": {
+      "Educational": [
+       1,
+       4
+      ]
+     },
+     "p_rat_kw": 5.5,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "ceiling_fans_bank",
+     "class": "curtailable",
+     "duty_cycle": 0.85,
+     "schedule": "educational_session",
+     "thermal": "cooling_fan",
+     "ownership": {
+      "Educational": 1.0
+     },
+     "n_range": {
+      "Educational": [
+       1,
+       3
+      ]
+     },
+     "p_rat_kw": 1.2,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "lighting",
+     "class": "curtailable",
+     "duty_cycle": 0.9,
+     "schedule": "educational_session",
+     "thermal": "none",
+     "ownership": {
+      "Educational": 1.0
+     },
+     "n_range": {
+      "Educational": [
+       1,
+       3
+      ]
+     },
+     "p_rat_kw": 1.5,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    }
+   ],
+   "archetypes": [
+    "Educational"
+   ]
+  },
+  "Government": {
+   "appliances": [
+    {
+     "name": "servers_and_it",
+     "class": "critical",
+     "duty_cycle": 0.85,
+     "schedule": "flat_always_on",
+     "thermal": "none",
+     "ownership": {
+      "Government": 0.95
+     },
+     "n_range": {
+      "Government": [
+       1,
+       2
+      ]
+     },
+     "p_rat_kw": 1.2,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "security_and_cctv",
+     "class": "critical",
+     "duty_cycle": 0.95,
+     "schedule": "flat_always_on",
+     "thermal": "none",
+     "ownership": {
+      "Government": 0.95
+     },
+     "n_range": {
+      "Government": [
+       1,
+       1
+      ]
+     },
+     "p_rat_kw": 0.6,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "water_pump",
+     "class": "shiftable",
+     "duty_cycle": 0.85,
+     "schedule": "pump_offpeak_capable",
+     "thermal": "none",
+     "ownership": {
+      "Government": 0.8
+     },
+     "n_range": {
+      "Government": [
+       1,
+       1
+      ]
+     },
+     "p_rat_kw": 1.1,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "ac_offices",
+     "class": "curtailable",
+     "duty_cycle": 0.65,
+     "schedule": "government_office",
+     "thermal": "cooling_ac",
+     "ownership": {
+      "Government": 0.85
+     },
+     "n_range": {
+      "Government": [
+       1,
+       3
+      ]
+     },
+     "p_rat_kw": 4.5,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "lighting",
+     "class": "curtailable",
+     "duty_cycle": 0.9,
+     "schedule": "government_office",
+     "thermal": "none",
+     "ownership": {
+      "Government": 1.0
+     },
+     "n_range": {
+      "Government": [
+       1,
+       2
+      ]
+     },
+     "p_rat_kw": 1.2,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    },
+    {
+     "name": "office_equipment",
+     "class": "curtailable",
+     "duty_cycle": 0.55,
+     "schedule": "government_office",
+     "thermal": "none",
+     "ownership": {
+      "Government": 0.9
+     },
+     "n_range": {
+      "Government": [
+       1,
+       2
+      ]
+     },
+     "p_rat_kw": 0.9,
+     "daily_hours": null,
+     "simultaneity": 1.0
+    }
+   ],
+   "archetypes": [
+    "Government"
+   ]
+  }
+ },
+ "residential_archetype_mix": {
+  "_comment": "SCENARIO. OSM carries no income data, so the split of residential connections across Res-A/B/C archetypes is assigned per service area from the documented character of each neighbourhood. Dhanmondi is a high-income planned area; Kalyanpur/Shyamoli is predominantly middle-income with lower-income pockets toward Darus Salam. This is a stated assumption, not a measurement, and it matters: it sets how much daytime AC load exists.",
+  "Dhanmondi": {
+   "Res-A": 0.45,
+   "Res-B": 0.4,
+   "Res-C": 0.15
+  },
+  "Kalyanpur": {
+   "Res-A": 0.2,
+   "Res-B": 0.5,
+   "Res-C": 0.3
+  }
+ },
+ "socioeconomic": {
+  "_comment": "Residential archetypes are socio-economic, per the brief. Income bands are indicative Dhaka monthly household income (BDT).",
+  "Res-A": {
+   "band": "upper-middle",
+   "income_bdt": [
+    60000,
+    200000
+   ],
+   "target_kwh_month": [
+    280,
+    450
+   ],
+   "household_size": [
+    4,
+    6
+   ]
+  },
+  "Res-B": {
+   "band": "middle",
+   "income_bdt": [
+    25000,
+    60000
+   ],
+   "target_kwh_month": [
+    150,
+    280
+   ],
+   "household_size": [
+    4,
+    5
+   ]
+  },
+  "Res-C": {
+   "band": "lower-middle",
+   "income_bdt": [
+    10000,
+    25000
+   ],
+   "target_kwh_month": [
+    60,
+    150
+   ],
+   "household_size": [
+    3,
+    5
+   ]
+  }
+ }
+}

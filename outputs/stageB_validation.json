@@ -1,0 +1,138 @@
+{
+ "Dhanmondi": {
+  "peak_kw": 136499.99999999994,
+  "peak_clock": "18:30",
+  "target_kw": 136500.0,
+  "load_factor": 0.6865529846409536,
+  "diversity_factor": 2.3723801299882497,
+  "gates_passed": true,
+  "timing_stability": {
+   "n_seeds": 40,
+   "n_inside": 18,
+   "share_inside": 0.45,
+   "distribution": {
+    "12:30": 8,
+    "12:00": 7,
+    "18:30": 7,
+    "17:00": 5,
+    "17:30": 5,
+    "18:00": 5,
+    "13:30": 2,
+    "14:00": 1
+   },
+   "verdict": "UNDETERMINED - T2 is seed-dependent at this composition"
+  },
+  "checks": [
+   {
+    "check": "T1 peak level within 2% of p_(i,d)",
+    "pass": true,
+    "detail": "136,500 kW vs target 136,500 kW (-0.000%). Satisfied by construction via the calibration constant K.",
+    "gate": true
+   },
+   {
+    "check": "T2 peak timing falls inside the adaptive T^pk_i window",
+    "pass": false,
+    "detail": "inside T^pk_i on 18/40 population draws (45%); T^pk_i = 12:00-14:30; default-seed argmax 18:30. UNDETERMINED: the argmax is seed-dependent at this composition, so neither pass nor fail can be claimed. CONDITIONAL: the peak-time audit rates this substation's `Peak_Time` field LIKELY_CONVENTION (6 flags), so the target is not trustworthy enough to fail the model against. See docs/peak_time_reliability.md.",
+    "gate": false,
+    "conditional": true
+   },
+   {
+    "check": "load factor in a plausible urban range (0.55-0.85)",
+    "pass": true,
+    "detail": "0.687",
+    "gate": false
+   },
+   {
+    "check": "critical class share is 10-30% of energy",
+    "pass": true,
+    "detail": "critical 0.247, shiftable 0.109, curtailable 0.644",
+    "gate": false
+   },
+   {
+    "check": "flexible energy share is large enough for DR to be meaningful (>50%)",
+    "pass": true,
+    "detail": "0.753 of daily energy is shiftable or curtailable",
+    "gate": false
+   },
+   {
+    "check": "no slot is negative or non-finite",
+    "pass": true,
+    "detail": "",
+    "gate": true
+   },
+   {
+    "check": "night minimum is below 60% of the peak",
+    "pass": true,
+    "detail": "min 49,317 kW at 00:00, 36.1% of peak",
+    "gate": false
+   }
+  ]
+ },
+ "Kalyanpur": {
+  "peak_kw": 137999.99999999994,
+  "peak_clock": "19:30",
+  "target_kw": 138000.0,
+  "load_factor": 0.6897986794108518,
+  "diversity_factor": 2.7917101692922093,
+  "gates_passed": true,
+  "timing_stability": {
+   "n_seeds": 40,
+   "n_inside": 36,
+   "share_inside": 0.9,
+   "distribution": {
+    "18:30": 13,
+    "19:00": 11,
+    "19:30": 9,
+    "20:00": 2,
+    "17:30": 2,
+    "17:00": 2,
+    "18:00": 1
+   },
+   "verdict": "ROBUST PASS"
+  },
+  "checks": [
+   {
+    "check": "T1 peak level within 2% of p_(i,d)",
+    "pass": true,
+    "detail": "138,000 kW vs target 138,000 kW (-0.000%). Satisfied by construction via the calibration constant K.",
+    "gate": true
+   },
+   {
+    "check": "T2 peak timing falls inside the adaptive T^pk_i window",
+    "pass": true,
+    "detail": "inside T^pk_i on 36/40 population draws (90%); T^pk_i = 18:00-21:00; default-seed argmax 19:30",
+    "gate": true
+   },
+   {
+    "check": "load factor in a plausible urban range (0.55-0.85)",
+    "pass": true,
+    "detail": "0.690",
+    "gate": false
+   },
+   {
+    "check": "critical class share is 10-30% of energy",
+    "pass": true,
+    "detail": "critical 0.279, shiftable 0.137, curtailable 0.584",
+    "gate": false
+   },
+   {
+    "check": "flexible energy share is large enough for DR to be meaningful (>50%)",
+    "pass": true,
+    "detail": "0.721 of daily energy is shiftable or curtailable",
+    "gate": false
+   },
+   {
+    "check": "no slot is negative or non-finite",
+    "pass": true,
+    "detail": "",
+    "gate": true
+   },
+   {
+    "check": "night minimum is below 60% of the peak",
+    "pass": true,
+    "detail": "min 49,223 kW at 03:30, 35.7% of peak",
+    "gate": false
+   }
+  ]
+ }
+}
