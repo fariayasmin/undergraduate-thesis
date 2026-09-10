@@ -32,10 +32,10 @@ numbers are measured and which are assumed. No equations.
 | A/B · Temperature Θ(t) | `03b_temperature_profile.py`, `gentwin/temperature.py` | **done, 5/5 checks** |
 | B · Load generation, Eq. 2–6 | `04_load_generator.py`, `gentwin/load_model.py` | **done** |
 | B · Aggregation validation, Eq. 6–8 | `05_validate_against_bpdb.py`, `gentwin/validation.py` | **done — gate FAILS at Dhanmondi, see below** |
-| E/F · LP, Eq. 17–33 | `06_lp_optimiser.py` | next |
-| — · Proposition checks | `06a_verify_propositions.py` | next |
-| G/H · Regime, events, pool, Eq. 38–51 | `07_regime_events_pool.py` | next |
-| K · Knowledge graph, Eq. 55 | `08_knowledge_graph.py` | next |
+| E/F · LP, Eq. 17–33 | `06_lp_optimiser.py` | done|
+| — · Proposition checks | `06a_verify_propositions.py` | done |
+| G/H · Regime, events, pool, Eq. 38–51 | `07_regime_events_pool.py` | done |
+| K · Knowledge graph, Eq. 55 | `08_knowledge_graph.py` | done |
 
 ---
 
