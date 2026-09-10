@@ -106,11 +106,9 @@ def main() -> int:
     if a.plot:
         import matplotlib; matplotlib.use("Agg")
         import matplotlib.pyplot as plt
-        n = len(store)
-        fig, axes = plt.subplots(2, n, figsize=(8 * n, 9), squeeze=False)
-        for j, (name, (cons, theta, agg, date, observed, xi)) in enumerate(store.items()):
-            x = np.arange(48); t_pk = sorted(pw.get_peak_slots(name))
-            ax = axes[0, j]
+
+        def draw_by_category(ax, name, date, agg, observed, t_pk):
+            x = np.arange(48)
             base = np.zeros(48)
             for c in ["Residential", "Commercial", "Educational", "Hospital",
                       "Government", "Industrial"]:
@@ -133,7 +131,8 @@ def main() -> int:
                          fontsize=11)
             ax.legend(fontsize=7.5, loc="upper left", ncol=2)
 
-            ax = axes[1, j]
+        def draw_by_class(ax, name, agg, theta, t_pk):
+            x = np.arange(48)
             base = np.zeros(48)
             colors = {"critical": "#b03060", "shiftable": "#3878a8", "curtailable": "#4fa64f"}
             for c, v in agg["by_class_kw"].items():
@@ -149,12 +148,40 @@ def main() -> int:
             ax.set_xlim(0, 47); ax.set_ylabel("kW")
             ax.set_title(f"{name} - by class C, with $\\Theta(t)$", fontsize=11)
             ax.legend(fontsize=8, loc="upper left")
+
+        n = len(store)
+        fig, axes = plt.subplots(2, n, figsize=(8 * n, 9), squeeze=False)
+        for j, (name, (cons, theta, agg, date, observed, xi)) in enumerate(store.items()):
+            t_pk = sorted(pw.get_peak_slots(name))
+            draw_by_category(axes[0, j], name, date, agg, observed, t_pk)
+            draw_by_class(axes[1, j], name, agg, theta, t_pk)
         fig.suptitle("Stage B: bottom-up synthetic load, Eqs. (2)-(6)",
                      fontsize=13, fontweight="bold")
         fig.tight_layout(rect=[0, 0, 1, 0.95])
         p = cfg.OUT_DIR / "load_generation.png"
         fig.savefig(p, dpi=130, bbox_inches="tight")
         print(f"\nwrote {p}")
+
+        # True vector PDFs, one per panel, drawn fresh at full resolution.
+        for name, (cons, theta, agg, date, observed, xi) in store.items():
+            t_pk = sorted(pw.get_peak_slots(name))
+            safe = name.replace(" ", "_")
+
+            fig_i, ax_i = plt.subplots(figsize=(8, 4.5))
+            draw_by_category(ax_i, name, date, agg, observed, t_pk)
+            fig_i.tight_layout()
+            p1 = cfg.PDF_DIR / f"load_generation_{safe}_by_category.pdf"
+            fig_i.savefig(p1, bbox_inches="tight")
+            plt.close(fig_i)
+            print(f"wrote {p1}")
+
+            fig_i, ax_i = plt.subplots(figsize=(8, 4.5))
+            draw_by_class(ax_i, name, agg, theta, t_pk)
+            fig_i.tight_layout()
+            p2 = cfg.PDF_DIR / f"load_generation_{safe}_by_class.pdf"
+            fig_i.savefig(p2, bbox_inches="tight")
+            plt.close(fig_i)
+            print(f"wrote {p2}")
     return 0
 
 if __name__ == "__main__":

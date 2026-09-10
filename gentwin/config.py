@@ -42,12 +42,16 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 CACHE_DIR = DATA_DIR / "cache"
 OUT_DIR = ROOT / "outputs"
+# One true vector PDF per individual graph (not a raster PNG wrapped in a PDF
+# container): every multi-panel figure also renders each of its panels here
+# as its own standalone Figure, drawn straight from the same data.
+PDF_DIR = ROOT / "outputs_pdf"
 
 # Inputs produced by the (frozen) forecasting stage. Never written to.
 BPDB_CSV = DATA_DIR / "BPDB_Dhaka_City_Substations_Page3.csv"
 FORECAST_DIR = DATA_DIR / "forecast_outputs"
 
-for _d in (DATA_DIR, CACHE_DIR, OUT_DIR):
+for _d in (DATA_DIR, CACHE_DIR, OUT_DIR, PDF_DIR):
     _d.mkdir(parents=True, exist_ok=True)
 
 

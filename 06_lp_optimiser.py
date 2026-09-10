@@ -280,6 +280,46 @@ def cmd_sweep(subs, n_days):
           "solution toward the purely private comparison.")
 
 
+def _draw_dispatch_panel(ax, i, s, net, tpk, x):
+    ax.plot(x, net["G"], label="$G_i(t)$ import", color="steelblue", lw=1.6)
+    ax.plot(x, net["Bdis"], label="$B^{dis}_i(t)$", color="seagreen", lw=1.3)
+    ax.plot(x, -net["Bch"], label="$-B^{ch}_i(t)$", color="darkred", lw=1.3)
+    ax.plot(x, net["T_out"], label="$T_{ij}(t)$ export", color="purple", lw=1.2)
+    ax.plot(x, s.post_response_kw[i], "--", color="black", lw=1.4,
+            label=r"post-response $L_h(t;x,y)$")
+    ax.axvspan(min(tpk) - .5, max(tpk) + .5, color="orange", alpha=0.15,
+               label="$T^{pk}_i$")
+    ax.set_ylabel("kW"); ax.legend(fontsize=7.5); ax.set_xlim(0, 47)
+    ax.set_title(f"{i} - dispatch, {s.date}", fontsize=11)
+
+
+def _draw_shadow_price_panel(ax, i, net, pi, x):
+    ax.plot(x, pi, color="tomato", lw=1.8, label=r"$\pi_i(t)$ dual of C1")
+    ax.set_ylabel("Tk/kWh"); ax.legend(fontsize=8); ax.set_xlim(0, 47)
+    ax2 = ax.twinx()
+    ax2.plot(x, net["SoC"], color="steelblue", lw=1.2, ls=":", label="SoC")
+    ax2.set_ylabel("kWh", color="steelblue")
+    ax.set_title(f"{i} - shadow price and storage", fontsize=11)
+
+
+def _draw_demand_response_panel(ax, i, s, tpk, x):
+    thr = pd.DataFrame([t for t in s.thresholds if t["substation"] == i])
+    if len(thr):
+        cur = thr[thr.action == "curtail"]
+        agg = cur.groupby("slot")["energy_kwh"].sum().reindex(x, fill_value=0)
+        ax.bar(x, agg.values, color="seagreen", alpha=0.8, label="curtailed kWh")
+        sh = thr[thr.action == "shift"]
+        if len(sh):
+            aggs = sh.groupby("slot")["energy_kwh"].sum().reindex(x, fill_value=0)
+            ax.bar(x, aggs.values, color="steelblue", alpha=0.8,
+                   bottom=agg.values, label="shifted kWh")
+    ax.axvspan(min(tpk) - .5, max(tpk) + .5, color="orange", alpha=0.15)
+    ax.set_ylabel("kWh"); ax.legend(fontsize=8); ax.set_xlim(0, 47)
+    ax.set_xticks(range(0, 48, 4))
+    ax.set_xticklabels([cfg.slot_to_clock(t) for t in range(0, 48, 4)], fontsize=8)
+    ax.set_title(f"{i} - demand response by slot", fontsize=11)
+
+
 def cmd_plot(sols, subs):
     import matplotlib
     matplotlib.use("Agg")
@@ -290,48 +330,45 @@ def cmd_plot(sols, subs):
     for j, i in enumerate(subs):
         net, pi = s.network[i], s.duals[i]
         tpk = sorted(pw.get_peak_slots(i))
-        ax = axes[0, j]
-        ax.plot(x, net["G"], label="$G_i(t)$ import", color="steelblue", lw=1.6)
-        ax.plot(x, net["Bdis"], label="$B^{dis}_i(t)$", color="seagreen", lw=1.3)
-        ax.plot(x, -net["Bch"], label="$-B^{ch}_i(t)$", color="darkred", lw=1.3)
-        ax.plot(x, net["T_out"], label="$T_{ij}(t)$ export", color="purple", lw=1.2)
-        ax.plot(x, s.post_response_kw[i], "--", color="black", lw=1.4,
-                label=r"post-response $L_h(t;x,y)$")
-        ax.axvspan(min(tpk) - .5, max(tpk) + .5, color="orange", alpha=0.15,
-                   label="$T^{pk}_i$")
-        ax.set_ylabel("kW"); ax.legend(fontsize=7.5); ax.set_xlim(0, 47)
-        ax.set_title(f"{i} - dispatch, {s.date}", fontsize=11)
-
-        ax = axes[1, j]
-        ax.plot(x, pi, color="tomato", lw=1.8, label=r"$\pi_i(t)$ dual of C1")
-        ax.set_ylabel("Tk/kWh"); ax.legend(fontsize=8); ax.set_xlim(0, 47)
-        ax2 = ax.twinx()
-        ax2.plot(x, net["SoC"], color="steelblue", lw=1.2, ls=":", label="SoC")
-        ax2.set_ylabel("kWh", color="steelblue")
-        ax.set_title(f"{i} - shadow price and storage", fontsize=11)
-
-        ax = axes[2, j]
-        thr = pd.DataFrame([t for t in s.thresholds if t["substation"] == i])
-        if len(thr):
-            cur = thr[thr.action == "curtail"]
-            agg = cur.groupby("slot")["energy_kwh"].sum().reindex(x, fill_value=0)
-            ax.bar(x, agg.values, color="seagreen", alpha=0.8, label="curtailed kWh")
-            sh = thr[thr.action == "shift"]
-            if len(sh):
-                aggs = sh.groupby("slot")["energy_kwh"].sum().reindex(x, fill_value=0)
-                ax.bar(x, aggs.values, color="steelblue", alpha=0.8,
-                       bottom=agg.values, label="shifted kWh")
-        ax.axvspan(min(tpk) - .5, max(tpk) + .5, color="orange", alpha=0.15)
-        ax.set_ylabel("kWh"); ax.legend(fontsize=8); ax.set_xlim(0, 47)
-        ax.set_xticks(range(0, 48, 4))
-        ax.set_xticklabels([cfg.slot_to_clock(t) for t in range(0, 48, 4)], fontsize=8)
-        ax.set_title(f"{i} - demand response by slot", fontsize=11)
+        _draw_dispatch_panel(axes[0, j], i, s, net, tpk, x)
+        _draw_shadow_price_panel(axes[1, j], i, net, pi, x)
+        _draw_demand_response_panel(axes[2, j], i, s, tpk, x)
     fig.suptitle("Stage E/F: LP dispatch, shadow prices and demand response",
                  fontsize=13, fontweight="bold")
     fig.tight_layout(rect=[0, 0, 1, 0.96])
     p = cfg.OUT_DIR / "lp_dispatch.png"
     fig.savefig(p, dpi=130, bbox_inches="tight")
     print(f"  wrote {p}")
+
+    # True vector PDFs, one per panel, drawn fresh from the same solution.
+    for i in subs:
+        net, pi = s.network[i], s.duals[i]
+        tpk = sorted(pw.get_peak_slots(i))
+        safe = i.replace(" ", "_")
+
+        fig_i, ax_i = plt.subplots(figsize=(8, 4.2))
+        _draw_dispatch_panel(ax_i, i, s, net, tpk, x)
+        fig_i.tight_layout()
+        p1 = cfg.PDF_DIR / f"lp_dispatch_{safe}_dispatch.pdf"
+        fig_i.savefig(p1, bbox_inches="tight")
+        plt.close(fig_i)
+        print(f"  wrote {p1}")
+
+        fig_i, ax_i = plt.subplots(figsize=(8, 4.2))
+        _draw_shadow_price_panel(ax_i, i, net, pi, x)
+        fig_i.tight_layout()
+        p2 = cfg.PDF_DIR / f"lp_dispatch_{safe}_shadow_price.pdf"
+        fig_i.savefig(p2, bbox_inches="tight")
+        plt.close(fig_i)
+        print(f"  wrote {p2}")
+
+        fig_i, ax_i = plt.subplots(figsize=(8, 4.2))
+        _draw_demand_response_panel(ax_i, i, s, tpk, x)
+        fig_i.tight_layout()
+        p3 = cfg.PDF_DIR / f"lp_dispatch_{safe}_demand_response.pdf"
+        fig_i.savefig(p3, bbox_inches="tight")
+        plt.close(fig_i)
+        print(f"  wrote {p3}")
 
 
 def main() -> int:

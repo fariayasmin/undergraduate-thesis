@@ -167,39 +167,50 @@ def cmd_audit(df: pd.DataFrame, subs: list) -> None:
         print(f"   -> T2 target usable: {a['t2_target_usable']}\n")
 
 
+def _draw_peak_window_panel(ax, name: str, rec: dict) -> None:
+    """Draw one substation's peak-timing density panel onto `ax`. Shared by
+    the combined overview figure and the standalone per-substation PDF so
+    the two can never drift apart."""
+    nat = sorted(T.OFFICIAL_TOU_PEAK)
+    dens = np.array(rec["density"])
+    win = rec["slots"]
+    x = np.arange(cfg.SLOTS_PER_DAY)
+    ax.fill_between(x, dens, color="steelblue", alpha=0.35,
+                    label="peak-timing density (congestion days)")
+    ax.plot(x, dens, color="steelblue", linewidth=1.4)
+    ax.axhline(rec["threshold_frac"] * dens.max(), color="grey",
+               linestyle=":", linewidth=1,
+               label=f"threshold = {rec['threshold_frac']:.2f} x max")
+    ax.axvspan(min(win) - 0.5, max(win) + 0.5, color="tomato", alpha=0.20,
+               label=f"adaptive T^pk_i  {pw.format_window(win)}")
+    ax.axvspan(min(nat) - 0.5, max(nat) + 0.5, color="seagreen", alpha=0.14,
+               label=f"national ToU  {cfg.slot_to_clock(nat[0])}-"
+                     f"{cfg.slot_to_clock(nat[-1] + 1)}")
+    ax.set_xticks(range(0, 48, 4))
+    ax.set_xticklabels([cfg.slot_to_clock(s) for s in range(0, 48, 4)],
+                       fontsize=8)
+    ax.set_xlim(-0.5, 47.5)
+    ax.set_ylabel("density")
+    ax.set_xlabel("time of day (30-minute slots)")
+    ax.set_title(f"{name} - when this substation peaks on its "
+                 f"{rec['n_days_stress']} most congested days", fontsize=11)
+    ax.legend(fontsize=8, loc="upper left")
+
+
 def cmd_plot(df: pd.DataFrame, subs: list) -> None:
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
     fig, axes = plt.subplots(len(subs), 1, figsize=(12, 4 * len(subs)), squeeze=False)
-    nat = sorted(T.OFFICIAL_TOU_PEAK)
+    recs = {}
     for ax, name in zip(axes[:, 0], subs):
         rec = pw.read_cache(name)
         if not rec:
             continue
-        dens = np.array(rec["density"])
-        win = rec["slots"]
-        x = np.arange(cfg.SLOTS_PER_DAY)
-        ax.fill_between(x, dens, color="steelblue", alpha=0.35,
-                        label="peak-timing density (congestion days)")
-        ax.plot(x, dens, color="steelblue", linewidth=1.4)
-        ax.axhline(rec["threshold_frac"] * dens.max(), color="grey",
-                   linestyle=":", linewidth=1,
-                   label=f"threshold = {rec['threshold_frac']:.2f} x max")
-        ax.axvspan(min(win) - 0.5, max(win) + 0.5, color="tomato", alpha=0.20,
-                   label=f"adaptive T^pk_i  {pw.format_window(win)}")
-        ax.axvspan(min(nat) - 0.5, max(nat) + 0.5, color="seagreen", alpha=0.14,
-                   label=f"national ToU  {cfg.slot_to_clock(nat[0])}-"
-                         f"{cfg.slot_to_clock(nat[-1] + 1)}")
-        ax.set_xticks(range(0, 48, 4))
-        ax.set_xticklabels([cfg.slot_to_clock(s) for s in range(0, 48, 4)],
-                           fontsize=8)
-        ax.set_xlim(-0.5, 47.5)
-        ax.set_ylabel("density")
-        ax.set_title(f"{name} - when this substation peaks on its "
-                     f"{rec['n_days_stress']} most congested days", fontsize=11)
-        ax.legend(fontsize=8, loc="upper left")
+        recs[name] = rec
+        _draw_peak_window_panel(ax, name, rec)
+        ax.set_xlabel("")
     axes[-1, 0].set_xlabel("time of day (30-minute slots)")
     fig.suptitle("Adaptive local ToU: BERC sets the ratios, the twin sets the window",
                  fontsize=12, fontweight="bold")
@@ -207,6 +218,17 @@ def cmd_plot(df: pd.DataFrame, subs: list) -> None:
     p = cfg.OUT_DIR / "adaptive_tou_windows.png"
     fig.savefig(p, dpi=130, bbox_inches="tight")
     print(f"wrote {p}")
+
+    # One true vector PDF per substation, drawn fresh (not cropped from the
+    # PNG above), so it stays sharp at any zoom or print size.
+    for name, rec in recs.items():
+        fig_i, ax_i = plt.subplots(figsize=(12, 4.2))
+        _draw_peak_window_panel(ax_i, name, rec)
+        fig_i.tight_layout()
+        pdf_path = cfg.PDF_DIR / f"adaptive_tou_windows_{name.replace(' ', '_')}.pdf"
+        fig_i.savefig(pdf_path, bbox_inches="tight")
+        plt.close(fig_i)
+        print(f"wrote {pdf_path}")
 
 
 def main() -> int:

@@ -77,6 +77,11 @@ def main() -> int:
         f = cfg.OUT_DIR / f"theta_profile_{p['date']}.png"
         fig.savefig(f, dpi=130, bbox_inches="tight")
         print(f"  wrote {f}")
+
+        # True vector PDF (same figure, no rasterisation).
+        f_pdf = cfg.PDF_DIR / f"theta_profile_{p['date']}.pdf"
+        fig.savefig(f_pdf, bbox_inches="tight")
+        print(f"  wrote {f_pdf}")
     return 0 if ok else 3
 
 if __name__ == "__main__":

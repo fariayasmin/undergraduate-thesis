@@ -326,16 +326,7 @@ def main() -> int:
     return 0
 
 
-def _plot(df, summary, bycat, net, subs, dates, tag):
-    import matplotlib
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
-
-    fig = plt.figure(figsize=(17, 12))
-    gs = fig.add_gridspec(3, 2, hspace=0.38, wspace=0.22)
-
-    # 1. daily baseline vs optimised peak, over the period
-    ax = fig.add_subplot(gs[0, :])
+def _draw_daily_peak_panel(ax, net, subs, dates):
     for i in subs:
         g = net[net["substation"] == i]
         pk = g.groupby("date")[["baseline_kw", "post_response_kw"]].max()
@@ -355,9 +346,8 @@ def _plot(df, summary, bycat, net, subs, dates, tag):
     ax.tick_params(axis="x", rotation=60, labelsize=7)
     ax.legend(fontsize=8, ncol=2)
 
-    # 2. saving distribution
-    ax = fig.add_subplot(gs[1, 0])
-    d = df[df["participated"]]
+
+def _draw_savings_distribution_panel(ax, d, subs):
     for i in subs:
         v = d.loc[d.substation == i, "saving_pct"].dropna()
         if len(v):
@@ -367,8 +357,8 @@ def _plot(df, summary, bycat, net, subs, dates, tag):
     ax.set_title("Distribution of consumer bill savings", fontsize=11)
     ax.legend(fontsize=8)
 
-    # 3. saving vs discomfort
-    ax = fig.add_subplot(gs[1, 1])
+
+def _draw_savings_vs_discomfort_panel(ax, d):
     for c, g in d.groupby("category"):
         ax.scatter(g["discomfort_J2_tk"], g["saving_tk"], s=14, alpha=0.6, label=c)
     lim = max(d["discomfort_J2_tk"].max(), d["saving_tk"].max())
@@ -378,8 +368,8 @@ def _plot(df, summary, bycat, net, subs, dates, tag):
     ax.set_title("Is the saving worth the comfort cost?", fontsize=11)
     ax.legend(fontsize=7.5)
 
-    # 4. saving by category
-    ax = fig.add_subplot(gs[2, 0])
+
+def _draw_savings_by_category_panel(ax, bycat):
     piv = bycat.pivot(index="category", columns="substation",
                       values="mean_saving_per_connection_tk").fillna(0)
     piv.plot(kind="barh", ax=ax, width=0.75)
@@ -388,8 +378,8 @@ def _plot(df, summary, bycat, net, subs, dates, tag):
     ax.set_title("Who saves, by consumer category", fontsize=11)
     ax.legend(fontsize=8)
 
-    # 5. QoE
-    ax = fig.add_subplot(gs[2, 1])
+
+def _draw_service_quality_panel(ax, d):
     order = sorted(d["category"].unique())
     ax.boxplot([d.loc[d.category == c, "qoe"].dropna().values for c in order],
                tick_labels=order, patch_artist=True,
@@ -401,11 +391,44 @@ def _plot(df, summary, bycat, net, subs, dates, tag):
     ax.tick_params(axis="x", rotation=25, labelsize=8)
     ax.legend(fontsize=8)
 
+
+def _plot(df, summary, bycat, net, subs, dates, tag):
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    d = df[df["participated"]]
+
+    fig = plt.figure(figsize=(17, 12))
+    gs = fig.add_gridspec(3, 2, hspace=0.38, wspace=0.22)
+    _draw_daily_peak_panel(fig.add_subplot(gs[0, :]), net, subs, dates)
+    _draw_savings_distribution_panel(fig.add_subplot(gs[1, 0]), d, subs)
+    _draw_savings_vs_discomfort_panel(fig.add_subplot(gs[1, 1]), d)
+    _draw_savings_by_category_panel(fig.add_subplot(gs[2, 0]), bycat)
+    _draw_service_quality_panel(fig.add_subplot(gs[2, 1]), d)
+
     fig.suptitle("GenTwin-SG monthly billing: savings, comfort cost and peak "
                  "reduction", fontsize=14, fontweight="bold")
     p = cfg.OUT_DIR / f"monthly_billing{tag}.png"
     fig.savefig(p, dpi=125, bbox_inches="tight")
     print(f"  wrote {p}")
+
+    # True vector PDFs, one per panel, drawn fresh from the same dataframes.
+    panels = [
+        ("daily_peak", (17, 5), lambda ax: _draw_daily_peak_panel(ax, net, subs, dates)),
+        ("savings_distribution", (8, 5), lambda ax: _draw_savings_distribution_panel(ax, d, subs)),
+        ("savings_vs_discomfort", (8, 5), lambda ax: _draw_savings_vs_discomfort_panel(ax, d)),
+        ("savings_by_category", (8, 5), lambda ax: _draw_savings_by_category_panel(ax, bycat)),
+        ("service_quality", (8, 5), lambda ax: _draw_service_quality_panel(ax, d)),
+    ]
+    for suffix, figsize, draw in panels:
+        fig_i, ax_i = plt.subplots(figsize=figsize)
+        draw(ax_i)
+        fig_i.tight_layout()
+        p_i = cfg.PDF_DIR / f"monthly_billing_period_{suffix}.pdf"
+        fig_i.savefig(p_i, bbox_inches="tight")
+        plt.close(fig_i)
+        print(f"  wrote {p_i}")
 
 
 if __name__ == "__main__":

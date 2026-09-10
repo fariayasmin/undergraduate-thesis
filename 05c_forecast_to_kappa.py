@@ -141,6 +141,48 @@ def cmd_coverage(bpdb, subs, path) -> None:
               f"average (the conservatism of using RMSE as sigma)")
 
 
+def _draw_robust_peak_panel(ax, name: str, rec: dict, df: pd.DataFrame) -> None:
+    k = df["horizon_k"]
+    ax.plot(k, df["p_hat_kw"], "o-", color="steelblue", label=r"$\hat{p}$ point forecast")
+    ax.plot(k, df["p_tilde_kw"], "s-", color="tomato",
+            label=r"$\tilde{p} = \hat{p} + z_\beta\sigma$  (14)")
+    ax.fill_between(k, df["p_hat_kw"], df["p_tilde_kw"], color="tomato",
+                    alpha=0.15, label=r"robustness margin $z_\beta\sigma$")
+    ax.axhline(rec["p_str"]["p_str_kw"], color="darkorange", linestyle="--",
+               linewidth=1.2, label=f"$P^{{str}}_i$ = {rec['p_str']['p_str_kw']:,.0f} kW  (15)")
+    ax.axhline(rec["p_max_kw"], color="black", linestyle=":", linewidth=1.2,
+               label=f"$P^{{max}}_i$ = {rec['p_max_kw']:.0f} kW")
+    ax.axhline(rec["reference_day"]["peak_kw"], color="seagreen",
+               linestyle="-.", linewidth=1.2,
+               label=f"$p_{{i,d}}$ = {rec['reference_day']['peak_kw']:.1f} kW (ref day)")
+    nd = rec["diagnostics"]["dispatch_days"]
+    ax.axvspan(0.5, nd + 0.5, color="steelblue", alpha=0.08)
+    ax.text(nd / 2 + 0.5, ax.get_ylim()[0], " dispatch", fontsize=7,
+            va="bottom", ha="center", color="steelblue")
+    ax.set_xlabel("horizon $k$ (days ahead)")
+    ax.set_ylabel("kW")
+    ax.set_title(f"{name} - robust peak", fontsize=11)
+    ax.legend(fontsize=7.5, loc="best")
+
+
+def _draw_scaling_factor_panel(ax, name: str, df: pd.DataFrame) -> None:
+    k = df["horizon_k"]
+    ax.plot(k, df["kappa_scale"], "o-", color="purple",
+            label=r"$\kappa^{scale}_{i,d+k|d} = \tilde{p}/p_{i,d}$  (16)")
+    ax.fill_between(k, df["kappa_scale_cool_wet"], df["kappa_scale_hot_dry"],
+                    color="purple", alpha=0.15,
+                    label="climatology $\\pm1\\sigma$ weather scenarios")
+    ax.axhline(1.0, color="grey", linestyle="--", linewidth=1,
+               label=r"$\kappa^{scale}=1$ (reference-day load)")
+    for _, r in df[df["s_stress"] == 1].iterrows():
+        ax.axvline(r["horizon_k"], color="darkorange", alpha=0.20, linewidth=6)
+    ax.set_xlabel("horizon $k$ (days ahead)")
+    ax.set_ylabel(r"$\kappa^{scale}$")
+    ax.set_title(f"{name} - scaling factor into C1/C4 "
+                 f"(shaded $k$: $s_{{i,d}}=1$)", fontsize=11)
+    ax.legend(fontsize=7.5, loc="best")
+
+
 def cmd_plot(bpdb, subs) -> None:
     import matplotlib
     matplotlib.use("Agg")
@@ -148,50 +190,15 @@ def cmd_plot(bpdb, subs) -> None:
 
     fig, axes = plt.subplots(2, len(subs), figsize=(7 * len(subs), 9),
                              squeeze=False)
+    loaded = {}
     for j, name in enumerate(subs):
         rec = F.read_cache(name)
         if not rec:
             continue
         df = pd.DataFrame(rec["rows"])
-        k = df["horizon_k"]
-
-        ax = axes[0, j]
-        ax.plot(k, df["p_hat_kw"], "o-", color="steelblue", label=r"$\hat{p}$ point forecast")
-        ax.plot(k, df["p_tilde_kw"], "s-", color="tomato",
-                label=r"$\tilde{p} = \hat{p} + z_\beta\sigma$  (14)")
-        ax.fill_between(k, df["p_hat_kw"], df["p_tilde_kw"], color="tomato",
-                        alpha=0.15, label=r"robustness margin $z_\beta\sigma$")
-        ax.axhline(rec["p_str"]["p_str_kw"], color="darkorange", linestyle="--",
-                   linewidth=1.2, label=f"$P^{{str}}_i$ = {rec['p_str']['p_str_kw']:,.0f} kW  (15)")
-        ax.axhline(rec["p_max_kw"], color="black", linestyle=":", linewidth=1.2,
-                   label=f"$P^{{max}}_i$ = {rec['p_max_kw']:.0f} kW")
-        ax.axhline(rec["reference_day"]["peak_kw"], color="seagreen",
-                   linestyle="-.", linewidth=1.2,
-                   label=f"$p_{{i,d}}$ = {rec['reference_day']['peak_kw']:.1f} kW (ref day)")
-        nd = rec["diagnostics"]["dispatch_days"]
-        ax.axvspan(0.5, nd + 0.5, color="steelblue", alpha=0.08)
-        ax.text(nd / 2 + 0.5, ax.get_ylim()[0], " dispatch", fontsize=7,
-                va="bottom", ha="center", color="steelblue")
-        ax.set_xlabel("horizon $k$ (days ahead)")
-        ax.set_ylabel("kW")
-        ax.set_title(f"{name} - robust peak", fontsize=11)
-        ax.legend(fontsize=7.5, loc="best")
-
-        ax = axes[1, j]
-        ax.plot(k, df["kappa_scale"], "o-", color="purple",
-                label=r"$\kappa^{scale}_{i,d+k|d} = \tilde{p}/p_{i,d}$  (16)")
-        ax.fill_between(k, df["kappa_scale_cool_wet"], df["kappa_scale_hot_dry"],
-                        color="purple", alpha=0.15,
-                        label="climatology $\\pm1\\sigma$ weather scenarios")
-        ax.axhline(1.0, color="grey", linestyle="--", linewidth=1,
-                   label=r"$\kappa^{scale}=1$ (reference-day load)")
-        for _, r in df[df["s_stress"] == 1].iterrows():
-            ax.axvline(r["horizon_k"], color="darkorange", alpha=0.20, linewidth=6)
-        ax.set_xlabel("horizon $k$ (days ahead)")
-        ax.set_ylabel(r"$\kappa^{scale}$")
-        ax.set_title(f"{name} - scaling factor into C1/C4 "
-                     f"(shaded $k$: $s_{{i,d}}=1$)", fontsize=11)
-        ax.legend(fontsize=7.5, loc="best")
+        loaded[name] = (rec, df)
+        _draw_robust_peak_panel(axes[0, j], name, rec, df)
+        _draw_scaling_factor_panel(axes[1, j], name, df)
 
     fig.suptitle("Stage C/D: forecast uncertainty into the optimisation "
                  r"($\tilde{p} = \hat{p} + z_\beta\sigma$, "
@@ -201,6 +208,25 @@ def cmd_plot(bpdb, subs) -> None:
     p = cfg.OUT_DIR / "forecast_to_kappa.png"
     fig.savefig(p, dpi=130, bbox_inches="tight")
     print(f"wrote {p}")
+
+    # True vector PDFs, one per panel, drawn fresh from the same cached rows.
+    for name, (rec, df) in loaded.items():
+        safe = name.replace(" ", "_")
+        fig_i, ax_i = plt.subplots(figsize=(7, 4.5))
+        _draw_robust_peak_panel(ax_i, name, rec, df)
+        fig_i.tight_layout()
+        p1 = cfg.PDF_DIR / f"forecast_to_kappa_{safe}_robust_peak.pdf"
+        fig_i.savefig(p1, bbox_inches="tight")
+        plt.close(fig_i)
+        print(f"wrote {p1}")
+
+        fig_i, ax_i = plt.subplots(figsize=(7, 4.5))
+        _draw_scaling_factor_panel(ax_i, name, df)
+        fig_i.tight_layout()
+        p2 = cfg.PDF_DIR / f"forecast_to_kappa_{safe}_scaling_factor.pdf"
+        fig_i.savefig(p2, bbox_inches="tight")
+        plt.close(fig_i)
+        print(f"wrote {p2}")
 
 
 def main() -> int:

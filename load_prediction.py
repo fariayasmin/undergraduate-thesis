@@ -246,6 +246,10 @@ EPOCHS          = 150
 BATCH_SIZE      = 16
 PATIENCE        = 15
 OUTPUT_DIR      = Path("forecast_outputs")
+# One true vector PDF per individual graph (never a PNG re-wrapped in a PDF
+# container): every multi-panel figure also renders each of its panels here
+# as its own standalone Figure, drawn straight from the same arrays.
+PDF_DIR         = Path("forecast_output_pdf")
 MAX_PLAUSIBLE_LOAD_MW = 450
 
 # Runtime options (set from CLI in main())
@@ -1304,30 +1308,36 @@ def baseline_metrics(full: pd.DataFrame, load_col: str, arr: Arrays) -> list[dic
 # Step 10: Plots
 # =============================================================================
 
-def plot_train_val_test(substation, model_name, metrics, arr, preds, output_dir):
+def _draw_train_val_test_panel(ax, substation, model_name, metrics, key, dts, label, preds):
+    act, pred = preds[key]
+    dt = pd.to_datetime(dts)
+    n = min(len(dt), len(act))
+    ax.plot(dt[:n], act[:n],  label="Actual",    linewidth=1.2, color="steelblue")
+    ax.plot(dt[:n], pred[:n], label="Predicted", linewidth=1.2, color="tomato",
+            linestyle="--", alpha=0.85)
+    ax.set_title(
+        f"{substation} | {model_name} - {label}   "
+        f"(R2={metrics[f'{key}_r2']:.4f}, RMSE={metrics[f'{key}_rmse']:.2f}, "
+        f"MAE={metrics[f'{key}_mae']:.2f}, n={metrics[f'{key}_n']})",
+        fontsize=10,
+    )
+    ax.set_ylabel("Load (MW)")
+    ax.set_xlabel("Date")
+    ax.legend(fontsize=9)
+    ax.tick_params(axis="x", rotation=20, labelsize=8)
+
+
+def plot_train_val_test(substation, model_name, metrics, arr, preds, output_dir, pdf_dir=None):
     """Three panels: TRAIN(fit) / VALIDATION / TEST, all one-day-ahead."""
-    fig, axes = plt.subplots(3, 1, figsize=(14, 12))
     panels = [
         ("train", arr.fit_dates,  "TRAIN (fit block)"),
         ("val",   arr.val_dates,  "VALIDATION (chronological, before test)"),
         ("test",  arr.test_dates, f"TEST (>= {TEST_START_YEAR}), one-day-ahead"),
     ]
+    fig, axes = plt.subplots(3, 1, figsize=(14, 12))
     for ax, (key, dts, label) in zip(axes, panels):
-        act, pred = preds[key]
-        dt = pd.to_datetime(dts)
-        n = min(len(dt), len(act))
-        ax.plot(dt[:n], act[:n],  label="Actual",    linewidth=1.2, color="steelblue")
-        ax.plot(dt[:n], pred[:n], label="Predicted", linewidth=1.2, color="tomato",
-                linestyle="--", alpha=0.85)
-        ax.set_title(
-            f"{substation} | {model_name} - {label}   "
-            f"(R2={metrics[f'{key}_r2']:.4f}, RMSE={metrics[f'{key}_rmse']:.2f}, "
-            f"MAE={metrics[f'{key}_mae']:.2f}, n={metrics[f'{key}_n']})",
-            fontsize=10,
-        )
-        ax.set_ylabel("Load (MW)")
-        ax.legend(fontsize=9)
-        ax.tick_params(axis="x", rotation=20, labelsize=8)
+        _draw_train_val_test_panel(ax, substation, model_name, metrics, key, dts, label, preds)
+        ax.set_xlabel("")
     axes[-1].set_xlabel("Date")
     fig.suptitle(f"{substation} - {model_name}: Actual vs Predicted",
                  fontsize=12, fontweight="bold")
@@ -1336,9 +1346,18 @@ def plot_train_val_test(substation, model_name, metrics, arr, preds, output_dir)
     fig.savefig(output_dir / f"{substation.replace(' ', '_')}_{safe}_train_val_test.png", dpi=120)
     plt.close(fig)
 
+    # True vector PDFs, one per split, drawn fresh (not cropped from the PNG).
+    pdf_dir = pdf_dir or PDF_DIR
+    for key, dts, label in panels:
+        fig_i, ax_i = plt.subplots(figsize=(14, 4.2))
+        _draw_train_val_test_panel(ax_i, substation, model_name, metrics, key, dts, label, preds)
+        fig_i.tight_layout()
+        fig_i.savefig(pdf_dir / f"{substation.replace(' ', '_')}_{safe}_{key}.pdf",
+                     bbox_inches="tight")
+        plt.close(fig_i)
 
-def plot_r2_comparison(substation, all_metrics, output_dir):
-    fig, ax = plt.subplots(figsize=(12, 5))
+
+def _draw_r2_comparison_panel(ax, substation, all_metrics):
     x = np.arange(len(MODEL_NAMES))
     width = 0.27
     tr = [m["train_r2"] for m in all_metrics]
@@ -1367,12 +1386,20 @@ def plot_r2_comparison(substation, all_metrics, output_dir):
             if np.isfinite(h):
                 ax.text(bar.get_x() + bar.get_width() / 2, h + 0.005,
                         f"{h:.3f}", ha="center", va="bottom", fontsize=6.5)
+
+
+def plot_r2_comparison(substation, all_metrics, output_dir, pdf_dir=None):
+    fig, ax = plt.subplots(figsize=(12, 5))
+    _draw_r2_comparison_panel(ax, substation, all_metrics)
     fig.tight_layout()
     fig.savefig(output_dir / f"{substation.replace(' ', '_')}_r2_comparison.png", dpi=120)
+    # Same figure, also saved as a true vector PDF (single panel: no split needed).
+    fig.savefig((pdf_dir or PDF_DIR) / f"{substation.replace(' ', '_')}_r2_comparison.pdf",
+               bbox_inches="tight")
     plt.close(fig)
 
 
-def plot_rain_r2(full, substation, arr, all_preds, output_dir):
+def plot_rain_r2(full, substation, arr, all_preds, output_dir, pdf_dir=None):
     """Rolling-window rainfall vs rolling R2 over the test period."""
     if "Rain_actual_mm" not in full.columns:
         return
@@ -1405,10 +1432,12 @@ def plot_rain_r2(full, substation, arr, all_preds, output_dir):
     ax.legend(fontsize=8, loc="best")
     fig.tight_layout()
     fig.savefig(output_dir / f"{substation.replace(' ', '_')}_rain_r2.png", dpi=120)
+    fig.savefig((pdf_dir or PDF_DIR) / f"{substation.replace(' ', '_')}_rain_r2.pdf",
+               bbox_inches="tight")
     plt.close(fig)
 
 
-def plot_summary_table(substation, all_metrics, baselines, best_name, output_dir):
+def plot_summary_table(substation, all_metrics, baselines, best_name, output_dir, pdf_dir=None):
     col_labels = ["Model", "Train R2", "Val R2", "Test R2", "Test RMSE", "Test MAE", "Test n"]
     rows, source = [], list(all_metrics) + list(baselines)
     for m in source:
@@ -1450,33 +1479,58 @@ def plot_summary_table(substation, all_metrics, baselines, best_name, output_dir
     fig.tight_layout()
     fig.savefig(output_dir / f"{substation.replace(' ', '_')}_summary_table.png",
                 dpi=130, bbox_inches="tight")
+    fig.savefig((pdf_dir or PDF_DIR) / f"{substation.replace(' ', '_')}_summary_table.pdf",
+                bbox_inches="tight")
     plt.close(fig)
 
 
-def plot_backtest(substation, bt_summary, output_dir):
+def _draw_backtest_skill_panel(ax, bt_summary):
+    ax.plot(bt_summary["horizon"], bt_summary["r2"], marker="o", color="tomato")
+    ax.set_xlabel("Forecast horizon (days ahead)")
+    ax.set_ylabel("R2")
+    ax.axhline(0, color="black", linewidth=0.5, linestyle="--")
+    ax.set_title("Recursive forecast skill vs horizon")
+
+
+def _draw_backtest_error_panel(ax, bt_summary):
+    ax.plot(bt_summary["horizon"], bt_summary["rmse"], marker="o", color="steelblue", label="RMSE")
+    ax.plot(bt_summary["horizon"], bt_summary["mae"], marker="s", color="seagreen", label="MAE")
+    ax.set_xlabel("Forecast horizon (days ahead)")
+    ax.set_ylabel("MW")
+    ax.set_title("Error growth vs horizon")
+    ax.legend()
+
+
+def plot_backtest(substation, bt_summary, output_dir, pdf_dir=None):
     if bt_summary.empty:
         return
     fig, axes = plt.subplots(1, 2, figsize=(12, 4.2))
-    axes[0].plot(bt_summary["horizon"], bt_summary["r2"], marker="o", color="tomato")
-    axes[0].set_xlabel("Forecast horizon (days ahead)")
-    axes[0].set_ylabel("R2")
-    axes[0].axhline(0, color="black", linewidth=0.5, linestyle="--")
-    axes[0].set_title("Recursive forecast skill vs horizon")
-    axes[1].plot(bt_summary["horizon"], bt_summary["rmse"], marker="o", color="steelblue", label="RMSE")
-    axes[1].plot(bt_summary["horizon"], bt_summary["mae"], marker="s", color="seagreen", label="MAE")
-    axes[1].set_xlabel("Forecast horizon (days ahead)")
-    axes[1].set_ylabel("MW")
-    axes[1].set_title("Error growth vs horizon")
-    axes[1].legend()
+    _draw_backtest_skill_panel(axes[0], bt_summary)
+    _draw_backtest_error_panel(axes[1], bt_summary)
     fig.suptitle(f"{substation} - rolling-origin recursive backtest (test period)",
                  fontsize=11, fontweight="bold")
     fig.tight_layout(rect=[0, 0, 1, 0.93])
     fig.savefig(output_dir / f"{substation.replace(' ', '_')}_recursive_backtest.png", dpi=120)
     plt.close(fig)
 
+    # True vector PDFs, one per panel.
+    pdf_dir = pdf_dir or PDF_DIR
+    safe = substation.replace(' ', '_')
+    fig_i, ax_i = plt.subplots(figsize=(7, 4.5))
+    _draw_backtest_skill_panel(ax_i, bt_summary)
+    fig_i.tight_layout()
+    fig_i.savefig(pdf_dir / f"{safe}_recursive_backtest_skill.pdf", bbox_inches="tight")
+    plt.close(fig_i)
+
+    fig_i, ax_i = plt.subplots(figsize=(7, 4.5))
+    _draw_backtest_error_panel(ax_i, bt_summary)
+    fig_i.tight_layout()
+    fig_i.savefig(pdf_dir / f"{safe}_recursive_backtest_error.pdf", bbox_inches="tight")
+    plt.close(fig_i)
+
 
 def plot_forecast_band(substation, best_name, central, low, high, full_sub,
-                       load_col, output_dir):
+                       load_col, output_dir, pdf_dir=None):
     hist = full_sub.tail(60)
     dates = [r["date"] for r in central]
     fig, ax = plt.subplots(figsize=(12, 5))
@@ -1499,6 +1553,8 @@ def plot_forecast_band(substation, best_name, central, low, high, full_sub,
     ax.tick_params(axis="x", rotation=20, labelsize=8)
     fig.tight_layout()
     fig.savefig(output_dir / f"{substation.replace(' ', '_')}_forecast_band.png", dpi=120)
+    fig.savefig((pdf_dir or PDF_DIR) / f"{substation.replace(' ', '_')}_forecast_band.pdf",
+               bbox_inches="tight")
     plt.close(fig)
 
 
@@ -1697,6 +1753,54 @@ def run_substation(df_raw: pd.DataFrame, substation: str, output_dir: Path) -> d
             "backtest": bt_summary if not bt_summary.empty else None}
 
 
+def replot_substation_from_cache(substation: str, output_dir: Path, pdf_dir: Path,
+                                 df_raw: pd.DataFrame | None) -> bool:
+    """
+    Rebuild every per-substation figure that can be reconstructed purely from
+    already-saved CSVs, with NO retraining: r2_comparison and summary_table
+    (metrics_summary.csv), the recursive backtest (its own CSV), and the
+    forecast band (the 14-day forecast CSV plus the raw historical load for
+    context). Used by --report-only so a plotting fix does not require
+    re-running 150-epoch training.
+
+    train_val_test and rain_r2 are NOT rebuildable this way: both need the
+    actual per-day (actual, predicted) arrays from every model, and those
+    arrays are never written to disk - only the images were. Regenerating
+    those two as true vector graphics needs an actual retrain.
+    """
+    safe = substation.replace(" ", "_")
+    summary_path = output_dir / "metrics_summary.csv"
+    summary = pd.read_csv(summary_path)
+    sub_rows = summary[summary["substation"] == substation]
+    all_metrics = sub_rows[sub_rows["model"].isin(MODEL_NAMES)].to_dict("records")
+    baselines = sub_rows[sub_rows["model"].isin(BASELINE_NAMES)].to_dict("records")
+    if not all_metrics:
+        return False
+    all_metrics.sort(key=lambda m: MODEL_NAMES.index(m["model"]))
+    best_idx = int(np.argmax(
+        [m["val_r2"] if np.isfinite(m["val_r2"]) else -np.inf for m in all_metrics]))
+    best_name = all_metrics[best_idx]["model"]
+
+    plot_r2_comparison(substation, all_metrics, output_dir, pdf_dir)
+    plot_summary_table(substation, all_metrics, baselines, best_name, output_dir, pdf_dir)
+
+    bt_path = output_dir / f"{safe}_recursive_backtest.csv"
+    if bt_path.exists():
+        plot_backtest(substation, pd.read_csv(bt_path), output_dir, pdf_dir)
+
+    fc_path = output_dir / f"{safe}_{FORECAST_DAYS}day_forecast.csv"
+    load_col = f"{substation}_Load_MW"
+    if fc_path.exists() and df_raw is not None and load_col in df_raw.columns:
+        fc = pd.read_csv(fc_path, parse_dates=["date"])
+        central = [{"date": r["date"], "pred_mw": r["predicted_mw"]} for _, r in fc.iterrows()]
+        low = [{"date": r["date"], "pred_mw": r["predicted_mw_cool_wet"]} for _, r in fc.iterrows()]
+        high = [{"date": r["date"], "pred_mw": r["predicted_mw_hot_dry"]} for _, r in fc.iterrows()]
+        hist = df_raw[["Date", load_col]].tail(60).reset_index(drop=True)
+        plot_forecast_band(substation, best_name, central, low, high, hist,
+                           load_col, output_dir, pdf_dir)
+    return True
+
+
 def _train_festive_means(full: pd.DataFrame, load_col: str, arr: Arrays) -> dict:
     """Mean load per festive holiday type, computed on TRAINING days only."""
     if "Holiday_type" not in full.columns:
@@ -1717,7 +1821,7 @@ def _train_festive_means(full: pd.DataFrame, load_col: str, arr: Arrays) -> dict
 # Step 12: Global summaries
 # =============================================================================
 
-def plot_global_summary_table(records: list[dict], output_dir: Path):
+def plot_global_summary_table(records: list[dict], output_dir: Path, pdf_dir: Path = None):
     df_sum = pd.DataFrame(records)
     df_sum = df_sum[df_sum["model"].isin(MODEL_NAMES)]
     pivot = df_sum.pivot(index="substation", columns="model", values="test_r2")
@@ -1745,40 +1849,39 @@ def plot_global_summary_table(records: list[dict], output_dir: Path):
                    colLabels=list(pivot.columns), cellColours=cell_colors,
                    loc="center", cellLoc="center")
     tbl.auto_set_font_size(False)
-    tbl.set_fontsize(8.5)
-    tbl.scale(1, 1.5)
+    tbl.set_fontsize(13)
+    tbl.scale(1, 2.0)
+    # Readable text colour: white on dark cells, black on light cells, chosen
+    # from the actual background luminance rather than assumed to be light.
+    for i, row in enumerate(cell_colors, start=1):
+        for j, rgba in enumerate(row):
+            r, g, b = rgba[:3] if not isinstance(rgba, str) else (0.878, 0.878, 0.878)
+            luminance = 0.299 * r + 0.587 * g + 0.114 * b
+            txt_color = "white" if luminance < 0.6 else "black"
+            cell = tbl[(i, j)]
+            cell.get_text().set_color(txt_color)
+            cell.get_text().set_fontweight("bold")
     for j in range(n_cols):
         tbl[(0, j)].set_facecolor("#4472C4")
         tbl[(0, j)].get_text().set_color("white")
         tbl[(0, j)].get_text().set_fontweight("bold")
+        tbl[(0, j)].get_text().set_fontsize(13)
+    for i in range(1, n_rows + 1):
+        tbl[(i, -1)].get_text().set_fontweight("bold")
+        tbl[(i, -1)].get_text().set_fontsize(11)
     ax.set_title("Global summary - held-out Test R2 by substation x model\n"
                  "(green = higher; selection was done on validation, not on these numbers)",
                  fontsize=12, fontweight="bold", pad=16)
     fig.tight_layout()
     fig.savefig(output_dir / "global_summary_test_r2.png", dpi=130, bbox_inches="tight")
+    fig.savefig((pdf_dir or PDF_DIR) / "global_summary_test_r2.pdf", bbox_inches="tight")
     plt.close(fig)
-    print("Saved global_summary_test_r2.png")
+    print("Saved global_summary_test_r2.png / .pdf")
 
 
-def plot_r2_distribution(summary: pd.DataFrame, output_dir: Path):
-    """
-    Transparent reporting of the spread, not just the headline mean.
-
-    Left  : boxplot of held-out Test R2 per architecture across substations,
-            with every substation drawn as a point on top.
-    Right : per-substation Test R2 of the selected (validation-chosen) model,
-            sorted, with the mean marked - so weak substations are visible
-            rather than buried inside an average.
-    """
-    dl = summary[summary["model"].isin(MODEL_NAMES)]
-    if dl.empty:
-        return
-
-    fig, axes = plt.subplots(1, 2, figsize=(16, 6),
-                             gridspec_kw={"width_ratios": [1.05, 1.0]})
-
-    # -- Left: distribution per model ----------------------------------------
-    ax = axes[0]
+def _draw_r2_boxplot_panel(ax, dl: pd.DataFrame):
+    """Left panel: boxplot of held-out Test R2 per architecture across
+    substations, with every substation drawn as a point on top."""
     data = [dl.loc[dl["model"] == m, "test_r2"].dropna().values for m in MODEL_NAMES]
     # matplotlib renamed boxplot's `labels` to `tick_labels` in 3.9 and removed
     # the old name in 3.11, so try the new spelling first and fall back.
@@ -1807,8 +1910,10 @@ def plot_r2_distribution(summary: pd.DataFrame, output_dir: Path):
                  fontsize=10.5)
     ax.legend(fontsize=8, loc="lower left")
 
-    # -- Right: per-substation, selected model -------------------------------
-    ax = axes[1]
+
+def _draw_r2_per_substation_panel(ax, dl: pd.DataFrame):
+    """Right panel: per-substation Test R2 of the selected (validation-chosen)
+    model, sorted, with the mean marked."""
     rows = []
     for sub, grp in dl.groupby("substation"):
         best = grp.loc[grp["val_r2"].idxmax()]
@@ -1832,12 +1937,46 @@ def plot_r2_distribution(summary: pd.DataFrame, output_dir: Path):
     ax.set_title("Per-substation performance, weakest first", fontsize=10.5)
     ax.legend(fontsize=8, loc="lower right")
 
+
+def plot_r2_distribution(summary: pd.DataFrame, output_dir: Path, pdf_dir: Path = None):
+    """
+    Transparent reporting of the spread, not just the headline mean.
+
+    Left  : boxplot of held-out Test R2 per architecture across substations,
+            with every substation drawn as a point on top.
+    Right : per-substation Test R2 of the selected (validation-chosen) model,
+            sorted, with the mean marked - so weak substations are visible
+            rather than buried inside an average.
+    """
+    dl = summary[summary["model"].isin(MODEL_NAMES)]
+    if dl.empty:
+        return
+
+    fig, axes = plt.subplots(1, 2, figsize=(16, 6),
+                             gridspec_kw={"width_ratios": [1.05, 1.0]})
+    _draw_r2_boxplot_panel(axes[0], dl)
+    _draw_r2_per_substation_panel(axes[1], dl)
     fig.suptitle("Test R2: central tendency AND spread across the substation fleet",
                  fontsize=12, fontweight="bold")
     fig.tight_layout(rect=[0, 0, 1, 0.94])
     fig.savefig(output_dir / "test_r2_distribution.png", dpi=130, bbox_inches="tight")
     plt.close(fig)
     print("Saved test_r2_distribution.png")
+
+    # True vector PDFs, one per panel.
+    pdf_dir = pdf_dir or PDF_DIR
+    fig_i, ax_i = plt.subplots(figsize=(8, 6))
+    _draw_r2_boxplot_panel(ax_i, dl)
+    fig_i.tight_layout()
+    fig_i.savefig(pdf_dir / "test_r2_distribution_boxplot.pdf", bbox_inches="tight")
+    plt.close(fig_i)
+
+    fig_i, ax_i = plt.subplots(figsize=(8, 6))
+    _draw_r2_per_substation_panel(ax_i, dl)
+    fig_i.tight_layout()
+    fig_i.savefig(pdf_dir / "test_r2_distribution_per_substation.pdf", bbox_inches="tight")
+    plt.close(fig_i)
+    print("Saved test_r2_distribution_boxplot.pdf / test_r2_distribution_per_substation.pdf")
 
 
 def save_distribution_stats(summary: pd.DataFrame, output_dir: Path) -> pd.DataFrame:
@@ -2117,13 +2256,16 @@ def report_flagged_cells(summary: pd.DataFrame, output_dir: Path, csv_name: str,
 
 def main():
     global FORECAST_DAYS, EXOG_ALIGNMENT, WEATHER_MODE, FESTIVE_BLEND
-    global RUN_BACKTEST, BACKTEST_STRIDE, EPOCHS, OUTPUT_DIR, N_RUNS
+    global RUN_BACKTEST, BACKTEST_STRIDE, EPOCHS, OUTPUT_DIR, PDF_DIR, N_RUNS
 
     p = argparse.ArgumentParser(description="BPDB 6-model load forecasting (leakage-safe)")
     p.add_argument("--csv", default="BPDB_Dhaka_City_Substations_Page3.csv")
     p.add_argument("--substations", nargs="*", default=None)
     p.add_argument("--forecast-days", type=int, default=FORECAST_DAYS)
     p.add_argument("--output-dir", default=str(OUTPUT_DIR))
+    p.add_argument("--pdf-dir", default=str(PDF_DIR),
+                   help="Where per-graph vector PDFs are written (one file "
+                        "per graph, never a PNG re-wrapped in a PDF).")
     p.add_argument("--epochs", type=int, default=EPOCHS)
     p.add_argument("--exog-alignment", choices=["target", "lagged"], default=EXOG_ALIGNMENT,
                    help="'target': the input window carries the predicted day's "
@@ -2170,6 +2312,8 @@ def main():
     EPOCHS          = args.epochs
     OUTPUT_DIR      = Path(args.output_dir)
     OUTPUT_DIR.mkdir(exist_ok=True, parents=True)
+    PDF_DIR         = Path(args.pdf_dir)
+    PDF_DIR.mkdir(exist_ok=True, parents=True)
 
     print("Configuration")
     print(f"  window={WINDOW}  horizon={FORECAST_DAYS}  epochs={EPOCHS}")
@@ -2195,7 +2339,25 @@ def main():
               f"({summary['substation'].nunique()} substations, no training).")
         write_global_reports(summary, summary.to_dict("records"), OUTPUT_DIR)
         report_flagged_cells(summary, OUTPUT_DIR, args.csv, suggest_commands=True)
-        print(f"\nReports written to: {OUTPUT_DIR.resolve()}")
+
+        df_raw = None
+        csv_path = Path(args.csv)
+        if csv_path.exists():
+            df_raw = load_raw(args.csv)
+        else:
+            print(f"  ({args.csv} not found - forecast_band plots will be skipped; "
+                  f"r2_comparison/summary_table/backtest do not need it)")
+        n_replotted = 0
+        for sub in sorted(summary["substation"].unique()):
+            if replot_substation_from_cache(sub, OUTPUT_DIR, PDF_DIR, df_raw):
+                n_replotted += 1
+        print(f"\nReplotted r2_comparison / summary_table / recursive_backtest / "
+              f"forecast_band as true vector PDFs for {n_replotted} substation(s).")
+        print("NOTE: train_val_test and rain_r2 plots need the actual per-day "
+              "prediction arrays, which were never saved to disk - only a full "
+              "retrain (python load_prediction.py --csv ...) can regenerate "
+              "those as true vector PDFs.")
+        print(f"\nReports written to: {OUTPUT_DIR.resolve()}  (PDFs: {PDF_DIR.resolve()})")
         return
 
     print("\nLoading raw data (rule-based cleaning only, no statistics)...")
