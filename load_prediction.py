@@ -1344,17 +1344,12 @@ def plot_train_val_test(substation, model_name, metrics, arr, preds, output_dir,
     fig.tight_layout(rect=[0, 0, 1, 0.97])
     safe = model_name.replace("+", "_").replace(" ", "_")
     fig.savefig(output_dir / f"{substation.replace(' ', '_')}_{safe}_train_val_test.png", dpi=120)
+    # Same combined figure (train+val+test stacked), also saved as one true
+    # vector PDF - kept as a single file per model, matching how this plot is
+    # actually read (all three splits compared together).
+    fig.savefig((pdf_dir or PDF_DIR) / f"{substation.replace(' ', '_')}_{safe}_train_val_test.pdf",
+               bbox_inches="tight")
     plt.close(fig)
-
-    # True vector PDFs, one per split, drawn fresh (not cropped from the PNG).
-    pdf_dir = pdf_dir or PDF_DIR
-    for key, dts, label in panels:
-        fig_i, ax_i = plt.subplots(figsize=(14, 4.2))
-        _draw_train_val_test_panel(ax_i, substation, model_name, metrics, key, dts, label, preds)
-        fig_i.tight_layout()
-        fig_i.savefig(pdf_dir / f"{substation.replace(' ', '_')}_{safe}_{key}.pdf",
-                     bbox_inches="tight")
-        plt.close(fig_i)
 
 
 def _draw_r2_comparison_panel(ax, substation, all_metrics):

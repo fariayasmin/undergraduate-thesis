@@ -290,12 +290,18 @@ def _draw_dispatch_panel(ax, i, s, net, tpk, x):
     ax.axvspan(min(tpk) - .5, max(tpk) + .5, color="orange", alpha=0.15,
                label="$T^{pk}_i$")
     ax.set_ylabel("kW"); ax.legend(fontsize=7.5); ax.set_xlim(0, 47)
+    ax.set_xticks(range(0, 48, 4))
+    ax.set_xticklabels([cfg.slot_to_clock(t) for t in range(0, 48, 4)], fontsize=8)
+    ax.set_xlabel("time of day")
     ax.set_title(f"{i} - dispatch, {s.date}", fontsize=11)
 
 
 def _draw_shadow_price_panel(ax, i, net, pi, x):
     ax.plot(x, pi, color="tomato", lw=1.8, label=r"$\pi_i(t)$ dual of C1")
     ax.set_ylabel("Tk/kWh"); ax.legend(fontsize=8); ax.set_xlim(0, 47)
+    ax.set_xticks(range(0, 48, 4))
+    ax.set_xticklabels([cfg.slot_to_clock(t) for t in range(0, 48, 4)], fontsize=8)
+    ax.set_xlabel("time of day")
     ax2 = ax.twinx()
     ax2.plot(x, net["SoC"], color="steelblue", lw=1.2, ls=":", label="SoC")
     ax2.set_ylabel("kWh", color="steelblue")
