@@ -71,12 +71,17 @@ consumers, and the footnote 4–6 ToU windows. `--verify` recomputes the
 gazette's own peak/flat ratios from the transcribed numbers as a proof-reading
 test; all 12 checks pass.
 
-**μ(t) is derived, not invented.** LT-A has no ToU in the order. But LT-C1,
-LT-E, LT-D3 and every MT/HT/EHT class do, and they land on two clean families:
-`μ^pk = 1.20` for LT, `1.25` for MT/HT/EHT, `μ^off = 0.90` uniformly. The
-residential scenario adopts the LT family — the ratio the regulator itself
-applied to every other low-tension consumer. Flagged
-`MU_RESIDENTIAL_IS_SCENARIO = True`.
+**μ(t) applies only where the gazette actually bills ToU.** LT-A
+(residential) has no ToU row in the order — nor does LT-D1, which this
+model's Hospital and Educational archetypes use. For those, `μ(t) = 1.0` at
+every slot, always, by default: real Bangladesh policy, not an
+approximation. LT-C1, LT-E, LT-D3 and every MT/HT/EHT class *do* carry a
+gazette ToU row, and they land on two clean families: `μ^pk = 1.20` for LT,
+`1.25` for MT/HT/EHT, `μ^off = 0.90` uniformly — unchanged for those classes.
+`MU_RESIDENTIAL_IS_SCENARIO` (default `False`) is an explicit, opt-in ablation
+switch for a "what if a flat-billed class had ToU" study; when `True` it
+borrows the LT/MT ratio for a flat class, and must never be reported as
+current policy. See `docs/chapter3_vs_implementation.md` §1.
 
 **Adaptive local ToU (see `docs/adaptive_local_tou.md`).** BERC supplies the
 peak/off-peak *ratios*; the twin derives the *activation window* per substation

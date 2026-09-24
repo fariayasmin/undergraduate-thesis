@@ -58,9 +58,16 @@ def _report(w: pw.PeakWindow) -> None:
     if w.artefact_share:
         print(f"  artefact rows       {w.artefact_share:.1%} dropped "
               f"(peak time recorded as {[cfg.slot_to_clock(s) for s in w.artefact_slots_dropped]})")
-    mu = T.mu_profile("LT-A", peak_slots=w.slots)
-    print(f"  mu_i(t)             {max(mu):.2f} on T^pk, {min(mu):.2f} elsewhere "
-          f"(difference {max(mu) - min(mu):.2f}, the Eq. 34 shifting benefit)")
+    # LT-C1 (Industrial here) is a real ToU class; shown so this window's
+    # mu(t) is illustrated with a rate that actually carries one. LT-A
+    # residential has no gazette ToU row - mu(t) = 1.0 for it at every slot,
+    # by policy - so it is reported separately, not substituted here.
+    mu = T.mu_profile("LT-C1", peak_slots=w.slots)
+    print(f"  mu_i(t) [LT-C1]     {max(mu):.2f} on T^pk, {min(mu):.2f} elsewhere "
+          f"(difference {max(mu) - min(mu):.2f}, the Eq. 34 shifting benefit "
+          f"for a ToU-billed class)")
+    print(f"  mu_i(t) [LT-A]      1.00 everywhere - residential has no "
+          f"gazette ToU row; shifting earns it no bill saving")
     for msg in w.warnings:
         print(f"  ! {msg}")
 

@@ -128,12 +128,22 @@ def build_static(g: GraphBuilder, subs, populations, dates,
                c_producer_tk_per_kwh=spec["c_producer_tk_per_kwh"],
                t_pk_slots=tpk, t_pk_label=spec["t_pk_label"],
                eta_ch=cfg.ETA_CH, eta_dis=cfg.ETA_DIS)
-        # Adaptive local ToU window, with both halves' provenance
+        # Adaptive local ToU window, with both halves' provenance. This
+        # describes the MECHANISM at this substation (the window a ToU-billed
+        # class would activate its peak rate in), NOT what every consumer
+        # here pays: a household's real mu_peak/mu_off live on its OWN
+        # TariffClass node (build_static, tariff loop below) and are 1.0/1.0
+        # for LT-A, LT-D1 and every other flat-billed class. Do not read
+        # mu_peak/mu_off off this node for a specific household.
         g.node("TouWindow", f"TOU-{i}", substation=i, slots=tpk,
                window_label=spec["t_pk_label"], mu_peak=cfg.MU_PEAK,
                mu_off=cfg.MU_OFF,
                mu_source="BERC order 03 June 2026 (LT-class ratio)",
                window_source="GenTwin-SG adaptive local derivation",
+               applies_to="ToU-billed tariff classes only (has_tou=True on "
+                          "TariffClass) - NOT LT-A residential or LT-D1 "
+                          "(Hospital, Educational), which have no gazette "
+                          "ToU row and are priced flat (mu=1.0)",
                is_replacement_tariff=False)
         g.rel("Substation", i, "HAS_TOU_WINDOW", "TouWindow", f"TOU-{i}")
 
@@ -163,10 +173,19 @@ def build_static(g: GraphBuilder, subs, populations, dates,
 
     for code in {s["tariff_class"] for s in cfg.CONSUMER_ARCHETYPES.values()}:
         tc = T.RETAIL_TARIFF[code]
+        mu_pk, mu_off = T.mu_peak_off(code)
         g.node("TariffClass", code, code=code, name_en=tc.name_en,
                voltage=tc.voltage, flat_tk_per_kwh=tc.flat,
                off_peak=tc.off_peak, peak=tc.peak,
                demand_charge=tc.demand_charge, has_tou=tc.has_tou,
+               # mu_peak/mu_off are THIS CLASS's real multiplier: 1.0/1.0 for
+               # every flat-billed class (LT-A residential, and LT-D1's
+               # Hospital/Educational archetypes here), the gazette LT/MT
+               # ratio only for classes has_tou=True actually bills ToU on.
+               # A household's own tariff class must be read from HERE, not
+               # from its substation's TouWindow node (§5 below), which
+               # describes the mechanism, not what any one consumer pays.
+               mu_peak=mu_pk, mu_off=mu_off,
                source=T.GAZETTE_REF)
 
     # Day nodes cover the whole FORECAST horizon, not just the dispatch days,

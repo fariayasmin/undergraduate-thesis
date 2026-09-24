@@ -3,13 +3,18 @@
 Stage H runner - regime, events and priority pooling, Eqs. (44)-(53).
 
     python 07_regime_events_pool.py --run
-    python 07_regime_events_pool.py --run --scarcity   # read the scarcity solve
+    python 07_regime_events_pool.py --run --scarcity        # read the scarcity solve
+    python 07_regime_events_pool.py --run --tag _period     # read a --month/--period solve
     python 07_regime_events_pool.py --run --pool-rule quantile
     python 07_regime_events_pool.py --plot
 
 Reads the LP outputs written by 06_lp_optimiser.py. The regime is computed
 AFTER the solve because Eq. (48) reads T_ij and nu_i, which are LP outputs;
 s_{i,d} comes from the forecast and is a separate quantity.
+
+`--tag` must match whatever 06_lp_optimiser.py was run with (e.g. `_period`
+for `--month 30` / `--period ...`), so this stage covers the same days the LP
+solved rather than silently falling back to the untagged 3-day default.
 """
 
 import argparse
@@ -23,6 +28,13 @@ import pandas as pd
 from gentwin import config as cfg, forecast as F, population as pop, regime as R
 
 
+def _bpdb() -> pd.DataFrame:
+    for p in (cfg.BPDB_CSV, cfg.DATA_DIR / "BPDB_Dhaka_City_Substations_Page3.csv"):
+        if p.exists():
+            return pd.read_csv(p, parse_dates=["Date"])
+    raise FileNotFoundError(f"BPDB CSV not found at {cfg.BPDB_CSV}")
+
+
 def _load_lp(tag=""):
     net = pd.read_csv(cfg.OUT_DIR / f"lp_network{tag}.csv")
     dec = pd.read_csv(cfg.OUT_DIR / f"lp_decisions{tag}.csv")
@@ -33,8 +45,8 @@ def _load_lp(tag=""):
 
 def run(subs, tag="", pool_rule=None):
     net_df, dec_df, thr_df, summ = _load_lp(tag)
+    bpdb = _bpdb()
     POP = {i: pop.consumers_from_cache(i) for i in subs}
-    krec = {i: F.read_cache(i) for i in subs}
 
     all_events, all_pools, all_entities, prev_pool = [], [], [], None
 
@@ -55,7 +67,13 @@ def run(subs, tag="", pool_rule=None):
                 "SoC": g["SoC_kwh"].values, "pi": g["pi_tk_per_kwh"].values,
                 "post_response_kw": g["post_response_kw"].values,
             }
-            frow = next(r for r in krec[i]["rows"] if r["target_date"] == date)
+            # F.build_period(..., date, date) resolves ONE day whether it is
+            # OBSERVED (inside the BPDB record - sigma=0, no forecast error)
+            # or FORECAST (inside the horizon cache), unlike a bare lookup in
+            # the forecast-horizon-only cache, which has no row at all for an
+            # observed day. A --month/--period run mixes both kinds, so the
+            # forecast-horizon-only cache is not sufficient here any more.
+            frow = F.build_period(bpdb, i, date, date)[0]
             frows[i] = frow
             regimes[i] = R.operating_regime(                       # (48)
                 p_tilde_kw=frow["p_tilde_kw"],
@@ -159,15 +177,19 @@ def main() -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--run", action="store_true")
     ap.add_argument("--scarcity", action="store_true")
+    ap.add_argument("--tag", default=None,
+                    help="LP output tag to read, e.g. _period for a "
+                         "06_lp_optimiser.py --month/--period run. Overrides "
+                         "--scarcity if both are given.")
     ap.add_argument("--pool-rule", choices=["mean_relative", "quantile"],
                     default=None)
     ap.add_argument("--substations", nargs="*", default=list(cfg.SUBSTATIONS))
     a = ap.parse_args()
     if not a.run:
         ap.print_help(); return 1
-    tag = "_scarcity" if a.scarcity else ""
+    tag = a.tag if a.tag is not None else ("_scarcity" if a.scarcity else "")
     print("=" * 78)
-    print(f"STAGE H - REGIME, EVENTS, PRIORITY POOL{'  [scarcity scenario]' if tag else ''}")
+    print(f"STAGE H - REGIME, EVENTS, PRIORITY POOL{f'  [tag={tag}]' if tag else ''}")
     print("=" * 78)
     run(a.substations, tag, a.pool_rule)
     return 0

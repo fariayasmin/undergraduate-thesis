@@ -141,8 +141,12 @@ OPTIONAL MATCH (f:Forecast {substation:'Dhanmondi', date:'2026-07-01'})
 OPTIONAL MATCH (rg:Regime {substation:'Dhanmondi', date:'2026-07-01'})
 RETURN h{.household_id,.category,.archetype,.income_band,.household_size,
          .w_h,.lambda_h,.gamma_cu_h,.y_max_h}                     AS household,
-       tc{.code,.name_en,.flat_tk_per_kwh}                        AS tariff,
-       tw{.window_label,.mu_peak,.mu_off,.mu_source,.window_source} AS tou,
+       // tc.mu_peak / tc.mu_off are THIS household's real multiplier (1.0/1.0
+       // if tc.has_tou is false - LT-A residential and LT-D1 institutional
+       // both are). tw is the substation-level ToU MECHANISM window and must
+       // NOT be read as this household's price unless tc.has_tou is true.
+       tc{.code,.name_en,.flat_tk_per_kwh,.has_tou,.mu_peak,.mu_off}  AS tariff,
+       tw{.window_label,.mu_peak,.mu_off,.mu_source,.window_source,.applies_to} AS tou_mechanism,
        f{.p_hat_kw,.p_tilde_kw,.sigma_kw,.kappa,.s_stress,.p_str_kw} AS forecast,
        rg{.r,.regime_name,.trigger_transfer,.trigger_reserve_shortfall} AS regime,
        b{.energy_before_kwh,.energy_after_kwh,.bill_before_tk,.bill_after_tk,
@@ -254,6 +258,14 @@ def main() -> int:
     ap.add_argument("--build", action="store_true")
     ap.add_argument("--queries", action="store_true")
     ap.add_argument("--scarcity", action="store_true")
+    ap.add_argument("--tag", default=None,
+                    help="LP/Stage-H output tag to read, e.g. _period for a "
+                         "06_lp_optimiser.py --month/--period run followed by "
+                         "07_regime_events_pool.py --run --tag _period. "
+                         "Overrides --scarcity if both are given. Without it, "
+                         "the KG is built from whatever the default (3-day "
+                         "dispatch) or --scarcity run wrote, which will NOT "
+                         "match a monthly --billing attachment.")
     ap.add_argument("--billing", nargs="?", default=None, const="", metavar="SUFFIX",
                     help="attach monthly billing from outputs/billing/; give the "
                          "flag bare for the default period run "
@@ -273,9 +285,9 @@ def main() -> int:
         if not a.build:
             return 0
 
-    tag = "_scarcity" if a.scarcity else ""
+    tag = a.tag if a.tag is not None else ("_scarcity" if a.scarcity else "")
     subs = a.substations
-    print("=" * 78); print(f"STAGE K - KNOWLEDGE GRAPH{'  [scarcity]' if tag else ''}")
+    print("=" * 78); print(f"STAGE K - KNOWLEDGE GRAPH{f'  [tag={tag}]' if tag else ''}")
     print("=" * 78)
 
     net = pd.read_csv(cfg.OUT_DIR / f"lp_network{tag}.csv")

@@ -85,14 +85,28 @@ def cmd_mu() -> None:
     print("mu(t) as used by the model - EQ (19), (34)\n")
     print("The model uses each substation's OBSERVED peak window as T^pk, not")
     print("the gazette's 17:00-23:00 commercial window. Where they disagree,")
-    print("mu(t) is a PROPOSED substation-specific ToU tariff, not a published")
-    print("one, and must be presented as such.\n")
+    print("mu(t) is a PROPOSED substation-specific ToU tariff for the classes")
+    print("that DO carry a gazette ToU row (LT-C1, LT-E, LT-D3, MT/HT/EHT), not")
+    print("a published one, and must be presented as such.\n")
+    print("LT-A (residential) and LT-D1 (this model's Hospital and Educational")
+    print("archetypes) carry NO gazette ToU row at all: mu(t) = 1.0 at every")
+    print("slot, by policy, not by approximation. Shifting energy earns these")
+    print("consumers nothing; only curtailing (using less) can still save them")
+    print(f"money. (MU_RESIDENTIAL_IS_SCENARIO = {T.MU_RESIDENTIAL_IS_SCENARIO} - "
+          f"set True only to run an explicit 'what if a flat-rate class had "
+          f"ToU' ablation, never to report current policy.)\n")
+    for code in ("LT-A", "LT-D1"):
+        mu_pk, mu_off = T.mu_peak_off(code)
+        print(f"  {code:6} mu^pk {mu_pk:.2f} / mu^off {mu_off:.2f}  "
+              f"(flat - {T.RETAIL_TARIFF[code].name_en})")
+    print()
     for name, s in cfg.SUBSTATIONS.items():
-        mu = T.mu_profile("LT-A", peak_slots=s["t_pk_slots"])
+        mu = T.mu_profile("LT-C1", peak_slots=s["t_pk_slots"])   # a real ToU class
         official = sorted(T.OFFICIAL_TOU_PEAK)
         observed = sorted(s["t_pk_slots"])
         overlap = set(official) & set(observed)
-        print(f"{name}")
+        print(f"{name}  (shown for LT-C1, the smallest ToU-billed class this "
+              f"model uses - Industrial)")
         print(f"  T^pk (observed)  {s['t_pk_label']}")
         print(f"  T^pk (gazette)   "
               f"{cfg.slot_to_clock(official[0])}-{cfg.slot_to_clock(official[-1] + 1)}")
@@ -101,7 +115,7 @@ def cmd_mu() -> None:
         print(f"  mu^pk {max(mu):.2f} / mu^off {min(mu):.2f}   "
               f"({len(observed)} peak slots, {48 - len(observed)} off-peak)")
         print(f"  mu^pk - mu^off = {max(mu) - min(mu):.2f}  "
-              f"(the private benefit of shifting, EQ 34)\n")
+              f"(the private benefit of shifting, EQ 34, for THIS class only)\n")
 
 
 def cmd_bills() -> None:

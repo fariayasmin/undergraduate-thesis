@@ -226,22 +226,40 @@ OFFICIAL_TOU_WINDOWS = {
 # =============================================================================
 # 3. mu_i(t) - the ADAPTIVE LOCAL time-of-use multiplier, Eqs. (19) and (34)
 # =============================================================================
-# The mechanism has two halves with two different owners:
+# The mechanism has two halves with two different owners, and it applies ONLY
+# to classes the gazette actually gives a ToU row (tc.has_tou True: LT-C1,
+# LT-E, LT-D3, MT-1..5/7/8, HT-*, EHT-*):
 #
-#   RATIOS   mu^pk = 1.20, mu^off = 0.90.  SOURCE: this gazette. They are the
-#            LT-family peak/flat and off-peak/flat ratios the regulator itself
-#            applied to LT-C1 (1.1995 / 0.8995) and LT-E (1.2012 / 0.8997).
-#            LT-A carries no ToU row, so adopting the LT-family ratio for
-#            residential is a documented SCENARIO - but it is the regulator's
-#            own number, not an invented one.
+#   RATIOS   mu^pk = 1.20 (LT) / 1.25 (MT/HT/EHT), mu^off = 0.90. SOURCE: this
+#            gazette - the peak/flat and off-peak/flat ratios the regulator
+#            itself applied to LT-C1 (1.1995 / 0.8995) and LT-E (1.2012 /
+#            0.8997) etc.
 #
 #   WINDOW   T^pk_i.  SOURCE: derived per substation from its congestion
 #            history by gentwin/peak_window.py. NOT from this gazette.
 #
-# So mu_i(t) is a congestion-aware activation schedule laid over the
-# regulator's multipliers. It is NOT a replacement tariff, and no output of
-# this model may present it as one. The national window survives in
-# OFFICIAL_TOU_PEAK and drives the `--national` ablation.
+# For every class WITHOUT a gazette ToU row - LT-A (residential), and also
+# LT-B, LT-C2, LT-D1 (this model's Hospital and Educational archetypes),
+# LT-D2, LT-T, MT-6 - mu_i(t) = 1.0 at every slot. This is not a simplification:
+# Bangladesh residential billing has no time-of-use component at all (footnote
+# 3 of the gazette gives LT-A cumulative slabs only), and LT-D1 institutions
+# get a single flat rate too. A household on one of these tariffs faces the
+# SAME price at every half-hour, so shifting energy from one slot to another
+# earns it nothing - only curtailing (using less energy, at any hour) can
+# still save money. Demand response for these consumers is driven entirely by
+# the system-side term (kappa_i(t) pi_i(t) / theta_3 in Eq. 36/37: congestion
+# relief, reliability, storage/tie-line substitution, QoE), never by a private
+# ToU arbitrage that does not exist in the actual tariff.
+#
+# MU_RESIDENTIAL_IS_SCENARIO exists ONLY as an explicit, opt-in ablation
+# switch for a "what if a flat-rate class had ToU" what-if study. It defaults
+# to False - the model's real-policy behaviour - and even when True it must
+# never be reported as the current Bangladesh tariff. (Earlier versions of
+# this module defined this flag but never actually consulted it: mu_profile()
+# unconditionally borrowed the LT-family ratio for every class regardless of
+# tc.has_tou, so LT-A, and LT-D1's Hospital/Educational consumers, were priced
+# with a fictitious peak/off-peak signal inside the optimiser by default. That
+# is corrected below - see docs/adaptive_local_tou.md, Assumption A4.)
 
 MU_FAMILIES = {
     "LT": {"peak": 1.20, "off_peak": 0.90},
@@ -249,7 +267,7 @@ MU_FAMILIES = {
     "HT": {"peak": 1.25, "off_peak": 0.90},
     "EHT": {"peak": 1.25, "off_peak": 0.90},
 }
-MU_RESIDENTIAL_IS_SCENARIO = True
+MU_RESIDENTIAL_IS_SCENARIO = False
 
 
 def peak_slots_for(substation: str, adaptive: bool | None = None) -> tuple:
@@ -269,13 +287,21 @@ def mu_profile(tariff_code: str, substation: str | None = None,
     """
     EQ (19), (34): mu_i(t) over the 48 slots of a day.
 
-        mu_i(t) = mu^pk   if t in T^pk_i
-                  mu^off  otherwise
+        mu_i(t) = mu^pk   if t in T^pk_i, AND the class has a gazette ToU row
+                  mu^off  if t not in T^pk_i, AND the class has a ToU row
+                  1.0     every slot, for a class the gazette bills flat
+                          (LT-A residential included)
 
     Give either `substation` (window looked up, the normal path) or an
     explicit `peak_slots` (used by the verification harness and the ablation).
+
+    A flat-rate class only returns the borrowed LT/MT ratio if
+    MU_RESIDENTIAL_IS_SCENARIO is explicitly set True - an opt-in ablation,
+    never the default.
     """
     tc = RETAIL_TARIFF[tariff_code]
+    if not tc.has_tou and not MU_RESIDENTIAL_IS_SCENARIO:
+        return [1.0] * cfg.SLOTS_PER_DAY
     fam = MU_FAMILIES[tc.voltage]
     if peak_slots is None:
         if substation is None:
@@ -287,8 +313,15 @@ def mu_profile(tariff_code: str, substation: str | None = None,
 
 
 def mu_peak_off(tariff_code: str) -> tuple[float, float]:
-    """(mu^pk, mu^off) for the class - the two scalars Eq. (34) differences."""
-    fam = MU_FAMILIES[RETAIL_TARIFF[tariff_code].voltage]
+    """
+    (mu^pk, mu^off) for the class - the two scalars Eq. (34) differences.
+    (1.0, 1.0) for a class with no gazette ToU row, unless
+    MU_RESIDENTIAL_IS_SCENARIO is explicitly set True.
+    """
+    tc = RETAIL_TARIFF[tariff_code]
+    if not tc.has_tou and not MU_RESIDENTIAL_IS_SCENARIO:
+        return 1.0, 1.0
+    fam = MU_FAMILIES[tc.voltage]
     return fam["peak"], fam["off_peak"]
 
 

@@ -7,6 +7,21 @@ why it exists, what it changes in the formulation, and what it does not claim.
 
 ---
 
+## Implementation note (corrected)
+
+Earlier code defined `MU_RESIDENTIAL_IS_SCENARIO` as documentation only and
+never actually consulted it: `tariff.mu_profile()` unconditionally applied the
+borrowed LT-family ratio to whatever `tariff_code` it was given, so LT-A
+(residential) and LT-D1 (this model's Hospital and Educational archetypes -
+also carrying no gazette ToU row) were priced with a fictitious peak/off-peak
+signal *inside the optimiser* by default, contradicting Assumption A4 below.
+`mu_profile()` and `mu_peak_off()` now check `tariff.RETAIL_TARIFF[code].has_tou`
+and return `mu(t) = 1.0` for every non-ToU class unless
+`MU_RESIDENTIAL_IS_SCENARIO` is explicitly set `True` (default is now `False`).
+See `docs/chapter3_vs_implementation.md` §1 for the full trace of what this
+changes downstream (LP objective, Proposition-2 thresholds, `J^1` billing,
+the knowledge graph's `TouWindow`/`TariffClass` nodes).
+
 ## 0. The one-sentence statement
 
 > Time-of-use price *ratios* are taken from the BERC retail tariff order of

@@ -55,7 +55,7 @@ CALL { WITH row
 LOAD CSV WITH HEADERS FROM 'file:///nodes_TouWindow.csv' AS row
 CALL { WITH row
   MERGE (n:TouWindow {id: row.id})
-  SET n.is_replacement_tariff = row.is_replacement_tariff, n.mu_off = row.mu_off, n.mu_peak = row.mu_peak, n.mu_source = row.mu_source, n.slots = row.slots, n.substation = row.substation, n.window_label = row.window_label, n.window_source = row.window_source
+  SET n.applies_to = row.applies_to, n.is_replacement_tariff = row.is_replacement_tariff, n.mu_off = row.mu_off, n.mu_peak = row.mu_peak, n.mu_source = row.mu_source, n.slots = row.slots, n.substation = row.substation, n.window_label = row.window_label, n.window_source = row.window_source
 } IN TRANSACTIONS OF 5000 ROWS;
 
 // ---- TieLine (2) ----
@@ -83,17 +83,17 @@ CALL { WITH row
 LOAD CSV WITH HEADERS FROM 'file:///nodes_TariffClass.csv' AS row
 CALL { WITH row
   MERGE (n:TariffClass {id: row.id})
-  SET n.code = row.code, n.demand_charge = row.demand_charge, n.flat_tk_per_kwh = row.flat_tk_per_kwh, n.has_tou = row.has_tou, n.name_en = row.name_en, n.off_peak = row.off_peak, n.peak = row.peak, n.source = row.source, n.voltage = row.voltage
+  SET n.code = row.code, n.demand_charge = row.demand_charge, n.flat_tk_per_kwh = row.flat_tk_per_kwh, n.has_tou = row.has_tou, n.mu_off = row.mu_off, n.mu_peak = row.mu_peak, n.name_en = row.name_en, n.off_peak = row.off_peak, n.peak = row.peak, n.source = row.source, n.voltage = row.voltage
 } IN TRANSACTIONS OF 5000 ROWS;
 
-// ---- Day (14) ----
+// ---- Day (30) ----
 LOAD CSV WITH HEADERS FROM 'file:///nodes_Day.csv' AS row
 CALL { WITH row
   MERGE (n:Day {id: row.id})
   SET n.date = row.date, n.is_dispatch_day = row.is_dispatch_day
 } IN TRANSACTIONS OF 5000 ROWS;
 
-// ---- TimeSlot (144) ----
+// ---- TimeSlot (1440) ----
 LOAD CSV WITH HEADERS FROM 'file:///nodes_TimeSlot.csv' AS row
 CALL { WITH row
   MERGE (n:TimeSlot {id: row.id})
@@ -128,70 +128,70 @@ CALL { WITH row
   SET n.date = row.date, n.deficit_kw = row.deficit_kw, n.holiday_type = row.holiday_type, n.horizon_k = row.horizon_k, n.in_dispatch_horizon = row.in_dispatch_horizon, n.kappa = row.kappa, n.model = row.model, n.p_hat_kw = row.p_hat_kw, n.p_max_kw = row.p_max_kw, n.p_ref_kw = row.p_ref_kw, n.p_str_kw = row.p_str_kw, n.p_tilde_kw = row.p_tilde_kw, n.reference_day = row.reference_day, n.s_stress = row.s_stress, n.sigma_kw = row.sigma_kw, n.sigma_method = row.sigma_method, n.substation = row.substation, n.uncertainty_margin_kw = row.uncertainty_margin_kw, n.weather_source = row.weather_source, n.z_beta = row.z_beta
 } IN TRANSACTIONS OF 5000 ROWS;
 
-// ---- OptimizationRun (3) ----
+// ---- OptimizationRun (30) ----
 LOAD CSV WITH HEADERS FROM 'file:///nodes_OptimizationRun.csv' AS row
 CALL { WITH row
   MERGE (n:OptimizationRun {id: row.id})
   SET n.date = row.date, n.delta_h = row.delta_h, n.formulation = row.formulation, n.max_c1_slack_kw = row.max_c1_slack_kw, n.n_c7_binding = row.n_c7_binding, n.objective_F_tk = row.objective_F_tk, n.qoe_min = row.qoe_min, n.slots_per_day = row.slots_per_day, n.solver = row.solver, n.theta1 = row.theta1, n.theta2 = row.theta2, n.theta3 = row.theta3
 } IN TRANSACTIONS OF 5000 ROWS;
 
-// ---- Surcharge (6) ----
+// ---- Surcharge (60) ----
 LOAD CSV WITH HEADERS FROM 'file:///nodes_Surcharge.csv' AS row
 CALL { WITH row
   MERGE (n:Surcharge {id: row.id})
   SET n.B_id_kwh = row.B_id_kwh, n.F_i_tk = row.F_i_tk, n.G_id_kwh = row.G_id_kwh, n.T_ijd_kwh = row.T_ijd_kwh, n.date = row.date, n.f_cost_tk = row.f_cost_tk, n.f_rel_tk = row.f_rel_tk, n.f_wel_tk = row.f_wel_tk, n.substation = row.substation, n.varpi_tk_per_kwh = row.varpi_tk_per_kwh
 } IN TRANSACTIONS OF 5000 ROWS;
 
-// ---- Decision (2592) ----
+// ---- Decision (25920) ----
 LOAD CSV WITH HEADERS FROM 'file:///nodes_Decision.csv' AS row
 CALL { WITH row
   MERGE (n:Decision {id: row.id})
   SET n.clock = row.clock, n.date = row.date, n.equation = row.equation, n.slot_index = row.slot_index, n.substation = row.substation, n.unit = row.unit, n.value = row.value, n.var_type = row.var_type
 } IN TRANSACTIONS OF 5000 ROWS;
 
-// ---- LoadProfile (288) ----
+// ---- LoadProfile (2880) ----
 LOAD CSV WITH HEADERS FROM 'file:///nodes_LoadProfile.csv' AS row
 CALL { WITH row
   MERGE (n:LoadProfile {id: row.id})
   SET n.c1_slack_kw = row.c1_slack_kw, n.clock = row.clock, n.date = row.date, n.pi_tk_per_kwh = row.pi_tk_per_kwh, n.post_response_kw = row.post_response_kw, n.slot_index = row.slot_index, n.soc_kwh = row.soc_kwh, n.substation = row.substation
 } IN TRANSACTIONS OF 5000 ROWS;
 
-// ---- DrAction (28457) ----
+// ---- DrAction (261001) ----
 LOAD CSV WITH HEADERS FROM 'file:///nodes_DrAction.csv' AS row
 CALL { WITH row
   MERGE (n:DrAction {id: row.id})
   SET n.action = row.action, n.at_cap = row.at_cap, n.c7_binding = row.c7_binding, n.clock = row.clock, n.consumer_id = row.consumer_id, n.date = row.date, n.discomfort_tk_per_kwh = row.discomfort_tk_per_kwh, n.energy_kwh = row.energy_kwh, n.equation = row.equation, n.kappa = row.kappa, n.lambda_h = row.lambda_h, n.lambda_star = row.lambda_star, n.margin = row.margin, n.pi_i_t = row.pi_i_t, n.private_tk_per_kwh = row.private_tk_per_kwh, n.qoe_tk_per_kwh = row.qoe_tk_per_kwh, n.slot_index = row.slot_index, n.substation = row.substation, n.system_tk_per_kwh = row.system_tk_per_kwh, n.threshold_form = row.threshold_form, n.value = row.value, n.y_max_h = row.y_max_h
 } IN TRANSACTIONS OF 5000 ROWS;
 
-// ---- Regime (6) ----
+// ---- Regime (60) ----
 LOAD CSV WITH HEADERS FROM 'file:///nodes_Regime.csv' AS row
 CALL { WITH row
   MERGE (n:Regime {id: row.id})
   SET n.beta1 = row.beta1, n.computed_after_solve = row.computed_after_solve, n.date = row.date, n.equation = row.equation, n.r = row.r, n.regime_name = row.regime_name, n.s_stress = row.s_stress, n.substation = row.substation, n.trigger_capacity_deficit = row.trigger_capacity_deficit, n.trigger_reserve_shortfall = row.trigger_reserve_shortfall, n.trigger_transfer = row.trigger_transfer
 } IN TRANSACTIONS OF 5000 ROWS;
 
-// ---- Event (11) ----
+// ---- Event (86) ----
 LOAD CSV WITH HEADERS FROM 'file:///nodes_Event.csv' AS row
 CALL { WITH row
   MERGE (n:Event:DrEvent {id: row.id})
   SET n.actual_peak_kw = row.actual_peak_kw, n.cost_impact_tk = row.cost_impact_tk, n.date = row.date, n.deficit_kw = row.deficit_kw, n.energy_curtailed_kwh = row.energy_curtailed_kwh, n.energy_reduction_kwh = row.energy_reduction_kwh, n.energy_shifted_kwh = row.energy_shifted_kwh, n.event_id = row.event_id, n.forecast_peak_kw = row.forecast_peak_kw, n.kappa = row.kappa, n.n_affected_consumers = row.n_affected_consumers, n.n_threshold_records = row.n_threshold_records, n.p_max_kw = row.p_max_kw, n.p_str_kw = row.p_str_kw, n.pi_max_tk_per_kwh = row.pi_max_tk_per_kwh, n.pi_min_tk_per_kwh = row.pi_min_tk_per_kwh, n.regime = row.regime, n.regime_name = row.regime_name, n.reserve_shortfall_kwh = row.reserve_shortfall_kwh, n.robust_peak_kw = row.robust_peak_kw, n.stress_indicator = row.stress_indicator, n.substation = row.substation, n.timestamp = row.timestamp, n.transfer_out_kwh = row.transfer_out_kwh, n.trigger = row.trigger, n.unserved_kwh = row.unserved_kwh
 } IN TRANSACTIONS OF 5000 ROWS;
 
-// ---- PriorityPool (9) ----
+// ---- PriorityPool (90) ----
 LOAD CSV WITH HEADERS FROM 'file:///nodes_PriorityPool.csv' AS row
 CALL { WITH row
   MERGE (n:PriorityPool {id: row.id})
   SET n.W_P = row.W_P, n.alpha_P = row.alpha_P, n.chi_bar = row.chi_bar, n.chi_max = row.chi_max, n.chi_mean = row.chi_mean, n.chi_min = row.chi_min, n.cut_high = row.cut_high, n.cut_low = row.cut_low, n.date = row.date, n.degenerate = row.degenerate, n.equation = row.equation, n.n = row.n, n.pool = row.pool, n.rule = row.rule
 } IN TRANSACTIONS OF 5000 ROWS;
 
-// ---- PoolEntity (150) ----
+// ---- PoolEntity (1500) ----
 LOAD CSV WITH HEADERS FROM 'file:///nodes_PoolEntity.csv' AS row
 CALL { WITH row
   MERGE (n:PoolEntity {id: row.id})
   SET n.chi = row.chi, n.date = row.date, n.entity_id = row.entity_id, n.equation = row.equation, n.gcs_score = row.gcs_score, n.kind = row.kind, n.pool = row.pool, n.rank = row.rank, n.substation = row.substation
 } IN TRANSACTIONS OF 5000 ROWS;
 
-// ---- ParticipationSummary (2400) ----
+// ---- ParticipationSummary (24000) ----
 LOAD CSV WITH HEADERS FROM 'file:///nodes_ParticipationSummary.csv' AS row
 CALL { WITH row
   MERGE (n:ParticipationSummary {id: row.id})
