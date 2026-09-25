@@ -4,5 +4,11 @@ __pycache__/
 forecast_outputs_low_validation_error/
 forecast_outputs_good_prediction/
 
+# Stage I-J
+stage_ij/.venv/
+stage_ij/checkpoints/
+stage_ij/runs/**/*.pt
+stage_ij/runs/**/*.safetensors
+
 
 

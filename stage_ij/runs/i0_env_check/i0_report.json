@@ -1,0 +1,24 @@
+{
+  "platform": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10",
+    "torch": "2.14.0+cpu",
+    "device": "cpu",
+    "cpu_count_logical": 8
+  },
+  "hf_home": "C:/Users/C4S/.cache/huggingface",
+  "load_seconds": 904.9161291122437,
+  "n_params": 1100048384,
+  "hidden_size": 2048,
+  "n_layers": 22,
+  "forward_1500_tokens_seconds": 32.78932189941406,
+  "rss_after_forward_mb": 4829.1640625,
+  "generate_60_tokens_seconds": 23.191818475723267,
+  "adapter_trainable_params_bench": 1441792,
+  "train_step_512_seconds": 23.17216682434082,
+  "rss_after_train_512_mb": 4742.40234375,
+  "train_step_1024_seconds": 49.877559185028076,
+  "rss_after_train_1024_mb": 4683.2578125,
+  "estimate_i2_hours_rough": 27.990570187568665,
+  "estimate_i3_hours_rough": 27.709755102793377
+}
