@@ -44,10 +44,15 @@ def load_run(tag: str, subs):
     dec = pd.read_csv(cfg.OUT_DIR / f"lp_decisions{tag}.csv")
     summ = pd.read_csv(cfg.OUT_DIR / f"lp_summary{tag}.csv")
     dates = sorted(net["date"].unique())
-    if len(dates) < 7:
-        print(f"  WARNING: only {len(dates)} day(s) in this run. A monthly bill "
-              f"needs the whole period - the tariff slab is cumulative over the "
-              f"month, so a short run cannot be scaled up honestly.\n"
+    if len(dates) < 30:
+        print(f"  WARNING: only {len(dates)} day(s) in this run, not a full "
+              f"30-day month. gentwin/billing.py::build() DOES scale every "
+              f"Tk quantity (bill, J1, discomfort, incentive) to the same "
+              f"30-day equivalent (Round-3 follow-up - they used to scale "
+              f"inconsistently, inflating '%gained'), so the numbers are "
+              f"internally consistent, but a {len(dates)}-day sample still "
+              f"under-represents the month's actual mix of stress/non-stress "
+              f"days. Prefer the full period for anything reported.\n"
               f"  Run: python 06_lp_optimiser.py --solve --month 30")
     return net, dec, summ, dates
 
@@ -119,6 +124,7 @@ def main() -> int:
     dist = billing.distribution(df)
     checks = billing.validate(df, days)
     plaus = billing.plausibility(df, days)
+    peak = billing.substation_peak_reduction(net, subs)   # Round-3 follow-up
 
     # ---- requirement 7: outputs/billing/ -------------------------------
     bdir = cfg.OUT_DIR / "billing"
@@ -129,6 +135,7 @@ def main() -> int:
     comp.to_csv(bdir / f"household_monthly_comparison{sfx}.csv", index=False)
     summary.to_csv(bdir / f"substation_monthly_summary{sfx}.csv", index=False)
     bycat.to_csv(bdir / f"monthly_by_category{sfx}.csv", index=False)
+    peak.to_csv(bdir / f"substation_peak_reduction{sfx}.csv", index=False)
     pd.DataFrame([{"scope": k, **v} for k, v in dist.items()]).to_csv(
         bdir / f"monthly_bill_distribution{sfx}.csv", index=False)
     import json as _json
@@ -166,6 +173,17 @@ def main() -> int:
         "plausibility": plaus,
         "tariff_source": __import__("gentwin.tariff", fromlist=["x"]).GAZETTE_REF,
         "rho_tk_per_kwh": cfg.RHO_REBATE_TK_PER_KWH,
+        # Issue J follow-up: label which arm this run actually is, wherever
+        # the rho value itself is reported, so a reader of the JSON alone
+        # (without the CLI invocation) can't mistake rho>0 for existing
+        # BERC policy.
+        "rho_is_current_policy": cfg.RHO_CURRENT_POLICY,
+        "rho_label": ("CURRENT POLICY (no stress rebate exists in "
+                     "Bangladesh today)" if cfg.RHO_CURRENT_POLICY else
+                     "PROPOSED mechanism, evaluated by this study - not "
+                     "existing BERC policy"),
+        "individual_rationality_on": cfg.INDIVIDUAL_RATIONALITY,
+        "curtail_scope": cfg.CURTAIL_SCOPE,
         "qoe_min": cfg.QOE_MIN,
     }, indent=1, default=str), encoding="utf-8")
     # legacy paths kept so nothing downstream breaks
@@ -197,7 +215,16 @@ def main() -> int:
         print(f"     median hh saving       {r['median_household_saving_tk']:>14,.2f} Tk")
         print(f"     mean hh bill / kWh     {r['mean_household_bill_tk']:>14,.0f} Tk"
               f" / {r['mean_household_kwh']:,.0f} kWh")
-        print(f"     mean peak reduction    {r['peak_reduction_pct_mean']:>14,.2f} %")
+        print(f"     mean HOUSEHOLD peak red {r['peak_reduction_pct_mean']:>13,.2f} %"
+              f"   (each household's OWN peak - not what DR is judged on)")
+        pk = peak.loc[peak.substation == r["substation"], "peak_reduction_pct"]
+        pk_shift = int(peak.loc[peak.substation == r["substation"],
+                                "peak_shifted_not_shaved"].sum())
+        print(f"     SUBSTATION peak reduct. {pk.mean():>13,.2f} %"
+              f"   (max_t baseline vs max_t post-response, mean over "
+              f"{len(pk)} days;\n"
+              f"     {'':<26} {pk_shift} day(s) where the peak only MOVED, "
+              f"not shaved)")
         print(f"     QoE mean / min         {r['qoe_mean']:>14.3f} / {r['qoe_min']:.3f}"
               f"   violations {int(r['qoe_violations'])}")
         print(f"     operator cost          {r['operator_cost_tk']:>14,.0f} Tk")

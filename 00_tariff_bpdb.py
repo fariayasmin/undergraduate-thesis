@@ -19,6 +19,7 @@ import json
 import sys
 
 from gentwin import config as cfg
+from gentwin import peak_window as pw
 from gentwin import tariff as T
 
 
@@ -82,17 +83,20 @@ def cmd_table() -> None:
 
 
 def cmd_mu() -> None:
-    print("mu(t) as used by the model - EQ (19), (34)\n")
-    print("The model uses each substation's OBSERVED peak window as T^pk, not")
-    print("the gazette's 17:00-23:00 commercial window. Where they disagree,")
-    print("mu(t) is a PROPOSED substation-specific ToU tariff for the classes")
-    print("that DO carry a gazette ToU row (LT-C1, LT-E, LT-D3, MT/HT/EHT), not")
-    print("a published one, and must be presented as such.\n")
+    print("mu(t) as used by the model - EQ (19), (34)  [Issue A]\n")
+    print("BILLING and the DR ACTIVATION window are two separate things now:")
+    print("  BILLING       mu(t) always uses the OFFICIAL gazette window,")
+    print("                17:00-23:00, for any class with a real ToU row.")
+    print("                Never varies by substation.")
+    print("  DR ACTIVATION x_{h,t} exists only on the substation's own")
+    print("                OBSERVED (adaptive) peak window - it decides WHEN")
+    print("                demand response may fire, never what is billed.\n")
     print("LT-A (residential) and LT-D1 (this model's Hospital and Educational")
     print("archetypes) carry NO gazette ToU row at all: mu(t) = 1.0 at every")
-    print("slot, by policy, not by approximation. Shifting energy earns these")
-    print("consumers nothing; only curtailing (using less) can still save them")
-    print(f"money. (MU_RESIDENTIAL_IS_SCENARIO = {T.MU_RESIDENTIAL_IS_SCENARIO} - "
+    print("slot under EITHER window, by policy, not by approximation.")
+    print("Shifting energy earns these consumers nothing; only curtailing")
+    print("(using less) can still save them money.")
+    print(f"(MU_RESIDENTIAL_IS_SCENARIO = {T.MU_RESIDENTIAL_IS_SCENARIO} - "
           f"set True only to run an explicit 'what if a flat-rate class had "
           f"ToU' ablation, never to report current policy.)\n")
     for code in ("LT-A", "LT-D1"):
@@ -100,22 +104,40 @@ def cmd_mu() -> None:
         print(f"  {code:6} mu^pk {mu_pk:.2f} / mu^off {mu_off:.2f}  "
               f"(flat - {T.RETAIL_TARIFF[code].name_en})")
     print()
-    for name, s in cfg.SUBSTATIONS.items():
-        mu = T.mu_profile("LT-C1", peak_slots=s["t_pk_slots"])   # a real ToU class
-        official = sorted(T.OFFICIAL_TOU_PEAK)
-        observed = sorted(s["t_pk_slots"])
+    official = sorted(T.OFFICIAL_TOU_PEAK)
+    official_label = (f"{cfg.slot_to_clock(official[0])}-"
+                      f"{cfg.slot_to_clock(official[-1] + 1)}")
+    mu_billed = T.mu_profile("LT-C1", peak_slots=T.OFFICIAL_TOU_PEAK)   # what LT-C1/LT-E etc. actually pay
+    print(f"Billing window (all ToU classes, e.g. LT-C1): {official_label}")
+    print(f"  mu^pk {max(mu_billed):.2f} / mu^off {min(mu_billed):.2f}   "
+          f"({len(official)} peak slots, {48 - len(official)} off-peak) - "
+          f"IDENTICAL at both substations\n")
+    for name in cfg.SUBSTATIONS:
+        observed = sorted(pw.get_peak_slots(name))   # dynamic - Issue A/label bug
+        # What LT-C1 is actually BILLED, evaluated AT the DR-activation
+        # slots - this is the number that matters for the "does shifting out
+        # of the DR window help or hurt the bill" question.
+        billed_at_dr_slots = [mu_billed[t] for t in observed]
         overlap = set(official) & set(observed)
-        print(f"{name}  (shown for LT-C1, the smallest ToU-billed class this "
-              f"model uses - Industrial)")
-        print(f"  T^pk (observed)  {s['t_pk_label']}")
-        print(f"  T^pk (gazette)   "
-              f"{cfg.slot_to_clock(official[0])}-{cfg.slot_to_clock(official[-1] + 1)}")
-        print(f"  overlap          {len(overlap)} of {len(observed)} slots"
-              + ("   << MISALIGNED - report this" if not overlap else ""))
-        print(f"  mu^pk {max(mu):.2f} / mu^off {min(mu):.2f}   "
-              f"({len(observed)} peak slots, {48 - len(observed)} off-peak)")
-        print(f"  mu^pk - mu^off = {max(mu) - min(mu):.2f}  "
-              f"(the private benefit of shifting, EQ 34, for THIS class only)\n")
+        print(f"{name}  DR activation window (Industrial/LT-C1, illustrative)")
+        print(f"  T^pk (observed, DR activation)  "
+              f"{pw.format_window(observed)}")
+        print(f"  T^pk (gazette, BILLING)         {official_label}")
+        print(f"  overlap                         {len(overlap)} of "
+              f"{len(observed)} slots"
+              + ("   << MISALIGNED - the case for a substation-specific "
+                 "ToU proposal, not what is billed today"
+                 if not overlap else ""))
+        print(f"  mu(t) ACTUALLY BILLED at the DR-activation slots: "
+              f"{min(billed_at_dr_slots):.2f}-{max(billed_at_dr_slots):.2f} "
+              + ("(all OFF-PEAK by the gazette clock, despite this being "
+                 "the substation's own physical peak - shifting load OUT "
+                 "of this window and into the recovery window, which "
+                 "includes the real 17:00-23:00 billing peak, RAISES the "
+                 "bill)" if set(billed_at_dr_slots) == {min(mu_billed)}
+                 else "(billing and DR windows overlap here, so shifting "
+                      "out still behaves the way the family ratio implies)"))
+        print()
 
 
 def cmd_bills() -> None:

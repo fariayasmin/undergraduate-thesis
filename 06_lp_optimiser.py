@@ -12,10 +12,24 @@ Solves day by day on a receding basis, carrying S_i(end of day d) into S^0_i
 for day d+1, as the formulation describes. Within a day the solve is a single
 simultaneous programme, so Corollary 1 holds.
 
-Theta(t) is the REFERENCE DAY's profile at every dispatch day, because
-kappa_{i,d} is defined (Eq. 16, Assumption 1) as a level rescaling of that same
-reference profile. Using a different day's temperature would double-count the
-level change that kappa already carries.
+Theta(t) is EACH DAY'S OWN profile (observed where BPDB has it, day-of-year
+climatology beyond it - see gentwin/temperature.py), never the reference
+day's. This is the corrected behaviour for Issue D: an earlier version of this
+docstring claimed Theta(t) was pinned to the reference day "because kappa_i,d
+is a level rescaling of that same reference profile" and warned that using a
+different day's temperature would double-count the level change kappa already
+carries - which was true only as long as kappa_{i,d} = p~_{i,d} / p_{i,d0}
+(Eq. 16 as originally written, denominator = the FIXED reference-day peak).
+That is exactly the bug: with per-day Theta already baked into the bottom-up
+load Lambda_d(t;0,0) via the thermal response, a hot forecast day gets its
+level raised ONCE by Theta_d inside the load model and a SECOND time by
+kappa_d against the (cooler) reference day - the same physical driver counted
+twice. Fixed by redefining the denominator to that day's OWN generated
+baseline peak: kappa_d = p~_{i,d} / max_t Lambda_d(t;0,0;Theta_d), computed
+from the SAME per-day population/weather run() already builds, before the
+solve. Both the old (reference-day) and new (same-day) kappa are recorded in
+lp_summary{tag}.csv as kappa_refday_<sub> / kappa_<sub> for traceability - see
+docs/thesis_changes.md, Issue D.
 """
 
 import argparse
@@ -88,7 +102,7 @@ def apply_scenario(scale_gmax: float | None, scale_pmax: float | None):
 
 
 def run(subs, n_days, couple=True, theta_w=None, verbose=True,
-        period=None):
+        period=None, individual_rationality=None):
     """
     Solve a run of days.
 
@@ -125,18 +139,53 @@ def run(subs, n_days, couple=True, theta_w=None, verbose=True,
         tp = theta_cache[date]
         theta = np.array(tp["theta_c"])
 
-        kappa, s_flag, mode = {}, {}, {}
+        # Baseline Lambda_d(t;0,0), computed BEFORE the solve, from THIS day's
+        # own population/weather run - Issue D. This is the denominator the
+        # corrected kappa_d uses, and it is reused below for sol.baseline_kw
+        # so the aggregation is only ever done once per day.
+        baseline_kw = {}
+        for i in subs:
+            lam0 = np.zeros(cfg.SLOTS_PER_DAY)
+            for h in POP[i]:
+                pr = lm.consumer_profile(h, sch, cat, theta)
+                lam0 += float(h.w) * (pr["critical"] + pr["shiftable"]
+                                      + pr["curtailable"])
+            baseline_kw[i] = lam0
+
+        kappa, kappa_refday, s_flag, mode = {}, {}, {}, {}
         for i in subs:
             row = (plans[i][date] if plans
                    else next(r for r in rec[i]["rows"] if r["target_date"] == date))
-            kappa[i], s_flag[i] = row["kappa_scale"], row["s_stress"]
+            # OLD (Eq. 16 as originally written): p~_d / p_(i,d0), the FIXED
+            # reference-day peak. Kept only for traceability (kappa_refday_*
+            # in lp_summary{tag}.csv) - see the module docstring on Issue D.
+            kappa_refday[i] = row["kappa_scale"]
+            # NEW (Issue D fix): p~_d / max_t Lambda_d(t;0,0;Theta_d), that
+            # SAME day's own bottom-up baseline peak. Removes the double
+            # count: Theta_d's thermal response has already raised
+            # Lambda_d(t;0,0) if the day is hot, so kappa_d now measures only
+            # the residual gap between the robust FORECAST and what the
+            # bottom-up model, with today's weather, already predicts.
+            p_tilde = row.get("p_tilde_kw")
+            base_peak = float(baseline_kw[i].max())
+            kappa[i] = (float(p_tilde) / base_peak) if p_tilde is not None \
+                and base_peak > 0 else row["kappa_scale"]
+            s_flag[i] = row["s_stress"]
             mode[i] = row.get("mode", "forecast")
 
+        # Issue 10 (optional, off by default): only the LAST date of the run
+        # gets a terminal-SoC target, and only if TERMINAL_SOC is enabled.
+        terminal_target = ({i: float(cfg.SUBSTATIONS[i]["s0_kwh"]) for i in subs}
+                          if cfg.TERMINAL_SOC and date == dates[-1] else None)
         sol = lp.solve_day(date, subs, POP, sch, cat, theta, kappa, s_flag,
-                           soc, couple=couple, theta_w=theta_w)
+                           soc, couple=couple, theta_w=theta_w,
+                           individual_rationality=individual_rationality,
+                           terminal_target=terminal_target)
         if not sol.success:
-            print(f"  {date}: SOLVE FAILED - {sol.status}")
-            break
+            raise RuntimeError(
+                f"{date}: LP solve failed ({sol.status}). Refusing to "
+                f"silently truncate the period - fix the infeasibility "
+                f"(scarcity scale, storage bounds, reserve floor) and rerun.")
 
         # Stage G, Eqs. (40)-(43), from the completed solve.
         post = {}
@@ -160,14 +209,9 @@ def run(subs, n_days, couple=True, theta_w=None, verbose=True,
         sol.day_mode = mode
         sol.theta_source = tp["weather_source"]
         sol.theta_c = tp["theta_c"]
-        sol.baseline_kw = {}
-        for i in subs:
-            lam0 = np.zeros(cfg.SLOTS_PER_DAY)
-            for h in POP[i]:
-                pr = lm.consumer_profile(h, sch, cat, theta)
-                lam0 += float(h.w) * (pr["critical"] + pr["shiftable"]
-                                      + pr["curtailable"])
-            sol.baseline_kw[i] = lam0.tolist()
+        sol.baseline_kw = {i: baseline_kw[i].tolist() for i in subs}
+        sol.kappa_used = dict(kappa)
+        sol.kappa_refday = dict(kappa_refday)
 
         for i in subs:
             soc[i] = sol.soc_end_kwh[i]
@@ -200,8 +244,22 @@ def run(subs, n_days, couple=True, theta_w=None, verbose=True,
     return solutions, POP
 
 
-def export(sols, subs, POP, tag=""):
-    """Everything Stages H and K need."""
+def export(sols, subs, POP, tag="", scenario=None):
+    """
+    Everything Stages H and K need.
+
+    `scenario` (Round-3 follow-up): {i: (scale_gmax, scale_pmax, g_max_kw_eff,
+    p_max_kw_eff)}, or None for the base case (scale=1.0 for every
+    substation). `apply_scenario()` mutates `cfg.SUBSTATIONS` in-place inside
+    THIS process only; 07/08/09 run as separate `python` processes and import
+    a fresh, unscaled `cfg`, so a scarcity run's effective P^max/G^max was
+    silently invisible to every stage downstream of the LP solve itself
+    (Stage H's capacity_deficit trigger, in particular, was computed against
+    the wrong, unscaled P^max). Recording the scale factors and effective
+    caps here, once, per substation, lets every downstream stage read and
+    apply them instead of re-deriving them from a cfg that was never scaled
+    in their process.
+    """
     rows_dec, rows_thr, rows_net = [], [], []
     for sol in sols:
         for (cid, t), val in sol.x.items():
@@ -237,14 +295,29 @@ def export(sols, subs, POP, tag=""):
                        ("network", rows_net)):
         pd.DataFrame(rows).to_csv(cfg.OUT_DIR / f"lp_{name}{tag}.csv", index=False)
 
+    scenario = scenario or {i: (1.0, 1.0, cfg.SUBSTATIONS[i]["g_max_kw"],
+                                cfg.SUBSTATIONS[i]["p_max_kw"]) for i in subs}
     summary = [{
         "date": s.date, "F_tk": s.objective_tk,
         **{f"F_{i}": s.F_by_substation[i] for i in subs},
         **{f"{k}_{i}": v for i in subs for k, v in s.cost_terms[i].items()},
         **{f"varpi_{i}": s.stage_g[i]["varpi_tk_per_kwh"] for i in subs},
         **{f"soc_end_{i}": s.soc_end_kwh[i] for i in subs},
+        # Issue D: both kappa definitions, so the fix is auditable rather than
+        # silently replacing one number with another.
+        **{f"kappa_{i}": s.kappa_used[i] for i in subs},
+        **{f"kappa_refday_{i}": s.kappa_refday[i] for i in subs},
+        # Round-3 follow-up: the scenario scale factors AND the effective
+        # (already-scaled) caps, so a downstream process never has to guess
+        # whether cfg.SUBSTATIONS in ITS process reflects a scenario that was
+        # only ever applied inside the LP-solve process's own memory.
+        **{f"scale_gmax_{i}": scenario[i][0] for i in subs},
+        **{f"scale_pmax_{i}": scenario[i][1] for i in subs},
+        **{f"g_max_kw_eff_{i}": scenario[i][2] for i in subs},
+        **{f"p_max_kw_eff_{i}": scenario[i][3] for i in subs},
         "max_c1_slack_kw": s.diagnostics["max_c1_slack_kw"],
         "n_c7_binding": s.diagnostics["n_c7_binding"],
+        "n_ir_binding": s.diagnostics.get("n_ir_binding", 0),
     } for s in sols]
     pd.DataFrame(summary).to_csv(cfg.OUT_DIR / f"lp_summary{tag}.csv", index=False)
     print(f"\n  wrote lp_decisions{tag}.csv, lp_thresholds{tag}.csv, "
@@ -396,6 +469,22 @@ def main() -> int:
                          "(e.g. 0.62). Base case leaves it unbound.")
     ap.add_argument("--scale-pmax", type=float, default=None,
                     help="scenario: scale P^max_i, which drives Def and r=3")
+    ap.add_argument("--ir", action="store_true",
+                    help="Issue I: add the individual-rationality constraint "
+                         "(lambda_h*(J1(x,y)-J1(0,0)) + (1-lambda_h)*J2(x,y) "
+                         "<= 0 per household per day). Off by default - the "
+                         "base formulation does not require it.")
+    ap.add_argument("--curtail-scope", choices=["all", "dr_window", "stress_days"],
+                    default=None,
+                    help="override CURTAIL_SCOPE: restrict y_{h,t} to the "
+                         "DR-activation window ('dr_window') or to stressed "
+                         "days only ('stress_days'), instead of every slot "
+                         "of every day ('all', the default).")
+    ap.add_argument("--rho", type=float, default=None,
+                    help="Issue J: override RHO_REBATE_TK_PER_KWH. Pass 0 "
+                         "for the CURRENT-POLICY arm (no stress rebate - rho "
+                         "does not exist in Bangladesh today). Default: the "
+                         "config value, i.e. the PROPOSED-mechanism rho.")
     ap.add_argument("--substations", nargs="*", default=list(cfg.SUBSTATIONS))
     a = ap.parse_args()
     if not (a.solve or a.sweep_theta or a.plot):
@@ -412,23 +501,57 @@ def main() -> int:
           f"{a.days} dispatch day(s), Delta={cfg.DELTA_H} h, "
           f"{cfg.SLOTS_PER_DAY} slots/day")
     print("=" * 78)
+    scenario = None
     if a.scale_gmax or a.scale_pmax:
         apply_scenario(a.scale_gmax, a.scale_pmax)
+        scenario = {i: (a.scale_gmax or 1.0, a.scale_pmax or 1.0,
+                        cfg.SUBSTATIONS[i]["g_max_kw"],
+                        cfg.SUBSTATIONS[i]["p_max_kw"]) for i in subs}
         print(f"SCENARIO: G^max x{a.scale_gmax or 1.0}, P^max x{a.scale_pmax or 1.0} "
               f"- scarcity is imposed, not observed. Base case reported separately.")
+    if a.rho is not None:
+        cfg.RHO_REBATE_TK_PER_KWH = a.rho
+        cfg.RHO_CURRENT_POLICY = (a.rho == 0.0)
+        print(f"RHO OVERRIDE: rho = {a.rho} Tk/kWh"
+              + ("  [CURRENT-POLICY ARM - no stress rebate exists in "
+                 "Bangladesh today; this is what the grid actually offers]"
+                 if cfg.RHO_CURRENT_POLICY else
+                 "  [still the PROPOSED-mechanism rebate, not existing "
+                 "BERC policy]"))
+    if a.ir:
+        print("INDIVIDUAL RATIONALITY (Issue I): ON - "
+              "lambda_h*(J1(x,y)-J1(0,0)) + (1-lambda_h)*J2(x,y) <= 0 "
+              "enforced per household per day.")
+    if a.curtail_scope is not None:
+        cfg.CURTAIL_SCOPE = a.curtail_scope
+        print(f"CURTAIL_SCOPE OVERRIDE: y_" + "{h,t}" + f" restricted to "
+              f"'{a.curtail_scope}'" +
+              (" (curtailment is now PEAK-TIME scoped, not all-day)"
+               if a.curtail_scope == "dr_window" else
+               " (curtailment is now STRESS-DAY scoped, not all-day)"
+               if a.curtail_scope == "stress_days" else ""))
     period = tuple(a.period) if a.period else None
     if a.month:
         period = F.period_bounds(_bpdb(), subs, a.month)
         print(f"Billing period: {period[0]} -> {period[1]} ({a.month} days)")
-    sols, POP = run(subs, a.days, couple=not a.separate, period=period)
+    sols, POP = run(subs, a.days, couple=not a.separate, period=period,
+                    individual_rationality=(True if a.ir else None))
     if not sols:
         return 3
+    # Issue C: every variant writes distinct outputs so 07/08/09 can consume
+    # the matching one via --tag.
     tag = "_separate" if a.separate else ""
     if a.month or a.period:
         tag += "_period"
+    if a.rho == 0.0:
+        tag += "_rho0"
+    if a.ir:
+        tag += "_ir"
+    if a.curtail_scope and a.curtail_scope != "all":
+        tag += f"_{a.curtail_scope}"
     if a.scale_gmax or a.scale_pmax:
         tag += "_scarcity"
-    export(sols, subs, POP, tag=tag)
+    export(sols, subs, POP, tag=tag, scenario=scenario)
     if a.plot:
         cmd_plot(sols, subs)
     return 0

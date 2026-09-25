@@ -119,13 +119,15 @@ class DaySolution:
     objective_tk: float
     F_by_substation: dict
     cost_terms: dict
-    duals: dict                      # pi_i(t), Tk/kWh
+    duals: dict                      # pi_i(t), Tk/kWh (C1)
+    duals_c4: dict                   # pi4_i(t), Tk/kWh (C4 export/capacity)
     x: dict                          # (consumer_id, slot) -> x*
     y: dict                          # (consumer_id, slot) -> y*
     network: dict                    # per substation, per slot arrays
     soc_end_kwh: dict
     c1_slack_kw: dict
     c7_binding: list
+    ir_binding: list = field(default_factory=list)
     thresholds: list = field(default_factory=list)
     diagnostics: dict = field(default_factory=dict)
 
@@ -158,10 +160,22 @@ def _consumer_blocks(consumers, schedules, cat, theta, peak_slots):
 
 def _price_vector(consumer, substation, surcharge_tk_per_kwh: float,
                   monthly_kwh: float | None) -> np.ndarray:
-    """pi_h(t) = (pi^ret_h + varpi_{i,m}) mu_i(t), Eq. (20). Tk/kWh."""
+    """
+    pi_h(t) = (pi^ret_h + varpi_{i,m}) mu_i(t), Eq. (20). Tk/kWh.
+
+    Issue A: this is a BILLING price, so mu(t) must use the OFFICIAL BERC
+    ToU window (17:00-23:00), never the adaptive DR-activation window. The
+    two are different things with different owners: BERC fixes when a ToU
+    class is actually billed peak/off-peak; the adaptive window (derived per
+    substation from congestion history) only says when x_{h,t} may be
+    non-zero for demand-response ACTIVATION, in lp.build_day. Passing
+    `adaptive=False` here is what selects the official window - has_tou=False
+    classes (LT-A, LT-D1) are unaffected either way (mu=1.0 always, see
+    tariff.mu_profile).
+    """
     code = cfg.CONSUMER_ARCHETYPES[consumer.archetype]["tariff_class"]
     base = T.retail_rate(code, monthly_kwh)
-    mu = T.mu_profile(code, substation=substation)
+    mu = T.mu_profile(code, substation=substation, adaptive=False)
     return (base + surcharge_tk_per_kwh) * np.asarray(mu)
 
 
@@ -172,19 +186,31 @@ def _price_vector(consumer, substation, surcharge_tk_per_kwh: float,
 def build_day(date, substations, populations, schedules, cat, theta,
               kappa: dict, s_stress: dict, soc0: dict,
               surcharge: dict | None = None, couple: bool = True,
-              theta_w: tuple | None = None):
+              theta_w: tuple | None = None,
+              individual_rationality: bool | None = None,
+              terminal_target: dict | None = None):
     """
     Assemble the LP for one day. Returns (c, A_ub, b_ub, bounds, idx, ctx).
 
     `kappa[i]` is kappa_{i,d} from Eq. (16); `s_stress[i]` is s_{i,d} from
     Eq. (15); `soc0[i]` is S^0_i in kWh for this day.
+
+    `individual_rationality` (Issue I), when True, adds one row per household
+    per day: lambda_h*(J1(x,y)-J1(0,0)) + (1-lambda_h)*J2(x,y) <= 0. x=y=0 is
+    always feasible.
+
+    `terminal_target` (Issue 10, optional): {substation: kWh}. Adds
+    S_i(end of day) >= target on the LAST slot only. The caller passes this
+    only for whichever date it considers the end of the run.
     """
     th1, th2, th3 = theta_w or (cfg.THETA_COST, cfg.THETA_RELIABILITY,
                                 cfg.THETA_WELFARE)
+    ir_on = cfg.INDIVIDUAL_RATIONALITY if individual_rationality is None \
+        else individual_rationality
     surcharge = surcharge or {i: 0.0 for i in substations}
     nT, D = cfg.SLOTS_PER_DAY, cfg.DELTA_H
     idx = VarIndex()
-    ctx = {"peak": {}, "off": {}, "blocks": {}, "prices": {}}
+    ctx = {"peak": {}, "off": {}, "blocks": {}, "prices": {}, "jx": {}, "jy": {}}
 
     # ---- variables ---------------------------------------------------------
     for i in substations:
@@ -258,6 +284,13 @@ def build_day(date, substations, populations, schedules, cat, theta,
                   + (1.0 - lam) * g_cu * blk["cu"] * D)
             c[idx[("y", cid)]] += th3 * jy
 
+            # Stored (th3-unscaled) for the IR constraint below and for
+            # threshold_table's IR-dual term - both need the household's own
+            # lambda_h*DeltaJ1 + (1-lambda_h)*J2 per unit of x/y, which is
+            # exactly jx/jy as computed here.
+            ctx["jx"][cid] = jx
+            ctx["jy"][cid] = jy
+
     # ---- constraints -------------------------------------------------------
     rows, rhs, rmeta = [], [], []
 
@@ -315,11 +348,20 @@ def build_day(date, substations, populations, schedules, cat, theta,
             rmeta.append({"type": "C1", "substation": i, "slot": t})
 
             # --- C4 (32) export limit -------------------------------------
+            # Follow-up (Round 3): unserved load Z_c(t) must relax this row
+            # exactly as it relaxes C1 - shed load is not drawn through the
+            # transformer either, so it cannot still count against P^max.
+            # Its absence made a P^max scenario INFEASIBLE (HiGHS status 8)
+            # whenever the unavoidable load exceeded the scaled cap, because
+            # the LP had no way to shed load against C4 even though C1 could
+            # already shed against G^max; a real operator sheds load instead.
             r = _row()
             for a_, b_, _ in links:
                 if a_ == i:
                     r[idx[("T", a_, b_)].start + t] = 1.0
             r[idx[("Bdis", i)].start + t] = -cfg.ETA_DIS
+            for cls in CLASSES:
+                r[idx[("Z", i, cls)].start + t] = -1.0
             for key, val in lc.items():
                 sl = idx[key]
                 if key[0] == "x":
@@ -349,6 +391,17 @@ def build_day(date, substations, populations, schedules, cat, theta,
             rhs.append(soc0[i] - spec["reserve_kwh"])
             rmeta.append({"type": "C3", "substation": i, "slot": t})
 
+            # --- TERMINAL_SOC (Issue 10, optional), last slot only --------
+            # S_i(end of day) >= terminal_target[i]. Only added on whichever
+            # day the caller marks as the horizon's last (06_lp_optimiser.py
+            # passes terminal_target only for that date); every other day
+            # is unaffected regardless of TERMINAL_SOC.
+            if t == nT - 1 and terminal_target and i in terminal_target:
+                r_term = -cum.copy()
+                rows.append(sparse.csr_matrix(r_term))
+                rhs.append(soc0[i] - float(terminal_target[i]))
+                rmeta.append({"type": "TerminalSoC", "substation": i, "slot": t})
+
         # --- C7 (35) service quality, one row per consumer ----------------
         for cid, blk in blocks.items():
             r = _row()
@@ -359,37 +412,73 @@ def build_day(date, substations, populations, schedules, cat, theta,
             rhs.append((1.0 - cfg.QOE_MIN) * e_base)
             rmeta.append({"type": "C7", "substation": i, "consumer": cid})
 
+        # --- IR (Issue I), optional: individual rationality, one row per
+        # consumer. lambda_h*(J1(x,y)-J1(0,0)) + (1-lambda_h)*J2(x,y) <= 0.
+        # The row coefficients are literally ctx["jx"]/ctx["jy"] (the same
+        # th3-unscaled per-unit welfare contribution already used to build
+        # the objective for this household) - x=y=0 gives 0 <= 0, always
+        # feasible.
+        if ir_on:
+            for cid, blk in blocks.items():
+                r = _row()
+                r[idx[("x", cid)]] = ctx["jx"][cid]
+                r[idx[("y", cid)]] = ctx["jy"][cid]
+                rows.append(sparse.csr_matrix(r))
+                rhs.append(0.0)
+                rmeta.append({"type": "IR", "substation": i, "consumer": cid})
+
     A_ub = sparse.vstack(rows, format="csr")
     b_ub = np.asarray(rhs, dtype=float)
 
     # ---- bounds: C5 (33), C6 (34) -----------------------------------------
     lo = np.zeros(n)
     hi = np.full(n, np.inf)
+    scope = cfg.CURTAIL_SCOPE
     for i in substations:
         spec = cfg.SUBSTATIONS[i]
         hi[idx[("G", i)]] = spec["g_max_kw"]
         hi[idx[("Bch", i)]] = spec["b_max_kw"]
         hi[idx[("Bdis", i)]] = spec["b_max_kw"]
+        tpk_i = ctx["peak"][i]
+        stressed_today = float(s_stress[i]) >= 1
         for cid, blk in ctx["blocks"][i].items():
             hi[idx[("x", cid)]] = 1.0
-            hi[idx[("y", cid)]] = getattr(blk["consumer"], "y_max_h",
-                                          cfg.Y_MAX_DEFAULT)
+            cap = getattr(blk["consumer"], "y_max_h", cfg.Y_MAX_DEFAULT)
+            y_sl = idx[("y", cid)]
+            if scope == "dr_window":
+                # Follow-up (Issue: curtailment scope): restrict y to the
+                # substation's own DR-activation window, so curtailment is
+                # genuinely peak-time-scoped rather than all-day. x already
+                # only exists on this window (unchanged); y previously had
+                # no such restriction at all.
+                y_hi = np.zeros(nT)
+                for t in tpk_i:
+                    y_hi[t] = cap
+                hi[y_sl] = y_hi
+            elif scope == "stress_days":
+                # y allowed at any slot, but ONLY on a day this substation's
+                # own s_stress flag is 1 - curtailment becomes event-scoped.
+                hi[y_sl] = cap if stressed_today else 0.0
+            else:   # "all" - unchanged, default
+                hi[y_sl] = cap
     for a_, b_, spec_l in links:
         hi[idx[("T", a_, b_)]] = spec_l["t_max_kw"]
 
     ctx.update({"rmeta": rmeta, "links": links, "const_wel": const_wel,
                 "theta": (th1, th2, th3), "kappa": kappa,
-                "s_stress": s_stress, "soc0": soc0})
+                "s_stress": s_stress, "soc0": soc0, "ir_on": ir_on})
     return c, A_ub, b_ub, list(zip(lo, hi)), idx, ctx
 
 
 def solve_day(date, substations, populations, schedules, cat, theta,
               kappa, s_stress, soc0, surcharge=None, couple=True,
-              theta_w=None) -> DaySolution:
+              theta_w=None, individual_rationality=None,
+              terminal_target=None) -> DaySolution:
     """Assemble, solve, and unpack one day."""
     c, A_ub, b_ub, bounds, idx, ctx = build_day(
         date, substations, populations, schedules, cat, theta, kappa,
-        s_stress, soc0, surcharge, couple, theta_w)
+        s_stress, soc0, surcharge, couple, theta_w, individual_rationality,
+        terminal_target)
 
     res = linprog(c, A_ub=A_ub, b_ub=b_ub, bounds=bounds,
                   method="highs", options=cfg.LP_OPTIONS)
@@ -397,8 +486,8 @@ def solve_day(date, substations, populations, schedules, cat, theta,
     sol = DaySolution(
         date=str(date), substations=list(substations), status=res.message,
         success=bool(res.success), objective_tk=np.nan,
-        F_by_substation={}, cost_terms={}, duals={}, x={}, y={}, network={},
-        soc_end_kwh={}, c1_slack_kw={}, c7_binding=[])
+        F_by_substation={}, cost_terms={}, duals={}, duals_c4={}, x={}, y={},
+        network={}, soc_end_kwh={}, c1_slack_kw={}, c7_binding=[], ir_binding=[])
     if not res.success:
         return sol
 
@@ -409,12 +498,25 @@ def solve_day(date, substations, populations, schedules, cat, theta,
     # --- duals: pi_i(t) in Tk/kWh, sign- and Delta-corrected ---------------
     for i in substations:
         pi = np.zeros(nT)
+        pi4 = np.zeros(nT)
         slack = np.zeros(nT)
         for r, m in enumerate(ctx["rmeta"]):
             if m["type"] == "C1" and m["substation"] == i:
                 pi[m["slot"]] = -marg[r] / D
                 slack[m["slot"]] = float(b_ub[r] - A_ub[r].dot(v)[0])
+            # Follow-up (Issue G/6): C4's row has the IDENTICAL load-term
+            # structure as C1 (same k_i * load_coeffs(t)), so its dual is a
+            # second, genuine shadow price on the SAME x/y decisions -
+            # export/capacity headroom, not supply adequacy. Extracted with
+            # the same sign/Delta correction as C1's pi. It is exactly zero
+            # whenever C4 is slack (the base-case default: G^max is never
+            # binding), so this changes nothing in results where it doesn't
+            # bind, and becomes nonzero precisely in a scarcity scenario -
+            # where the old threshold_table silently omitted it.
+            if m["type"] == "C4" and m["substation"] == i:
+                pi4[m["slot"]] = -marg[r] / D
         sol.duals[i] = pi
+        sol.duals_c4[i] = pi4
         sol.c1_slack_kw[i] = slack
 
     # --- decisions ----------------------------------------------------------
@@ -451,9 +553,16 @@ def solve_day(date, substations, populations, schedules, cat, theta,
         g_d = float(net["G"].sum() * D)
         b_d = float((net["Bch"] + net["Bdis"]).sum() * D)
         t_d = float(net["T_out"].sum() * D)
+        # Minor fix: the tie-line cost must use EACH link's own price, not
+        # links[0]'s price applied to every substation's total export. With
+        # only two same-price links this was numerically invisible; it is
+        # structurally wrong the moment link prices differ by direction.
+        t_cost = sum(spec_l["price_tk_per_kwh"]
+                    * float(v[idx[("T", a_, b_)]].sum() * D)
+                    for a_, b_, spec_l in ctx["links"] if a_ == i)
         f_cost = (spec["c_producer_tk_per_kwh"] * g_d
                   + cfg.C_BATTERY_TK_PER_KWH * b_d
-                  + (ctx["links"][0][2]["price_tk_per_kwh"] if ctx["links"] else 0.0) * t_d)
+                  + t_cost)
         f_rel = float(cfg.PI_RESERVE_TK_PER_KWH * net["nu"].sum()
                       + sum(cfg.VOLL_TK_PER_KWH[cl] * net[f"Z_{cl}"].sum() * D
                             for cl in CLASSES))
@@ -491,12 +600,25 @@ def solve_day(date, substations, populations, schedules, cat, theta,
                                        "dual": float(-marg[r])})
 
     ctx["c7_duals"] = {b["consumer"]: b["dual"] for b in sol.c7_binding}
+
+    # --- IR binding rows (Issue I) ------------------------------------------
+    if ctx.get("ir_on"):
+        for r, m in enumerate(ctx["rmeta"]):
+            if m["type"] == "IR":
+                s_ = float(b_ub[r] - A_ub[r].dot(v)[0])
+                if s_ < 1e-6:
+                    sol.ir_binding.append({"consumer": m["consumer"],
+                                           "substation": m["substation"],
+                                           "dual": float(-marg[r])})
+    ctx["ir_duals"] = {b["consumer"]: b["dual"] for b in sol.ir_binding}
+
     sol.thresholds = threshold_table(sol, ctx, idx)
     sol.diagnostics = {
         "n_variables": int(idx.n), "n_constraints": int(A_ub.shape[0]),
         "n_x_active": len(sol.x), "n_y_active": len(sol.y),
         "max_c1_slack_kw": max(float(np.abs(s).max()) for s in sol.c1_slack_kw.values()),
         "n_c7_binding": len(sol.c7_binding),
+        "n_ir_binding": len(sol.ir_binding),
         "coupled": bool(ctx["links"]),
     }
     return sol
@@ -508,75 +630,136 @@ def solve_day(date, substations, populations, schedules, cat, theta,
 
 def threshold_table(sol: DaySolution, ctx, idx) -> list:
     """
-    The three terms of Eq. (36)/(37) for every acted-upon (h, t).
+    The three (four, with QoE) terms of Eq. (36)/(37) for every acted-upon
+    (h, t).
 
     This is NOT proposition verification - it stores the decomposition so the
     knowledge graph can explain an action as
 
-        private benefit + system value  >  discomfort
+        private benefit + system value  >  discomfort ( + QoE scarcity)
 
     without re-running the solver. All terms in Tk/kWh.
+
+    Issue G fix. Both actions now use the ACTUAL slot price `p[t]` from
+    `ctx["prices"][cid]` (which is officially-windowed - Issue A), never the
+    family ratio mu_pk/mu_off:
+
+      shift    priv = lam * ( p[tau] - mean_{t in off} p[t] )
+               exactly the per-unit bill effect build_day's `jx` coefficient
+               already computes (Eq. 20's -p[tau] + recovery-spread term),
+               so this is the LP's own number, not an approximation of it.
+               `off` here is the ADAPTIVE off-peak complement (Eq. 5/14's
+               recovery window - a load-model fact, unrelated to Issue A),
+               but `p` itself is priced under the OFFICIAL BERC window, so
+               "mean off-peak price" is the officially-correct one.
+
+      curtail  priv = lam * (p[t] + rho*s)   (unchanged - already correct:
+               curtailing genuinely avoids buying that kWh at whatever price
+               applies at t, plus the stress rebate on a stressed day)
+
+               lambda_star (Eq. 38) corrected to
+                   (gamma_cu_h + qoe - syst) / (p[t] + rho*s + gamma_cu_h)
+               using the SLOT price p[t] and rho*s (matching priv exactly,
+               and including the QoE term in the numerator), not the global
+               mu_pk and a bare, unstressed rho.
     """
     out = []
     th3 = ctx["theta"][2]
     D = cfg.DELTA_H
     c7d = ctx.get("c7_duals", {})
+    ird = ctx.get("ir_duals", {})
     for i in sol.substations:
         pi = sol.duals[i]
+        pi4 = sol.duals_c4.get(i, np.zeros(cfg.SLOTS_PER_DAY))
         tpk, off = ctx["peak"][i], ctx["off"][i]
         pi_off = float(pi[off].mean()) if off else 0.0
+        pi4_off = float(pi4[off].mean()) if off else 0.0
         k_i = float(ctx["kappa"][i])
         s = float(ctx["s_stress"][i])
         for cid, blk in ctx["blocks"][i].items():
             h = blk["consumer"]
             p = ctx["prices"][cid]
+            p_off_mean = float(p[off].mean()) if off else 0.0
             lam = h.lambda_h
             rho = getattr(h, "rho_h", cfg.RHO_REBATE_TK_PER_KWH)
-            mu_pk, mu_off = T.mu_peak_off(
-                cfg.CONSUMER_ARCHETYPES[h.archetype]["tariff_class"])
-            base_rate = p[tpk[0]] / mu_pk if tpk else 0.0
+            # Issue I: IR's dual (0 unless the IR constraint is active AND
+            # binding for this household) is a scarcity price on the SAME
+            # jx/jy row already used to build the objective - see build_day.
+            ir_dual = ird.get(cid, 0.0)
+            jx_arr = ctx["jx"].get(cid)
+            jy_arr = ctx["jy"].get(cid)
 
-            for t in tpk:
+            for a_, t in enumerate(tpk):
                 xv = sol.x.get((cid, t))
                 if xv is None:
                     continue
-                priv = lam * base_rate * (mu_pk - mu_off)
-                syst = k_i * (pi[t] - pi_off) / th3
+                priv = lam * (float(p[t]) - p_off_mean)
+                # Follow-up (Issue 6): C4's dual added in - it is exactly
+                # zero whenever C4 is slack (G^max unbound, the base-arm
+                # default), so this changes nothing there; it becomes
+                # nonzero, and belongs here, once export/capacity binds.
+                syst = k_i * (pi[t] - pi_off) / th3 + k_i * (pi4[t] - pi4_off) / th3
                 disc = (1 - lam) * h.gamma_sh_h
                 # C7 is NOT a box constraint, so when it binds its dual enters
                 # the reduced cost and the threshold gains a fourth term.
                 # See docs/qoe_definition.md section 4.
                 qoe = cfg.QOE_WEIGHT_SHIFT * c7d.get(cid, 0.0) / th3
+                # Round-3 follow-up: the IR row's own coefficient on x_{h,tau}
+                # is jx_arr[a_] itself (not a fixed weight like C7's
+                # QOE_WEIGHT_SHIFT), so normalising it to the same per-kWh
+                # units as priv/disc/qoe requires dividing by this SAME
+                # slot's own sh[tau]*D energy factor - exactly how C7's own
+                # QOE_WEIGHT_SHIFT*sh[tau]*D row coefficient collapses to the
+                # constant QOE_WEIGHT_SHIFT once divided through by sh[tau]*D.
+                # Missing that division left ir_term ~sh[tau]*D times too
+                # large, which is why interior margins for the --ir arm were
+                # off by hundreds to thousands (check 6 FAILED for --ir until
+                # this fix; caught by running acceptance check 6 on that arm
+                # specifically per this round's own instruction).
+                sh_t = float(blk["sh"][t]) * D
+                ir_term = (ir_dual * jx_arr[a_] / sh_t / th3
+                          if jx_arr is not None and sh_t > 1e-12 else 0.0)
                 out.append({
                     "qoe_tk_per_kwh": qoe, "c7_binding": cid in c7d,
+                    "ir_tk_per_kwh": ir_term, "ir_binding": cid in ird,
                     "consumer": cid, "substation": i, "slot": t,
                     "action": "shift", "value": xv,
                     "private_tk_per_kwh": priv, "system_tk_per_kwh": syst,
                     "discomfort_tk_per_kwh": disc,
-                    "margin": priv + syst - qoe - disc,
+                    "margin": priv + syst - qoe - ir_term - disc,
                     "pi_i_t": float(pi[t]), "pi_off": pi_off, "kappa": k_i,
+                    "price_tau_tk_per_kwh": float(p[t]),
+                    "price_off_mean_tk_per_kwh": p_off_mean,
                     "energy_kwh": xv * float(blk["sh"][t]) * D,
                 })
             for t in range(cfg.SLOTS_PER_DAY):
                 yv = sol.y.get((cid, t))
                 if yv is None:
                     continue
-                priv = lam * (p[t] + rho * s)
-                syst = k_i * pi[t] / th3
+                p_t = float(p[t])
+                priv = lam * (p_t + rho * s)
+                syst = k_i * pi[t] / th3 + k_i * pi4[t] / th3   # + C4 dual, follow-up
                 disc = (1 - lam) * h.gamma_cu_h
                 qoe = cfg.QOE_WEIGHT_CURTAIL * c7d.get(cid, 0.0) / th3
-                denom = (base_rate * mu_pk + rho + h.gamma_cu_h)
+                # Round-3 follow-up: see the shift-side comment above - same
+                # fix, normalising by this slot's own cu[t]*D.
+                cu_t = float(blk["cu"][t]) * D
+                ir_term = (ir_dual * jy_arr[t] / cu_t / th3
+                          if jy_arr is not None and cu_t > 1e-12 else 0.0)
+                denom = p_t + rho * s + h.gamma_cu_h
                 out.append({
                     "qoe_tk_per_kwh": qoe, "c7_binding": cid in c7d,
+                    "ir_tk_per_kwh": ir_term, "ir_binding": cid in ird,
                     "consumer": cid, "substation": i, "slot": t,
                     "action": "curtail", "value": yv,
                     "private_tk_per_kwh": priv, "system_tk_per_kwh": syst,
                     "discomfort_tk_per_kwh": disc,
-                    "margin": priv + syst - qoe - disc,
+                    "margin": priv + syst - qoe - ir_term - disc,
                     "pi_i_t": float(pi[t]), "kappa": k_i,
                     "lambda_h": lam, "y_max_h": float(h.y_max_h),
                     "at_cap": bool(yv >= float(h.y_max_h) - 1e-6),
-                    "lambda_star": ((h.gamma_cu_h - syst) / denom
+                    "price_tau_tk_per_kwh": p_t,
+                    "lambda_star": ((h.gamma_cu_h + qoe - syst) / denom
                                     if denom > 0 else np.nan),   # Eq. (38)
                     "energy_kwh": yv * float(blk["cu"][t]) * D,
                 })

@@ -11,9 +11,7 @@ dated 03 June 2026 / 20 Jyaistha 1433 BS. Signed by the Secretary, BERC.
 Effective from the June 2026 billing month (clause 5).
 
 Every rate in RETAIL_TARIFF below is transcribed from that order. Nothing here
-is estimated. Where the pipeline needs a quantity the order does not define -
-principally a residential time-of-use multiplier - it is derived from the
-order's own ratios and flagged SCENARIO.
+is estimated.
 
 What the order settles for us
 -----------------------------
@@ -32,9 +30,7 @@ What the order settles for us
        HT-2   peak 17.05 / flat 13.64 = 1.2500   off 12.28 / 13.64 = 0.9002
 
    Two clean families: LT classes at mu^pk = 1.20, MT/HT/EHT at 1.25, and a
-   uniform mu^off = 0.90 across all of them. So mu(t) for the residential
-   scenario is not invented - it is the LT-class ratio the regulator itself
-   applied to every other low-tension consumer.
+   uniform mu^off = 0.90 across all of them.
 
 3. Peak and off-peak windows, from the order's footnotes 4-6:
        peak         17:00 - 23:00        (all ToU classes)
@@ -42,15 +38,36 @@ What the order settles for us
        LT-D3, MT-7  off-peak 23:00-05:00 and 09:00-17:00,
                     super off-peak 05:00-09:00
 
-Peak window used by the model
------------------------------
-T^pk in equations (5), (32) and (34) is set from each substation's OBSERVED
-peak period, not from the gazette's 17:00-23:00 window - per instruction.
-The two disagree at Dhanmondi, which peaks at 13:00 on 63.8% of days. That
-disagreement is a result, not a nuisance: it says the national ToU window is
-misaligned with this substation's physical peak, and the model's mu(t) is
-therefore a *proposed* substation-specific ToU tariff. The gazette window is
-retained as OFFICIAL_TOU_WINDOWS so the ablation can be run either way.
+Billing window vs. demand-response activation window (Issue A)
+----------------------------------------------------------------
+Two different things, two different owners, never to be confused:
+
+  BILLING              mu_i(t) as charged. ALWAYS uses OFFICIAL_TOU_PEAK,
+                        BERC's fixed national 17:00-23:00 window, for every
+                        class this order actually gives a ToU row to
+                        (has_tou=True). Every billing/pricing call site
+                        (lp._price_vector, billing.j1_linear) passes
+                        `adaptive=False` to mu_profile()/effective_price() to
+                        get this. It is what the consumer is actually
+                        charged, and it never varies by substation.
+
+  DR ACTIVATION         T^pk_i in Eqs. (5), (32) and (34): each substation's
+                        OWN observed congestion window (peak_window.py),
+                        used ONLY to decide which slots a household's
+                        shift/curtail DECISION VARIABLE (x_{h,t}) exists on
+                        (lp.build_day). It is a proposed, substation-specific
+                        activation schedule for demand response - never a
+                        tariff, and never used to price anyone's bill.
+
+The two disagree at Dhanmondi, which peaks at 13:00 on 63.8% of days while the
+gazette's peak window is 17:00-23:00. That disagreement is the empirical case
+for a policy proposal (a substation-aware ToU tariff), not a discrepancy to
+paper over: because this pipeline bills the OFFICIAL window while still
+letting DR activate on the OBSERVED one, shifting load OUT of Dhanmondi's own
+midday peak and INTO the recovery window (which now includes the real 17:00-
+23:00 billing peak) makes the bill worse under today's tariff, not better -
+exactly the result that supports moving the tariff window rather than the
+substation's physical peak.
 """
 
 from __future__ import annotations

@@ -261,7 +261,40 @@ PEAK_TIME_ARTEFACT_SLOTS = (0,)
 
 MU_PEAK = 1.20                     # mu^pk, GAZETTE (LT family)
 MU_OFF = 0.90                      # mu^off, GAZETTE (all ToU classes)
-ADAPTIVE_LOCAL_TOU = True          # False => use the national window instead
+# ISSUE A: this flag no longer touches billing or DR activation at all.
+# - BILLING (lp._price_vector, billing.j1_linear) always passes
+#   adaptive=False to tariff.mu_profile(), i.e. always OFFICIAL_TOU_PEAK
+#   (17:00-23:00), regardless of this flag.
+# - DR ACTIVATION (lp.build_day's x_{h,t} window) always calls
+#   peak_window.get_peak_slots(i) directly, never tariff.peak_slots_for(),
+#   so it is also unaffected by this flag.
+# What remains is a REPORTING/ANALYSIS knob only: it is consulted by
+# tariff.peak_slots_for()/mu_profile() when a caller asks for mu(t) without
+# stating `adaptive` explicitly (e.g. an ad-hoc "what would mu(t) look like
+# under each window" comparison). False => report against the national
+# window instead of the per-substation adaptive one, for that comparison
+# only. It cannot make a household actually get billed by the adaptive
+# window, and it cannot stop DR from activating on it.
+ADAPTIVE_LOCAL_TOU = True
+
+# ISSUE I - individual rationality (IR). When True, build_day adds one linear
+# constraint per household per day:
+#     lambda_h*(J1_h(0,0) - J1_h(x,y)) >= (1 - lambda_h)*J2_h(x,y)
+# i.e. the household's OWN lambda-weighted objective must not be made worse
+# off by its own actions. x=y=0 always satisfies it (0 >= 0), so the
+# programme never becomes infeasible by turning this on. Default OFF: the
+# base formulation does not require IR, and billing.py already reports
+# gained_lambda (the same criterion) as a diagnostic without constraining the
+# LP. --ir on 06_lp_optimiser.py enables it for a specific run.
+INDIVIDUAL_RATIONALITY = False
+
+# ISSUE J - rho does not exist in Bangladesh; it is this thesis's PROPOSED
+# demand-response incentive, never existing BERC policy. RHO_REBATE_TK_PER_KWH
+# (section 8 above) is the proposed-mechanism value used by default. Passing
+# --rho 0 on 06_lp_optimiser.py (or setting RHO_CURRENT_POLICY True here)
+# runs the CURRENT-POLICY arm: rho = 0 everywhere, i.e. no stress rebate,
+# which is what Bangladesh's grid actually offers today.
+RHO_CURRENT_POLICY = False
 
 # Estimator settings for T^pk_i. See gentwin/peak_window.py for the rationale
 # behind each; sensitivity across all of them is reported by
@@ -456,6 +489,29 @@ PREFERENCE_BOUNDS = {
 #: Eq. (34) global fallback, used if a consumer carries no sampled cap.
 Y_MAX_DEFAULT = 0.40
 
+# CURTAIL_SCOPE (reviewer follow-up). y_{h,t}'s upper bound was, until now,
+# y_max_h at EVERY one of the 48 slots on EVERY day - so the LP curtails
+# households toward the QoE floor all day, every day, purely because
+# electricity has a nonzero cost, regardless of whether the substation is
+# congested at that moment. That is a real finding worth stating plainly:
+# under the current objective (Eq. 24), the reported "demand response"
+# savings are mostly ALL-DAY ENERGY REDUCTION, not PEAK-TIME congestion
+# relief - see docs/thesis_changes.md, "curtailment scope" for the double-
+# counting this interacts with (the objective sums the household's retail
+# saving AND the operator's wholesale saving on the same displaced kWh; the
+# retail payment is a transfer between them, not two separate savings).
+#
+#   "all"         (default - UNCHANGED, preserves every result reported so
+#                 far) y allowed at every slot, every day.
+#   "dr_window"   y allowed only on the substation's own DR-activation
+#                 window (peak_window.get_peak_slots) - curtailment becomes
+#                 genuinely peak-time-scoped.
+#   "stress_days" y allowed at any slot, but only on days with s_stress=1 -
+#                 curtailment becomes genuinely event-scoped.
+# 06_lp_optimiser.py --curtail-scope selects the arm; each writes a
+# distinctly tagged output (see run_pipeline.sh).
+CURTAIL_SCOPE = "all"   # "all" | "dr_window" | "stress_days"
+
 CONSUMER_CATEGORIES = [
     "Residential", "Commercial", "Industrial",
     "Hospital", "Educational", "Government",
@@ -491,15 +547,64 @@ PRIORITY_WEIGHTS = {
 }
 REGIME_NAMES = {1: "nominal", 2: "stressed", 3: "emergency"}
 
-# EQ (50) - pool cut points. "mean_relative" is the rule as written
-# (3/4 and 1/2 of the mean score). Formulation section 9.5 records that it
-# degenerates on tight score distributions and names quantile cut points as
-# the intended fix; both are implemented and both are reported.
-POOL_CUT_RULE = "mean_relative"    # "mean_relative" | "quantile"
+# EQ (50) - pool cut points. ISSUE E: "quantile" is now the DEFAULT - the
+# base paper's "mean_relative" rule (3/4 and 1/2 of the mean score) provably
+# leaves its medium pool empty under a continuous, unimodal chi distribution
+# (see gentwin/regime.py::assign_pools and docs/thesis_changes.md, Issue E).
+# mean_relative is kept, selectable via --pool-rule, as the base-paper
+# replication ablation - both are always reported.
+POOL_CUT_RULE = "quantile"    # "mean_relative" | "quantile"
 POOL_QUANTILES = (0.50, 0.75)
 
-# EQ (53) - top-N pool size
-POOL_N = 50
+# EQ (53) - top-N pool size, per Issue E now STRATIFIED by entity kind
+# rather than one flat cut (a flat cut, sorted only by chi, was always 100%
+# appliances - see gentwin/regime.py::top_n). None = no limit ("all").
+POOL_N_BY_KIND = {"sb": None, "mt": 30, "ap": 20}
+POOL_N = 50   # retained for reference/back-compat; top_n() uses POOL_N_BY_KIND
+
+# ISSUE E - re-pooling hysteresis (Eq. 52). Re-pool (recompute cut points
+# from today's chi distribution) only when the chosen trigger exceeds its
+# threshold; otherwise reuse yesterday's pool MEMBERSHIP
+# (regime.apply_membership) so a household is not reshuffled between pools
+# by score noise alone.
+#
+# Follow-up (reviewer note): W(P) = sum_e w_e is fixed per entity (1/n_ent
+# for an appliance, deg(e)/n_ent otherwise) and the split sizes are pinned
+# to the POOL_QUANTILES fractions, so alpha_P = |W(P)_t - W(P)_{t+1}| moves
+# ONLY when entities of DIFFERENT kinds (different w_e) swap pools - it is
+# largely blind to same-kind reshuffling driven by today's actions. A second
+# trigger, REPOOL_TRIGGER_KIND="frac_changed", measures the fraction of
+# entities whose pool label would actually change - sensitive to same-kind
+# churn that alpha_P misses. Both are always computed and reported
+# (07_regime_events_pool.py --alpha-sweep); this config selects which one
+# GATES the real run. Default kept as "alpha_w" to preserve the audited
+# base-arm results; not claimed to be the better choice.
+REPOOL_TRIGGER_KIND = "alpha_w"    # "alpha_w" | "frac_changed"
+ALPHA_REPOOL = 0.01                # threshold for "alpha_w" (Tk-weight units)
+ALPHA_REPOOL_FRAC = 0.05           # threshold for "frac_changed" (fraction, 0-1)
+
+# EQ (48) - which side of an inter-substation transfer counts toward regime
+# 3 (emergency): the substation that IMPORTS (received help, could not meet
+# its own C1 row alone - the default), the one that EXPORTS (gave help, at
+# a real cost to its own margin), or BOTH. See
+# gentwin/regime.py::operating_regime for the full rationale on each side.
+# Has no effect on any result reported so far - both substations show zero
+# transfers in every arm run to date; it only matters once a scarcity run
+# produces a nonzero T_ij.
+REGIME_TRANSFER_TRIGGER = "import"   # "import" | "export" | "both"
+
+# TERMINAL_SOC (reviewer follow-up). Reported behaviour: the battery sits at
+# its reserve floor and is never recharged across a multi-day run - the
+# myopic end-of-day effect of a solve with no condition on where the LAST
+# day leaves the state of charge (battery throughput has a real cost,
+# C_BATTERY_TK_PER_KWH, and the objective has no reason to pay it unless
+# forced to by the reserve floor). Default False: unchanged behaviour. When
+# True, 06_lp_optimiser.py::run() adds ONE extra row, on the LAST day of the
+# run only: S_i(end of run) >= S^0_i (the substation's config starting SoC),
+# so the run cannot simply run the battery down over the horizon. Not
+# claimed to be more "correct" than the myopic default - it is a modelling
+# choice with its own cost, exposed for comparison, not imposed.
+TERMINAL_SOC = False
 
 # =============================================================================
 # 10. Cost allocation (Stage G)

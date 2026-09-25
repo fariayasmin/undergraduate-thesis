@@ -55,7 +55,7 @@ CALL { WITH row
 LOAD CSV WITH HEADERS FROM 'file:///nodes_TouWindow.csv' AS row
 CALL { WITH row
   MERGE (n:TouWindow {id: row.id})
-  SET n.applies_to = row.applies_to, n.is_replacement_tariff = row.is_replacement_tariff, n.mu_off = row.mu_off, n.mu_peak = row.mu_peak, n.mu_source = row.mu_source, n.slots = row.slots, n.substation = row.substation, n.window_label = row.window_label, n.window_source = row.window_source
+  SET n.applies_to = row.applies_to, n.dr_activation_window_label = row.dr_activation_window_label, n.dr_activation_window_slots = row.dr_activation_window_slots, n.dr_activation_window_source = row.dr_activation_window_source, n.is_replacement_tariff = row.is_replacement_tariff, n.mu_off = row.mu_off, n.mu_peak = row.mu_peak, n.mu_source = row.mu_source, n.official_billing_window_label = row.official_billing_window_label, n.official_billing_window_slots = row.official_billing_window_slots, n.substation = row.substation
 } IN TRANSACTIONS OF 5000 ROWS;
 
 // ---- TieLine (2) ----
@@ -114,18 +114,18 @@ CALL { WITH row
   SET n.household_id = row.household_id, n.meter_id = row.meter_id, n.n_appliances = row.n_appliances, n.substation = row.substation
 } IN TRANSACTIONS OF 5000 ROWS;
 
-// ---- Appliance (5416) ----
+// ---- Appliance (5448) ----
 LOAD CSV WITH HEADERS FROM 'file:///nodes_Appliance.csv' AS row
 CALL { WITH row
   MERGE (n:Appliance {id: row.id})
   SET n.appliance_id = row.appliance_id, n.cls = row.cls, n.duty_cycle = row.duty_cycle, n.household_id = row.household_id, n.name = row.name, n.p_rat_kw = row.p_rat_kw, n.quantity = row.quantity, n.schedule = row.schedule, n.thermal_response = row.thermal_response
 } IN TRANSACTIONS OF 5000 ROWS;
 
-// ---- Forecast (28) ----
+// ---- Forecast (60) ----
 LOAD CSV WITH HEADERS FROM 'file:///nodes_Forecast.csv' AS row
 CALL { WITH row
   MERGE (n:Forecast {id: row.id})
-  SET n.date = row.date, n.deficit_kw = row.deficit_kw, n.holiday_type = row.holiday_type, n.horizon_k = row.horizon_k, n.in_dispatch_horizon = row.in_dispatch_horizon, n.kappa = row.kappa, n.model = row.model, n.p_hat_kw = row.p_hat_kw, n.p_max_kw = row.p_max_kw, n.p_ref_kw = row.p_ref_kw, n.p_str_kw = row.p_str_kw, n.p_tilde_kw = row.p_tilde_kw, n.reference_day = row.reference_day, n.s_stress = row.s_stress, n.sigma_kw = row.sigma_kw, n.sigma_method = row.sigma_method, n.substation = row.substation, n.uncertainty_margin_kw = row.uncertainty_margin_kw, n.weather_source = row.weather_source, n.z_beta = row.z_beta
+  SET n.date = row.date, n.deficit_kw = row.deficit_kw, n.holiday_type = row.holiday_type, n.horizon_k = row.horizon_k, n.in_dispatch_horizon = row.in_dispatch_horizon, n.kappa = row.kappa, n.mode = row.mode, n.model = row.model, n.p_hat_kw = row.p_hat_kw, n.p_max_kw = row.p_max_kw, n.p_ref_kw = row.p_ref_kw, n.p_str_kw = row.p_str_kw, n.p_tilde_kw = row.p_tilde_kw, n.reference_day = row.reference_day, n.s_stress = row.s_stress, n.sigma_kw = row.sigma_kw, n.sigma_method = row.sigma_method, n.substation = row.substation, n.uncertainty_margin_kw = row.uncertainty_margin_kw, n.weather_source = row.weather_source, n.z_beta = row.z_beta
 } IN TRANSACTIONS OF 5000 ROWS;
 
 // ---- OptimizationRun (30) ----
@@ -156,11 +156,11 @@ CALL { WITH row
   SET n.c1_slack_kw = row.c1_slack_kw, n.clock = row.clock, n.date = row.date, n.pi_tk_per_kwh = row.pi_tk_per_kwh, n.post_response_kw = row.post_response_kw, n.slot_index = row.slot_index, n.soc_kwh = row.soc_kwh, n.substation = row.substation
 } IN TRANSACTIONS OF 5000 ROWS;
 
-// ---- DrAction (261001) ----
+// ---- DrAction (271993) ----
 LOAD CSV WITH HEADERS FROM 'file:///nodes_DrAction.csv' AS row
 CALL { WITH row
   MERGE (n:DrAction {id: row.id})
-  SET n.action = row.action, n.at_cap = row.at_cap, n.c7_binding = row.c7_binding, n.clock = row.clock, n.consumer_id = row.consumer_id, n.date = row.date, n.discomfort_tk_per_kwh = row.discomfort_tk_per_kwh, n.energy_kwh = row.energy_kwh, n.equation = row.equation, n.kappa = row.kappa, n.lambda_h = row.lambda_h, n.lambda_star = row.lambda_star, n.margin = row.margin, n.pi_i_t = row.pi_i_t, n.private_tk_per_kwh = row.private_tk_per_kwh, n.qoe_tk_per_kwh = row.qoe_tk_per_kwh, n.slot_index = row.slot_index, n.substation = row.substation, n.system_tk_per_kwh = row.system_tk_per_kwh, n.threshold_form = row.threshold_form, n.value = row.value, n.y_max_h = row.y_max_h
+  SET n.action = row.action, n.at_cap = row.at_cap, n.c7_binding = row.c7_binding, n.clock = row.clock, n.consumer_id = row.consumer_id, n.date = row.date, n.discomfort_tk_per_kwh = row.discomfort_tk_per_kwh, n.energy_kwh = row.energy_kwh, n.equation = row.equation, n.kappa = row.kappa, n.lambda_h = row.lambda_h, n.lambda_star = row.lambda_star, n.margin = row.margin, n.pi_i_t = row.pi_i_t, n.price_off_mean_tk_per_kwh = row.price_off_mean_tk_per_kwh, n.price_tau_tk_per_kwh = row.price_tau_tk_per_kwh, n.private_tk_per_kwh = row.private_tk_per_kwh, n.qoe_tk_per_kwh = row.qoe_tk_per_kwh, n.slot_index = row.slot_index, n.substation = row.substation, n.system_tk_per_kwh = row.system_tk_per_kwh, n.threshold_form = row.threshold_form, n.value = row.value, n.y_max_h = row.y_max_h
 } IN TRANSACTIONS OF 5000 ROWS;
 
 // ---- Regime (60) ----
@@ -181,10 +181,10 @@ CALL { WITH row
 LOAD CSV WITH HEADERS FROM 'file:///nodes_PriorityPool.csv' AS row
 CALL { WITH row
   MERGE (n:PriorityPool {id: row.id})
-  SET n.W_P = row.W_P, n.alpha_P = row.alpha_P, n.chi_bar = row.chi_bar, n.chi_max = row.chi_max, n.chi_mean = row.chi_mean, n.chi_min = row.chi_min, n.cut_high = row.cut_high, n.cut_low = row.cut_low, n.date = row.date, n.degenerate = row.degenerate, n.equation = row.equation, n.n = row.n, n.pool = row.pool, n.rule = row.rule
+  SET n.W_P = row.W_P, n.alpha_P = row.alpha_P, n.chi_bar = row.chi_bar, n.chi_max = row.chi_max, n.chi_mean = row.chi_mean, n.chi_min = row.chi_min, n.cut_high = row.cut_high, n.cut_low = row.cut_low, n.date = row.date, n.degenerate = row.degenerate, n.equation = row.equation, n.n = row.n, n.pool = row.pool, n.repooled = row.repooled, n.rule = row.rule
 } IN TRANSACTIONS OF 5000 ROWS;
 
-// ---- PoolEntity (1500) ----
+// ---- PoolEntity (1560) ----
 LOAD CSV WITH HEADERS FROM 'file:///nodes_PoolEntity.csv' AS row
 CALL { WITH row
   MERGE (n:PoolEntity {id: row.id})

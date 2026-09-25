@@ -164,15 +164,57 @@ def cmd_ablation(bpdb, subs):
         print(pd.DataFrame(rows).to_string(index=False))
         print()
 
+def cmd_held_out(bpdb, subs, dates) -> None:
+    """
+    Reviewer follow-up (Issue F evidence). The catalogue fix (res_ac_affluent,
+    cooling_ac beta) was chosen via a grid search scored ONLY against the
+    2026-06-29 reference day's 40-seed T2 statistic. This checks whether the
+    SAME fixed, already-calibrated population (no resynthesis, no
+    recalibration - literally the cached w_h weights) still peaks inside
+    T^pk_i when driven by OTHER dates' weather, to see whether the fix
+    generalises or is overfit to one specific day's Theta(t).
+
+    This is NOT a T1 test (the population is not recalibrated to each held-
+    out date's own level, so its peak KW will drift from that day's real
+    peak - that is expected and not what is being checked here) - it is a
+    held-out T2 (timing) test only.
+    """
+    print("Held-out T2: does the FIXED, already-calibrated population still")
+    print("peak inside T^pk_i when driven by weather from days it was never")
+    print("tuned against? (No resynthesis, no recalibration - same w_h.)\n")
+    for name in subs:
+        cat = pop.load_catalogue(); sch = pop.all_schedules(cat)
+        cons = pop.consumers_from_cache(name)
+        t_pk = set(pw.get_peak_slots(name))
+        print(f"{name}  (T^pk_i {pw.format_window(sorted(t_pk))})")
+        rows = []
+        for d in dates:
+            theta = np.array(TM.profile_for_date(bpdb, d, allow_climatology=True)["theta_c"])
+            agg = lm.aggregate(cons, sch, cat, theta)
+            inside = agg["peak_slot"] in t_pk
+            rows.append({"date": d, "peak_clock": agg["peak_clock"],
+                        "peak_kw": round(agg["peak_kw"], 1), "inside_t_pk": inside})
+            print(f"  {d}  peak {agg['peak_clock']}  "
+                  f"({agg['peak_kw']:,.0f} kW, uncalibrated to this day)  "
+                  f"{'INSIDE' if inside else 'outside'} T^pk_i")
+        n_inside = sum(r["inside_t_pk"] for r in rows)
+        print(f"  {n_inside}/{len(rows)} held-out dates land inside T^pk_i\n")
+        pd.DataFrame(rows).to_csv(cfg.OUT_DIR / f"held_out_t2_{name}.csv", index=False)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--validate", action="store_true")
     ap.add_argument("--diagnose-mix", action="store_true")
     ap.add_argument("--ablation", action="store_true")
+    ap.add_argument("--held-out", nargs="*", default=None, metavar="YYYY-MM-DD",
+                    help="Issue F evidence: check T2 on other dates using the "
+                         "SAME calibrated population, no resynthesis. Defaults "
+                         "to one date per season if none given.")
     ap.add_argument("--substations", nargs="*", default=list(cfg.SUBSTATIONS))
     a = ap.parse_args()
-    if not (a.validate or a.diagnose_mix or a.ablation):
+    if not (a.validate or a.diagnose_mix or a.ablation or a.held_out is not None):
         ap.print_help(); return 1
     b = _bpdb()
     ok = True
@@ -185,6 +227,10 @@ def main() -> int:
     if a.diagnose_mix:
         print("\n" + "=" * 74); print("MIX DIAGNOSTIC"); print("=" * 74)
         cmd_diagnose(b, a.substations)
+    if a.held_out is not None:
+        dates = a.held_out or ["2025-01-15", "2025-04-15", "2025-08-15"]
+        print("\n" + "=" * 74); print("HELD-OUT T2 (Issue F evidence)"); print("=" * 74)
+        cmd_held_out(b, a.substations, dates)
     return 0 if ok else 3
 
 if __name__ == "__main__":

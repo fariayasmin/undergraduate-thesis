@@ -159,10 +159,16 @@ def j1_linear(prof_by_date: dict, decisions: dict, consumer, peak_slots,
 
     Uses the MARGINAL slab rate for pi^ret_h, which is what a household faces
     on the next kWh and therefore what Eq. (37) compares against.
+
+    Issue A: mu(t) here MUST use the official BERC ToU window
+    (adaptive=False), not the adaptive DR-activation window - this is a bill,
+    and BERC bills a ToU class peak/off-peak by clock time (17:00-23:00),
+    never by a substation's derived congestion window.
     """
     D = cfg.DELTA_H
     code = cfg.CONSUMER_ARCHETYPES[consumer.archetype]["tariff_class"]
-    p = np.asarray(T.mu_profile(code, substation=consumer.substation))
+    p = np.asarray(T.mu_profile(code, substation=consumer.substation,
+                                adaptive=False))
     base_rate = T.retail_rate(code, monthly_kwh)
     price = (base_rate + surcharge) * p
     rho = getattr(consumer, "rho_h", cfg.RHO_REBATE_TK_PER_KWH)
@@ -243,6 +249,24 @@ def build(consumers, daily_profiles, decisions, peak_slots, s_stress,
     df = pd.concat([df, pd.DataFrame(j1, index=df.index)], axis=1)
     df = pd.concat([df, gazette_bills(df, days, surcharge)], axis=1)
 
+    # Round-3 follow-up: gazette_bills() above scales baseline/optimised kWh
+    # and the resulting bill_*_tk to a 30-day-equivalent month (`scale_to_30d`
+    # column). j1_linear()'s J1_*_tk/rebate_tk and accumulate()'s
+    # discomfort_J2_tk/incentive_received_tk do NOT - they sum over however
+    # many days `daily_profiles` actually covers. For a full 30-day run
+    # (scale=1) this is invisible; for anything shorter it silently mixes a
+    # scaled Tk quantity (the bill) with unscaled ones (J1, discomfort,
+    # incentive) inside net_benefit_tk/gained_unweighted/gained_lambda, which
+    # inflates "% gained" and the J1-vs-gazette comparison for any non-30-day
+    # arm. Scale them here, identically, so every Tk column in this table is
+    # the SAME 30-day-equivalent quantity regardless of the period length
+    # actually solved.
+    scale = 30.0 / days if days else 1.0
+    for col in ("J1_baseline_tk", "J1_optimised_tk", "rebate_tk"):
+        df[col] *= scale
+    df["discomfort_J2_tk"] *= scale
+    df["incentive_received_tk"] *= scale
+
     df["saving_tk"] = df["bill_baseline_tk"] - df["bill_optimised_tk"]
     df["saving_pct"] = 100.0 * df["saving_tk"] / df["bill_baseline_tk"].replace(0, np.nan)
     df["J1_saving_tk"] = df["J1_baseline_tk"] - df["J1_optimised_tk"]
@@ -260,7 +284,19 @@ def build(consumers, daily_profiles, decisions, peak_slots, s_stress,
     # individually rational.
     df["net_benefit_tk"] = (df["saving_tk"] + df["incentive_received_tk"]
                             - df["discomfort_J2_tk"])
-    df["gained"] = df["net_benefit_tk"] > 0
+    # Issue I: two DIFFERENT individual-rationality criteria, reported
+    # separately because the LP itself uses the lambda-weighted one
+    # (lambda_h*J1 + (1-lambda_h)*J2, Eq. 24) while a plain Tk comparison
+    # (gained_unweighted) is what a household or a reader without lambda_h
+    # would actually judge "did I come out ahead" by. They can and do
+    # disagree: gained_unweighted counts money 1:1 against discomfort;
+    # gained_lambda weights each side by the household's own lambda_h,
+    # exactly like the optimiser did when it decided whether to act.
+    gain = df["saving_tk"] + df["incentive_received_tk"]
+    df["gained_unweighted"] = (gain - df["discomfort_J2_tk"]) > 0
+    df["gained_lambda"] = (df["lambda_h"] * gain
+                           > (1.0 - df["lambda_h"]) * df["discomfort_J2_tk"])
+    df["gained"] = df["gained_unweighted"]   # backward-compatible alias
     df["saving_per_discomfort"] = df["saving_tk"] / df["discomfort_J2_tk"].replace(0, np.nan)
     df["participated"] = (df["energy_shifted_kwh"] + df["energy_curtailed_kwh"]) > 1e-9
     return df
@@ -301,8 +337,9 @@ def distribution(df: pd.DataFrame) -> dict:
     out = {}
     for scope, d in [("fleet", df)] + [(i, g) for i, g in df.groupby("substation")]:
         part = d[d["participated"]]
-        gained = d[d["gained"]]
-        lost = d[~d["gained"] & d["participated"]]
+        gained = d[d["gained_unweighted"]]
+        lost = d[~d["gained_unweighted"] & d["participated"]]
+        gained_l = d[d["gained_lambda"]]
         v = d["saving_tk"]
         out[scope] = {
             "n_representatives": int(len(d)),
@@ -312,6 +349,11 @@ def distribution(df: pd.DataFrame) -> dict:
             "connections_gained_money": float(gained["w_h"].sum()),
             "connections_lost_money": float(lost["w_h"].sum()),
             "pct_connections_gained": 100.0 * float(gained["w_h"].sum())
+            / max(float(d["w_h"].sum()), 1e-9),
+            # Issue I: the lambda-weighted IR criterion, alongside the plain
+            # Tk one above - the two can disagree and both are reported.
+            "connections_gained_lambda": float(gained_l["w_h"].sum()),
+            "pct_connections_gained_lambda": 100.0 * float(gained_l["w_h"].sum())
             / max(float(d["w_h"].sum()), 1e-9),
             "saving_max_tk": float(v.max()), "saving_min_tk": float(v.min()),
             "saving_mean_tk": float(v.mean()), "saving_median_tk": float(v.median()),
@@ -490,6 +532,47 @@ def summarise(df: pd.DataFrame, lp_summary: pd.DataFrame, subs, days: int) -> pd
             "retail_revenue_tk": bill_opt,
             "utility_margin_tk_indicative": bill_opt - f_cost,
         })
+    return pd.DataFrame(rows)
+
+
+def substation_peak_reduction(net: pd.DataFrame, subs) -> pd.DataFrame:
+    """
+    Round-3 follow-up: `summarise()`'s `peak_reduction_pct_mean` averages each
+    HOUSEHOLD's own peak reduction, which is not the quantity DR is actually
+    judged on - a household's individual peak can fall while the SUBSTATION
+    peak (what the transformer/feeder and Eq. (48)'s regime actually see)
+    is unmoved, or even rises if shifted load recovers into a new coincident
+    peak. This reports the substation-level number instead: per
+    substation-day, max_t Lambda_i(t;0,0) (baseline) vs max_t L_i(t;x,y)
+    (post-response), from `lp_network{tag}.csv`'s `baseline_kw`/
+    `post_response_kw` columns - the same series `06_lp_optimiser.py`'s
+    dispatch plot already draws, just not previously turned into a number.
+    Also reports the CLOCK SLOT of the post-response peak, so a shift that
+    only moves the peak rather than shaving it is visible rather than
+    averaged away.
+    """
+    rows = []
+    for i in subs:
+        g = net[net["substation"] == i]
+        for date, gd in g.groupby("date"):
+            gd = gd.sort_values("slot")
+            base_kw = gd["baseline_kw"].to_numpy()
+            post_kw = gd["post_response_kw"].to_numpy()
+            peak_base = float(base_kw.max())
+            peak_post = float(post_kw.max())
+            rows.append({
+                "substation": i, "date": date,
+                "peak_baseline_kw": peak_base, "peak_post_kw": peak_post,
+                "peak_reduction_kw": peak_base - peak_post,
+                "peak_reduction_pct": 100.0 * (peak_base - peak_post) / peak_base
+                if peak_base else 0.0,
+                "peak_slot_baseline": int(gd["slot"].to_numpy()[base_kw.argmax()]),
+                "peak_slot_post": int(gd["slot"].to_numpy()[post_kw.argmax()]),
+                "peak_shifted_not_shaved": bool(
+                    (peak_base - peak_post) < 1e-6 and
+                    int(gd["slot"].to_numpy()[base_kw.argmax()])
+                    != int(gd["slot"].to_numpy()[post_kw.argmax()])),
+            })
     return pd.DataFrame(rows)
 
 

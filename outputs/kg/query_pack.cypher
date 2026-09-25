@@ -131,7 +131,8 @@ RETURN h{.household_id,.category,.archetype,.income_band,.household_size,
        // both are). tw is the substation-level ToU MECHANISM window and must
        // NOT be read as this household's price unless tc.has_tou is true.
        tc{.code,.name_en,.flat_tk_per_kwh,.has_tou,.mu_peak,.mu_off}  AS tariff,
-       tw{.window_label,.mu_peak,.mu_off,.mu_source,.window_source,.applies_to} AS tou_mechanism,
+       tw{.official_billing_window_label,.dr_activation_window_label,
+          .mu_peak,.mu_off,.mu_source,.applies_to}                AS tou_mechanism,
        f{.p_hat_kw,.p_tilde_kw,.sigma_kw,.kappa,.s_stress,.p_str_kw} AS forecast,
        rg{.r,.regime_name,.trigger_transfer,.trigger_reserve_shortfall} AS regime,
        b{.energy_before_kwh,.energy_after_kwh,.bill_before_tk,.bill_after_tk,

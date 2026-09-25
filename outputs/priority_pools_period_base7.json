@@ -1,0 +1,2851 @@
+[
+ {
+  "rule": "quantile",
+  "chi_bar": 0.2158472217497301,
+  "cut_low": 0.20224438902743144,
+  "cut_high": 0.20874939210127463,
+  "pools": {
+   "PH": {
+    "n": 1563,
+    "W": 0.9806400000000001,
+    "chi_mean": 0.2550183720678026,
+    "chi_min": 0.20875218694575132,
+    "chi_max": 0.8
+   },
+   "PM": {
+    "n": 613,
+    "W": 0.49520000000000003,
+    "chi_mean": 0.20637484420241753,
+    "chi_min": 0.20299251870324192,
+    "chi_max": 0.20874100756784453
+   },
+   "PL": {
+    "n": 4074,
+    "W": 0.6518400000000001,
+    "chi_mean": 0.20224438902743144,
+    "chi_min": 0.20224438902743144,
+    "chi_max": 0.20224438902743144
+   }
+  },
+  "n_entities": 6250,
+  "degenerate": false,
+  "chi_spread": 0.5977556109725686,
+  "tie_break_used": false,
+  "tied_at_lo": 0,
+  "tied_at_hi": 0,
+  "date": "2026-07-07",
+  "repooled": true,
+  "frac_changed": 1.0,
+  "top_n": [
+   {
+    "entity_id": "KLNC0174-A06",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.5022443890274314,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0116-A06",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.48102032540582274,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0093-A06",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.45550181322961264,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0135-A06",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.4539483966103978,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0132-A05",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.44755066048331243,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0175-A06",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.43716692202213175,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0045-A06",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.4327926791902383,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0203-A05",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.4275744597202175,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0122-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.4163299257157669,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0041-A06",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.41097936424825315,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0125-A06",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.41095240356149765,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0001-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.4005088761813393,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0267-A03",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3997929792164882,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0167-A04",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.397610151592936,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0155-A05",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.39433912841296337,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0067-A05",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.3937264325197504,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0060-A05",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.391166981449812,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0021-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.38658343687122054,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0185-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.386564589576792,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0180-A06",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.3845380920834218,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0174-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.5089775561097257,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0116-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.4887555627123384,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0132-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.46738073425494486,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0135-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.46217441636167816,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0093-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.46045981145067666,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0045-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.4502991308595796,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0175-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.44461786104204465,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0203-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.43436945424637347,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0041-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.4281417770371234,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0125-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.4212490611866992,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0122-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.4206989328309297,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0155-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.4166715524296285,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0267-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.41487994727029515,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0001-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.41312156166413583,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0167-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.4092726406588874,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0060-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.40475781696963387,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0180-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.4031970154404071,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0118-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.3985682089212243,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0190-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.3958231421859646,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0067-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.3951687614896803,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0185-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.39503417318047246,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0229-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.394797184267395,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0022-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.39178232887353437,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0037-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.3905614140283825,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0021-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.39013605963413955,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0120-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.3882453873156272,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0065-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3860019471688483,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0051-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.38598249549803276,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0057-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.3852492005007729,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0028-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.38027018402131035,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "SB-Dhanmondi",
+    "kind": "sb",
+    "substation": "Dhanmondi",
+    "chi": 0.8,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "SB-Kalyanpur",
+    "kind": "sb",
+    "substation": "Kalyanpur",
+    "chi": 0.7788542358686468,
+    "pool": "PH"
+   }
+  ]
+ },
+ {
+  "rule": "quantile",
+  "chi_bar": 0.11709850762713535,
+  "cut_low": 0.20224438902743144,
+  "cut_high": 0.20224438902743144,
+  "pools": {
+   "PH": {
+    "n": 1562,
+    "W": 0.8990400000000001,
+    "chi_mean": 0.231300684819847,
+    "chi_min": 0.20224438902743144,
+    "chi_max": 0.8
+   },
+   "PM": {
+    "n": 1563,
+    "W": 0.25008,
+    "chi_mean": 0.20224438902743141,
+    "chi_min": 0.20224438902743144,
+    "chi_max": 0.20224438902743144
+   },
+   "PL": {
+    "n": 3125,
+    "W": 0.9785600000000001,
+    "chi_mean": 0.017429127337958254,
+    "chi_min": 0.004114713216957606,
+    "chi_max": 0.20224438902743144
+   }
+  },
+  "n_entities": 6250,
+  "degenerate": false,
+  "chi_spread": 0.7958852867830425,
+  "tie_break_used": true,
+  "tied_at_lo": 2002,
+  "tied_at_hi": 2002,
+  "date": "2026-07-08",
+  "repooled": true,
+  "alpha_P": {
+   "PH": 0.0816,
+   "PM": 0.24512,
+   "PL": 0.32672
+  },
+  "frac_changed": 0.52672,
+  "top_n": [
+   {
+    "entity_id": "DHNC0122-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.41641415152963035,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0001-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.40054837245646024,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0267-A03",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.39989958363968564,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0021-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3866008776913892,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0185-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.38657722501509517,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0051-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3788929170479003,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0285-A04",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.37734248983712226,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0028-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.37593879723805584,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0065-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3723960700300242,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0029-A04",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.37195668286688405,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0025-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.36060007645487063,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0042-A04",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.35416490618874713,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0124-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3528519361757849,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0203-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3522134449337664,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0035-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.35103189596036755,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0164-A03",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.35053971068633055,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0062-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3489906466385597,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0015-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.34617798662826266,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0053-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3459739689226944,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0254-A04",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.34440581241584706,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0122-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.42078252286402706,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0267-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.4149930782994059,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0001-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.41316222919831413,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0185-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.395046978938307,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0021-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.390153199534334,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0051-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.38608439659399185,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0065-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3859793407328398,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0028-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.38033064860938737,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0029-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.379481229353481,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0285-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3769736757710836,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0042-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.36852141361961444,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0015-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3679817506582023,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0025-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.36511330399378955,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0203-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3640677695685775,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0226-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3614570582576697,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0164-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.36099868141761204,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0124-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3590166707472748,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0062-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.35817661781104715,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0364-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3579898456559259,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0035-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.35720349984251953,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0254-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3568499606939874,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0086-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.35664597218746,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0300-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3518973656761974,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0053-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3506922353522513,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0247-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3456821423518218,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0113-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3444967951778513,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0011-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.34432516589598694,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0160-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.34169465356202744,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0167-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3408687141959942,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0193-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.33998149843964637,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "SB-Dhanmondi",
+    "kind": "sb",
+    "substation": "Dhanmondi",
+    "chi": 0.8,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "SB-Kalyanpur",
+    "kind": "sb",
+    "substation": "Kalyanpur",
+    "chi": 0.7573106586310808,
+    "pool": "PH"
+   }
+  ]
+ },
+ {
+  "rule": "reused",
+  "chi_bar": 0.11696500764976536,
+  "cut_low": null,
+  "cut_high": null,
+  "pools": {
+   "PH": {
+    "n": 1562,
+    "W": 0.8990400000000001,
+    "chi_mean": 0.23122655267932535,
+    "chi_min": 0.20224438902743144,
+    "chi_max": 0.8
+   },
+   "PM": {
+    "n": 1563,
+    "W": 0.25008,
+    "chi_mean": 0.20224438902743141,
+    "chi_min": 0.20224438902743144,
+    "chi_max": 0.20224438902743144
+   },
+   "PL": {
+    "n": 3125,
+    "W": 0.9785600000000001,
+    "chi_mean": 0.017199181592336604,
+    "chi_min": 0.004114713216957606,
+    "chi_max": 0.20224438902743144
+   }
+  },
+  "n_entities": 6250,
+  "degenerate": false,
+  "chi_spread": 0.7958852867830425,
+  "date": "2026-07-09",
+  "repooled": false,
+  "alpha_P": {
+   "PH": 0.0,
+   "PM": 0.0,
+   "PL": 0.0
+  },
+  "frac_changed": 0.00096,
+  "top_n": [
+   {
+    "entity_id": "DHNC0122-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.41653904682411114,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0001-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.4005742164780922,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0267-A03",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.40009502562583127,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0021-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3866428731992223,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0185-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.386607113932662,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0051-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.379022501105228,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0285-A04",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.37753968609022026,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0028-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.37599161388052504,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0065-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.37237765929780353,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0029-A04",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3720249986361728,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0025-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.36062299607458964,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0042-A04",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.35420529316649313,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0124-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.35279652199230194,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0203-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.35217851738881034,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0035-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.35113911129768155,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0164-A03",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3506114823756364,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0062-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3490252032902983,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0015-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.34614822797749273,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0053-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.34596155350768176,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0254-A04",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3445395123878137,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0122-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.4209064753831002,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0267-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.4152004857630077,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0001-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.4131888396224567,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0185-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3950772707438712,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0021-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.39019447046115496,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0051-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3862148656610569,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0065-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.385960188806511,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0028-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.38038275330933585,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0029-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.37955046598594305,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0285-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3771654013825191,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0042-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3685642249774049,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0015-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.36794872144399854,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0025-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3651359023104284,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0203-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.36403164931450177,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0226-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3615473314753627,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0164-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.361073342549478,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0124-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3589614657115009,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0062-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.35821175206318323,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0364-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.35813971175029913,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0035-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.35731031052094,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0254-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.35699184613332474,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0086-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3566760767796965,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0300-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3520168927009093,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0053-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3506799939851127,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0247-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.34574489815649245,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0113-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.34446790899826896,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0011-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.34436740448312453,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0160-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.34165730837878544,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0167-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3408586935151671,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0193-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.33995412087658633,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "SB-Dhanmondi",
+    "kind": "sb",
+    "substation": "Dhanmondi",
+    "chi": 0.8,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "SB-Kalyanpur",
+    "kind": "sb",
+    "substation": "Kalyanpur",
+    "chi": 0.752726871120638,
+    "pool": "PH"
+   }
+  ]
+ },
+ {
+  "rule": "quantile",
+  "chi_bar": 0.014979001930290756,
+  "cut_low": 0.004114713216957606,
+  "cut_high": 0.009785697134522585,
+  "pools": {
+   "PH": {
+    "n": 1563,
+    "W": 1.24272,
+    "chi_mean": 0.046403689634669065,
+    "chi_min": 0.00978593511934954,
+    "chi_max": 0.8
+   },
+   "PM": {
+    "n": 421,
+    "W": 0.2024,
+    "chi_mean": 0.008400067890233542,
+    "chi_min": 0.0045437306572105665,
+    "chi_max": 0.009784983180041722
+   },
+   "PL": {
+    "n": 4266,
+    "W": 0.6825600000000001,
+    "chi_mean": 0.004114713216957606,
+    "chi_min": 0.004114713216957606,
+    "chi_max": 0.004114713216957606
+   }
+  },
+  "n_entities": 6250,
+  "degenerate": false,
+  "chi_spread": 0.7958852867830425,
+  "tie_break_used": false,
+  "tied_at_lo": 0,
+  "tied_at_hi": 0,
+  "date": "2026-07-10",
+  "repooled": true,
+  "alpha_P": {
+   "PH": 0.34368,
+   "PM": 0.04768000000000003,
+   "PL": 0.29600000000000004
+  },
+  "frac_changed": 0.51152,
+  "top_n": [
+   {
+    "entity_id": "KLNC0174-A06",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.2541147132169576,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0116-A06",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.23640672247913438,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0093-A06",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.21509141740337023,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0135-A06",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.21377106100333326,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0132-A05",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.20857757915974598,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0175-A06",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.19989125445885841,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0045-A06",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.19626251634118289,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0203-A05",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.19196051084701682,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0122-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.18272921756767402,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0041-A06",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.17806453812909073,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0125-A06",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.17802702104549606,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0001-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.16938483006950905,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0267-A03",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.16905811593433198,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0167-A04",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.16694815338225763,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0155-A05",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.1641600350487622,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0067-A05",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.1637432830123049,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0060-A05",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.16133539020763046,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0021-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.15779950969958953,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0185-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.1577626946382596,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0180-A06",
+    "kind": "ap",
+    "substation": "Kalyanpur",
+    "chi": 0.15598560423409916,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0174-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.26645885286783044,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0116-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.24958584419061888,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0132-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.2303419858369119,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0135-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.22735866928773416,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0093-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.22595674838003924,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0045-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.217585525296926,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0175-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.21283356111208787,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0203-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.20360829796485894,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0041-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.19909991633596155,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0125-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.19334054769200348,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0122-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.19235350987327107,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0155-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.18875256406717192,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0001-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.18663004256018612,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0267-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.18464267340270857,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0167-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.18190474390615016,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0060-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.17863747561686535,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0180-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.17826522273656067,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0118-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.1744724523845915,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0190-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.17203390779177205,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0229-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.17127212059338612,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0067-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.17092883304071727,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0185-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.1708063628944907,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0022-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.1685544893569887,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0021-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.16749200656427743,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0037-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.16711072124013965,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0120-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.16517356140899167,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0065-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.16394731607345817,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0051-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.16343506273940786,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "KLNC0057-M",
+    "kind": "mt",
+    "substation": "Kalyanpur",
+    "chi": 0.16319603723251025,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0028-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.1592982873527022,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "SB-Dhanmondi",
+    "kind": "sb",
+    "substation": "Dhanmondi",
+    "chi": 0.8,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "SB-Kalyanpur",
+    "kind": "sb",
+    "substation": "Kalyanpur",
+    "chi": 0.7714039228126697,
+    "pool": "PH"
+   }
+  ]
+ },
+ {
+  "rule": "quantile",
+  "chi_bar": 0.1168178734758646,
+  "cut_low": 0.20224438902743144,
+  "cut_high": 0.20224438902743144,
+  "pools": {
+   "PH": {
+    "n": 1562,
+    "W": 0.8990400000000001,
+    "chi_mean": 0.23068245051798505,
+    "chi_min": 0.20224438902743144,
+    "chi_max": 0.8
+   },
+   "PM": {
+    "n": 1563,
+    "W": 0.25008,
+    "chi_mean": 0.20224438902743141,
+    "chi_min": 0.20224438902743144,
+    "chi_max": 0.20224438902743144
+   },
+   "PL": {
+    "n": 3125,
+    "W": 0.9785600000000001,
+    "chi_mean": 0.017176877268859445,
+    "chi_min": 0.004114713216957606,
+    "chi_max": 0.20224438902743144
+   }
+  },
+  "n_entities": 6250,
+  "degenerate": false,
+  "chi_spread": 0.7958852867830425,
+  "tie_break_used": true,
+  "tied_at_lo": 2027,
+  "tied_at_hi": 2027,
+  "date": "2026-07-11",
+  "repooled": true,
+  "alpha_P": {
+   "PH": 0.34368,
+   "PM": 0.04768000000000003,
+   "PL": 0.29600000000000004
+  },
+  "frac_changed": 0.51152,
+  "top_n": [
+   {
+    "entity_id": "DHNC0122-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.4166878837721859,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0001-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.4006188089682572,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0267-A03",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.4003097163594267,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0021-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.38668744960103696,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0185-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.38663737085138694,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0051-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.37918202592788497,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0285-A04",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.37776731765588295,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0028-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3760716278475391,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0065-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3723530282412866,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0029-A04",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3720916205740497,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0025-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.360659038310371,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0042-A04",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.35427533674857153,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0124-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.35271713905546725,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0203-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3521637047423388,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0035-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3512784267429919,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0164-A03",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.35071971838897653,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0062-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.34905637126891337,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0015-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3461156285917421,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0053-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.34594545934419324,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0254-A04",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.34469655677923655,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0122-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.421054188831567,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0267-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.41542832043350003,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0001-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.4132347544995515,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0185-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3951079355110692,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0021-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.39023827775179526,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0051-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.38637547997747035,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0065-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3859345661330531,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0028-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.38046168872718994,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0029-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.37961798595497404,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0285-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.377386717966496,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0042-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.36863847318860155,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0015-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.36791253928966655,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0025-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3651714392812222,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0203-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3640163308443729,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0226-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.36166879486641734,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0164-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3611859360155479,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0124-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.35888238238675707,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0364-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3583418570831664,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0062-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.358243441001901,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0035-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3574491001531031,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0254-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3571585051994767,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0086-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.35672427195418616,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0300-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.35217454558705585,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0053-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3506641254407385,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0247-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3458305171662636,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0113-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.344444189016718,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0011-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.34443693368521927,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0160-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3416199253351327,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0167-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.34085422535665083,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0193-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.33991814123787073,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "SB-Dhanmondi",
+    "kind": "sb",
+    "substation": "Dhanmondi",
+    "chi": 0.8,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "SB-Kalyanpur",
+    "kind": "sb",
+    "substation": "Kalyanpur",
+    "chi": 0.7564228084182263,
+    "pool": "PH"
+   }
+  ]
+ },
+ {
+  "rule": "reused",
+  "chi_bar": 0.11708362487481042,
+  "cut_low": null,
+  "cut_high": null,
+  "pools": {
+   "PH": {
+    "n": 1562,
+    "W": 0.8990400000000001,
+    "chi_mean": 0.23126076013970165,
+    "chi_min": 0.20224438902743144,
+    "chi_max": 0.8
+   },
+   "PM": {
+    "n": 1563,
+    "W": 0.25008,
+    "chi_mean": 0.20269802046249485,
+    "chi_min": 0.20224438902743144,
+    "chi_max": 0.2770980224097895
+   },
+   "PL": {
+    "n": 3125,
+    "W": 0.9785600000000001,
+    "chi_mean": 0.017192429486870917,
+    "chi_min": 0.004114713216957606,
+    "chi_max": 0.20224438902743144
+   }
+  },
+  "n_entities": 6250,
+  "degenerate": false,
+  "chi_spread": 0.7958852867830425,
+  "date": "2026-07-12",
+  "repooled": false,
+  "alpha_P": {
+   "PH": 0.0,
+   "PM": 0.0,
+   "PL": 0.0
+  },
+  "frac_changed": 0.01184,
+  "top_n": [
+   {
+    "entity_id": "DHNC0122-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.4167320410363485,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0001-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.40061403842595866,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0267-A03",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.40039243407233877,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0021-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.38671110188343133,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0185-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.38665232728041177,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0051-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.37921512150936587,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0285-A04",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.37783666843270985,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0028-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.37607518212589264,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0065-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3723563798389604,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0029-A04",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.37214019257521663,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0025-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.36065952742334256,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0042-A04",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3542599231431041,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0124-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3527197719174268,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0203-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.35212106877581245,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0035-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.35129756917674737,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0164-A03",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3507149317670799,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0062-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3490787697153083,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0015-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3461047661132442,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0053-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3459424958005135,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0254-A04",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.34473777738885936,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0122-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.4210980127734623,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0267-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.41551610234448233,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0001-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.4132298424871812,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0185-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.39512309354544584,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0021-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.39026152194304836,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0051-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.38640880158916263,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0065-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.38593805266204956,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0028-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.38046519509560883,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0029-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3796672126829719,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0285-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.37745414480590983,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0042-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.36862213432356794,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0015-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3679004829927644,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0025-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.36517192153746986,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0203-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.36397223894081565,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0226-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3616794233634614,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0164-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.36118095668996597,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0124-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.35888500531160283,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0364-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3583533498821603,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0062-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3582662138292296,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0035-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.35746817033827677,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0254-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.35720224944429624,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0086-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.35671910896675996,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0300-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3521905032129446,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0053-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.35066120344206364,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0247-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3458355399932856,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0011-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.34442969051459177,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0113-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3444210741071939,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0160-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.34160140663415345,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0167-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3408458081302877,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0193-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3399179272297068,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "SB-Dhanmondi",
+    "kind": "sb",
+    "substation": "Dhanmondi",
+    "chi": 0.8,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "SB-Kalyanpur",
+    "kind": "sb",
+    "substation": "Kalyanpur",
+    "chi": 0.7489453847664167,
+    "pool": "PH"
+   }
+  ]
+ },
+ {
+  "rule": "reused",
+  "chi_bar": 0.11705848508757336,
+  "cut_low": null,
+  "cut_high": null,
+  "pools": {
+   "PH": {
+    "n": 1562,
+    "W": 0.8990400000000001,
+    "chi_mean": 0.23119363653624905,
+    "chi_min": 0.20224438902743144,
+    "chi_max": 0.8
+   },
+   "PM": {
+    "n": 1563,
+    "W": 0.25008,
+    "chi_mean": 0.20266913741806725,
+    "chi_min": 0.20224438902743144,
+    "chi_max": 0.2770604477463275
+   },
+   "PL": {
+    "n": 3125,
+    "W": 0.9785600000000001,
+    "chi_mean": 0.017190147117847474,
+    "chi_min": 0.004114713216957606,
+    "chi_max": 0.20224438902743144
+   }
+  },
+  "n_entities": 6250,
+  "degenerate": false,
+  "chi_spread": 0.7958852867830425,
+  "date": "2026-07-13",
+  "repooled": false,
+  "alpha_P": {
+   "PH": 0.0,
+   "PM": 0.0,
+   "PL": 0.0
+  },
+  "frac_changed": 0.01088,
+  "top_n": [
+   {
+    "entity_id": "DHNC0122-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.4168005733213208,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0001-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.4006296784624599,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0267-A03",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.4004962469004896,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0021-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.386734679192222,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0185-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.38666786979270096,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0051-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.379284267238865,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0285-A04",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3779415601712713,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0028-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3761066087598707,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0065-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.37234837431912265,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0029-A04",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3721792936978201,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0025-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3606734055216092,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0042-A04",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3542818303797294,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0124-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.35269087169538016,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0203-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.35210362613089163,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0035-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3513552432997946,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0164-A03",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.35075427738092624,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0062-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3490967289781877,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0015-A05",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.3460895949160542,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0053-A06",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.34593560160864434,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0254-A04",
+    "kind": "ap",
+    "substation": "Dhanmondi",
+    "chi": 0.34480817537362357,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0122-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.4211660277406832,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0267-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.4156262708696837,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0001-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.4132459463277843,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0185-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.39513884556320256,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0021-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3902846924542754,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0051-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3864784195576483,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0065-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3859297248495368,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0028-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.38049619811392393,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0029-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.37970684086959317,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0285-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.37755612662551485,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0042-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3686453566243616,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0015-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.36788364443628574,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0025-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.365185605082957,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0203-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3639542006628008,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0226-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.36172801138845145,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0164-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3612218863112713,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0124-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3588562141665984,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0364-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.35843219855810193,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0062-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3582844732738933,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0035-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.35752562678400845,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0254-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3572769573806542,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0086-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3567358034375207,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0300-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.35225407336591935,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0053-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.35065440589774405,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0247-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.34586906102328047,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0011-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.344453927663784,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0113-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.344405663397217,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0160-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.34158227888580067,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0167-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.3408419459268606,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "DHNC0193-M",
+    "kind": "mt",
+    "substation": "Dhanmondi",
+    "chi": 0.33990454809218545,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "SB-Dhanmondi",
+    "kind": "sb",
+    "substation": "Dhanmondi",
+    "chi": 0.8,
+    "pool": "PH"
+   },
+   {
+    "entity_id": "SB-Kalyanpur",
+    "kind": "sb",
+    "substation": "Kalyanpur",
+    "chi": 0.7495974956171381,
+    "pool": "PH"
+   }
+  ]
+ }
+]

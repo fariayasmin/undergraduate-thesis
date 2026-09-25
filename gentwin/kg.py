@@ -102,6 +102,26 @@ class GraphBuilder:
                           "dst_label": dst_label, "dst": dst,
                           **{k: v for k, v in props.items() if v is not None}})
 
+    def dangling_relationships(self) -> list:
+        """
+        Issue B self-check: a relationship whose src or dst id was never
+        created via node() for that label. Every builder function is
+        expected to create nodes before (or in the same pass as) the
+        relationships referencing them, so any dangling entry here is a
+        real bug - most commonly a Forecast/Event/Regime id built from a
+        date that has no corresponding node (exactly Issue B's failure
+        mode before the fix).
+        """
+        ids_by_label = {label: {n["id"] for n in nodes}
+                       for label, nodes in self.nodes.items()}
+        out = []
+        for r in self.rels:
+            if r["src"] not in ids_by_label.get(r["src_label"], set()):
+                out.append({**r, "missing": "src"})
+            if r["dst"] not in ids_by_label.get(r["dst_label"], set()):
+                out.append({**r, "missing": "dst"})
+        return out
+
     def counts(self):
         return ({k: len(v) for k, v in self.nodes.items()},
                 pd.Series([r["type"] for r in self.rels]).value_counts().to_dict()
@@ -117,6 +137,21 @@ def build_static(g: GraphBuilder, subs, populations, dates,
     for i in subs:
         spec = cfg.SUBSTATIONS[i]
         tpk = sorted(pw.get_peak_slots(i))
+        # Issue A label bug: spec["t_pk_label"] is the STATIC config fallback
+        # literal (e.g. Dhanmondi "12:00-15:00 (observed midday peak)"), used
+        # only when no derived cache exists. It does not track `tpk` itself,
+        # which already prefers the dynamically DERIVED window (via
+        # pw.get_peak_slots -> pw.read_cache). At Dhanmondi the two disagree:
+        # the derived window is 12:00-14:30 (slots 24-28), not 12:00-15:00
+        # (slots 24-29). Read the label from the same cache `tpk` came from,
+        # so the two can never drift apart again.
+        dr_rec = pw.read_cache(i)
+        dr_label = dr_rec["label"] if dr_rec else \
+            f"{spec['t_pk_label']} [FALLBACK - run 00b_peak_window.py --derive]"
+        official = sorted(T.OFFICIAL_TOU_PEAK)
+        official_label = (f"{cfg.slot_to_clock(official[0])}-"
+                          f"{cfg.slot_to_clock(official[-1] + 1)} "
+                          f"(BERC gazette, footnote 6)")
         g.node("Substation", i, name=i, code=spec["code"],
                latitude=spec["latitude"], longitude=spec["longitude"],
                coords_provisional=spec["coords_provisional"],
@@ -126,24 +161,37 @@ def build_static(g: GraphBuilder, subs, populations, dates,
                e_max_kwh=spec["e_max_kwh"], b_max_kw=spec["b_max_kw"],
                reserve_kwh=spec["reserve_kwh"], s0_kwh=spec["s0_kwh"],
                c_producer_tk_per_kwh=spec["c_producer_tk_per_kwh"],
-               t_pk_slots=tpk, t_pk_label=spec["t_pk_label"],
+               t_pk_slots=tpk, t_pk_label=dr_label,
                eta_ch=cfg.ETA_CH, eta_dis=cfg.ETA_DIS)
-        # Adaptive local ToU window, with both halves' provenance. This
-        # describes the MECHANISM at this substation (the window a ToU-billed
-        # class would activate its peak rate in), NOT what every consumer
-        # here pays: a household's real mu_peak/mu_off live on its OWN
-        # TariffClass node (build_static, tariff loop below) and are 1.0/1.0
-        # for LT-A, LT-D1 and every other flat-billed class. Do not read
-        # mu_peak/mu_off off this node for a specific household.
-        g.node("TouWindow", f"TOU-{i}", substation=i, slots=tpk,
-               window_label=spec["t_pk_label"], mu_peak=cfg.MU_PEAK,
-               mu_off=cfg.MU_OFF,
-               mu_source="BERC order 03 June 2026 (LT-class ratio)",
-               window_source="GenTwin-SG adaptive local derivation",
+        # Issue A: two DIFFERENT windows, kept as clearly separate fields so
+        # no query can confuse them.
+        #   official_billing_window  - BERC's fixed national window, 17:00-
+        #     23:00. This is what actually prices a ToU-billed household's
+        #     bill (see tariff.mu_profile(..., adaptive=False), used by
+        #     lp._price_vector and billing.j1_linear). NEVER varies by
+        #     substation.
+        #   dr_activation_window     - this substation's own congestion-
+        #     derived window. x_{h,t} exists ONLY on these slots
+        #     (lp.build_day); it is the window demand response may ACTIVATE
+        #     in, not the window a bill is priced by. A household's real
+        #     mu_peak/mu_off for billing live on its OWN TariffClass node
+        #     (below) and are 1.0/1.0 for LT-A and LT-D1 regardless of either
+        #     window.
+        g.node("TouWindow", f"TOU-{i}", substation=i,
+               official_billing_window_slots=official,
+               official_billing_window_label=official_label,
+               dr_activation_window_slots=tpk,
+               dr_activation_window_label=dr_label,
+               dr_activation_window_source="GenTwin-SG adaptive local derivation",
+               mu_peak=cfg.MU_PEAK, mu_off=cfg.MU_OFF,
+               mu_source="BERC order 03 June 2026 (LT-class ratio); applies "
+                        "only within official_billing_window, to has_tou=True "
+                        "classes",
                applies_to="ToU-billed tariff classes only (has_tou=True on "
                           "TariffClass) - NOT LT-A residential or LT-D1 "
                           "(Hospital, Educational), which have no gazette "
-                          "ToU row and are priced flat (mu=1.0)",
+                          "ToU row and are priced flat (mu=1.0) regardless "
+                          "of either window",
                is_replacement_tariff=False)
         g.rel("Substation", i, "HAS_TOU_WINDOW", "TouWindow", f"TOU-{i}")
 
@@ -244,27 +292,49 @@ def build_static(g: GraphBuilder, subs, populations, dates,
 # Dynamic layer: forecast, run, decisions, regime, events, pools
 # =============================================================================
 
-def build_forecast(g, subs, krec):
-    """Forecast nodes carry Eqs. (13)-(16). NO regime - that is Eq. (48)."""
+def build_forecast(g, subs, krec, rows_by_sub: dict | None = None):
+    """
+    Forecast nodes carry Eqs. (13)-(16). NO regime - that is Eq. (48).
+
+    Issue B fix. `krec[i]["rows"]` covers ONLY the 14-day forecast-horizon
+    cache. A `_period` run (06_lp_optimiser.py --month/--period) spans a
+    longer window that also includes OBSERVED days, which have no row in
+    that cache at all - every Event on an observed day then pointed
+    TRIGGERED_BY/COMPUTED_FROM at a Forecast node that was never created.
+    `rows_by_sub`, when given, is per-substation rows from
+    forecast.build_period() (the SAME source 06_lp_optimiser.py and
+    07_regime_events_pool.py already use for those days), which covers
+    every day in the run, observed or forecast, uniformly. Falls back to
+    krec[i]["rows"] (forecast-horizon only) when not given, unchanged
+    behaviour for a plain --days run.
+
+    Observed rows carry fewer fields than forecast rows (no horizon_k,
+    in_dispatch_horizon, holiday_type, and the date key is "date" not
+    "target_date") - every field access below uses .get() with an honest
+    default rather than assuming the forecast-row schema.
+    """
     for i in subs:
-        for r in krec[i]["rows"]:
-            key = f"FC-{cfg.SUBSTATIONS[i]['code']}-{r['target_date']}"
-            g.node("Forecast", key, substation=i, date=r["target_date"],
-                   horizon_k=r["horizon_k"],
-                   in_dispatch_horizon=r["in_dispatch_horizon"],
-                   p_hat_kw=r["p_hat_kw"], sigma_kw=r["sigma_kw"],
-                   z_beta=r["z_beta"], p_tilde_kw=r["p_tilde_kw"],
-                   uncertainty_margin_kw=r["uncertainty_margin_kw"],
-                   p_str_kw=r["p_str_kw"], s_stress=r["s_stress"],
-                   deficit_kw=r["deficit_kw"], p_max_kw=r["p_max_kw"],
-                   kappa=r["kappa_scale"], p_ref_kw=r["p_ref_kw"],
+        rows = rows_by_sub[i] if rows_by_sub else krec[i]["rows"]
+        for r in rows:
+            date = r.get("target_date", r.get("date"))
+            mode = r.get("mode", "forecast" if "target_date" in r else "observed")
+            key = f"FC-{cfg.SUBSTATIONS[i]['code']}-{date}"
+            g.node("Forecast", key, substation=i, date=date, mode=mode,
+                   horizon_k=r.get("horizon_k"),
+                   in_dispatch_horizon=r.get("in_dispatch_horizon", True),
+                   p_hat_kw=r.get("p_hat_kw"), sigma_kw=r.get("sigma_kw"),
+                   z_beta=r.get("z_beta"), p_tilde_kw=r.get("p_tilde_kw"),
+                   uncertainty_margin_kw=r.get("uncertainty_margin_kw"),
+                   p_str_kw=r.get("p_str_kw"), s_stress=r.get("s_stress"),
+                   deficit_kw=r.get("deficit_kw"), p_max_kw=r.get("p_max_kw"),
+                   kappa=r.get("kappa_scale"), p_ref_kw=r.get("p_ref_kw"),
                    reference_day=krec[i]["reference_day"]["date"],
-                   weather_source=r["weather_source"],
-                   holiday_type=r["holiday_type"],
-                   sigma_method=krec[i]["sigma_method"],
-                   model="BiGRU (frozen)")
+                   weather_source=r.get("weather_source"),
+                   holiday_type=r.get("holiday_type"),
+                   sigma_method=krec[i]["sigma_method"] if mode != "observed" else None,
+                   model="BiGRU (frozen)" if mode != "observed" else "measured (BPDB)")
             g.rel("Forecast", key, "PREDICTS", "Substation", i)
-            g.rel("Forecast", key, "AT_DAY", "Day", r["target_date"])
+            g.rel("Forecast", key, "AT_DAY", "Day", date)
 
 
 def build_dynamic(g, subs, net_df, thr_df, summ, events, entities, pools):
@@ -348,9 +418,15 @@ def build_dynamic(g, subs, net_df, thr_df, summ, events, entities, pools):
                c7_binding=bool(r.get("c7_binding", False)),
                pi_i_t=float(r["pi_i_t"]), kappa=float(r["kappa"]),
                lambda_h=float(r["lambda_h"]) if pd.notna(r.get("lambda_h")) else None,
+               # Issue G: lambda_star now uses the slot price and rho*s (not
+               # mu_pk and a bare rho) - see lp.py::threshold_table.
                lambda_star=float(r["lambda_star"]) if pd.notna(r.get("lambda_star")) else None,
                y_max_h=float(r["y_max_h"]) if pd.notna(r.get("y_max_h")) else None,
                at_cap=bool(r["at_cap"]) if pd.notna(r.get("at_cap")) else None,
+               price_tau_tk_per_kwh=float(r["price_tau_tk_per_kwh"])
+               if pd.notna(r.get("price_tau_tk_per_kwh")) else None,
+               price_off_mean_tk_per_kwh=float(r["price_off_mean_tk_per_kwh"])
+               if pd.notna(r.get("price_off_mean_tk_per_kwh")) else None,
                threshold_form=("private + system - qoe > discomfort"
                                if r.get("c7_binding") else
                                "private + system > discomfort"),
@@ -426,6 +502,11 @@ def build_dynamic(g, subs, net_df, thr_df, summ, events, entities, pools):
                    cut_low=p["cut_low"], cut_high=p["cut_high"],
                    rule=p["rule"], degenerate=p["degenerate"],
                    alpha_P=p.get("alpha_P", {}).get(name),
+                   # Issue E: whether TODAY's membership was recomputed from
+                   # fresh cut points ("REPOOLED") or carried over from the
+                   # previous day because max_P alpha_P <= ALPHA_REPOOL
+                   # ("reused" - rule == "reused" in that case).
+                   repooled=p.get("repooled"),
                    equation="(50)-(52)")
         for rank, e in enumerate(p["top_n"], start=1):
             g.node("PoolEntity", f"PE-{e['entity_id']}-{date}",
@@ -488,6 +569,12 @@ def build_billing(g: GraphBuilder, bills, period: dict, subs) -> None:
            forecast_days=period.get("forecast_days"),
            tariff_source=T.GAZETTE_REF,
            rho_tk_per_kwh=cfg.RHO_REBATE_TK_PER_KWH,
+           # Issue J follow-up: label rho on the node itself, not only in a
+           # CLI print, so a graph query can tell a proposed-mechanism run
+           # from the current-policy (rho=0) arm without external context.
+           rho_is_current_policy=cfg.RHO_CURRENT_POLICY,
+           individual_rationality_on=cfg.INDIVIDUAL_RATIONALITY,
+           curtail_scope=cfg.CURTAIL_SCOPE,
            qoe_min=cfg.QOE_MIN)
     for d in period.get("dates", []):
         g.rel("BillingPeriod", pk, "COVERS", "Day", d)

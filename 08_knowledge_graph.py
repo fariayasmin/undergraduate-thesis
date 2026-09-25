@@ -13,6 +13,13 @@ import argparse, json, sys
 import pandas as pd
 from gentwin import config as cfg, forecast as F, population as pop, kg
 
+
+def _bpdb():
+    for p in (cfg.BPDB_CSV, cfg.DATA_DIR / "BPDB_Dhaka_City_Substations_Page3.csv"):
+        if p.exists():
+            return pd.read_csv(p, parse_dates=["Date"])
+    raise FileNotFoundError(f"BPDB CSV not found at {cfg.BPDB_CSV}")
+
 QUERY_PACK = '''// GenTwin-SG :: Cypher query pack  (schema v2, billing-enabled)
 //
 // Graph shape, after the reviewer's structural corrections:
@@ -146,7 +153,8 @@ RETURN h{.household_id,.category,.archetype,.income_band,.household_size,
        // both are). tw is the substation-level ToU MECHANISM window and must
        // NOT be read as this household's price unless tc.has_tou is true.
        tc{.code,.name_en,.flat_tk_per_kwh,.has_tou,.mu_peak,.mu_off}  AS tariff,
-       tw{.window_label,.mu_peak,.mu_off,.mu_source,.window_source,.applies_to} AS tou_mechanism,
+       tw{.official_billing_window_label,.dr_activation_window_label,
+          .mu_peak,.mu_off,.mu_source,.applies_to}                AS tou_mechanism,
        f{.p_hat_kw,.p_tilde_kw,.sigma_kw,.kappa,.s_stress,.p_str_kw} AS forecast,
        rg{.r,.regime_name,.trigger_transfer,.trigger_reserve_shortfall} AS regime,
        b{.energy_before_kwh,.energy_after_kwh,.bill_before_tk,.bill_after_tk,
@@ -303,11 +311,23 @@ def main() -> int:
     POP = {i: pop.consumers_from_cache(i) for i in subs}
     krec = {i: F.read_cache(i) for i in subs}
     dates = sorted(net["date"].unique())
-    fdates = sorted({r["target_date"] for i in subs for r in krec[i]["rows"]})
+
+    # Issue B: a _period run's `dates` span observed history AND the
+    # forecast horizon; krec[i]["rows"] covers ONLY the latter. Use
+    # forecast.build_period() - the same per-day resolver 06_lp_optimiser.py
+    # and 07_regime_events_pool.py already use - so every date in `dates`
+    # gets a Forecast node, not just the forecast-horizon subset.
+    if "_period" in tag:
+        bpdb = _bpdb()
+        rows_by_sub = {i: F.build_period(bpdb, i, dates[0], dates[-1]) for i in subs}
+        fdates = dates
+    else:
+        rows_by_sub = None
+        fdates = sorted({r["target_date"] for i in subs for r in krec[i]["rows"]})
 
     g = kg.GraphBuilder()
     kg.build_static(g, subs, POP, dates, forecast_dates=fdates)
-    kg.build_forecast(g, subs, krec)
+    kg.build_forecast(g, subs, krec, rows_by_sub=rows_by_sub)
     kg.build_dynamic(g, subs, net, thr, summ, events, None, pools)
     kg.build_participation(g, subs, POP, thr, dates)
 
@@ -330,6 +350,20 @@ def main() -> int:
                 "dates": [d for d in bdates],
             }, subs)
             print(f"  attached {len(bills)} MonthlyBill nodes")
+
+    # Issue B acceptance check: 0 dangling relationships (most commonly an
+    # Event/Regime pointing TRIGGERED_BY/COMPUTED_FROM at a Forecast node
+    # that was never created for that date).
+    dangling = g.dangling_relationships()
+    print(f"\n  [{'PASS' if not dangling else 'FAIL'}] dangling relationships: "
+          f"{len(dangling)}")
+    if dangling:
+        by_type = pd.DataFrame(dangling)["type"].value_counts()
+        print(f"     by type: {by_type.to_dict()}")
+        print(f"     example: {dangling[0]}")
+        raise RuntimeError(
+            f"{len(dangling)} dangling relationship(s) - refusing to export "
+            f"a knowledge graph with broken edges. See the breakdown above.")
 
     nc, rc = g.counts()
     print("\n  nodes")
