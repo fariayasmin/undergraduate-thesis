@@ -63,6 +63,16 @@ def main() -> int:
     ap.add_argument("--report", action="store_true")
     ap.add_argument("--plot", action="store_true")
     ap.add_argument("--tag", default="_period")
+    ap.add_argument("--gamma-scale", type=float, default=None,
+                    help="Round-4 item 2: override the gamma_sh_h/gamma_cu_h "
+                         "scale for THIS billing pass, without needing a "
+                         "fresh 06_lp_optimiser.py solve - use this to "
+                         "recompute an existing --gamma-scale arm's billing "
+                         "from its already-solved lp_decisions/lp_thresholds "
+                         "(the x/y decisions do not change; only "
+                         "discomfort_J2_tk and everything downstream of it "
+                         "do). Takes precedence over lp_summary's own "
+                         "gamma_scale_used if both are present.")
     ap.add_argument("--substations", nargs="*", default=list(cfg.SUBSTATIONS))
     a = ap.parse_args()
     if not (a.report or a.plot):
@@ -75,6 +85,49 @@ def main() -> int:
     POP = {i: pop.consumers_from_cache(i) for i in subs}
     net, dec, summ, dates = load_run(a.tag, subs)
     days = len(dates)
+
+    # Round-3 follow-up (item A2): same class of bug as Follow-up F11's
+    # P^max/G^max propagation, but for rho/IR/curtail_scope. This process
+    # never saw 06_lp_optimiser.py's --rho/--ir/--curtail-scope CLI flags,
+    # so incentive_received_tk (and everything downstream of it - saving,
+    # net_benefit, gained_unweighted/gained_lambda) was silently computed
+    # with the DEFAULT rho even for the rho0 (current-policy) arm, and the
+    # individual_rationality_on/curtail_scope labels in
+    # billing_statistics{tag}.json were always the default regardless of
+    # which arm actually ran. Read the ACTUAL values 06 used (recorded in
+    # lp_summary{tag}.csv) and apply them here instead of trusting this
+    # process's own fresh cfg import.
+    if "rho_used_tk_per_kwh" in summ.columns:
+        cfg.RHO_REBATE_TK_PER_KWH = float(summ["rho_used_tk_per_kwh"].iloc[0])
+        cfg.RHO_CURRENT_POLICY = bool(summ["rho_current_policy"].iloc[0])
+    ir_on_used = (bool(summ["individual_rationality_on"].iloc[0])
+                 if "individual_rationality_on" in summ.columns else False)
+    curtail_scope_used = (str(summ["curtail_scope_used"].iloc[0])
+                          if "curtail_scope_used" in summ.columns else cfg.CURTAIL_SCOPE)
+    # Round-4 item 2: same gap, for --gamma-scale. This process's
+    # pop.consumers_from_cache() above returns the UNSCALED gamma_sh_h/
+    # gamma_cu_h regardless of what 06_lp_optimiser.py's --gamma-scale
+    # actually solved against - apply the SAME scaling here, to the SAME
+    # attributes, before accumulate()/j1_linear() read them for
+    # discomfort_J2_tk. The LP's own x/y decisions are unaffected either
+    # way (already solved correctly); only this process's discomfort/
+    # net_benefit/gained_* recomputation needed the fix.
+    if a.gamma_scale is not None:
+        gamma_scale_used = a.gamma_scale
+    elif "gamma_scale_used" in summ.columns:
+        gamma_scale_used = float(summ["gamma_scale_used"].iloc[0])
+    else:
+        gamma_scale_used = 1.0
+    if gamma_scale_used != 1.0:
+        for i in subs:
+            for h in POP[i]:
+                h.gamma_sh_h = float(h.gamma_sh_h) * gamma_scale_used
+                h.gamma_cu_h = float(h.gamma_cu_h) * gamma_scale_used
+    print(f"  rho = {cfg.RHO_REBATE_TK_PER_KWH} Tk/kWh"
+          f"{'  [CURRENT-POLICY ARM]' if cfg.RHO_CURRENT_POLICY else ''}"
+          f"  |  IR {'ON' if ir_on_used else 'off'}"
+          f"  |  curtail_scope={curtail_scope_used}"
+          f"  |  gamma_scale={gamma_scale_used}  (read from lp_summary{a.tag}.csv)")
 
     print("=" * 78)
     print(f"REPRESENTATIVE {days}-DAY EVALUATION WINDOW - "
@@ -182,8 +235,8 @@ def main() -> int:
                      "Bangladesh today)" if cfg.RHO_CURRENT_POLICY else
                      "PROPOSED mechanism, evaluated by this study - not "
                      "existing BERC policy"),
-        "individual_rationality_on": cfg.INDIVIDUAL_RATIONALITY,
-        "curtail_scope": cfg.CURTAIL_SCOPE,
+        "individual_rationality_on": ir_on_used,
+        "curtail_scope": curtail_scope_used,
         "qoe_min": cfg.QOE_MIN,
     }, indent=1, default=str), encoding="utf-8")
     # legacy paths kept so nothing downstream breaks

@@ -188,7 +188,8 @@ def build_day(date, substations, populations, schedules, cat, theta,
               surcharge: dict | None = None, couple: bool = True,
               theta_w: tuple | None = None,
               individual_rationality: bool | None = None,
-              terminal_target: dict | None = None):
+              terminal_target: dict | None = None,
+              no_dr: bool = False):
     """
     Assemble the LP for one day. Returns (c, A_ub, b_ub, bounds, idx, ctx).
 
@@ -202,6 +203,13 @@ def build_day(date, substations, populations, schedules, cat, theta,
     `terminal_target` (Issue 10, optional): {substation: kWh}. Adds
     S_i(end of day) >= target on the LAST slot only. The caller passes this
     only for whichever date it considers the end of the run.
+
+    `no_dr` (Round-3 item C13, default False - no change to any existing
+    result): forces x=y=0 for every household by zeroing their upper
+    bounds, a BOUNDS-only override that touches neither the objective nor
+    any config default. Used for the load-shedding counterfactual - with
+    no shift/curtail available at all, whatever the substation cannot
+    serve from G/battery/tie-line must appear as Z (unserved load) instead.
     """
     th1, th2, th3 = theta_w or (cfg.THETA_COST, cfg.THETA_RELIABILITY,
                                 cfg.THETA_WELFARE)
@@ -442,9 +450,12 @@ def build_day(date, substations, populations, schedules, cat, theta,
         tpk_i = ctx["peak"][i]
         stressed_today = float(s_stress[i]) >= 1
         for cid, blk in ctx["blocks"][i].items():
-            hi[idx[("x", cid)]] = 1.0
+            hi[idx[("x", cid)]] = 0.0 if no_dr else 1.0
             cap = getattr(blk["consumer"], "y_max_h", cfg.Y_MAX_DEFAULT)
             y_sl = idx[("y", cid)]
+            if no_dr:
+                hi[y_sl] = 0.0
+                continue
             if scope == "dr_window":
                 # Follow-up (Issue: curtailment scope): restrict y to the
                 # substation's own DR-activation window, so curtailment is
@@ -473,12 +484,12 @@ def build_day(date, substations, populations, schedules, cat, theta,
 def solve_day(date, substations, populations, schedules, cat, theta,
               kappa, s_stress, soc0, surcharge=None, couple=True,
               theta_w=None, individual_rationality=None,
-              terminal_target=None) -> DaySolution:
+              terminal_target=None, no_dr=False) -> DaySolution:
     """Assemble, solve, and unpack one day."""
     c, A_ub, b_ub, bounds, idx, ctx = build_day(
         date, substations, populations, schedules, cat, theta, kappa,
         s_stress, soc0, surcharge, couple, theta_w, individual_rationality,
-        terminal_target)
+        terminal_target, no_dr)
 
     res = linprog(c, A_ub=A_ub, b_ub=b_ub, bounds=bounds,
                   method="highs", options=cfg.LP_OPTIONS)

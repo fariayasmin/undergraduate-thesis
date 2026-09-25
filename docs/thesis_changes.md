@@ -202,8 +202,23 @@ risk inherent in the grid-search fix itself.
 proximity to the tuned reference day 2026-06-29): **Dhanmondi 23/24** inside
 `T^pk_i` (12:00-14:30) - the one miss, 2025-01-20, peaks at 18:30 instead,
 disclosed rather than dropped; **Kalyanpur 24/24** inside `T^pk_i`
-(18:00-21:00). Both substations generalise well beyond the single tuned
-day. Full rows: `outputs/held_out_t2_{substation}.csv`.
+(18:00-21:00). Full rows: `outputs/held_out_t2_{substation}.csv`.
+
+**Caveat, added per Follow-up F17 - read Kalyanpur's 24/24 as weak, not
+strong, validation.** This "inside T^pk_i" test is lenient: Kalyanpur's
+synthetic peak slot is a FIXED 18:30 every single day (an evening
+residential/AC block that always dominates, never varies with weather),
+which sits inside its own tuned window by construction - 24/24 here is
+close to guaranteed, not independent evidence of generalisation. Follow-up
+F17's STRICTER test (does the synthetic peak SLOT match the ACTUAL BPDB
+peak TIME, not just "is it inside a window drawn around the synthetic
+answer") found Kalyanpur's hit rate exactly EQUALS a naive always-guess-
+the-mode baseline (35.7%=35.7%, zero lift) - the honest conclusion for
+Kalyanpur is that the model's TIMING generalises to "always inside its own
+window" (trivial) but NOT to "actually matches when Kalyanpur really
+peaks" (real, and it does not). Dhanmondi does not have this problem - its
+synthetic peak varies day to day and beats the naive baseline by a real
+margin (87.5% vs 83.3%, Follow-up F17).
 
 Dhanmondi's kappa range itself (computed from the same, already-run 30-day
 base arm - kappa is a property of the LP's own daily forecast-vs-baseline
@@ -427,6 +442,166 @@ threshold/margin report, never the constraint or objective itself, so
 
 ---
 
+## Follow-up F16. rho never reached 09_monthly_billing.py either (item A2)
+
+**What was wrong.** The same propagation gap as Follow-up F11
+(`06_lp_optimiser.py::apply_scenario()` mutating `cfg` in its own process
+only), but for `rho`, and this one changed a REPORTED NUMBER, not just a
+label. `09_monthly_billing.py` computes `incentive_received_tk` (and, via
+`j1_linear()`, `rebate_tk`) from `cfg.RHO_REBATE_TK_PER_KWH` fresh in its
+own process - so the `rho0` (current-policy, no-rebate) arm's billing was
+silently computed as if the default rho=3 Tk/kWh rebate still applied.
+Confirmed directly: `billing_statistics_period_rho0.json` reported
+`"rho_tk_per_kwh": 3.0`, and the exact same 10 household IDs, with
+bit-for-bit identical `saving_tk`/`incentive_received_tk`/`optimised_kwh`,
+registered as "gained" in `base`, `rho0` AND `scarcity` - not a coincidence
+of the boundary being far from zero (verified separately for `scarcity`,
+where the underlying numbers genuinely differ but the boolean happens to
+agree), but for `rho0` a real computation done with the wrong rho. The
+same gap affected `individual_rationality_on`/`curtail_scope` LABELS
+(cosmetic only - no computed number depends on them) in both
+`09_monthly_billing.py`'s JSON and `gentwin/kg.py::build_billing()`'s
+`BillingPeriod` node.
+
+**Fix.** `06_lp_optimiser.py::export()` now writes `rho_used_tk_per_kwh`,
+`rho_current_policy`, `individual_rationality_on`, `curtail_scope_used`
+into `lp_summary{tag}.csv`. `09_monthly_billing.py::main()` reads them and
+OVERRIDES its own `cfg.RHO_REBATE_TK_PER_KWH`/`cfg.RHO_CURRENT_POLICY`
+before computing anything, and uses the read values (not `cfg` directly)
+for its JSON labels. `08_knowledge_graph.py` passes the same four fields
+(read from the now-correct `billing_statistics{tag}.json`) into
+`kg.build_billing()`, which now prefers them over its own process's `cfg`.
+
+**Verified after re-solving `_period_rho0`:** `rho_tk_per_kwh` now reads
+`0.0`, `rho_is_current_policy` reads `true`, total `incentive_received_tk`
+is exactly `0.0` (was 146,255 Tk, matching the base arm's non-zero rebate
+total almost exactly). `pct_connections_gained` moved from the buggy 1.24%
+(identical to base) to the correct **0.20%**; `pct_connections_gained_lambda`
+from 14.84% to **12.14%**. This is a real, previously-unreported difference
+between the current-policy and proposed-mechanism arms that the bug had
+been hiding.
+
+---
+
+## Follow-up F17. Kalyanpur's synthetic peak TIMING does not beat a naive baseline
+
+**What was checked (item B6).** Distinct from the held-out T2 check
+(Follow-up F9, which only asks "does the peak land inside the DR window"),
+this compares the synthetic model's predicted peak SLOT against the
+BPDB-recorded ACTUAL peak time for the same 24 held-out dates, and against
+an "always guess the modal slot" baseline.
+
+**Dhanmondi**: hit rate (within +/-1 slot) = 87.5% (21/24) vs the
+always-modal-slot baseline's 83.3% (20/24) - a real, if modest, lift.
+Peak-level ratio (synthetic/actual) averages 1.09 (well-calibrated).
+
+**Kalyanpur**: hit rate = 35.7% (5/14 valid, non-`0:00`, records) - EXACTLY
+equal to the always-modal-slot baseline's 35.7%. The synthetic model
+provides ZERO timing lift over a trivial constant guess, because its own
+predicted peak slot is itself CONSTANT (18:30, every single day, driven by
+a fixed evening residential/AC block that always dominates regardless of
+weather) while the actual BPDB peak time ranges from 12:00 to 23:00.
+Peak-level ratio averages 1.53 - the synthetic model also overstates
+Kalyanpur's peak magnitude by roughly half.
+
+**A likely structural cause, found from the raw BPDB data itself**: over
+all of 2025 (256 valid, non-`0:00` days out of 358), Kalyanpur's ACTUAL
+peak lands in 12:00-14:00 on 39.5% of days - MORE often than in the
+18:00-21:00 window (27.0%), which is both the substation's adaptive
+DR-activation window (`T^pk_Kalyanpur`) AND the synthetic model's only
+possible peak slot. 28.5% of 2025 records are `0:00` (a data-quality gap,
+not necessarily a genuine midnight peak).
+
+**Recommendation, not a fix made this round**: the audit brief's RULES for
+this round exclude changing the load model itself; this is reported as a
+genuine, disclosed limitation rather than corrected. Chapter 4 (or a
+future pass) should state that the synthetic model's Kalyanpur peak timing
+is well below a trivial baseline, and that BPDB's own actual data suggests
+Kalyanpur may have a materially noon-peaking sub-population the current
+synthetic mix under-represents.
+
+---
+
+## Follow-up F18. Scarcity fairness: exporters curtail their own load in the same slots (item B8)
+
+**What was checked.** For the scarcity arm (0.55/0.62), per substation-day
+where that substation is EXPORTING (`T_out_kw>0` in some slot) AND is
+itself in `capacity_deficit` that day (using the correctly-propagated
+`p_max_kw_eff`, Follow-up F11), how much of that substation's OWN
+curtailment falls in the SAME slots it is exporting in.
+
+**Result**: 18 of 30 exporting substation-days meet both conditions. On
+the most extreme, 2026-06-28, Dhanmondi exports 74,792 kWh while
+curtailing 144,772 kWh of its own households' load in those same slots -
+almost double the exported amount. On 2026-07-12, Kalyanpur exports
+81,138 kWh while curtailing 191,571 kWh of its own load in those slots.
+
+**This is not presented as a bug** - the coupled LP is doing exactly what
+Eq. (23)/(29)'s system-wide welfare objective asks: relieve the WORSE-OFF
+substation even at a cost to the better (but still stressed) one, when
+that raises total welfare. It is, however, a genuine DISTRIBUTIONAL/
+fairness finding worth stating plainly in Chapter 4: under this scarcity
+scenario, the model's coupling asks an already-stressed substation to
+export power while curtailing its own residents in the same half-hours -
+a burden-sharing pattern that has policy content (is it fair, and would a
+BPDB operator actually do this) independent of whether the dispatch
+itself is efficient.
+
+---
+
+## Follow-up F19. Social efficiency: curtailment is privately, not socially, rational under normal conditions (item C12)
+
+**What was checked.** Post-hoc from `lp_thresholds{tag}.csv`, no LP or
+objective change: what share of curtailed kWh satisfies
+`pi_i(t) + pi4_i(t) - gamma_{cu,h} > 0` (the RAW, unweighted system-price
+test - not the lambda-weighted comparison the LP itself uses), and what
+share of shifted kWh satisfies `(pi(tau) - mean(pi_off)) - gamma_{sh,h} > 0`.
+
+**Result: 0.0% in every arm without a scarcity scenario** (base,
+dr_window, rho0, ir, stress_days, drw_ir) - for both curtailment and
+shifting. The mechanism is structural, not a bug: `pi_i(t)` sits flat at
+the producer price (8.39 Tk/kWh; C1 never binds without a scarcity
+scenario) while `gamma_{cu,h}` (recovered from
+`discomfort_tk_per_kwh/(1-lambda_h)`) ranges 11.6-36.5 Tk/kWh - the raw
+price signal never clears the raw discomfort weight. Every curtailment the
+LP chooses is worthwhile only under the household's OWN lambda-weighted
+comparison, never under the unweighted, "value-to-the-grid-alone" one.
+
+**Under scarcity (0.55/0.62, with pi4 now exported per Follow-up F20
+below)**: 10.96% of curtailed kWh becomes socially efficient once C4's
+dual is included (610 of 304,185 curtail-actions have `pi4>0`) - the
+system price can now exceed gamma on the days C4 actually binds. Shifted
+kWh remains 0.0% (the shift test does not involve `pi4` at all, and the
+shift-window price spread stays small relative to `gamma_{sh,h}`).
+
+**Recommendation for Chapter 4**: state this explicitly rather than
+implying (as the current K2 passage's mechanism did) that curtailment
+reflects system value. It reflects PRIVATE value, mediated by lambda_h;
+system value only enters once real scarcity pushes the shadow price above
+the discomfort weight, and even then covers roughly a tenth of the
+curtailed energy. See the rewritten K2 above and the "Incentive
+compatibility and benefit sharing" section below for the full
+decomposition.
+
+---
+
+## Follow-up F20. C4's dual (pi4) had no CSV export
+
+**What was missing.** `pi4_i(t)` (C4's dual, already computed and used
+internally since Follow-up F4) was never written to any output file -
+`lp_network{tag}.csv` carried `pi_tk_per_kwh` (C1's dual) but nothing for
+C4, so Follow-up F19's social-efficiency check needed it and had none to
+read for the scarcity arm (it is exactly 0, and thus omittable without
+changing the RESULT, for every arm that never scales P^max).
+
+**Fix.** `06_lp_optimiser.py::export()`'s network rows now include
+`pi4_tk_per_kwh: sol.duals_c4.get(i, zeros)[t]`. Verified this is a pure
+reporting addition: re-solving the scarcity arm to pick it up reproduced
+`shift_kwh`/`curtail_kwh` and every check-6 margin bit-for-bit identical to
+the pre-addition run.
+
+---
+
 **LP-level, full 30-day period:**
 
 | arm | shift kWh | curtail kWh | n_events | degenerate pool-days | check 6 |
@@ -436,6 +611,11 @@ threshold/margin report, never the constraint or objective itself, so
 | rho0 | 60,048 | 11,078,285 | 86 | 0/30 | PASS |
 | ir | 93,995 | 5,171,419 | 86 | 0/30 | PASS (after F15) |
 | scarcity (0.55/0.62) | 1,155,314 | 12,746,020 | 124 | 0/30 | PASS |
+
+(shift/curtail kWh here are already population-scale, like every other
+kWh figure in this document - see the Round-4/item-1 correction under
+C10/C11 for the sanity check confirming this and the double-weighting
+bug it caught in a DIFFERENT, downstream calculation.)
 
 `dr_window` cuts curtailed energy by 73% versus `base` over the full month
 (11.39M -> 3.09M kWh) while shifting more than doubles - the same
@@ -455,7 +635,7 @@ period, POST billing-scale fix F12):**
 |---|---|---|---|---|---|---|
 | base | 460 | 5.80 | 2,167.7 | 1.2 | 14.8 | 3.61 |
 | dr_window | 458 | 0.74 | 622.7 | 2.2 | 15.3 | 5.31 |
-| rho0 | 432 | 4.00 | 2,145.5 | 1.2 | 14.8 | 3.27 |
+| rho0 | 432 | 4.00 | 2,145.5 | **0.20** | **12.14** | 3.27 |
 | ir | 207 | 0.00 | 1,032.7 | 2.0 | 17.6 | 2.87 |
 | scarcity | 750 | 8.69 | 2,380.3 | 1.2 | 14.8 | 19.42 |
 
@@ -474,13 +654,17 @@ this run.
 **Pooling, full 30-day period (Follow-up F14 - four precision variants,
 none tautological by construction the way `precision@N=1.000` alone was):**
 
-| arm | same-day (circular) | mean_relative (circular) | chi excl. phi2 (non-circular, same-day) | next-day (non-circular) | next-day random baseline | next-day lift |
-|---|---|---|---|---|---|---|
-| base | 1.000 | 1.000 | 0.706 | 1.000 | 0.265 | 3.80x |
-| dr_window | 1.000 | 1.000 | 0.706 | 0.995 | 0.268 | 3.74x |
-| rho0 | 1.000 | 1.000 | 0.695 | 1.000 | 0.255 | 3.94x |
-| ir | 1.000 | 1.000 | 0.349 | 0.968 | 0.123 | 7.91x |
-| scarcity | 1.000 | 1.000 | 0.806 | 1.000 | 0.452 | 2.31x |
+| arm | same-day (circular) | mean_relative (circular) | chi excl. phi2 (non-circular, same-day) | next-day, RANKING (non-circular) | next-day, PERSISTENCE baseline | next-day random baseline | next-day lift (ranking) |
+|---|---|---|---|---|---|---|---|
+| base | 1.000 | 1.000 | 0.706 | 1.000 | 0.985 | 0.265 | 3.80x |
+| dr_window | 1.000 | 1.000 | 0.706 | 0.995 | 0.976 | 0.268 | 3.74x |
+| rho0 | 1.000 | 1.000 | 0.695 | 1.000 | 0.994 | 0.255 | 3.94x |
+| ir | 1.000 | 1.000 | 0.349 | 0.968 | 0.985 | 0.123 | 7.91x |
+| scarcity | 1.000 | 1.000 | 0.806 | 1.000 | 0.949 | 0.452 | 2.31x |
+
+The "next-day, PERSISTENCE baseline" column (item A5) is the one that
+matters for reading this table correctly - see the Round-4 correction
+below.
 
 Same-day precision is 1.000 on both quantile and mean_relative for every
 arm - confirming the circularity diagnosis (F14): whichever pooling RULE
@@ -490,13 +674,28 @@ cannot distinguish a good ranking from a tautological one. Dropping phi2
 from chi (still same-day, but the score can no longer see the label) drops
 precision to 0.35-0.81 - real signal from graph centrality/stress/deficit
 alone, well above what a same-size random draw would get, but nowhere near
-perfect. Next-day precision - the one variant that CANNOT leak the label,
-since day d's top-N is fixed before day d+1's response exists - stays
-remarkably high (0.968-1.000) with a substantially lower random baseline
-(0.123-0.452), giving a real lift of 2.3x-7.9x: entities that were
-top-ranked today are very likely to be the SAME entities acting tomorrow,
-which is a genuine, non-circular finding about persistence of who responds,
-not an artefact of the scoring formula.
+perfect.
+
+**Round-4 correction (item 6).** Next-day precision (the one variant that
+cannot leak the label) is high (0.968-1.000), but this round's own
+persistence baseline (item A5 - today's actual actors, sampled to the same
+per-kind quota, no ranking involved) is ALSO high and tracks it closely:
+base 0.985 vs 1.000, dr_window 0.976 vs 0.995, rho0 0.994 vs 1.000, ir
+0.985 vs 0.968 (persistence slightly EXCEEDS the ranking here), scarcity
+0.949 vs 1.000. The gap between next-day precision and the persistence
+baseline is at most ~0.05 in every arm, and negative in one. The correct
+reading is therefore NOT "the ranking finds a genuine, non-circular
+signal about persistence" (the previous round's claim) - it is that
+MOST of next-day precision's lift over random comes from ordinary
+day-to-day persistence of WHO is active in this population, which a
+trivial "watch today's actors" rule captures almost as well as chi's
+ranking does. The ranking's OWN marginal contribution over that trivial
+baseline is small (and inconsistent in sign) in every arm tested. This
+does not mean the pooling mechanism is worthless - `chi_excluding_phi2`
+still beats random by a real margin same-day - but the specific claim that
+next-day precision demonstrates the RANKING's predictive value, rather
+than the population's own persistence, does not hold up against this
+round's own comparison.
 
 Item 3 (`alpha_w` vs `frac_changed` re-pooling trigger, computed
 side-by-side every day, `alpha_w` remains the active default rule): over
@@ -956,21 +1155,72 @@ for a substation-aware ToU tariff, which does not exist today."*
 saving-discomfort parity line, indicating that their bill savings are
 greater than the monetary discomfort assigned to the selected response."*
 
-**Status after the fixes: largely still true, but for a different reason
-than implied.** Measured before/after the residential-ToU and Issue-A/G/D
-fixes (see the acceptance-check table below): residential bill savings
-barely moved, because they were already curtailment-dominated (shifting
-under a flat tariff, or a misaligned ToU tariff, was never a material
-private benefit once correctly priced). The passage's CONCLUSION survives;
-its implicit MECHANISM does not.
+**The figure this passage describes** (`09_monthly_billing.py::_draw_savings_vs_discomfort_panel`,
+panel of `monthly_billing{tag}.png`): a scatter of one point per household
+representative, coloured by category, with **X-axis = discomfort J^h_2
+(Tk)** and **Y-axis = bill saving (Tk)**, plus a dashed 45-degree line
+`y=x` labelled "saving = discomfort" - the parity line. A point ABOVE the
+line has `saving > discomfort`; a point BELOW it has `saving < discomfort`.
 
-**Proposed replacement.** *"Most residential observations remain below the
-saving-discomfort parity line. This saving is driven almost entirely by
-curtailment - using less energy, which saves money under any tariff -
-rather than by shifting, since residential consumers face no time-of-use
-pricing under current BERC policy (Sec. [Issue A]) and therefore have no
-private financial reason to shift load between slots of otherwise-identical
-price."*
+**Status: CONTRADICTED, not confirmed.** The passage's own two clauses
+are inconsistent with each other on THIS figure's axis convention: being
+"below" the `y=x` parity line means `saving < discomfort` (Y is below what
+the line predicts for that X), not `saving > discomfort` as the passage's
+second clause claims. Reading the passage's INTENDED claim charitably as
+"residential participants mostly come out ahead" (saving exceeds
+discomfort), the measured result is the opposite: `pct_connections_gained`
+(unweighted, one Tk equals one Tk, share of **ALL 800 representatives /
+~348,661 connections - not just participants**) is **1.2%**, and even
+`pct_connections_gained_lambda` (the LP's OWN lambda-weighted criterion,
+the most favourable reading available) is only **14.8%**. Under either
+definition, the overwhelming majority of ALL residential connections -
+not merely a minority of participants - sit BELOW the parity line
+(`saving < discomfort`, or fail the lambda-weighted test). The passage's
+claim that most observations show savings exceeding discomfort is
+therefore directly contradicted by the measured figure, on its own axis
+convention.
+
+**A second, independent reason for the same conclusion (Round-3 item
+C12/Follow-up F19).** Beyond residential's lack of time-of-use exposure
+(below), literally NONE of the curtailed or shifted energy in ANY arm
+without a scarcity scenario (base, dr_window, rho0, ir, stress_days,
+drw_ir - checked directly against `lp_thresholds{tag}.csv`) satisfies the
+SOCIAL-efficiency test `pi_i(t) - gamma_{cu,h} > 0` (curtail) or
+`(pi(tau) - mean(pi_off)) - gamma_{sh,h} > 0` (shift): the raw system price
+`pi_i(t)` sits flat at 8.39 Tk/kWh (no congestion, G^max unbound) while raw
+`gamma_cu_h` ranges 11.6-36.5 Tk/kWh - the price signal alone never clears
+the discomfort cost. Every household that curtails is doing so because its
+OWN lambda-weighted comparison (`lambda_h * private benefit` against
+`(1-lambda_h) * discomfort`) favours it, not because the unweighted,
+planner's-eye view (or the figure's own unweighted axes) would call the
+action worthwhile. This is not a bug - it is the honest reading of what
+"demand response" is doing in this model under normal (non-scarcity)
+conditions: a private transaction the LP mediates, not a system-value-
+creating one, and not one that leaves most residential connections ahead
+on a plain Tk-for-Tk basis either. Only the scarcity arm, where `pi_i(t)`
+and C4's own dual can reach the VoLL price (60 Tk/kWh), gives the price
+signal room to exceed gamma at all.
+
+**Proposed replacement.** *"Most residential observations remain below
+the saving-discomfort parity line (Fig. [X]: discomfort J^h_2 on the
+x-axis, bill saving on the y-axis, dashed y=x parity line) - CONTRARY to
+a reading where savings exceed discomfort for most participants. Measured
+over the full population (not just participants): only 1.2% of ALL
+residential connections show a bill saving exceeding their discomfort
+under the plain, unweighted Tk criterion; even under the LP's own
+lambda-weighted criterion (the most favourable available reading), only
+14.8% do. This saving is driven almost entirely by curtailment - using
+less energy, which saves money under any tariff - rather than by
+shifting, since residential consumers face no time-of-use pricing under
+current BERC policy (Sec. [Issue A]) and therefore have no private
+financial reason to shift load between slots of otherwise-identical
+price. Beyond the tariff structure, the curtailment itself is privately
+but not socially rational under normal conditions: the system price never
+rises far enough above the discomfort weight gamma_{cu,h} to justify
+curtailment on value-to-the-grid grounds alone (Sec. [Incentive
+compatibility and benefit sharing]) - only under the scarcity scenario,
+where the price can reach the value of lost load, does that comparison
+turn favourable."*
 
 ---
 
@@ -1021,3 +1271,519 @@ definition as the thesis's own numbered equation, whatever number it ends
 up at once the LaTeX is available) makes that citation resolve to something
 that actually exists in the document, rather than to the internal
 formulation's numbering.
+
+---
+
+# Incentive compatibility and benefit sharing (Round-3 items C10-C16)
+
+No LP/objective/config-default change underlies anything in this section.
+Every number is read from a tag file this round actually produced; every
+new arm is listed in "Exact commands" in the closing report. `dr_window +
+IR` (tag `_period_drw_ir`) is evaluated here as the CANDIDATE main
+reported arm, per this round's own framing - not as a replacement of the
+base formulation, which every table below reports alongside it.
+
+## IR's interpretation
+
+The individual-rationality constraint
+(`lambda_h*(J1(x,y)-J1(0,0)) + (1-lambda_h)*J2(x,y) <= 0`) guarantees, BY
+CONSTRUCTION and verified numerically (Follow-up F15's fix, item A3), that
+almost every participating household's own LP-marginal-price bill
+(J1) improves enough to outweigh its lambda-weighted discomfort: 99.0% of
+`ir` arm participants satisfy the lambda-weighted criterion under J1,
+falling to 75.4% under the GAZETTE bill a household actually receives
+(slab/VAT structure, not the LP's own criterion, explains the entire gap -
+Follow-up "IR gained_lambda" note, item A3). IR is therefore best read as
+a PARTICIPATION filter on the LP's own optimism, not a guarantee that the
+household's real bill improves - Chapter 4 should state both numbers, not
+just the LP's internal one.
+
+## rho as a peak-time (stress-day) rebate
+
+`rho` (Eq. 20's stress-rebate) is paid only when `s_{i,d}=1` (a stressed
+day) AND the household curtails - `incentive = rho * E^cu_{h,d} * s_{i,d}`.
+It is NOT a general demand-response payment; on a non-stressed day it pays
+nothing regardless of how much a household curtails. This is why the rho
+sweep below (item C11) shows curtailed kWh rising only modestly with rho
+(most curtailment happens on non-stressed days, where rho never applies)
+while `%gained` rises much more sharply - the households near the margin
+are disproportionately the ones already curtailing on the FEW stressed
+days rho actually pays on.
+
+## The decomposition pi - gamma = (pi - p) + (p - gamma)
+
+Three different comparisons matter for THREE different parties, and this
+round's items keep confusing them if not stated separately:
+
+- `pi_i(t) + pi4_i(t) - gamma_{cu,h}` (or the shift analogue): the PLANNER's
+  test - is the action worth it to the SYSTEM alone, ignoring who pays whom.
+  Item C12's result: 0.0% of curtailed/shifted kWh passes this without a
+  scarcity scenario; 10.96% of curtailed kWh passes it under scarcity
+  (Follow-up F19).
+- `pi_i(t) + pi4_i(t) - p_h(t)` (the "avoided cost" side of item C11's
+  ledger): the OPERATOR's test - does curtailment save more in system/
+  wholesale value than it costs in foregone retail revenue. Structurally
+  NEGATIVE under normal conditions (`pi` sits far below the household's
+  retail rate `p_h(t)`) and strongly POSITIVE under scarcity (`pi` can
+  reach the VoLL price, far above `p_h(t)`).
+- `p_h(t) - gamma_{cu,h}` (embedded in `priv - disc`, what the LP's own
+  lambda-weighted objective actually decides on, for lambda_h close to 1):
+  the HOUSEHOLD's test - does its own bill saving exceed its own
+  discomfort. This is the one the LP optimises; the other two are
+  post-hoc, non-binding checks on the SAME decision.
+
+The three tests can and do disagree - see item C12's finding that
+curtailment is essentially always privately rational (the household's own
+test) while essentially never planner-optimal (the system test) outside
+scarcity.
+
+## C10/C11: the rho sweep on dr_window+IR, base and severe-scarcity conditions
+
+**Arm**: `_period_drw_ir` (`--curtail-scope dr_window --ir`), confirmed
+with **0 dangling KG relationships** (acceptance check, see below). The
+rho sweep runs `rho in {0,3,6,9,12,15}` on top of it, both without
+scarcity (tag `_period_drw_ir_rho{v}`) and with the severe scarcity
+scenario (0.55/0.62, tag `_period_drw_ir_scar_rho{v}`) - 12 runs total, all
+check-6 PASS.
+
+**Round-4 correction (item 1).** The avoided-cost/budget-balance columns
+below were originally computed by multiplying `lp_thresholds{tag}.csv`'s
+`energy_kwh` by `w_h` a SECOND time. `energy_kwh` is already population-
+scale: `gentwin/lp.py::_consumer_blocks()` multiplies each household's raw
+load profile by `h.w` BEFORE it ever reaches the LP (`blocks[...]["cu"] =
+prof["curtailable"] * w`), so `yv * blk["cu"][t] * D` (how `energy_kwh` is
+built in `threshold_table()`) is already a population total. Sanity check
+confirming this (as this round's instructions specified): total curtailed
+kWh across the whole month is 0.89% of total substation import energy
+(`sum(G_kw)*Delta` = 127.0M kWh vs curtail_kwh = 1.14M kWh for
+`drw_ir_rho0`) - a plausible SYSTEM-scale ratio, and matches
+`billing.py`'s independently-computed population total energy (128.5M kWh)
+to within 1%. Multiplying by `w_h` again squared the weight, inflating
+avoided cost into the billions/tens-of-billions where it should read in
+the millions/tens-of-millions. `rebate_paid_tk` (sourced from
+`billing.py`'s OWN `incentive_received_tk`, which is genuinely
+per-representative and DOES need one `w_h` multiplication - a DIFFERENT
+code path with a different, correct convention) was never affected.
+Corrected table below; the "*" footnote on kWh columns is also corrected -
+they were mislabelled "per-representative" when they are already
+population-scale.
+
+| condition | rho | participation % | curtail kWh* | shift kWh* | peak red. Dhanmondi % | peak red. Kalyanpur % | %gained (unweighted) | %gained (lambda) | % of PARTICIPANTS gained (unweighted) | % of PARTICIPANTS gained (lambda) | rebate paid (Tk) | avoided cost (Tk) | budget balance (Tk) |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| base | 0 | 13.49 | 1,135,706 | 135,290 | 3.15 | 7.23 | 0.93 | 11.97 | 6.9 | 88.7 | 0 | -7.92e6 | -7.92e6 |
+| base | 3 | 18.51 | 1,324,212 | 135,290 | 3.15 | 7.44 | 3.00 | 17.70 | 16.2 | 95.6 | 2.06e6 | -9.05e6 | -1.11e7 |
+| base | 6 | 23.22 | 1,484,208 | 135,290 | 3.15 | 7.39 | 6.60 | 22.18 | 28.4 | 95.5 | 5.08e6 | -9.89e6 | -1.50e7 |
+| base | 9 | 27.06 | 1,619,749 | 135,290 | 3.15 | 7.42 | 13.51 | 26.52 | 49.9 | 98.0 | 8.84e6 | -1.06e7 | -1.94e7 |
+| base | 12 | 30.49 | 1,708,545 | 135,290 | 3.15 | 7.45 | 22.65 | 30.24 | 74.3 | 99.2 | 1.29e7 | -1.11e7 | -2.39e7 |
+| **base** | **15** | 33.60 | 1,818,642 | 135,290 | 3.15 | 7.39 | 28.96 | 33.45 | **86.2** | 99.5 | 1.77e7 | -1.17e7 | -2.94e7 |
+| scarcity | 0 | 13.49 | 1,135,882 | 432,927 | 3.06 | 7.22 | 0.69 | 11.51 | 5.1 | 85.3 | 0 | +5.33e7 | +5.33e7 |
+| scarcity | 3 | 18.51 | 1,324,397 | 525,635 | 3.03 | 7.14 | 1.86 | 17.22 | 10.0 | 93.0 | 2.06e6 | +6.34e7 | +6.13e7 |
+| scarcity | 6 | 23.22 | 1,484,392 | 576,420 | 3.01 | 7.10 | 3.97 | 21.69 | 17.1 | 93.4 | 5.08e6 | +7.07e7 | +6.56e7 |
+| scarcity | 9 | 27.06 | 1,619,849 | 625,771 | 2.99 | 7.06 | 9.14 | 24.88 | 33.8 | 91.9 | 8.84e6 | +7.71e7 | +6.83e7 |
+| scarcity | 12 | 30.49 | 1,708,643 | 658,792 | 2.97 | 7.04 | 19.14 | 29.27 | 62.8 | 96.0 | 1.29e7 | +8.13e7 | +6.84e7 |
+| scarcity | 15 | 33.60 | 1,818,740 | 694,716 | 2.96 | 7.01 | 25.20 | 32.73 | **75.0** | 97.4 | 1.77e7 | +8.65e7 | +6.87e7 |
+
+*shift/curtail kWh are already POPULATION-SCALE (see the Round-4
+correction above, and B/A4's earlier population comparisons - NOT
+per-representative); every Tk column is likewise population-scale
+(~348,661 connections).
+
+**rho\* (smallest rho with >=80% of PARTICIPATING connections gaining).**
+Only the UNWEIGHTED definition is informative here - report it as the
+finding: **base = 15** (reaches 86.2%, first value at or above 80%);
+**scarcity = NOT REACHED** (only 75.0% even at rho=15). The
+LAMBDA-weighted definition is **not a finding**: it reads `rho*=0` for
+BOTH conditions purely because the IR constraint (Follow-up-1's fix,
+verified in item A3) is ITSELF written in lambda-weighted terms, so a
+participant satisfying IR at all is close to satisfying the lambda-
+weighted gain criterion by construction, independent of rho. Reporting
+`rho*=0 (lambda)` as if it were a discovered result would be circular;
+Chapter 4 should state plainly that the lambda-weighted rho\* is a
+tautology of the IR constraint's own definition, not evidence that rho=0
+is "enough."
+
+**Reading the corrected table.** rho\*'s two answers (15 vs "not reached,"
+under the one INFORMATIVE - unweighted - definition, across the two
+conditions) still make the same point as before: real scarcity structurally
+worsens fairness under the strict criterion, no rebate tested fixes it. The
+avoided-cost/budget-balance columns, now correctly scaled (millions and
+tens-of-millions of Tk, not billions), tell the same QUALITATIVE story as
+before the fix, just at the right magnitude: under normal conditions every
+rho tested leaves the operator's avoided-cost ledger negative (-7.9M to
+-11.7M Tk/month) - curtailment costs more in foregone retail revenue than
+it saves in wholesale terms, so the DR mechanism absent real scarcity is a
+modest wealth transfer INTO participating households, not a cost-saving
+one for the operator. Under scarcity, avoided cost is sharply positive
+(+53.3M to +86.5M Tk/month) and budget balance stays strongly positive
+(avoided cost exceeds rebate paid at every rho tested) - the operator could
+afford considerably more than a 15 Tk/kWh rebate and still come out ahead
+DURING SCARCITY specifically. (Per-kWh sanity check: avoided cost per
+curtailed+shifted kWh is a believable -6.0 to -6.2 Tk/kWh under base and
++34.0 to +34.4 Tk/kWh under scarcity - consistent with `pi_i(t)`~8.4 Tk/kWh
+vs typical retail rates ~14-17 Tk/kWh under base, and `pi_i(t)+pi4_i(t)`
+reaching well above retail under scarcity.)
+
+## Round-5 item 2: the severe scarcity scenario is a sustained shortage, not a peak event
+
+For the severe scarcity scenario (0.55/0.62), the number of half-hour
+slots per day where BASELINE load (before any DR) already exceeds the
+scaled effective P^max:
+
+| substation | mean slots/day over P^max | mean hours/day | min-max slots/day | days with any overage |
+|---|---|---|---|---|
+| Dhanmondi | 3.57 | 1.78 h | 2-7 | 30/30 |
+| Kalyanpur | 21.20 | 10.60 h | 18-25 | 30/30 |
+
+**Kalyanpur's baseline load exceeds its effective P^max for close to
+HALF the day, EVERY day of the 30-day period** (mean 21.2 of 48 slots,
+i.e. 10.6 hours) - this is a sustained supply-adequacy shortage, not a
+brief peak excursion. Dhanmondi is milder (mean 1.78 hours/day) but still
+shows overage on all 30 days, never a zero-overage day. Chapter 4 should
+describe this scenario as a SUSTAINED supply-shortage stress test (most
+of the day, every day, for Kalyanpur) rather than as a "peak event" -
+the latter framing would understate how binding the scarcity scale
+actually is and would misdescribe what the reported Z/VoLL/regime results
+are actually stress-testing.
+
+## Item 3: scarcity under IR - unserved load never goes away, even with the rebate
+
+The severe scarcity scenario (0.55/0.62) UNDER `drw_ir` (dr_window-scoped
+curtailment + individual rationality) leaves FAR more unserved load than
+the unrestricted "compulsory" scarcity arm (item C13's original two rows):
+total `Z` starts at 7.39M kWh (rho=0) and falls only to 6.53M kWh (rho=15,
+a 12% reduction) - two to three orders of magnitude above the compulsory
+arm's 19,237 kWh, because restricting curtailment to the DR window and to
+individually-rational actions removes almost all of the flexibility that
+arm had available to absorb the shock.
+
+| rho | Dhanmondi Z_cu (kWh) | Kalyanpur Z_cu (kWh) | Total Z (kWh) | VoLL cost (Tk) |
+|---|---|---|---|---|
+| 0 | 3,286,799 | 4,100,787 | 7,387,586 | 443,255,200 |
+| 3 | 3,145,116 | 3,986,060 | 7,131,176 | 427,870,600 |
+| 6 | 3,047,242 | 3,890,014 | 6,937,256 | 416,235,400 |
+| 9 | 2,962,427 | 3,808,242 | 6,770,669 | 406,240,200 |
+| 12 | 2,905,138 | 3,755,033 | 6,660,171 | 399,610,200 |
+| 15 | 2,857,933 | 3,675,312 | 6,533,245 | 391,994,700 |
+
+`Z_critical`/`Z_shiftable` are exactly 0 at every rho, same as the
+compulsory arm. See "Round-6 item 3" below (after C13) for why this is a
+modelling ASSUMPTION about the mechanism available to the optimiser, not
+a discovered protection behaviour worth reporting as a finding on its
+own.
+
+## Round-5 item 1: decomposing the voluntary-vs-compulsory gap - window restriction alone, IR alone, and both together
+
+The previous round attributed the entire gap between "voluntary"
+(`drw_ir`, both restrictions) and "compulsory" (all-scope, neither
+restriction) DR to "restricting curtailment to individually-rational,
+DR-window-scoped actions" as a single, combined cause. Two new
+disentangling runs (severe scarcity 0.55/0.62 with EACH restriction
+applied alone) show that attribution was too coarse, and the real
+mechanism is an INTERACTION, not two additive costs:
+
+| arm | Dhanmondi Z (kWh) | Kalyanpur Z (kWh) | Total Z (kWh) | VoLL cost (Tk) | vs no-DR |
+|---|---|---|---|---|---|
+| no DR (`--no-dr`) | 3,693,116 | 4,947,303 | 8,640,419 | 518,425,161 | - |
+| `dr_window` ONLY (no IR) | 1,648,756 | 2,537,598 | 4,186,355 | 251,181,300 | -51.6% |
+| IR ONLY (all-day scope, no window) | 1,869,502 | 2,277,516 | 4,147,018 | 248,821,100 | -52.0% |
+| `drw_ir` (BOTH), rho=0 | 3,286,799 | 4,100,787 | 7,387,586 | 443,255,200 | -14.5% |
+| `drw_ir` (BOTH), rho=15 | 2,857,933 | 3,675,312 | 6,533,245 | 391,994,700 | -24.4% |
+| compulsory DR (all-scope, no IR) | 12,001 | 7,236 | 19,237 | 1,154,217 | -99.8% |
+
+**Each restriction ALONE cuts unserved load by roughly half** (-51.6%
+for `dr_window` alone, -52.0% for IR alone, essentially the same
+magnitude from two different mechanisms). **Applied TOGETHER, they do
+NOT compound additively to a bigger cut - they compound to a much
+SMALLER one** (-14.5% at rho=0, only reaching -24.4% at rho=15): the
+combined arm leaves MORE unserved load than either restriction does on
+its own. The reason is set intersection, not set addition: `dr_window`
+restricts curtailment to WHEN it can happen (only within the DR-activation
+window); IR restricts it to WHICH households curtail (only where
+individually rational, evaluated over the WHOLE day's welfare). A
+household that is individually-rational to curtail at some slot OUTSIDE
+the window, or a window-slot curtailment that is not individually
+rational once its day-level welfare is checked, is excluded once BOTH
+apply, even though EITHER restriction alone would have allowed it. The
+intersection of "individually rational" and "inside the window" is
+considerably smaller than either set alone - which is exactly what the
+table shows.
+
+**Revised conclusion (replaces the previous round's single-cause
+attribution).** The gap between voluntary and compulsory DR is NOT mainly
+"the cost of IR" or "the cost of window-scoping" individually - either
+one alone would still recover roughly half of compulsory DR's benefit.
+It is the cost of REQUIRING BOTH simultaneously, which is disproportionately
+larger than either requirement's own cost, because their eligible sets
+intersect narrowly rather than overlapping broadly. A policy design that
+wants to keep IR (household consent) without paying this full compounded
+price should consider relaxing the window restriction (or vice versa) -
+this round's own data shows either relaxation alone recovers about half
+of compulsory DR's system-level benefit, while paying for both restrictions
+recovers less than a quarter of it even at the highest rebate tested.
+
+## Item 4: peak ceiling - dr_window's own peak is often outside its own window
+
+For the `drw_ir` BASE rho sweep, per-day post-response peak SLOT vs the
+substation's own DR-activation window (`T^pk_i`):
+
+| substation | rho | days with post-response peak OUTSIDE T^pk_i | mean daily peak reduction (kW) |
+|---|---|---|---|
+| Dhanmondi | any (0-15) | **30/30** | ~4,194 (flat across rho) |
+| Kalyanpur | 0 | 13/30 | ~9,794 |
+| Kalyanpur | 3-15 | 22/30 | ~10,000-10,090 |
+
+**Dhanmondi's post-response peak lies outside its own DR window on EVERY
+single day, at every rho tested** - the `dr_window`-scoped curtailment
+mechanism never actually touches Dhanmondi's true peak slot at all.
+Kalyanpur's peak stays outside its window on 13-22 of 30 days depending on
+rho - worse as rho rises, though its peak reduction (~9,800-10,100 kW) is
+much larger in absolute terms.
+
+**Round-5 item 3 correction - the mechanism is a hard ceiling, not
+"off-window curtailment leaking Follow-up F3's double-count."** The
+previous round attributed the flat peak reduction to rho-driven
+curtailment being spent off-window (the F3 double-counting signature).
+That explanation does not fit the facts: peak reduction stays flat
+regardless of rho because there is a HARD, geometric CEILING that no
+amount of in-window curtailment can cross, independent of rho entirely.
+
+The correct mechanism: `dr_window`-scoped curtailment can only ever lower
+load INSIDE the window. Once in-window load is pushed low enough, the
+window's own peak drops BELOW the highest load already occurring OUTSIDE
+the window that day - at which point the substation's DAILY peak simply
+BECOMES that out-of-window slot, and no further in-window curtailment can
+reduce it at all (curtailing inside the window no longer touches whatever
+the new peak is). The maximum a window-only mechanism can EVER achieve is
+therefore capped at `baseline peak - highest out-of-window baseline
+slot`, computed directly from `lp_network_period_drw_ir_rho0.csv`'s
+`baseline_kw` (pre-DR, so independent of rho):
+
+| substation | mean baseline peak (kW) | mean highest OUT-of-window baseline slot (kW) | ceiling = max achievable reduction (kW) | ceiling as % of baseline peak | observed mean peak reduction (kW) |
+|---|---|---|---|---|---|
+| Dhanmondi | 132,089 | 127,895 | **4,194** | 3.2% | ~4,194 |
+| Kalyanpur | 135,642 | 125,292 | **10,350** | 7.6% | ~9,800-10,090 |
+
+The observed peak reduction (from the rho sweep) matches this ceiling
+almost exactly for Dhanmondi (4,194 vs a 4,194 ceiling - running EXACTLY
+against it) and sits just under it for Kalyanpur (9,800-10,090 vs a 10,350
+ceiling). This is why peak reduction stays flat as rho rises: rho can
+still buy MORE curtailment (confirmed - curtailed kWh keeps rising with
+rho), but that extra curtailment cannot buy any MORE peak reduction once
+the mechanism is already pinned against its ceiling. Extra rho-driven
+curtailment beyond the ceiling is not "wasted off-window" in the sense of
+being misdirected - it is doing exactly what a window-scoped mechanism
+can do (levelling load inside the window further), it simply cannot
+translate into further DAILY peak reduction once the peak has already
+relocated outside the window.
+
+**Rebate cost per kW of peak reduction** (total rebate paid / mean daily
+peak reduction, both substations, as a Tk-per-kW-per-day proxy): rises
+from 0 (rho=0, no rebate) to Tk 4.8 (rho=3), 11.9 (rho=6), 20.7 (rho=9),
+30.0 (rho=12), 41.6 (rho=15) - a steep, worsening marginal cost, because
+peak reduction is pinned at its ceiling (~14,000-14,300 kW total, both
+substations, regardless of rho) while the rebate paid keeps climbing
+linearly with rho, entirely consistent with the ceiling mechanism above:
+once pinned at the ceiling, ANY additional rebate spend buys zero
+additional peak reduction, so cost-per-kW is mechanically guaranteed to
+rise without bound as rho increases further.
+
+## C12: social efficiency (see Follow-up F19 for the full write-up)
+
+0.0% of curtailed/shifted kWh is planner-test-efficient in any
+non-scarcity arm; 10.96% of curtailed kWh (0.0% of shifted) becomes
+efficient under scarcity, once C4's dual is included.
+
+## C13: load-shedding counterfactual, scarcity (0.55/0.62), system level only
+
+No household-level Z-allocation rule is stated anywhere in this codebase's
+formulation, so per this round's own instruction this is reported at
+SYSTEM level only. Peaks: Dhanmondi 136,380 kW (from a 138,435 kW baseline)
+and Kalyanpur 109,044 kW (from 141,326 kW) under the compulsory/all-scope
+DR arm; UNCHANGED at baseline (138,435 / 141,326 kW) with no DR at all -
+import/battery/tie-line alone cannot relieve either substation's peak.
+See Item 3 above for the full four-row table (no DR / voluntary DR at
+rho=0 and rho=15 / compulsory DR) and its reading.
+
+**Round-6 item 1 correction - "99.8% reduction in unserved load" is true
+of Z alone and is the WRONG headline number; energy not delivered and
+welfare cost are what should be reported together.** `Z` (involuntary,
+unserved load) does fall by 99.8% under compulsory DR relative to no DR
+(19,237 vs 8,640,419 kWh). But `Z` is only ONE of two ways energy fails to
+reach a household in this model - the other is VOLUNTARY curtailment
+(`y`), which compulsory DR uses heavily instead. Adding them
+(`energy not delivered = Z + curtailed kWh`) reverses the headline:
+
+| arm | Z (kWh) | curtailed (kWh) | energy not delivered = Z+curtailed (kWh) | welfare cost (VoLL·Z + gamma·curtail + gamma·shift) (Tk) |
+|---|---|---|---|---|
+| no DR | 8,640,419 | 0 | 8,640,419 | 518,425,161 |
+| dr_window ONLY | 4,186,355 | 4,024,307 | 8,210,661 | 344,175,800 |
+| IR ONLY | 4,147,018 | 4,995,786 | 9,142,805 | 352,727,800 |
+| drw_ir, rho=0 | 7,387,586 | 1,135,882 | 8,523,468 | 466,561,400 |
+| drw_ir, rho=15 | 6,533,245 | 1,818,740 | 8,351,985 | 430,709,300 |
+| compulsory (all-scope) | 19,237 | 12,746,020 | **12,765,257** | 279,528,400 |
+
+**Compulsory DR does NOT reduce the total energy the population goes
+without - it is HIGHER than every other arm, including no-DR (12.77M vs
+8.64M kWh, +47.7%).** What compulsory DR actually does is CONVERT
+involuntary shedding (priced at VoLL, 60-150 Tk/kWh) into voluntary
+curtailment (priced at the much lower `gamma_{cu,h}`, ~12-37 Tk/kWh) -
+which is why welfare cost still falls by 46.1% (518.4M -> 279.5M Tk) even
+though the underlying energy shortfall does not shrink at all. The
+correct statement for Chapter 4 is: "compulsory DR does not eliminate the
+underlying supply shortfall (energy not delivered is, if anything,
+larger); it changes WHO decides which energy is foregone and at what
+implied price, cutting the welfare cost of the shortfall by roughly
+half." Reporting only the 99.8%-Z-reduction number, without this pairing,
+overstates what the mechanism achieves.
+
+Voluntary (`drw_ir`) DR is worse than compulsory on BOTH measures at
+every rho tested - higher energy not delivered (8.35-8.52M kWh, close to
+the no-DR figure) AND higher welfare cost (430.7-466.6M Tk, well above
+compulsory's 279.5M) - because it is far more constrained in WHICH
+curtailment it can substitute for shedding (Round-5 item 1's
+window/IR-intersection finding).
+
+## Round-6 item 3: Z is class-selective by ASSUMPTION, not by a formulation bound - and that assumption is optimistic for Bangladesh
+
+**What the formulation actually does.** `Z_{i,cls}(t)` (unserved load) is
+split into THREE separate decision variables per substation-slot - one
+per class (`critical`, `shiftable`, `curtailable`) - each with its OWN
+VoLL price (150 / 100 / 60 Tk/kWh) and NO explicit upper bound in
+`gentwin/lp.py::build_day()`'s `bounds` array (`hi[idx[("Z",i,cls)]]` is
+never set, so it defaults to `+inf`). The reason `Z_critical`/
+`Z_shiftable` are observed at exactly 0 in every arm (Round-4/5/6, no
+exception found) is NOT a formulation constraint enforcing protection -
+it is that the OPTIMISER, facing three interchangeable ways to shed a kWh
+at three different prices, always prefers the cheapest (curtailable,
+60 Tk/kWh) first, and only spills into the pricier classes once the
+entire curtailable class is already exhausted at a given slot (verified
+never to happen in any arm run so far - item 2's check found 0 violations
+of `Z_curtailable_kw <= kappa * post-response curtailable load`, i.e. the
+optimiser never even runs OUT of curtailable-class headroom to shed
+from first).
+
+**Why this matters for how "no DR" (and the whole Z accounting) should be
+read.** The formulation implicitly assumes SMART-METER-LEVEL, per-class
+SELECTIVE shedding - the operator can choose to interrupt exactly the
+curtailable-class kWh at a household and leave its critical/shiftable
+load fully served, at arbitrary granularity, with no capability
+constraint modelled. Bangladesh's actual load-shedding practice is
+FEEDER-LEVEL ROTATIONAL shedding: an entire feeder is de-energised for a
+rotation slot, taking every class on it - critical, shiftable and
+curtailable alike - down together, with no selective sparing. The
+`no-DR` counterfactual (item C13/Round-5) is therefore a BEST CASE for
+what load-shedding would achieve in Bangladesh today, not a realistic
+model of it: a real rotational outage would shed critical and shiftable
+load too, at a cost this model cannot show because those two classes are
+never actually shed in any run. Chapter 4 should state the `no-DR`
+counterfactual's Z/VoLL/welfare-cost numbers as a LOWER BOUND on the true
+cost of load-shedding without DR, not as the cost itself, and should not
+describe `Z_critical`/`Z_shiftable`'s observed value of 0 as a "finding"
+that critical load is protected - it is an artefact of an idealised
+shedding mechanism the formulation assumes but does not model the
+capability constraints for.
+
+## C14: gamma sensitivity on drw_ir
+
+`--gamma-scale 0.7`/`1.3` (discomfort weight scaled down/up), each at
+`rho=0` and `rho=15` (the base condition's unweighted rho\*, item C11).
+All 4 runs check-6 PASS.
+
+**Round-4 correction (item 2).** `--gamma-scale` mutates the cached
+population's `h.gamma_sh_h`/`h.gamma_cu_h` inside `06_lp_optimiser.py::run()`'s
+own process only - the SAME propagation gap as Follow-ups F11/F16, this
+time for gamma. `09_monthly_billing.py` calls
+`pop.consumers_from_cache()` fresh in its own process and got the
+UNSCALED gamma back, so `discomfort_J2_tk`/`net_benefit_tk`/`gained_*`
+for all four C14 arms were computed against the WRONG discomfort weight -
+visible in the original table as `%gained_unweighted` being identical
+(0.93%) across all three gamma scales at rho=0, which should not happen
+if gamma is actually changing. The LP's own x/y decisions (curtail_kwh,
+shift_kwh, participation) were NOT affected - `build_day()` reads gamma
+directly from the mutated population, so those numbers were already
+correct. Fixed by writing `gamma_scale_used` to `lp_summary{tag}.csv`
+(mirroring F11/F16) and adding a `--gamma-scale` override to
+`09_monthly_billing.py` itself, applied to its own `POP` before
+`billing.build()` runs. Per this round's instruction, this did NOT require
+a new LP solve - `09_monthly_billing.py --report --tag <tag> --gamma-scale
+<gs>` was re-run against the EXISTING `lp_decisions`/`lp_thresholds` for
+all four tags.
+
+| gamma_scale | rho | participation % | curtail kWh | shift kWh | %gained (unweighted) | %gained (lambda) |
+|---|---|---|---|---|---|---|
+| 0.7 | 0 | 22.05 | 1,957,607 | 144,118 | **12.07** | 20.68 |
+| 1.0 (baseline) | 0 | 13.49 | 1,135,706 | 135,290 | 0.93 | 11.97 |
+| 1.3 | 0 | 6.87 | 512,898 | 133,036 | **0.00** | 5.38 |
+| 0.7 | 15 | 48.37 | 2,506,614 | 144,118 | **48.09** | 48.29 |
+| 1.0 (baseline) | 15 | 33.60 | 1,818,642 | 135,290 | 28.96 | 33.45 |
+| 1.3 | 15 | 27.38 | 1,242,719 | 133,036 | **14.54** | 26.82 |
+
+Corrected `%gained_unweighted` now moves monotonically and substantially
+with gamma at BOTH rho values (0.00% to 12.07% at rho=0; 14.54% to 48.09%
+at rho=15) - the flat 0.93% in the original table was the bug's signature,
+not a real finding. Participation/curtail/shift kWh are unchanged from
+the original table (the LP's decisions were always correct). This confirms
+the model's `%gained` sensitivity to `gamma_{sh,h}`/`gamma_{cu,h}` is real
+and substantial, which matters for how much weight Chapter 4 should put on
+results that depend on the specific calibrated gamma values (Sec. [Issue
+F]/[calibration]) - a +-30% gamma uncertainty band moves `%gained_unweighted`
+by roughly a factor of 4-13x at these two rho values, not the ~1x the
+uncorrected table implied.
+
+## C15: stakeholder ledger (from available data only)
+
+| arm | operator: lost retail revenue (Tk) | operator: rebate paid (Tk) | residential lower-middle bill saving (Tk) | residential middle bill saving (Tk) | residential upper-middle bill saving (Tk) |
+|---|---|---|---|---|---|
+| base (original, non-IR) | 155,966,726 | 15,665,847 | 0 | 11,483,690 | 84,324,700 |
+| drw_ir, rho=0 | 17,621,047 | 0 | 0 | 0 | 12,287,820 |
+| drw_ir, rho=15 (rho\*) | 27,299,901 | 17,721,186 | 0 | 288,374 | 17,279,270 |
+| scarcity | 169,981,105 | 18,660,810 | 430,501 | 19,187,200 | 84,148,420 |
+
+**The lower-middle income band receives ZERO bill saving in every arm
+except scarcity** (where it gets a small, 430,501 Tk, share) - it simply
+never participates in demand response under any of these mechanisms.
+Savings are overwhelmingly captured by the upper-middle band in every arm
+(72-92% of all residential savings). `Hospital` and `Government`
+categories show zero or negligible savings in every arm (protected
+classes, high `y_max_h`/`gamma` making curtailment prohibitively costly or
+their archetype excludes them) - see `outputs/billing/household_monthly_bills{tag}.csv`
+grouped by `category`/`income_band` for the full breakdown underlying this
+table.
+
+**Recommended interpretation for Chapter 4**: state plainly that this DR
+mechanism, as currently parameterised, is (a) privately but not
+socially rational outside real scarcity (item C12/F19: 0.0% of
+curtailed/shifted kWh clears the planner's test without a scarcity
+scenario), (b) a net transfer from the operator's retail revenue to a
+NARROW, upper-income slice of participants rather than a broadly shared
+benefit (this section: lower-middle income gets 0 Tk in every arm but
+scarcity; the operator's own avoided-cost ledger runs -7.9M to -11.7M
+Tk/month under normal conditions, item C10/C11, corrected), and (c) a
+genuinely large, quantified WELFARE-COST reduction once real scarcity is
+reached (item C13, Round-6 correction: avoided cost swings to +53.3M to
++86.5M Tk/month, and total welfare cost of the shortfall falls 46.1%
+(518.4M -> 279.5M Tk) relative to no DR - NOT because the underlying
+energy shortfall shrinks, which it does not - energy not delivered
+(Z + curtailed kWh) is actually 47.7% LARGER under compulsory DR than
+under no DR - but because DR converts costly involuntary shedding into
+cheaper voluntary curtailment) - three different, non-contradictory
+claims that should not be collapsed into a single "demand response saves
+everyone money," or even "demand response reduces the shortfall,"
+narrative.
+A fourth, sharper point, revised by Round-5 item 1's decomposition: even
+the "voluntary" (individually-rational, DR-window-scoped) version of the
+mechanism captures only a small fraction of that emergency value -
+unserved load under `drw_ir` during severe scarcity (6.5-7.4M kWh
+depending on rho) sits far closer to the no-DR counterfactual (8.6M kWh)
+than to the compulsory, unrestricted arm (19,237 kWh). This is NOT because
+either restriction (window-scoping OR individual rationality) is
+individually expensive - each ALONE recovers roughly half of compulsory
+DR's benefit (dr_window alone: -51.6% unserved load vs no-DR; IR alone:
+-52.0%). It is because REQUIRING BOTH AT ONCE intersects two narrow,
+largely non-overlapping eligibility sets, recovering barely a quarter of
+compulsory DR's benefit even at the highest rebate tested (rho=15:
+-24.4%). The policy-relevant framing is therefore not "voluntary DR is
+inherently weak" but "stacking window-scoping AND individual-rationality
+requirements is far more costly than either alone" - a designer wanting
+to preserve household consent (IR) without paying the full compounded
+price should consider relaxing the window restriction, or vice versa.

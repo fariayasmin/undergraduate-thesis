@@ -220,6 +220,11 @@ def run(subs, tag="", pool_rule=None):
         prec["acting_ids"] = json.dumps(sorted(
             e.entity_id for e in ents if (e.e_sh_kwh + e.e_cu_kwh) > 1e-9))
         prec["topn_ids"] = json.dumps(sorted(e.entity_id for e in topn))
+        # Item A5: today's ACTORS (not the ranking), sampled down to the same
+        # per-kind quota as top_n - the baseline for "does the priority
+        # score add anything over just watching whoever is active today."
+        persist = R.persistence_topn(ents)
+        prec["persistence_ids"] = json.dumps(sorted(e.entity_id for e in persist))
         precision_log.append(prec)
 
         events = R.generate_events(date, subs, regimes, frows, decisions,
@@ -288,17 +293,27 @@ def run(subs, tag="", pool_rule=None):
     # the one precision variant that cannot leak the acting label into the
     # ranking, because the label does not exist yet when day d's ranking is
     # made, unlike same-day precision_at_n().
-    nextday = [None] * len(prec_df)
+    # Item A5: the SAME next-day comparison, but for the persistence
+    # baseline (today's actual actors, sampled to the same per-kind quota)
+    # instead of the ranking's top-N - is the priority score adding
+    # anything over just tracking who is already active?
+    nextday, nextday_persist = [None] * len(prec_df), [None] * len(prec_df)
     for k in range(len(prec_df) - 1):
         topn_ids = set(json.loads(prec_df.iloc[k]["topn_ids"]))
+        persist_ids = set(json.loads(prec_df.iloc[k]["persistence_ids"]))
         acting_next = set(json.loads(prec_df.iloc[k + 1]["acting_ids"]))
         n_total_next = int(prec_df.iloc[k + 1]["n_total"])
         nextday[k] = R.precision_at_n_ids(topn_ids, acting_next, n_total_next)
+        nextday_persist[k] = R.precision_at_n_ids(persist_ids, acting_next, n_total_next)
     prec_df["precision_nextday"] = [d["precision"] if d else None for d in nextday]
     prec_df["precision_nextday_random"] = [
         d["baseline_random"] if d else None for d in nextday]
     prec_df["precision_nextday_lift"] = [d["lift"] if d else None for d in nextday]
-    prec_df.drop(columns=["acting_ids", "topn_ids"]).to_csv(
+    prec_df["precision_nextday_persistence"] = [
+        d["precision"] if d else None for d in nextday_persist]
+    prec_df["precision_nextday_persistence_lift"] = [
+        d["lift"] if d else None for d in nextday_persist]
+    prec_df.drop(columns=["acting_ids", "topn_ids", "persistence_ids"]).to_csv(
         cfg.OUT_DIR / f"precision_at_n{tag}.csv", index=False)
     trig_df = pd.DataFrame(trigger_log)
     trig_df.to_csv(cfg.OUT_DIR / f"repool_trigger_compare{tag}.csv", index=False)
@@ -323,12 +338,18 @@ def run(subs, tag="", pool_rule=None):
         nd_valid = prec_df[prec_df["precision_nextday"].notna()
                           & (prec_df["n_acting"] > 0)]
         if len(nd_valid):
-            print(f"  Item 2 summary, NEXT-DAY (no leak possible - the label "
-                  f"does not exist when the ranking is made) over "
-                  f"{len(nd_valid)} day-pairs: precision="
-                  f"{nd_valid['precision_nextday'].mean():.3f}  random="
-                  f"{nd_valid['precision_nextday_random'].mean():.3f}  "
+            print(f"  Item 2/A5 summary, NEXT-DAY (no leak possible - the "
+                  f"label does not exist when the ranking is made) over "
+                  f"{len(nd_valid)} day-pairs:")
+            print(f"    ranking (top_n)     precision="
+                  f"{nd_valid['precision_nextday'].mean():.3f}  "
                   f"lift={nd_valid['precision_nextday_lift'].mean():.2f}x")
+            print(f"    persistence (today's actors, same quota) precision="
+                  f"{nd_valid['precision_nextday_persistence'].mean():.3f}  "
+                  f"lift={nd_valid['precision_nextday_persistence_lift'].mean():.2f}x")
+            print(f"    random draw         precision="
+                  f"{nd_valid['precision_nextday_random'].mean():.3f}  "
+                  f"(the common baseline for both lifts above)")
     n_days_trig = len(trig_df)
     n_disagree = int((~trig_df["rules_agree"]).sum()) if n_days_trig else 0
     print(f"  Item 3 summary (re-pool trigger comparison over {n_days_trig} days, "

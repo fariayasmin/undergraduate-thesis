@@ -568,13 +568,20 @@ def build_billing(g: GraphBuilder, bills, period: dict, subs) -> None:
            observed_days=period.get("observed_days"),
            forecast_days=period.get("forecast_days"),
            tariff_source=T.GAZETTE_REF,
-           rho_tk_per_kwh=cfg.RHO_REBATE_TK_PER_KWH,
+           # Round-3 follow-up (item A2): same propagation bug as
+           # billing.py's incentive computation - this process's own cfg is
+           # never scaled/overridden by another process's CLI flags, so
+           # these FOUR fields must come from `period` (08_knowledge_graph.py
+           # reads them out of billing_statistics{tag}.json, itself now
+           # fixed to record what 06 actually used), with cfg only as a
+           # base-case fallback when period doesn't carry them.
+           rho_tk_per_kwh=period.get("rho_tk_per_kwh", cfg.RHO_REBATE_TK_PER_KWH),
            # Issue J follow-up: label rho on the node itself, not only in a
            # CLI print, so a graph query can tell a proposed-mechanism run
            # from the current-policy (rho=0) arm without external context.
-           rho_is_current_policy=cfg.RHO_CURRENT_POLICY,
-           individual_rationality_on=cfg.INDIVIDUAL_RATIONALITY,
-           curtail_scope=cfg.CURTAIL_SCOPE,
+           rho_is_current_policy=period.get("rho_is_current_policy", cfg.RHO_CURRENT_POLICY),
+           individual_rationality_on=period.get("individual_rationality_on", cfg.INDIVIDUAL_RATIONALITY),
+           curtail_scope=period.get("curtail_scope", cfg.CURTAIL_SCOPE),
            qoe_min=cfg.QOE_MIN)
     for d in period.get("dates", []):
         g.rel("BillingPeriod", pk, "COVERS", "Day", d)

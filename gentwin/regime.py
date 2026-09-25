@@ -494,6 +494,34 @@ def precision_at_n(ents: list, topn: list) -> dict:
     }
 
 
+def persistence_topn(ents: list, by_kind: dict | None = None, seed: int = 42) -> list:
+    """
+    Round-3 follow-up (item A5): a baseline for next-day precision that is
+    neither the ranking (top_n) nor pure chance (random_topn) - among
+    entities ACTING today, sample up to POOL_N_BY_KIND per kind (random
+    within kind if more acted than the quota allows), with no priority score
+    involved at all. This tests whether "just keep watching whoever is
+    active today" predicts tomorrow's actors as well as the ranking does;
+    if the ranking's next-day lift over persistence is small, the priority
+    score's day-to-day CONTRIBUTION beyond raw activity persistence is
+    small even where its lift over pure random is large.
+    """
+    import numpy as np
+    by_kind = by_kind or cfg.POOL_N_BY_KIND
+    rng = np.random.default_rng(seed)
+    out = []
+    for kind in ENTITY_KINDS:
+        acting = [e for e in ents if e.kind == kind
+                 and (e.e_sh_kwh + e.e_cu_kwh) > 1e-9]
+        limit = by_kind.get(kind)
+        if limit is None or limit >= len(acting):
+            out.extend(acting)
+        else:
+            idx = rng.choice(len(acting), size=limit, replace=False)
+            out.extend(acting[i] for i in idx)
+    return out
+
+
 def precision_at_n_ids(topn_ids: set, acting_ids: set, n_total: int) -> dict:
     """
     Round-3 follow-up: the label-leakage-safe form of precision_at_n() - takes

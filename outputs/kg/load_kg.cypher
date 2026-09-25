@@ -156,7 +156,7 @@ CALL { WITH row
   SET n.c1_slack_kw = row.c1_slack_kw, n.clock = row.clock, n.date = row.date, n.pi_tk_per_kwh = row.pi_tk_per_kwh, n.post_response_kw = row.post_response_kw, n.slot_index = row.slot_index, n.soc_kwh = row.soc_kwh, n.substation = row.substation
 } IN TRANSACTIONS OF 5000 ROWS;
 
-// ---- DrAction (271993) ----
+// ---- DrAction (24522) ----
 LOAD CSV WITH HEADERS FROM 'file:///nodes_DrAction.csv' AS row
 CALL { WITH row
   MERGE (n:DrAction {id: row.id})
@@ -202,7 +202,7 @@ CALL { WITH row
 LOAD CSV WITH HEADERS FROM 'file:///nodes_BillingPeriod.csv' AS row
 CALL { WITH row
   MERGE (n:BillingPeriod {id: row.id})
-  SET n.days = row.days, n.end = row.end, n.forecast_days = row.forecast_days, n.month_label = row.month_label, n.observed_days = row.observed_days, n.qoe_min = row.qoe_min, n.rho_tk_per_kwh = row.rho_tk_per_kwh, n.start = row.start, n.tariff_source = row.tariff_source
+  SET n.curtail_scope = row.curtail_scope, n.days = row.days, n.end = row.end, n.forecast_days = row.forecast_days, n.individual_rationality_on = row.individual_rationality_on, n.month_label = row.month_label, n.observed_days = row.observed_days, n.qoe_min = row.qoe_min, n.rho_is_current_policy = row.rho_is_current_policy, n.rho_tk_per_kwh = row.rho_tk_per_kwh, n.start = row.start, n.tariff_source = row.tariff_source
 } IN TRANSACTIONS OF 5000 ROWS;
 
 // ---- MonthlyBill (800) ----

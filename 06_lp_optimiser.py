@@ -102,7 +102,8 @@ def apply_scenario(scale_gmax: float | None, scale_pmax: float | None):
 
 
 def run(subs, n_days, couple=True, theta_w=None, verbose=True,
-        period=None, individual_rationality=None):
+        period=None, individual_rationality=None, gamma_scale=None,
+        no_dr=False):
     """
     Solve a run of days.
 
@@ -111,9 +112,21 @@ def run(subs, n_days, couple=True, theta_w=None, verbose=True,
     `forecast` by forecast.build_period(). Without it, the first `n_days` of
     the dispatch horizon are solved against the reference day's Theta, which
     is the single-day behaviour.
+
+    `gamma_scale` (Round-3 item C14, default None - no change): multiplies
+    every household's `gamma_sh_h`/`gamma_cu_h` (discomfort weight) by this
+    factor, applied to the CACHED population objects in THIS process only -
+    does not touch `gentwin/config.py`'s synthesis defaults or the cache on
+    disk, so a fresh `population.consumers_from_cache()` call elsewhere is
+    unaffected. `no_dr`: see `gentwin/lp.py::build_day`'s docstring.
     """
     bpdb = _bpdb()
     cat, sch, POP, rec = _setup(subs)
+    if gamma_scale is not None:
+        for i in subs:
+            for h in POP[i]:
+                h.gamma_sh_h = float(h.gamma_sh_h) * gamma_scale
+                h.gamma_cu_h = float(h.gamma_cu_h) * gamma_scale
     ref_date = rec[subs[0]]["reference_day"]["date"]
     soc = {i: float(cfg.SUBSTATIONS[i]["s0_kwh"]) for i in subs}
     min_ret = _min_retail(subs, POP)
@@ -180,7 +193,7 @@ def run(subs, n_days, couple=True, theta_w=None, verbose=True,
         sol = lp.solve_day(date, subs, POP, sch, cat, theta, kappa, s_flag,
                            soc, couple=couple, theta_w=theta_w,
                            individual_rationality=individual_rationality,
-                           terminal_target=terminal_target)
+                           terminal_target=terminal_target, no_dr=no_dr)
         if not sol.success:
             raise RuntimeError(
                 f"{date}: LP solve failed ({sol.status}). Refusing to "
@@ -244,7 +257,7 @@ def run(subs, n_days, couple=True, theta_w=None, verbose=True,
     return solutions, POP
 
 
-def export(sols, subs, POP, tag="", scenario=None):
+def export(sols, subs, POP, tag="", scenario=None, ir_on=False, gamma_scale=None):
     """
     Everything Stages H and K need.
 
@@ -284,6 +297,12 @@ def export(sols, subs, POP, tag="", scenario=None):
                     "Z_shiftable_kw": net["Z_shiftable"][t],
                     "Z_curtailable_kw": net["Z_curtailable"][t],
                     "SoC_kwh": net["SoC"][t], "pi_tk_per_kwh": sol.duals[i][t],
+                    # Round-3 item C12 (social efficiency): C4's own dual,
+                    # raw (not kappa/th3-scaled like threshold_table's
+                    # `system_tk_per_kwh`) - exactly 0 whenever P^max isn't
+                    # scaled down (C4 slack), nonzero only once it binds.
+                    "pi4_tk_per_kwh": sol.duals_c4.get(
+                        i, np.zeros(cfg.SLOTS_PER_DAY))[t],
                     "c1_slack_kw": sol.c1_slack_kw[i][t],
                     "post_response_kw": sol.post_response_kw[i][t],
                     "baseline_kw": sol.baseline_kw[i][t],
@@ -315,6 +334,29 @@ def export(sols, subs, POP, tag="", scenario=None):
         **{f"scale_pmax_{i}": scenario[i][1] for i in subs},
         **{f"g_max_kw_eff_{i}": scenario[i][2] for i in subs},
         **{f"p_max_kw_eff_{i}": scenario[i][3] for i in subs},
+        # Round-3 follow-up (item A2): same class of bug as the P^max/G^max
+        # scenario above, but for rho/IR/curtail_scope - 09_monthly_billing.py
+        # runs as its own process and was recomputing incentive_received_tk
+        # (and hence saving/net_benefit/gained_*) with the DEFAULT rho
+        # regardless of --rho 0, because nothing persisted the override.
+        # Confirmed: _period_rho0's own billing_statistics.json reported
+        # rho_tk_per_kwh=3.0 (the default) and identical gained-household
+        # sets to the base arm, even though the LP itself solved under
+        # rho=0. Recorded here so 09 can read and apply the ACTUAL value
+        # used for this solve instead of assuming its own process's cfg.
+        "rho_used_tk_per_kwh": cfg.RHO_REBATE_TK_PER_KWH,
+        "rho_current_policy": cfg.RHO_CURRENT_POLICY,
+        "individual_rationality_on": bool(ir_on),
+        "curtail_scope_used": cfg.CURTAIL_SCOPE,
+        # Round-4 item 2: same propagation gap as rho/IR/curtail_scope above,
+        # for --gamma-scale. run() mutates POP's h.gamma_sh_h/h.gamma_cu_h in
+        # THIS process's memory only; 09_monthly_billing.py calls
+        # pop.consumers_from_cache() fresh in its own process and gets the
+        # UNSCALED gamma back, so discomfort_J2_tk/net_benefit_tk/gained_*
+        # for every C14 arm were computed against the wrong discomfort
+        # weight even though the LP's own x/y decisions (which read gamma
+        # directly from the mutated POP inside build_day) were correct.
+        "gamma_scale_used": gamma_scale if gamma_scale is not None else 1.0,
         "max_c1_slack_kw": s.diagnostics["max_c1_slack_kw"],
         "n_c7_binding": s.diagnostics["n_c7_binding"],
         "n_ir_binding": s.diagnostics.get("n_ir_binding", 0),
@@ -485,6 +527,23 @@ def main() -> int:
                          "for the CURRENT-POLICY arm (no stress rebate - rho "
                          "does not exist in Bangladesh today). Default: the "
                          "config value, i.e. the PROPOSED-mechanism rho.")
+    ap.add_argument("--tag-suffix", default=None,
+                    help="Override the auto-built --tag entirely with this "
+                         "exact string (e.g. '_period_drw_ir_rho6') - needed "
+                         "once more than one of --curtail-scope/--rho/--ir is "
+                         "combined, since the auto-built tag only names one "
+                         "axis at a time. Purely a filename/bookkeeping "
+                         "choice - changes no computation.")
+    ap.add_argument("--gamma-scale", type=float, default=None,
+                    help="Round-3 item C14: multiply every household's "
+                         "gamma_sh_h/gamma_cu_h (discomfort weight) by this "
+                         "factor for THIS run only - a sensitivity check, "
+                         "not a change to the config defaults or synthesis.")
+    ap.add_argument("--no-dr", action="store_true",
+                    help="Round-3 item C13: force x=y=0 for every household "
+                         "(zero the shift/curtail bounds) - the load-shedding "
+                         "counterfactual, so whatever the substation cannot "
+                         "serve from G/battery/tie-line shows up as Z instead.")
     ap.add_argument("--substations", nargs="*", default=list(cfg.SUBSTATIONS))
     a = ap.parse_args()
     if not (a.solve or a.sweep_theta or a.plot):
@@ -534,24 +593,40 @@ def main() -> int:
     if a.month:
         period = F.period_bounds(_bpdb(), subs, a.month)
         print(f"Billing period: {period[0]} -> {period[1]} ({a.month} days)")
+    if a.gamma_scale is not None:
+        print(f"GAMMA-SCALE OVERRIDE (item C14): gamma_sh_h/gamma_cu_h x "
+              f"{a.gamma_scale} for this run only.")
+    if a.no_dr:
+        print("NO-DR COUNTERFACTUAL (item C13): x=y=0 forced for every "
+              "household - whatever cannot be served from G/battery/tie-line "
+              "shows up as Z (unserved load) instead.")
     sols, POP = run(subs, a.days, couple=not a.separate, period=period,
-                    individual_rationality=(True if a.ir else None))
+                    individual_rationality=(True if a.ir else None),
+                    gamma_scale=a.gamma_scale, no_dr=bool(a.no_dr))
     if not sols:
         return 3
     # Issue C: every variant writes distinct outputs so 07/08/09 can consume
     # the matching one via --tag.
-    tag = "_separate" if a.separate else ""
-    if a.month or a.period:
-        tag += "_period"
-    if a.rho == 0.0:
-        tag += "_rho0"
-    if a.ir:
-        tag += "_ir"
-    if a.curtail_scope and a.curtail_scope != "all":
-        tag += f"_{a.curtail_scope}"
-    if a.scale_gmax or a.scale_pmax:
-        tag += "_scarcity"
-    export(sols, subs, POP, tag=tag, scenario=scenario)
+    if a.tag_suffix is not None:
+        tag = a.tag_suffix
+    else:
+        tag = "_separate" if a.separate else ""
+        if a.month or a.period:
+            tag += "_period"
+        if a.rho == 0.0:
+            tag += "_rho0"
+        if a.ir:
+            tag += "_ir"
+        if a.curtail_scope and a.curtail_scope != "all":
+            tag += f"_{a.curtail_scope}"
+        if a.scale_gmax or a.scale_pmax:
+            tag += "_scarcity"
+        if a.no_dr:
+            tag += "_nodr"
+        if a.gamma_scale is not None:
+            tag += f"_gamma{a.gamma_scale}"
+    export(sols, subs, POP, tag=tag, scenario=scenario, ir_on=bool(a.ir),
+          gamma_scale=a.gamma_scale)
     if a.plot:
         cmd_plot(sols, subs)
     return 0

@@ -348,6 +348,15 @@ def main() -> int:
                 "observed_days": per["day_composition"].get("observed"),
                 "forecast_days": per["day_composition"].get("forecast"),
                 "dates": [d for d in bdates],
+                # Round-3 follow-up (item A2): pass through the ACTUAL
+                # rho/IR/curtail_scope this billing run used (now correctly
+                # recorded in billing_statistics{tag}.json itself, post-fix)
+                # instead of letting build_billing() fall back to this
+                # process's own unscaled cfg.
+                "rho_tk_per_kwh": stats.get("rho_tk_per_kwh"),
+                "rho_is_current_policy": stats.get("rho_is_current_policy"),
+                "individual_rationality_on": stats.get("individual_rationality_on"),
+                "curtail_scope": stats.get("curtail_scope"),
             }, subs)
             print(f"  attached {len(bills)} MonthlyBill nodes")
 

@@ -1,5 +1,5 @@
-code,name_en,voltage,demand_charge,has_tou,mu_peak,mu_off,source,id,flat_tk_per_kwh,off_peak,peak
-LT-A,Residential,LT,42.0,False,1.0,1.0,"BERC memo 28.01.0000.012.04.003.26.2521, 03 June 2026; effective June 2026 billing month",LT-A,,,
-LT-E,Commercial and office,LT,90.0,True,1.2,0.9,"BERC memo 28.01.0000.012.04.003.26.2521, 03 June 2026; effective June 2026 billing month",LT-E,15.36,13.82,18.45
-LT-D1,"Education, religious and charitable institutions, and hospitals",LT,60.0,False,1.0,1.0,"BERC memo 28.01.0000.012.04.003.26.2521, 03 June 2026; effective June 2026 billing month",LT-D1,9.05,,
-LT-C1,Small industry,LT,48.0,True,1.2,0.9,"BERC memo 28.01.0000.012.04.003.26.2521, 03 June 2026; effective June 2026 billing month",LT-C1,12.73,11.45,15.27
+code,name_en,voltage,flat_tk_per_kwh,demand_charge,has_tou,mu_peak,mu_off,source,id,off_peak,peak
+LT-D1,"Education, religious and charitable institutions, and hospitals",LT,9.05,60.0,False,1.0,1.0,"BERC memo 28.01.0000.012.04.003.26.2521, 03 June 2026; effective June 2026 billing month",LT-D1,,
+LT-C1,Small industry,LT,12.73,48.0,True,1.2,0.9,"BERC memo 28.01.0000.012.04.003.26.2521, 03 June 2026; effective June 2026 billing month",LT-C1,11.45,15.27
+LT-A,Residential,LT,,42.0,False,1.0,1.0,"BERC memo 28.01.0000.012.04.003.26.2521, 03 June 2026; effective June 2026 billing month",LT-A,,
+LT-E,Commercial and office,LT,15.36,90.0,True,1.2,0.9,"BERC memo 28.01.0000.012.04.003.26.2521, 03 June 2026; effective June 2026 billing month",LT-E,13.82,18.45
